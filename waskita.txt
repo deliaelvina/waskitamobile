@@ -1,3 +1,11 @@
+<<<<<<< HEAD
 waskita ahahahahahahah
 
 dasasasa
+=======
+waskita
+
+test
+>>>>>>> 6937df71fa0108df300b253a7b773ba0feae8493
+
+coba coba
