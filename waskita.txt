@@ -8,4 +8,8 @@ waskita
 test
 >>>>>>> 6937df71fa0108df300b253a7b773ba0feae8493
 
+<<<<<<< HEAD
 ini tes deska
+=======
+coba coba
+>>>>>>> a1eaa1d11b8de99d9fe9ce9e0bcaad6cb3cef06a
