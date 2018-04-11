@@ -1,0 +1,88 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+            <span>Unit Info</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content" style="background-color: #f3f3f3 !important">
+    <div class="feed-item">
+        <ion-card>
+            <ion-card-content>
+                <!-- <ion-card-title class="item-title">
+
+                    {{parm.lot_descs}}
+                </ion-card-title> -->
+
+                <!-- <ion-item-group>
+                  <ion-row class="grid-example">
+                    <ion-col width-33 class="grid-item">
+                      <div class="grid-item-wrapper">
+                        <div class="grid-item-inner multi-line">
+                          Unit {{i}}
+                        </div>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-item-group> -->
+                <!-- <preload-image [ratio]="{w:3, h:2}" src="http://localhost:2121/waskitaAPI/images/reservation/floorplan1.jpg" title="Unit Information"></preload-image> -->
+                <div class="feed-item" *ngIf="picts">
+                    <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
+                        <ion-slide class="contact-slide" *ngFor="let img of picts">
+                            <!-- <h2>{{ img.title }}</h2> -->
+                            <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(floorImg)">
+                            <!-- <preload-image [ratio]="{w:3, h:2}" [src]="img"></preload-image> -->
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+                <br>
+                <div class="project_des">
+                    {{parm.projectName}}
+                </div>
+                <div class="phase_des">
+                    {{parm.towerName}} | {{parm.levelDesc}}
+                    <!-- <br> {{parm.lot_type_desc}} | {{parm.area}} {{parm.uom}} <br> -->
+                    <br> {{parm.lot_type_desc}} | <span style="color:rgb(253, 42, 42);"><strong>{{parm.lot_no}}</strong></span> <br>
+                    <!-- <span *ngIf="parm.studios">STUDIO</span> -->
+                    <!-- <span *ngIf="!parm.studios">{{parm.bd}} | {{parm.bh}} </span> <br> {{parm.direct}} |  -->
+                    <span *ngIf="!parm.studios">{{parm.bd}} </span>
+                </div>
+
+            </ion-card-content>
+
+        </ion-card>
+
+        <ion-card>
+            <ion-card-content>
+                <ion-card-title class="item-title" id="payment">
+                    Payment Plans
+                </ion-card-title>
+
+                <div *ngIf="av; else a">
+                    <table width="100%">
+                        <tr *ngFor="let item of plans">
+                            <td width="60%">{{item.plans}}</td>
+                            <td valign="middle" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <ng-template #a>
+                    <div>
+                        <span>No Payment Plans</span>
+                    </div>
+                </ng-template>
+
+            </ion-card-content>
+
+        </ion-card>
+        <div class="button-contact">
+            <button class="btn-contact" (click)="contact()">Contact</button>
+        </div>
+    </div>
+</ion-content>

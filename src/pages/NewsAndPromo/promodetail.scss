@@ -1,0 +1,55 @@
+project-details-page {
+    // cssnya buat disini
+    #map{
+        height: 700;
+        width:100%;
+    }
+    .tes {
+        background-color: color($colors, background, base);
+    }
+
+    .square{
+        float: left;
+        width: 30%;
+        // padding-bottom: 30%;
+        padding-bottom: 1%;
+        margin: 1.66%;
+        background-color: #fff;
+        font-size: 1rem;
+        line-height: 1.25;
+        background: nb-theme(color-bg);
+        color: #ffffff;
+        color: nb-theme(color-fg-heading);
+        margin-bottom: 1.5rem;
+        border-radius: 0.5rem;
+        -webkit-box-shadow: 0 3px 5px -3px #333;
+        box-shadow: 0 3px 5px -3px #333;
+        font-weight: 400;
+        cursor: pointer;
+        border: 2px solid #ff720d;
+        border-radius: 5px;
+    }
+    .textt{
+        display: block;
+        margin-bottom: 20%;
+        margin-top: 15%;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: bottom;
+        text-align: center;
+        font-family: nb-theme(font-secondary);
+        font-weight: nb-theme(font-weight-bold);
+        font-size: 8px;
+        width: 100%;
+        font-size: 3.5vw;
+        color: black;
+    }
+}
+
+.card-ios {
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: rgba(0, 0, 0, 0.22) !important;
+    webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
+}

@@ -1,0 +1,102 @@
+    cariUnit-page {
+        // title header black
+        ion-header .toolbar-title {
+            color: $title-header;
+        }
+        // .swiper-slide img {
+        //     width: 375px;
+        //     max-width: 100%;
+        //     height: 188px;
+        //     max-height: 100%;
+        // }
+        .swiper-slide img {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            max-height: 100%;
+        }
+        .project_des {
+            margin-left: 10px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            color: #555 !important;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        .phase_des {
+            margin-left: 10px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            color: #222;
+            font-size: 1.6rem;
+            font-weight: 400;
+        }
+        // .btn-orens {
+        //     color: white;
+        //     background-color: #ff720d;
+        //     // margin-left: 35px;
+        //     margin-left: 38%;
+        //     // padding-bottom: 10%;
+        //     padding: 13px;
+        //     border-radius: 8px;
+        //     font-size: 17px;
+        // }
+        @media only screen and (min-width: 320px) {
+            .btn-orens_2 {
+                color: white;
+                background-color: #ff720d;
+                // margin-left: 35px;
+                margin-left: 1%;
+                // padding-bottom: 10%;
+                padding: 13px;
+                border-radius: 8px;
+                font-size: 17px;
+            }
+            .div-button {
+                margin-bottom: 20px;
+            }
+        }
+        @media only screen and (min-width: 375px) {
+            .btn-orens_2 {
+                color: white;
+                background-color: #ff720d;
+                // margin-left: 35px;
+                margin-left: 15%;
+                // padding-bottom: 10%;
+                padding: 13px;
+                border-radius: 8px;
+                font-size: 17px;
+            }
+            .div-button {
+                margin-bottom: 20px;
+            }
+        }
+        @media only screen and (min-width: 768px) {
+            .btn-orens_2 {
+                color: white;
+                background-color: #ff720d;
+                // margin-left: 35px;
+                margin-left: 15%;
+                // padding-bottom: 10%;
+                padding: 13px;
+                border-radius: 8px;
+                font-size: 17px;
+            }
+            .div-button {
+                margin-bottom: 20px;
+            }
+        }
+        // .btn-orens_2 {
+        //     color: white;
+        //     background-color: #ff720d;
+        //     // margin-left: 35px;
+        //     margin-left: 15%;
+        //     // padding-bottom: 10%;
+        //     padding: 13px;
+        //     border-radius: 8px;
+        //     font-size: 17px;
+        // }
+        // .div-button {
+        //     margin-bottom: 20px;
+        // }
+    }

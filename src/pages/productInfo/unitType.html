@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+            <span>Choose Unit Type</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #f3f3f3 !important">
+    <div class="div-welcome">
+        <h5 class="project_des">{{parm.projectName}}</h5>
+    </div>
+    <div class="div-welcome">
+        <h5 class="phase_des">{{parm.towerName}}</h5>
+    </div>
+    <!-- <hr> -->
+    <!-- <div>
+        <img src="{{parm.projectPict}}">
+    </div> -->
+
+    <div class="feed-item" *ngIf="av ; else b">
+        <ion-card (click)="goToFindUnit(i)" *ngFor="let i of types">
+            <!-- <img [src]="pro.pic_path" title="pro.descs"> -->
+            <ion-card-content>
+                <!-- <ion-card-title class="item-title">
+                {{pro.descs}}
+            </ion-card-title> -->
+                <ion-item-group>
+                    <ion-row class="grid-example">
+                        <div class="kotak">
+                            <img src="{{i.pict}}" onerror="this.src='./assets/images/noimage.png';" alt="No Unit Type Images" class="gambar">
+                            <!-- <img src="{{i.pict}}" onerror="this.src='http://localhost:2121/waskitaApi/images/noimage.png';" alt="Missing Image" /> -->
+                        </div>
+
+
+
+                        <ion-col width-66 class="grid-item">
+                            <div class="grid-item-wrapper">
+                                <div class="grid-item-inner multi-line">
+                                    <strong>{{i.descs}}</strong>
+                                    <br><span [innerHTML]="i.remarks"></span>
+                                    <!-- <br>
+                                    Land Area : 281 m<sup>2</sup>, Building Area : 200 m<sup>2</sup>
+                                    <br>
+                                    2 bedroom | 2 bathroom -->
+                                    <!-- <br> Measure Land &nbsp;&nbsp;&nbsp;&nbsp; : 281 m<sup>2</sup>
+                                    <br> Measure Building : 200 m<sup>2</sup>
+                                    <br>
+                                    <div class="row">
+                                        <img class="icon-kecil-pict" src="./assets/images/bed.png">&nbsp;: {{i.bath}} |&nbsp;<img class="icon-kecil-pict" src="./assets/images/bathtub.png">&nbsp;: {{i.bath}}
+                                    </div> -->
+                                </div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-item-group>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <ng-template #b>
+        <ion-card>
+            <ion-card-content>
+                <ion-item-group>
+                    <ion-row class="grid-example">
+                        <ion-col width-100 class="grid-item">
+                            <div class="grid-item-wrapper">
+                                <div class="grid-item-inner multi-line">
+                                    No Unit Type Available
+                                </div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-item-group>
+            </ion-card-content>
+        </ion-card>
+    </ng-template>
+
+</ion-content>

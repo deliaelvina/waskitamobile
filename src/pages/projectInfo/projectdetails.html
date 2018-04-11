@@ -1,0 +1,191 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span>Project Details</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content">
+    <div class="feed-item" style="padding-top:10px; font-family:'Exo-Regular' !important;font-size:15px">
+        <b style="padding-left: 10px;"> {{prodetails.project_descs}}</b><br>
+        <b style="padding-left: 10px;"> {{prodetails.address1}}</b><br><br>
+        <div style="width:30%;float:left" (click)="contact()">
+            <ion-icon name="md-checkbox-outline" style="color:black;font-size:3em !important;margin-left:34%;"></ion-icon>
+            <div class="textt" style="margin-top:2%!important">
+                I'm interested
+            </div>
+        </div>
+        <div style="width:30%;float:left" (click)="downloadpdf()">
+ 
+             <img src="./assets/images/dashPict/brochure.svg" style="width:31.5px;height:42px;color:black;font-size:3em !important;margin-left:34%;">
+                <div class="textt" style="margin-top:2%!important">
+                    Brochure
+                </div>
+          
+        </div>
+        <!-- <div style="width:30%;float:left">
+                <img src="./assets/images/dashPict/health-care.svg" style="width:31.5px;height:42px;color:black;font-size:3em !important;margin-left:34%;">
+                <div class="textt" style="margin-top:2%!important">
+                    Available Units
+                </div>
+            </div> -->
+    </div>
+    <div class="feed-item" *ngIf="images">
+        <!-- <ion-card> -->
+        <!-- <ion-card-content> -->
+        <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
+            <ion-slide class="contact-slide" *ngFor="let img of images">
+                <!-- <background-image class="slide-image" [src]="img"></background-image> -->
+                <img src='{{img}}' class="slide-image" #myImage (click)="presentImage(myImage)" onerror="this.src='./assets/images/noimage.png';" alt="Can't Load This Picture">
+                <!-- <preload-image [ratio]="{w:3, h:2}" [src]="img" ></preload-image> -->
+            </ion-slide>
+        </ion-slides>
+        <!-- </ion-card-content> -->
+
+        <!-- </ion-card> -->
+
+        <!-- <ion-slides class="contact-slides" pager="true" style="height:45%" zoom loop="false" (ionSlideDidChange)="slideChanged()">
+            <ion-slide *ngFor="let img of images">
+                <div class="swiper-zoom-container">
+                    <img src='{{img}}' (click)="presentImage(myImage)" #myImage>
+                </div>
+            </ion-slide>
+        </ion-slides> -->
+    </div>
+    <!-- s -->
+    <div class="feed-item">
+        <ion-card>
+
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    <b>Overview</b>
+                </ion-card-title>
+                <p class="item-text" [innerHTML]="overview.overview_info">
+
+                </p>
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+    <div class="feed-item">
+        <ion-card>
+
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    <b>Feature</b>
+                </ion-card-title>
+                <p class="item-text" [innerHTML]="feature.feature_info">
+
+                </p>
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+    <div class="feed-item">
+        <ion-card>
+
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    <b> Plans</b>
+                </ion-card-title>
+
+
+                <ion-row class="grid-2 grid-example">
+                    <ion-col width-33 class="grid-item" *ngFor="let img of plans">
+                        <div class="grid-item-wrapper">
+                            <div class="grid-item-inner">
+                                <img src='{{img}}' class="slide-image" #myImage (click)="presentImage(myImage)" onerror="this.src='./assets/images/noimage.png';" alt="Can't Load This Picture">
+                            </div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+
+
+
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+    <div class="feed-item">
+        <ion-card>
+
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    <b> Amenities</b>
+                </ion-card-title>
+                <ion-segment class="user-content-segment" [(ngModel)]="display">
+                    <ion-segment-button value="I">
+                        Infrastructure
+                    </ion-segment-button>
+                    <ion-segment-button value="S">
+                        Schools
+                    </ion-segment-button>
+                    <ion-segment-button value="H">
+                        Hospitals
+                    </ion-segment-button>
+                    <ion-segment-button value="O">
+                        Other
+                    </ion-segment-button>
+                </ion-segment>
+                <div [ngSwitch]="display" class="user-content">
+                    <div *ngSwitchCase="'I'" class="list-view">
+                        <p class="item-text" [innerHTML]="amenitiesI"></p>
+                    </div>
+                    <div *ngSwitchCase="'H'" class="grid-view">
+                        <p class="item-text" [innerHTML]="amenitiesH"></p>
+                    </div>
+                    <div *ngSwitchCase="'S'" class="list-view">
+                        <p class="item-text" [innerHTML]="amenitiesS"></p>
+                    </div>
+                    <div *ngSwitchCase="'O'" class="grid-view">
+                        <p class="item-text" [innerHTML]="amenitiesO"></p>
+                    </div>
+                </div>
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+    <div class="feed-item">
+        <ion-card>
+
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    <b>Video</b>
+                </ion-card-title>
+                <span>
+
+                                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4201252816943!2d106.84144741436279!3d-6.208185995505836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f472f0adc8ab%3A0xdd543349501896cb!2sIFCA+Software!5e0!3m2!1sen!2sid!4v1521020182398" width="100%" height="300" frameborder="0" style="border:0"></iframe> -->
+                                <iframe [src]="ytb_url" width="100%" height="300" frameborder="0" style="border:0" allow="encrypted-media"></iframe>
+                               <!-- <div #map id="map" ></div> -->
+
+                        </span>
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+    <div class="feed-item">
+        <ion-card>
+
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    <b>Location</b>
+                </ion-card-title>
+                <span>
+
+                                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4201252816943!2d106.84144741436279!3d-6.208185995505836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f472f0adc8ab%3A0xdd543349501896cb!2sIFCA+Software!5e0!3m2!1sen!2sid!4v1521020182398" width="100%" height="300" frameborder="0" style="border:0"></iframe> -->
+                                    <iframe [src]="url" width="100%" height="300" frameborder="0" style="border:0"></iframe>
+                                    <!-- <div #map id="map" ></div> -->
+
+                            </span>
+                <p style="font-size:20px;font-weight:bold">Sales Gallery Address</p><br>
+                <b>{{coords_name}}</b><br> {{coords_address}}
+
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+</ion-content>

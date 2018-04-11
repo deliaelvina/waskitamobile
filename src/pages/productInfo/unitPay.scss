@@ -1,0 +1,35 @@
+unitPay-page {
+    .card-ios {
+        border-left-style: none !important;
+        border-right-style: none !important;
+        border-top-style: none !important;
+        box-shadow: 0 1px 5px -3px #333 !important;
+    }
+    .project_des {
+        color: #555 !important;
+    }
+    .phase_des {
+        color: #222 !important;
+        font-weight: 400 !important;
+    }
+    // title hitam
+    ion-header .toolbar-title {
+        color: $title-header;
+    }
+    .card-title-ios {
+        font-weight: 600
+    }
+    button.btn-contact {
+        background-color: #ff720d;
+        border-radius: 8px;
+        color: #fff;
+        height: 30px;
+        width: 100%;
+        font-size: 15px;
+    }
+    .button-contact {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+}

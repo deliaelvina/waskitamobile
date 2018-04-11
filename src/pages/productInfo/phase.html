@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span>Choose Cluster / Tower</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content" style="background-color: #f3f3f3 !important">
+    <div class="div-welcome">
+        <div class="project_des">
+            {{project_name}}
+        </div>
+    </div>
+
+    <div *ngIf="available; else na">
+        <div class="feed-item" *ngFor="let phass of phase; index as i" style="width:50%;">
+            <ion-card (click)="goToBlock(phass)" id="line-bottom">
+                <preload-image [ratio]="{w:3, h:2}" [src]="phass.pict" title="phass.descs"></preload-image>
+                <ion-card-content style="padding-top: 0px;padding-bottom: 0px;">
+                    <ion-card-title class="item-title">
+                        {{phass.descs}}
+                    </ion-card-title>
+
+                </ion-card-content>
+
+            </ion-card>
+        </div>
+    </div>
+
+</ion-content>
+
+<ng-template #na>
+    <div class="feed-item">
+        <ion-card>
+            <!-- <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs" style="padding-bottom: 10% !important;"></preload-image> -->
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    No Phase / Tower Available
+                </ion-card-title>
+
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+</ng-template>

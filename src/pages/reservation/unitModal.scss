@@ -1,0 +1,42 @@
+unitModal-page {
+    // title header black
+    ion-header .toolbar-title {
+        color: $title-header;
+    }
+    .btn {
+        /* border: 0;
+      font-family: inherit;
+      font-style: inherit;
+      font-variant: inherit;
+      line-height: 1;
+      text-transform: none;
+      cursor: pointer;
+      -webkit-appearance: button; */
+        color: white;
+        background-color: #ff720d;
+        /* margin-left: 50px; */
+        margin-left: 35px;
+        padding: 13px;
+        border-radius: 8px;
+        font-size: 17px;
+    }
+    .card-ios {
+        border-left-style: none !important;
+        border-right-style: none !important;
+        border-top-style: none !important;
+        box-shadow: 0 1px 5px -3px #333 !important;
+    }
+    .modal-wrapper {
+        z-index: 10;
+        height: 100%;
+        contain: strict;
+    }
+    @media only screen and (min-width: 768px) and (min-height:1024px) {
+        .modal-wrapper {
+            top: calc(50% - (800px/2)) !important;
+            position: absolute;
+            width: 600px;
+            height: 800px !important;
+        }
+    }
+}

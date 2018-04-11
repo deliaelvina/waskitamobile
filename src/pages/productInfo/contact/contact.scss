@@ -1,0 +1,22 @@
+contact-page {
+    button.btn-contact {
+        background-color: #ff720d;
+        border-radius: 8px;
+        color: #fff;
+        height: 30px;
+        width: 100%;
+        font-size: 15px;
+    }
+    .button-contact {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .label-ios {
+        color: #777 !important;
+    }
+    // title header black
+    ion-header .toolbar-title {
+        color: $title-header;
+    }
+}

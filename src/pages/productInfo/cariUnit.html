@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+            <!-- <span>{{parm.lot_desc}}</span>
+             -->
+
+            <span>Unit Type Detail</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="feed-item" *ngIf="pict">
+        <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
+            <ion-slide class="contact-slide" *ngFor="let img of pict">
+                <!-- <h2>{{ img.title }}</h2> -->
+                <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(floorImg)">
+                <!-- <preload-image [ratio]="{w:3, h:2}" [src]="img"></preload-image> -->
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <!-- <hr> -->
+    <div class="project_des">
+        {{parm.projectName}}
+    </div>
+    <div class="phase_des">
+        {{parm.towerName}} &nbsp;|&nbsp; {{parm.lot_type_desc}} |<br> <span [innerHTML]="types.remarks"></span> | <button class="btn-orens_2" (click)="cariUnit()">Cari Unit</button>
+    </div>
+    <hr>
+    <div [innerHTML]="parm.lot_spec" style="margin-left:10px;margin-right:10px;">
+        <!-- Spesification 1 - Spesification 4 <br>
+            Spesification 2 - Spesification 5 <br>
+            Spesification 3 -->
+    </div>
+
+    <hr>
+    <!-- <div class="div-button">
+        <button (click)="cariUnit()" class="btn-orens">Cari Unit</button>
+    </div> -->
+</ion-content>

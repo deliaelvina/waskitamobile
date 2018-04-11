@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+            <span>Choose Block</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="div-welcome">
+        <h5 class="project_des">{{parm.projectName}}</h5>
+    </div>
+    <div class="div-welcome">
+        <h5 class="phase_des">{{parm.towerName}}</h5>
+    </div>
+    <!-- <div class="project_des">
+        {{parm.projectName}}
+    </div>
+    <div class="phase_des">
+        {{parm.towerName}}
+    </div> -->
+    <div>
+        <ion-item>
+            <ion-label floating>Unit Type</ion-label>
+            <!-- Unit Type -->
+            <!-- <ion-input type="text" disabled="true" placeholder="Type.." [(ngModel)]="parm.lot_desc"></ion-input> -->
+            <ion-input type="text" readonly [(ngModel)]="parm.lot_type_desc" class="black"></ion-input>
+            <ion-input type="hidden" disabled="true" [(ngModel)]="parm.lot"></ion-input>
+            <button item-right type="button" (click)="showSearchType()" class="btn-orens">
+          <ion-icon name="ios-search"></ion-icon>
+        </button>
+        </ion-item>
+    </div>
+    <div class="div-div"></div>
+    <!-- <hr> -->
+
+    <div *ngIf="av; else b">
+        <ion-row class="grid-example " *ngFor="let blok of blocks" (click)="selectBlock(blok)">
+            <ion-col width-100 class="grid-item">
+                <div class="grid-item-wrapper" style="padding-bottom:10%;">
+                    <div class="grid-item-inner" style="font-size:1.2rem;">
+                        <h4 class="item-title">
+                            {{blok.descs}}
+                        </h4>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
+    <!-- <div class="box effect4">
+        <h3>Effect 8</h3>
+    </div> -->
+    <ng-template #b>
+        <ion-card>
+            <ion-card-content>
+                <ion-item-group>
+                    <ion-row class="grid-example">
+                        <ion-col width-100 class="grid-item">
+                            <!-- <div class="grid-item-wrapper">
+                  <div class="grid-item-inner multi-line"> -->
+                            No Unit Type Available
+                            <!-- </div>
+                </div> -->
+                        </ion-col>
+                    </ion-row>
+                </ion-item-group>
+            </ion-card-content>
+        </ion-card>
+    </ng-template>
+</ion-content>

@@ -1,0 +1,21 @@
+tabs-navigation {
+    .tabbar {
+        // box-shadow: 0 -4px 8px 0 rgba(161, 159, 159, 0.2), 0 -6px 20px 0 rgba(116, 116, 116, 0.19);
+        box-shadow: 0 0px 1px 0px #333 !important;
+        background: color($colors, tabs-navigation, base) !important;
+        border-top-color: darken(color($colors, tabs-navigation, base), 6%) !important;
+        .tab-button {
+            color: color($colors, tabs-navigation, contrast);
+            .tab-button-icon {
+                color: color($colors, tabs-navigation, contrast);
+            }
+        }
+        .tab-button:hover:not(.disable-hover),
+        .tab-button[aria-selected=true] {
+            color: $warna-button-footer;
+            .tab-button-icon {
+                color: $warna-button-footer;
+            }
+        }
+    }
+}

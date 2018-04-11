@@ -1,0 +1,22 @@
+s_blok {
+    // title hitam 
+    ion-header .toolbar-title {
+        color: $title-header !important;
+    }
+    .project_des {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        color: #969696;
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+    .phase_des {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        color: #bbbbbb;
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+}

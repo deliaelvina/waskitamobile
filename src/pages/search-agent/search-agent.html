@@ -1,0 +1,36 @@
+<!-- <ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        <span>Choose Property Agent</span>
+      </ion-title>
+    </ion-navbar>
+  </ion-header> -->
+  <ion-header class="terms-header legal-header">
+      <ion-toolbar>
+        <ion-buttons start>
+          <button ion-button (click)="dismiss()">
+            <span showWhen="ios">{{'CANCEL' | translate }}</span>
+            <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-title>
+            Choose Property Agent
+        </ion-title>
+      </ion-toolbar>
+    </ion-header> 
+  
+  <ion-content class="feed-content">
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+    <ion-item *ngFor="let item of agent"  (click)="GetAgent(item);" item="item">
+        {{ item.group_name }}
+    </ion-item>
+    <!-- <ion-item ng-repeat="item in agent track by $index" item="item" ng-click="GetAgent($index)">
+        {{ item.group_name }}
+    </ion-item> -->
+    </ion-list>
+  </ion-content>
+  

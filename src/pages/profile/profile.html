@@ -1,0 +1,166 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <span>Profile</span>
+        </ion-title>
+        <button class="checkmark" (click)="save()">
+                <!-- <ion-icon name="checkmark" > </ion-icon>
+                 -->
+                 <!-- <h5 class="">Save</h5> -->
+                 <span style="font-size:1.5rem;vertical-align: middle;">Save</span>
+            </button>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="profile-content">
+
+    <div class="user-details">
+        <!-- <ion-row class="user-main-data-row">
+            <ion-col no-padding width-20 style="padding-bottom:50px;padding-top:45px;left: 40%;">
+                <img class="user-image" [src]="dt.Pict_profil" (click)="openImagePicker()">
+                <img [src]="dt.Header_profil" id="img1" (click)="gantiheader()" />
+                <img [src]="dt.Pict_profil" id="img2" (click)="gantiprofil()" />
+            </ion-col>
+        </ion-row> -->
+        <div id="container">
+
+            <img *ngIf="dt.Header_profil" [src]="dt.Header_profil" id="img1" (click)="gantiheader()" />
+            <img *ngIf="dt.Pict_profil" [src]="dt.Pict_profil" id="img2" (click)="gantiprofil()" />
+        </div>
+
+        <!-- <br> -->
+        <!-- <ion-row wrap class="user-bio-row">
+            <ion-col no-padding width-50>
+                <h2 class="user-name">{{profile.user.name}}</h2>
+            </ion-col>
+            <ion-col no-padding width-50>
+                <span class="user-location">{{profile.user.location}}</span>
+            </ion-col>
+            <ion-col no-padding width-100>
+                <p class="user-description">
+                    {{profile.user.about}}
+                </p>
+            </ion-col>
+        </ion-row> -->
+        <!-- <ion-segment class="user-content-segment" [(ngModel)]="display" (ionChange)="onSegmentChanged($event)">
+            <ion-segment-button value="grid" (ionSelect)="onSegmentSelected($event)">
+                {{'GRID' | translate}}
+            </ion-segment-button>
+            <ion-segment-button value="list" (ionSelect)="onSegmentSelected($event)">
+                {{'LIST' | translate}}
+            </ion-segment-button>
+        </ion-segment> -->
+    </div>
+    <!-- <div id="container">
+        <img [src]="dt.Header_profil" id="img1" />
+        <img [src]="dt.Pict_profil" id="img2" />
+
+    </div> -->
+
+
+    <!-- <div [ngSwitch]="display" class="user-content">
+        <div *ngSwitchCase="'list'" class="list-view">
+            <div class="list-item" *ngFor="let post of profile.posts">
+                <span class="item-date">{{post.date}}</span>
+                <ion-card>
+                    <preload-image [ratio]="{w:1, h:1}" [src]="post.image" title=""></preload-image>
+                    <ion-card-content>
+                        <p class="item-text">
+                            {{post.description}}
+                        </p>
+                    </ion-card-content>
+                    <ion-row no-padding class="actions-row">
+                        <ion-col no-padding width-30 text-left>
+                            <button class="action-button" ion-button clear small color="danger" icon-start>
+                <ion-icon isActive="{{post.liked}}" name='heart'></ion-icon>
+                  {{post.likes}} {{'LIKES' | translate}}
+              </button>
+                        </ion-col>
+                        <ion-col no-padding width-45 text-center>
+                            <button class="action-button" ion-button clear small color="danger" icon-start>
+                <ion-icon name='chatbubbles'></ion-icon>
+                  {{post.comments}} {{'COMMENTS' | translate}}
+              </button>
+                        </ion-col>
+                        <ion-col no-padding width-25 text-right>
+                            <button class="action-button" ion-button clear small color="danger" icon-start (click)="sharePost(post)">
+                <ion-icon name='share-alt'></ion-icon>
+                {{'SHARE' | translate}}
+              </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </div>
+        </div>
+        <div *ngSwitchCase="'grid'" class="grid-view">
+            <ion-row wrap class="grid-row">
+                <ion-col width-33 class="grid-item" *ngFor="let post of profile.posts">
+                    <preload-image [ratio]="{w:1, h:1}" [src]="post.image" title="ion2FullApp"></preload-image>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div> -->
+    <div class="profile-page" style="margin-left: 10px; margin-right: 10px;margin-top:10px">
+        <form class="form_group auth-form" [formGroup]="form_profil" (ngSubmit)="save()">
+            <section class="form-section">
+
+                <!-- <h2 class="section-title">{{'BASIC_VALIDATIONS' | translate}}</h2> -->
+                <ion-item>
+                    <ion-label floating>Username</ion-label>
+                    <ion-input type="text" formControlName="UserName" class="form-controll" [value]="dt.UserName" required disabled="true" name="UserName"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>{{'Name' | translate}}</ion-label>
+                    <ion-input type="text" formControlName="Name" [value]="dt.Name" class="form-controll" name="Name"></ion-input>
+                </ion-item>
+                <!-- <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.username">
+                        <div class="error-message">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div> -->
+                <ion-item>
+                    <ion-label floating>{{'Change Password' | translate}}</ion-label>
+                    <ion-input type="password" formControlName="Password" [value]="dt.Password" (click)="changepass()"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>{{'GENDER' | translate}}</ion-label>
+                    <!-- <ion-select cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                        <ion-option *ngFor="let gender of genders" [value]="dt.Gender" formControlName="Gender">{{gender}}</ion-option>
+                    </ion-select> -->
+                    <ion-select cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}" formControlName="Gender" [value]="dt.Gender">
+                        <ion-option [value]="Female" (ionSelect)="Gender('Female');" checked='true'>Female</ion-option>
+                        <ion-option [value]="Male" (ionSelect)="Gender('Male');">Male</ion-option>
+                    </ion-select>
+                    <!-- <ion-input type="text" formControlName="Gender" [value]="dt.Gender"></ion-input> -->
+                </ion-item>
+
+                <!-- <ion-item>
+                    <ion-label floating>{{'Birthday Date' | translate }}</ion-label>
+                    <ion-datetime displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+                </ion-item> -->
+                <ion-item>
+                    <ion-label floating>{{'Handphone' | translate}}</ion-label>
+                    <ion-input type="text" formControlName="Handphone" [value]="dt.Handphone" class="form-controll" name="Handphone"></ion-input>
+                </ion-item>
+                <!-- <ion-item>
+                    <ion-label floating>{{'EMAIL' | translate}}</ion-label>
+                    <ion-input [textMask]="emailMask" type="text"></ion-input>
+                </ion-item> -->
+                <!-- <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.email">
+                        <div class="error-message">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div> -->
+
+
+            </section>
+
+            <!-- <button ion-button full type="submit">{{'SUBMIT' | translate}}</button> -->
+        </form>
+    </div>
+
+</ion-content>

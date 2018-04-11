@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <span>Choose Media</span>
+        </ion-title>
+        <button class="checkmark" (click)="ok()">
+            <ion-icon name="checkmark" > </ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <button ion-button full (click)="takeFoto()">Take Photo From Camera</button>
+    <button ion-button full (click)="takeGallery()">Take Photo From Gallery</button>
+    <img *ngIf="image.imgHere" [src]="image.imgHere" onerror="this.src='./assets/images/noimage.png'">
+</ion-content>

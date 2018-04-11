@@ -1,0 +1,89 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <span>I'm Interested</span>
+        </ion-title>
+        <!-- <button class="checkmark" >
+                <ion-icon name="checkmark" > </ion-icon>
+            </button> -->
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="profile-content">
+    <div class="user-details">
+        <ion-row class="user-main-data-row">
+
+        </ion-row>
+    </div>
+    <div class="contact-page" style="margin-left: 10px; margin-right: 10px;margin-top:10px">
+        <form class="contactForm auth-form" [formGroup]="contactForm">
+            <section class="form-section">
+                <!-- <ion-item> -->
+                <!-- <ion-label floating>{{'Project' | translate}}</ion-label> -->
+                <!-- <ion-input type="text" formControlName="Project_cd" class="form-controll" name="Project_cd" readonly style="color:#222" hidden></ion-input> -->
+                <ion-input type="hidden" disabled="true" formControlName="Project_no" class="form-controll" name="Project_no"></ion-input>
+                <!-- </ion-item> -->
+
+                <!-- <ion-item> -->
+                <!-- <ion-label floating>{{'Project' | translate}}</ion-label> -->
+                <ion-input type="hidden" disabled="true" formControlName="Entity" class="form-controll" name="Entity"></ion-input>
+                <!-- </ion-item> -->
+                <ion-item>
+                    <!-- <ion-label floating>{{'Project' | translate}}</ion-label> -->
+                    <ion-input type="text" formControlName="Project" class="form-controll" name="Project" readonly style="color:#222"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>{{'Nama Anda' | translate}}</ion-label>
+                    <ion-input type="text" formControlName="Name" class="form-controll" name="Name"></ion-input>
+                </ion-item>
+                <!-- <ion-item>
+                    <ion-label floating>{{'Email' | translate}}</ion-label>
+                    <ion-input type="text" formControlName="Email" class="form-controll" name="Email"></ion-input>
+                </ion-item> -->
+                <ion-item>
+                    <ion-label floating>{{'Handphone' | translate}}</ion-label>
+                    <ion-input type="text" formControlName="Handphone" class="form-controll" name="Handphone"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>{{'Deskripsi' | translate}}</ion-label>
+                    <ion-textarea rows="4" formControlName="Desc" class="form-controll" name="Desc" [value]="descrip" [(ngModel)]="descrip"></ion-textarea>
+
+                </ion-item>
+                <!-- <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.Desc">
+                        <div class="error-message" *ngIf="contactForm.get('Desc').hasError(validation.type) && (contactForm.get('Desc').dirty || contactForm.get('Desc').touched)">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div> -->
+            </section>
+
+            <!-- <button ion-button full type="submit">{{'SUBMIT' | translate}}</button> -->
+            <br>
+            <br>
+
+            <div class="button-contact">
+                <!-- <button class="btn-contact" (click)="kirim()" [disabled]="!contactForm.valid">Send Now</button> -->
+                <button class="btn-contact" (click)="kirim()">Send Now</button>
+            </div>
+            <!-- <body> ' + -->
+            <!-- <div>
+                <div>
+                    <div>
+                        <br>Saya tertarik dengan <strong>(NamaProject)</strong> ini.
+                        <br>Hubungi Saya untuk info detail.
+                        <br>Nama : Ani
+                        <br>Handphone : 08927382729
+                        <br>Email : ani@yahoo.com
+                    </div>
+                    <p>Terimakasih,</p>
+                    <br><br>
+                    <p><b>Ani </b></p>
+                    <div>&nbsp;</div>
+                </div>
+            </div> -->
+            <!-- N'</body>' -->
+        </form>
+    </div>
+
+</ion-content>

@@ -1,0 +1,179 @@
+formSearch-page {
+    // title header black
+    ion-header .toolbar-title {
+        color: $title-header;
+    }
+    .btn-orens {
+        color: white;
+        background-color: #ff720d;
+        // margin-left: 35px;
+        margin-left: 38%;
+        // padding-bottom: 10%;
+        padding: 13px;
+        border-radius: 8px;
+        font-size: 17px;
+    }
+    .div-welcome {
+        height: 40px;
+        background-color: white;
+        margin-top: 0px;
+        // margin-bottom: 1rem;
+        margin-left: 0px;
+    }
+    .div-div {
+        height: 15px;
+        background-color: white;
+        margin-top: 0px;
+        // margin-bottom: 1rem;
+        margin-left: 0px;
+        box-shadow: 0 2px 5px -3px #333 !important;
+    }
+    .project_des {
+        text-align: left;
+        // font-size: 1.5rem !important;
+        // color: #ff720d;
+        // font-size: 12px;
+        margin-top: 0px !important;
+        // margin-left: 10px;
+        font-family: 'Exo-Regular' !important;
+        padding-top: 10px;
+        padding-left: 5px;
+        // color: #222 !important;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #555 !important;
+    }
+    .phase_des {
+        // color: #222 !important;
+        text-align: left;
+        // font-size: 1.5rem !important;
+        // color: #ff720d;
+        // font-size: 12px;
+        margin-top: 0px !important;
+        // margin-left: 10px;
+        font-family: 'Exo-Regular' !important;
+        padding-top: 10px;
+        padding-left: 5px;
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: #222;
+    }
+    .item-ios {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    .item-ios.item-block .item-inner {
+        padding-right: 0px !important;
+    }
+    .item-ios [item-right] {
+        margin-right: 0px !important;
+    }
+    .grid-example .grid-item .grid-item-wrapper {
+        background-color: #fff !important;
+        box-shadow: 0 1px 5px -3px #333 !important;
+        border-radius: 5px;
+    }
+    ion-content {
+        background-color: #f3f3f3 !important
+    }
+    .box h3 {
+        text-align: center;
+        position: relative;
+        top: 80px;
+    }
+    .box {
+        width: 70%;
+        height: 200px;
+        background: #FFF;
+        margin: 40px auto;
+    }
+    .effect4 {
+        position: relative;
+    }
+    .effect4:after {
+        z-index: -1;
+        position: absolute;
+        content: "";
+        bottom: 15px;
+        right: 10px;
+        left: auto;
+        width: 50%;
+        top: 80%;
+        max-width: 300px;
+        background: #777;
+        -webkit-box-shadow: 0 15px 10px #777;
+        -moz-box-shadow: 0 15px 10px #777;
+        box-shadow: 0 15px 10px #777;
+        -webkit-transform: rotate(3deg);
+        -moz-transform: rotate(3deg);
+        -o-transform: rotate(3deg);
+        -ms-transform: rotate(3deg);
+        transform: rotate(3deg);
+    }
+    .grid-example .grid-item .grid-item-wrapper .grid-item-inner .item-title {
+        color: #ff720d !important;
+        text-align: left !important;
+    }
+    .item-title {
+        float: left !important;
+    }
+    .grid-example .grid-item .grid-item-wrapper .grid-item-inner {
+        -webkit-justify-content: left !important;
+        padding-left: 10px !important
+    }
+    .grid-example .grid-item {
+        padding-bottom: 2px !important;
+    }
+    ion-input .black {
+        color: #000 !important;
+        -webkit-text-fill-color: black
+    }
+    .label-ios {
+        color: #777 !important;
+    }
+    .grid-example {
+        padding: 10px 5px 0px 5px;
+        flex-wrap: wrap;
+        .grid-item {
+            padding: 0px 5px 10px;
+            &>.double-item {
+                &>.grid-item {
+                    padding: 5px 0px;
+                    &:first-child {
+                        padding-top: 0px;
+                    }
+                    &:last-child {
+                        padding-bottom: 0px;
+                    }
+                }
+            }
+            .grid-item-wrapper {
+                position: relative;
+                padding-bottom: 100%;
+                height: 40px;
+                background-color: $white-c;
+                .grid-item-inner {
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .item-title {
+                        margin: 0px;
+                        color: $black-c;
+                        text-align: center;
+                    }
+                    &.multi-line {
+                        flex-wrap: wrap;
+                        .item-title {
+                            flex: 0 0 100%;
+                            max-width: 100%;
+                            margin: 5px 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,60 @@
+<ion-header class="signup-header auth-header">
+    <ion-navbar>
+        <ion-title>{{'SIGN_UP' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="signup-content auth-content">
+    <h3 class="auth-title">{{'CREATE_AN_ACCOUNT' | translate}}</h3>
+    <form class="signup-form auth-form" [formGroup]="signup" (ngSubmit)="doSignup()">
+        <ion-item>
+            <ion-label floating>{{'Full Name' | translate}}</ion-label>
+            <ion-input type="FullName" formControlName="FullName"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>{{'Email' | translate}}</ion-label>
+            <ion-input type="email" formControlName="Email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>{{'Handphone' | translate}}</ion-label>
+            <ion-input type="Handphone" formControlName="Handphone"></ion-input>
+        </ion-item>
+
+        <h3 class="auth-title">Login As</h3>
+
+        <ion-list radio-group formControlName="SelectedGroup">
+            <ion-item>
+                <ion-label>Agent</ion-label>
+                <ion-radio value="Agent" (ionSelect)="RbAgent(1);"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Guest</ion-label>
+                <ion-radio value="Guest" (ionSelect)="RbAgent(2);"></ion-radio>
+            </ion-item>
+        </ion-list>
+
+
+        <!-- <show-hide-container> -->
+        <div *ngIf="AgentClick">
+            <ion-item>
+                <ion-input type="text" #input formControlName="AgentName" disabled="true" placeholder="Property Agent" [(ngModel)]="GroupName"></ion-input>
+                <ion-input type="hidden" formControlName="AgentCode" disabled="true" [(ngModel)]="GroupCd"></ion-input>
+                <!-- <ion-icon name="ios-search"  (click)="OpenSearh();" item-right></ion-icon>  -->
+                <button item-right type="button" (click)="OpenSearh();">
+                  <ion-icon name="ios-search"></ion-icon>
+              </button>
+            </ion-item>
+        </div>
+       
+        <button ion-button block class="auth-action-button signup-button" type="submit" [disabled]="!signup.valid">{{'SIGN_UP' | translate}}</button>
+    </form>
+    <p class="auth-divider">
+        Or
+    </p>
+    <button ion-button block class="facebook-auth-button" (click)="doFacebookSignup()">{{'SIGN_UP_WITH_FACEBOOK' | translate}}</button>
+    <button ion-button block class="google-auth-button" (click)="googleSignUp()">{{'SIGN_UP_WITH_GOOGLE' | translate}}</button>
+    <!-- <button ion-button block class="twitter-auth-button" (click)="doTwitterSignup()">{{'SIGN_UP_WITH_TWITTER' | translate}}</button> -->
+    <p class="legal-stuff">
+        {{'AGREEMENT_TEXT' | translate}} <a class="legal-action" (click)="showPrivacyModal()">{{'PRIVACY_POLICY' | translate}}</a> {{'AND' | translate}} <a class="legal-action" (click)="showTermsModal()">{{'TERMS_OF_USE' | translate}}</a>
+    </p>
+</ion-content>
