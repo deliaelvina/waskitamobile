@@ -134,8 +134,13 @@
         <variable name="APP_NAME" value="waskitaApp" />
     </plugin>
     <plugin name="cordova-plugin-document-viewer" spec="^0.9.9" />
-    <plugin name="cordova-plugin-file-opener2" spec="^2.0.19" />
     <engine name="browser" spec="~5.0.3" />
+<<<<<<< HEAD
+    <engine name="ios" spec="~4.5.4" />
+=======
     <engine name="ios" spec="4.5.0" />
     <engine name="android" spec="6.3.0" />
+    <plugin name="cordova-plugin-file-opener2" spec="^2.0.19" />
+>>>>>>> 18b46287f909c7c5016a228482c23ed759807394
+    <engine name="android" spec="~6.3.0" />
 </widget>
