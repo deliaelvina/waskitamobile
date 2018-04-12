@@ -1,13 +1,15 @@
 login-page {
     .login-content {
         .alt-options {
+            background-color: $input-login;
+            border-radius: 5px;
             .button {
                 margin: 0px;
                 padding: 0px;
                 font-size: 1.6rem;
             }
             .forgot-button {
-                color: $white-d;
+                color: $signup;
                 font-weight: 800;
                 font-size: 1.7rem;
                 .button-inner {
@@ -18,7 +20,7 @@ login-page {
             .signup-button {
                 font-weight: 800;
                 font-size: 1.7rem;
-                color: $theme-color-2;
+                color: $signup;
                 text-align: center;
                 .button-inner {
                     justify-content: flex-end;
@@ -67,4 +69,44 @@ login-page {
             margin-right: auto;
         }
     }
+    @media only screen and (min-height: 375px){
+        .tab-ataslogin{
+            padding-top: 40%;
+        }
+    }
+    @media only screen and (min-width: 320px){
+        .tab-ataslogin{
+            padding-top: 45%;
+        }
+    }
+    @media only screen and (min-height: 812px){
+        .tab-ataslogin{
+            padding-top: 60%;
+        }
+    }
+    .auth-form {
+        ion-item {
+            background-color: $input-login !important;
+            // @include basic-input-style(color($colors, background, base), $theme-color-1, $white-d);
+            // &.item {
+            //     input[type="password"].text-input {
+            //         padding-right: 6rem;
+            //     }
+            // }
+        }
+        // .auth-action-button {
+        //     margin: 0px;
+        //     margin-top: 20px;
+        //     @include call-to-action-button-styles(color($colors, button, base), color($colors, button, contrast));
+        // }
+        // .show-hide-password {
+        //     .type-toggle {
+        //         color: $white-d;
+        //         margin: 0px;
+        //         padding: 0px 6px;
+        //         text-align: right;
+        //     }
+        // }
+    }
+
 }
