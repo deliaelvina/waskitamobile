@@ -33,6 +33,8 @@ import { ListingPage } from '../listing/listing';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 // import {Md5} from 'ts-md5/dist/md5';
+import { CameraPage } from '../camera/camera';
+import { FileTransferObject, FileUploadOptions, FileTransfer } from '@ionic-native/file-transfer';
 @Component({
   selector: 'profile-page',
   templateUrl: 'profile.html'
@@ -77,7 +79,7 @@ export class ProfilePage {
     Pict_profil:'',
     Header_profil: ''
   };
-  
+  pict_name:any;
 
   constructor(
     public menu: MenuController,
@@ -98,7 +100,8 @@ export class ProfilePage {
     public cropService: Crop,
     public platform: Platform
     ,private _errorService: ErrorhandlerService
-    ,public alertCtrl: AlertController
+    ,public alertCtrl: AlertController,
+    private fileTf:FileTransfer,
   ) {
     this.main_page = { component: ListingPage };
     this.email = localStorage.getItem('User');
@@ -121,7 +124,7 @@ export class ProfilePage {
       Header_profil: new FormControl('')
     });
   }
-  
+
   changepass(){
     // alert('change');
     this.menu.close();
@@ -129,7 +132,35 @@ export class ProfilePage {
   }
 
   save(){
-    // alert('save'); 
+    if(this.pict_name && this.pict_name != ''){
+      this.upload(this.dt.Pict_profil, this.pict_name)
+      .then((datas) => {
+        var x = JSON.parse(datas.response);
+        if(x.Error == true) {
+          if(x.Status == 401){
+            this.showAlert("Warning!", x.Pesan,'');
+            this.loading.dismiss();
+          }
+          else {
+            // alert(x.Pesan);
+            this.showAlert("Warning!", x.Pesan,'');
+            this.loading.dismiss();
+          }
+        }
+        else {
+          this.actSave();
+        }
+      },(err) => {
+        //On Error Upload
+      });
+    }
+    else {
+      this.actSave();
+    }
+  }
+
+  actSave(){
+    // alert('save');
     var datas = this.form_profil.value;
     // var datas = this.dt.value;
     datas.Uid = localStorage.getItem('UserId');
@@ -150,7 +181,7 @@ export class ProfilePage {
               //   duration: 3000,
               //   position: 'bottom'
               // });
-            
+
               // toast.onDidDismiss(() => {
               //   console.log('Dismissed toast');
               // });
@@ -164,16 +195,16 @@ export class ProfilePage {
               //   duration: 3000,
               //   position: 'bottom'
               // });
-            
+
               // toast.onDidDismiss(() => {
               //   console.log('Dismissed toast');
               // });
               // toast.present();
               // this.navCtrl.push(ListingPage);
               this.showAlert("Yeay!",data.Pesan,'profil');
-              
+
                   // this.loading.dismiss();
-            }  
+            }
           },
           (err)=>{
             let toast = this.toastCtrl.create({
@@ -181,7 +212,7 @@ export class ProfilePage {
               duration: 3000,
               position: 'top'
             });
-    
+
             toast.onDidDismiss(() => {
               console.log('Dismissed toast');
             });
@@ -203,10 +234,42 @@ export class ProfilePage {
     // this.menu.close();
     // this.app.getRootNav().push(ChangePasswordPage);
   }
+
+  upload(pict:any, name:any){
+    const transfer:FileTransferObject = this.fileTf.create();
+
+      let option : FileUploadOptions = {
+        fileKey: 'photo',
+        fileName: name,
+        chunkedMode: false,
+        httpMethod: 'post',
+        mimeType: 'image/jpeg',
+        headers: {'Token':localStorage.getItem("Token")}
+      };
+
+      return transfer.upload(pict, this.url_api+'c_reservate/upload/', option);
+  }
+
+  ionViewWillEnter(){
+    // console.log('enter');
+    let images = JSON.parse(localStorage.getItem('image'));
+    var rand = Math.floor(Math.random() * 100);
+    localStorage.removeItem('image');
+
+    if(images){
+      let z = images.for;
+      this.dt.Pict_profil = images.imgHere;
+      this.pict_name = 'profile_'+rand+'.png';
+      this.form_profil.get('Pict_profil').setValue(this.url_api+'images/profile/profile_'+rand+'.png');
+      // console.log(this.images);
+    }
+  }
+
   Gender(t:any): void {
     //  alert(t);
     this.dt.Gender=t;
  }
+
  showAlert(title:any, subTitle:any, act:any) {
   var bah:any;
   if(act == 'menu'){
@@ -274,7 +337,7 @@ export class ProfilePage {
               this.dt.Gender= data[0].gender;
               this.form_profil.get('Gender').setValue(data[0].gender);
               this.dt.Handphone= data[0].Handphone;
-              
+
               // this.dt.Pict_profil= data[0].pict;
               this.dt.Pict_profil = data[0].pict?data[0].pict:'./assets/images/noimage.png';
               this.dt.Header_profil = data[0].pict_header?data[0].pict_header:'./assets/images/noimage.png';
@@ -290,6 +353,11 @@ export class ProfilePage {
         //         "Female"
         //       ];
     }
+
+    gantiprofil2(img:any){
+      this.navCtrl.push(CameraPage,{from:'profile', image:img});
+    }
+
     gantiprofil(){
       this.imagePicker.hasReadPermission().then(
         (result) => {
@@ -320,6 +388,7 @@ export class ProfilePage {
           console.log(err);
         });
      }
+
      gantiheader(){
       this.imagePicker.hasReadPermission().then(
         (result) => {
@@ -368,12 +437,12 @@ export class ProfilePage {
   //       new Country('US', 'United States'),
   //       new Country('AR', 'Argentina')
   //     ];
-  
+
   //     this.genders = [
   //       "Male",
   //       "Female"
   //     ];
-  
+
   //     this.matching_passwords_group = new FormGroup({
   //       password: new FormControl('', Validators.compose([
   //         Validators.minLength(5),
@@ -384,7 +453,7 @@ export class ProfilePage {
   //     }, (formGroup: FormGroup) => {
   //       return PasswordValidator.areEqual(formGroup);
   //     });
-  
+
   //     let country = new FormControl(this.countries[0], Validators.required);
   //     let phone = new FormControl('', Validators.compose([
   //       Validators.required,
@@ -394,7 +463,7 @@ export class ProfilePage {
   //       country: country,
   //       phone: phone
   //     });
-  
+
   //     this.form_profil = this.formBuilder.group({
   //       username: new FormControl('', Validators.compose([
   //         UsernameValidator.validUsername,
@@ -501,6 +570,6 @@ export class ProfilePage {
   //  });
   // }
 
-  
+
 
 }
