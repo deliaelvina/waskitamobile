@@ -138,4 +138,5 @@
     <engine name="ios" spec="4.5.0" />
     <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-file-opener2" spec="^2.0.19" />
+    <engine name="android" spec="~6.3.0" />
 </widget>
