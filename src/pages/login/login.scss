@@ -124,4 +124,10 @@ color: #000 !important;
 .auth-content .auth-form .show-hide-password .type-toggle{
 color: #222 !important; 
 }
+.auth-content .auth-form ion-item.item{
+    border-radius: 6px;
+}
+.auth-content .auth-form ion-item.item .item-inner{
+    border-radius: 6px;
+}
 }
