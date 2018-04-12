@@ -4,8 +4,12 @@
 }
 
 .auth-content {
-    padding: 16px 6%;
-    background-color: color($colors, background, base);
+    // padding: 16px 6%;
+    // background-color: color($colors, background, base);
+    background-image: url('../assets/images/loginbg2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
     .scroll-content {
         padding: 16px 6%;
     }
@@ -16,6 +20,7 @@
     }
     .auth-form {
         ion-item {
+            // background-color: #333;
             @include basic-input-style(color($colors, background, base), $theme-color-3, $white-d);
             &.item {
                 input[type="password"].text-input {

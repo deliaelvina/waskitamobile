@@ -22,12 +22,17 @@ $theme-color-2: #ae75e7;
 $theme-color-3: #5e5874;
 $theme-color-4: #ff720d;
 // IFCA CSS COLORS
-$title-header: #222; //BUAT HEADER TITLE WARNA ITEM
-$warna-button-footer: #ff720d; //WARNA FOOTER 
+$title-header: #fff; //BUAT HEADER TITLE WARNA ITEM
+$background-header: #1f3e80;
+$warna-button-footer: #1f3e80; //WARNA FOOTER 
 //KALO WARNA BACKGROUND FOOTER ADA DI BAWAH $colors:tabs-navigation:base//
-$button-logout: #ff720d;
-$button-back: #ff720d;
-$list-bawah-ion-card: #ff720d;
+$button-logout: #fff;
+$button-back: #fff;
+$list-bawah-ion-card: #1f3e80;
+$signup: #1f3e80;
+$input-login: #ffffff6e;
+$button:  transparent;
+$button-reservasi: #1f3e80;
 // Named Color Variables
 // --------------------------------------------------
 // Named colors makes it easy to reuse colors on various components.

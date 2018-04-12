@@ -22,7 +22,7 @@ export class FirebaseFacebookLoginService {
   ){
     // this.fb.browserInit(this.FB_APP_ID, "v2.8");
     if(!platform.is('cordova')){
-      this.fb.browserInit(this.FB_APP_ID, "v2.8");
+      // this.fb.browserInit(this.FB_APP_ID, "v2.8");
     }
   }
 

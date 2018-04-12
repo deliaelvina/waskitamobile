@@ -16,7 +16,7 @@ export class FacebookLoginService {
     public fb: Facebook,
     public platform: Platform
   ){
-    this.fb.browserInit(environment.facebook_app_id, "v2.8");
+    // this.fb.browserInit(environment.facebook_app_id, "v2.8");
   }
 
   doFacebookLoginFirebase(){

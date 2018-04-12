@@ -5,15 +5,17 @@
 </ion-header>
 
 <ion-content class="login-content auth-content">
-    <ion-row class="intro-image-row">
+    <div class="tab-ataslogin"></div>
+    <!-- <ion-row class="intro-image-row">
         <ion-col center width-51 no-padding>
             <preload-image [ratio]="{w:1, h:1}" src="./assets/images/icon_login/logoputih.png" alt="app logo" title="ion2FullApp" style="width:100%;" class="logo1"></preload-image>
         </ion-col>
 
         <ion-col center width-51 no-padding>
+           
             <preload-image [ratio]="{w:1, h:1}" src="./assets/images/icon_login/property365.png" alt="app logo" title="ion2FullApp" style="width:100%;" class="logo2"></preload-image>
         </ion-col>
-    </ion-row>
+    </ion-row> -->
     <form class="login-form auth-form" [formGroup]="login" (ngSubmit)="doLogin()">
         <ion-item>
             <ion-label floating>{{'Email' | translate}}</ion-label>
@@ -25,7 +27,7 @@
                 <ion-input type="password" formControlName="password" show-hide-input></ion-input>
             </ion-item>
         </show-hide-container>
-        <button ion-button block class="auth-action-button login-button" type="submit" [disabled]="!login.valid" style="background-color:#ff720d">{{'LOG_IN' | translate}}</button>
+        <button ion-button block class="auth-action-button login-button" type="submit" [disabled]="!login.valid" style="background-color:#1f3e80">{{'LOG_IN' | translate}}</button>
     </form>
     <ion-row class="alt-options">
         <ion-col no-padding width-51>
