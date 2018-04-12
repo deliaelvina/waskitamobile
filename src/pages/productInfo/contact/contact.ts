@@ -145,8 +145,8 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
       this.ErrorList = data.Error_Status;
     });
         this.contactForm.get('Project').setValue(this.parm.projectName);
-        this.contactForm.get('Entity').setValue(this.parm.entity_cd);
-        this.contactForm.get('Project_no').setValue(this.parm.project_no);
+        this.contactForm.get('Entity').setValue(this.parm.entity);
+        this.contactForm.get('Project_no').setValue(this.parm.projectNo);
         // this.contactForm.get('Entity').setValue(this.parm.Entity);
         // this.contactForm.get('Project_no').setValue(this.parm.Project_no);
         this.descrip = 'Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.';
