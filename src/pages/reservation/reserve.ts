@@ -240,7 +240,7 @@ export class ReservationReservePage {
         { type: 'minLength', message: 'Phone Number must be at least 10 numbers long.' },
       ],
       'idNo': [
-        { type: 'required', message: 'ID Number is required.' },
+        // { type: 'required', message: 'ID Number is required.' },
         { type: 'pattern', message: 'Enter a valid ID Number.' },
         { type: 'minLength', message: 'ID Number must be at least 16 numbers long.' },
       ],
