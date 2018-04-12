@@ -45,8 +45,8 @@ export class ProjectDetailsPage {
   ];
   pro = {
     projectName:'',
-    entity_cd:'',
-    project_no:''};
+    entity:'',
+    projectNo:''};
   plans = [
     this.url_api+'images/noimage.png'
   ];
@@ -84,8 +84,8 @@ export class ProjectDetailsPage {
     this.project = navParams.get('project');
     // console.log(this.project);
     this.pro.projectName = this.project.descs;
-    this.pro.entity_cd = this.project.entity;
-    this.pro.project_no = this.project.project;
+    this.pro.entity = this.project.entity;
+    this.pro.projectNo = this.project.project;
     this.display ="I";
     this.loading = this.loadingCtrl.create();
     this._imageViewerCtrl = imageViewerCtrl;

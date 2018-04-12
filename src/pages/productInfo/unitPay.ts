@@ -192,6 +192,7 @@ export class UnitPayPage {
 
   contact(){
     // alert('a');
+    // console.log(this.parm);
     this.nav.push(ContactPage,{data:this.parm});
   }
 
