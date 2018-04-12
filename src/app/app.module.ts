@@ -154,8 +154,8 @@ import { MyReservationProjectPage } from '../pages/reservation/myReservation';
 
 //file transfer
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file'
-
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -415,7 +415,8 @@ export function createTranslateLoader(http: HttpClient) {
     FormService,
     FileTransfer,
     FileTransferObject,
-    File
+    File,
+    FileOpener
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
