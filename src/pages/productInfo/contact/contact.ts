@@ -218,6 +218,8 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
     }
 
     kirim(){
+      this.loading = this.loadingCtrl.create();
+      this.loading.present();
         // let toast = this.toastCtrl.create({
         //     message: 'Email Delivered',
         //     duration: 3000,
@@ -253,8 +255,9 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
                   //   console.log('Dismissed toast');
                   // });
                   // toast.present();
-                  this.showAlert("Warning!",data.Pesan,'');
                   this.loading.dismiss();
+                  this.showAlert("Warning!",data.Pesan,'');
+                  // this.loading.dismiss();
                 }else{
 
                   // let toast = this.toastCtrl.create({
@@ -267,6 +270,7 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
                   //   console.log('Dismissed toast');
                   // });
                   // toast.present();
+                  this.loading.dismiss();
                   this.showAlert("Information!",data.Pesan,'menu');
 
                   // this.nav.setRoot(this.main_page.component);
