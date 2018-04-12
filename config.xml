@@ -134,5 +134,5 @@
         <variable name="APP_NAME" value="waskitaApp" />
     </plugin>
     <plugin name="cordova-plugin-document-viewer" spec="^0.9.9" />
-    <engine name="android" spec="6.3.0" />
+    <engine name="android" spec="~6.3.0" />
 </widget>
