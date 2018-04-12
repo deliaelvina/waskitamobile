@@ -4,8 +4,9 @@ import { ImageViewerController } from 'ionic-img-viewer';
 import { ProfilePage } from '../profile/profile';
 import { DomSanitizer} from '@angular/platform-browser';
 
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer,  FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -76,6 +77,7 @@ export class ProjectDetailsPage {
     private sanitizer: DomSanitizer,
     public platform: Platform,
     private transfer: FileTransfer, private file: File,
+    private fileOpener: FileOpener,
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService
   ) {
@@ -135,30 +137,61 @@ export class ProjectDetailsPage {
 
   }
   downloadpdf() {
-    const fileTransfer: FileTransferObject = this.transfer.create();
-    const url = this.brochure;
-    fileTransfer.download(url, this.storageDirectory + this.pro.projectName +'.pdf').then((entry) => {
-    // fileTransfer.download(url,this.storageDirectory+'filebro.pdf',true).then((entry) => {
-      // console.log();
-      this.showAlert("Download succeeded!", 'Brochure saved in ' + entry.toURL(),'donothing');
-    }, (err) => {
-      // handle error
-      this.ErrorList = this.ErrorList.filter(function(er){
-          return er.Code == err.status;
-      });
+    this.loading = this.loadingCtrl.create();
+    this.loading.present().then(() => {
+      const fileTransfer: FileTransferObject = this.transfer.create();
+      var url = encodeURI(this.brochure);
 
-      var errS;
-      //filter klo error'a tidak ada di array error
-      if(this.ErrorList.length == 1 ){
-        alert('a');
-        errS = this.ErrorList[0].Description;
-      }else{
-        alert('b');
-        errS = err;
-      }
-      this.showAlert("Download failed!", JSON.stringify(errS),'');
+      fileTransfer.download(url, this.storageDirectory + 'brochure.pdf').then((entry) => {
+        let urlpdf = entry.toURL();
+        // alert(urlpdf);
+      
+        // alert('hi');
+        this.fileOpener.open(urlpdf, 'application/pdf').then(() => {
+          this.loading.dismiss();
+        }, (err) => {
+          // handle error
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+  
+          var errS;
+        
+          if(this.ErrorList.length == 1 ){
+            // alert('a');
+            errS = this.ErrorList[0].Description;
+          }else{
+            alert('b');
+            errS = err;
+          }
+          this.showAlert("Download failed!", JSON.stringify(errS),'donothing');
+          this.loading.dismiss();	
+          })
+          .catch(e => {
+            alert('eror bray:'+JSON.stringify(e))
+          });
+       //end of file opener
+        
+      }, (err) => {
+        // handle error
+        this.ErrorList = this.ErrorList.filter(function(er){
+            return er.Code == err.status;
+        });
 
-      });
+        var errS;
+      
+        if(this.ErrorList.length == 1 ){
+          alert('a');
+          errS = this.ErrorList[0].Description;
+        }else{
+          alert('b');
+          errS = err;
+        }
+        this.showAlert("Download failed!", JSON.stringify(errS),'donothing');
+        this.loading.dismiss();	
+        });
+    });
+    
   }
 
   loadData(){
