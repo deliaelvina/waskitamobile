@@ -139,10 +139,6 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {},
       "ionic-plugin-keyboard": {},
-      "cordova-plugin-facebook4": {
-        "APP_ID": "1737645236299589",
-        "APP_NAME": "waskitaApp"
-      },
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
@@ -173,7 +169,11 @@
       "call-number": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-file-transfer": {}
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-facebook4": {
+        "APP_ID": "1737645236299589",
+        "APP_NAME": "waskitaApp"
+      }
     }
   }
 }
