@@ -77,7 +77,7 @@ export class ProfilePage {
     Gender : '',
     Handphone : '',
     Pict_profil:'',
-    Header_profil: ''
+    Header_profil: './assets/images/black.png'
   };
   pict_name:any;
 
@@ -132,6 +132,8 @@ export class ProfilePage {
   }
 
   save(){
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
     if(this.pict_name && this.pict_name != ''){
       this.upload(this.dt.Pict_profil, this.pict_name)
       .then((datas) => {
@@ -165,6 +167,9 @@ export class ProfilePage {
     // var datas = this.dt.value;
     datas.Uid = localStorage.getItem('UserId');
     datas.wherename = localStorage.getItem('Name');
+    if(datas.Pict_profil == ''){
+      datas.Pict_profil = this.dt.Pict_profil;
+    }
     if(this.dt.Gender != ''){
       datas.Gender = this.dt.Gender;
     }
@@ -186,8 +191,8 @@ export class ProfilePage {
               //   console.log('Dismissed toast');
               // });
               // toast.present();
+              this.loading.dismiss();
               this.showAlert("Warning!",data.Pesan,'');
-                  this.loading.dismiss();
             }else{
               // alert(data.Pesan);
               // let toast = this.toastCtrl.create({
@@ -201,8 +206,9 @@ export class ProfilePage {
               // });
               // toast.present();
               // this.navCtrl.push(ListingPage);
-              this.showAlert("Yeay!",data.Pesan,'profil');
-
+              this.loading.dismiss();
+              localStorage.setItem('Name',this.form_profil.value.Name);
+              this.showAlert("Success!",data.Pesan,'');
                   // this.loading.dismiss();
             }
           },
@@ -247,7 +253,7 @@ export class ProfilePage {
         headers: {'Token':localStorage.getItem("Token")}
       };
 
-      return transfer.upload(pict, this.url_api+'c_reservate/upload/', option);
+      return transfer.upload(pict, this.url_api+'c_profil/upload/', option);
   }
 
   ionViewWillEnter(){
@@ -260,7 +266,7 @@ export class ProfilePage {
       let z = images.for;
       this.dt.Pict_profil = images.imgHere;
       this.pict_name = 'profile_'+rand+'.png';
-      this.form_profil.get('Pict_profil').setValue(this.url_api+'images/profile/profile_'+rand+'.png');
+      this.form_profil.get('Pict_profil').setValue(this.url_api+'images/profil/profile_'+rand+'.png');
       // console.log(this.images);
     }
   }
@@ -340,7 +346,7 @@ export class ProfilePage {
 
               // this.dt.Pict_profil= data[0].pict;
               this.dt.Pict_profil = data[0].pict?data[0].pict:'./assets/images/noimage.png';
-              this.dt.Header_profil = data[0].pict_header?data[0].pict_header:'./assets/images/noimage.png';
+              // this.dt.Header_profil = data[0].pict_header?data[0].pict_header:'./assets/images/noimage.png';
               // this.dt.Header_profil=data[0].pict_header;
               console.log(data);
               this.loading.dismiss();
