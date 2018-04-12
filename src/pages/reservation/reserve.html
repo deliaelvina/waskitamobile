@@ -30,11 +30,12 @@
                 <ion-item>
                     <ion-label floating class="labelnya">{{'RESERVED BY' | translate}}</ion-label>
                     <!-- <ion-input type="text" formControlName="reservedBy" value="Haniyya Ulfah"></ion-input> -->
-                    <ion-input type="text" formControlName="reserveBy" name="reserveBy" readonly></ion-input>
+                    <ion-input *ngIf="edit && dates" type="text" formControlName="reserveBy" name="reserveBy" readonly style="margin-bottom: 15px;"></ion-input>
+                    <ion-input *ngIf="!edit" type="text" formControlName="reserveBy" name="reserveBy" readonly></ion-input>
                     <!-- <ion-input type="hidden" formControlName="lotNo" name="lotNo" readonly></ion-input> -->
                 </ion-item>
-                <div class="validation-errors" style="margin-left:18px">
-                    {{dates}}
+                <div *ngIf="edit && dates" class="validation-errors" style="margin-left:17px;position: relative;top: -21px;margin-bottom: -19px;">
+                  <font color="red">{{dates}}</font>
                 </div>
                 <!-- <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.username">
