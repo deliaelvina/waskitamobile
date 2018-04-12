@@ -136,9 +136,6 @@
     <engine name="browser" spec="~5.0.3" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.5.0" />
-<<<<<<< HEAD
-=======
     <plugin name="cordova-plugin-document-viewer" spec="^0.9.9" />
     <engine name="ios" spec="~4.5.0" />
->>>>>>> 2696d7d373253cdcc8f3c4201b068e7444726a81
 </widget>
