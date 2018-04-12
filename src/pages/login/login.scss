@@ -1,7 +1,7 @@
 login-page {
     .login-content {
         .alt-options {
-            background-color: $input-login;
+            // background-color: $input-login;
             border-radius: 5px;
             .button {
                 margin: 0px;
@@ -84,6 +84,13 @@ login-page {
             padding-top: 60%;
         }
     }
+    .auth-content{
+        padding-top: 44px !important;
+        background-image: url('../assets/images/loginbg.jpg') !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; 
+    }
     .auth-form {
         ion-item {
             background-color: $input-login !important;
@@ -101,12 +108,20 @@ login-page {
         // }
         // .show-hide-password {
         //     .type-toggle {
-        //         color: $white-d;
+        //         color: #222;
         //         margin: 0px;
         //         padding: 0px 6px;
         //         text-align: right;
         //     }
         // }
     }
-
+.item-ios{
+    color: #222 !important;
+}
+.text-input{
+color: #000 !important;
+}
+.auth-content .auth-form .show-hide-password .type-toggle{
+color: #222 !important;
+}
 }
