@@ -240,7 +240,7 @@ export class ReservationReservePage {
         { type: 'minLength', message: 'Phone Number must be at least 10 numbers long.' },
       ],
       'idNo': [
-        { type: 'required', message: 'ID Number is required.' },
+        // { type: 'required', message: 'ID Number is required.' },
         { type: 'pattern', message: 'Enter a valid ID Number.' },
         { type: 'minLength', message: 'ID Number must be at least 16 numbers long.' },
       ],
@@ -402,21 +402,21 @@ export class ReservationReservePage {
         this.imgID = images.imgHere;
         this.pict[0].img = images.imgHere;
         this.pict[0].name = 'reservation_ID_'+rand+'.jpg';
-        this.pictPost.imgID = 'http://35.197.137.111/WaskitaAPI/images/reservation/reservation_ID_'+rand+'.jpg';
+        this.pictPost.imgID = this.url_api+'images/reservation/reservation_ID_'+rand+'.jpg';
         // this.pict[0].img64 = images.base64img;
       }
       else if(z == 'npwp'){
         this.imgNPWP = images.imgHere;
         this.pict[1].img = images.imgHere;
         this.pict[1].name = 'reservation_NPWP_'+rand+'.jpg';
-        this.pictPost.imgNPWP = 'http://35.197.137.111/WaskitaAPI/images/reservation/reservation_NPWP_'+rand+'.jpg';
+        this.pictPost.imgNPWP = this.url_api+'images/reservation/reservation_NPWP_'+rand+'.jpg';
         // this.pict[1].img64 = images.base64img;
       }
       else if(z == 'tf'){
         this.imgTF = images.imgHere;
         this.pict[2].img = images.imgHere;
         this.pict[2].name = 'reservation_TF_'+rand+'.jpg';
-        this.pictPost.imgTF = 'http://35.197.137.111/WaskitaAPI/images/reservation/reservation_TF_'+rand+'.jpg';
+        this.pictPost.imgTF = this.url_api+'images/reservation/reservation_TF_'+rand+'.jpg';
         // this.pict[2].img64 = images.base64img;
       }
       // console.log(this.images);
@@ -458,6 +458,14 @@ export class ReservationReservePage {
     // )
   }
 
+  addZero(i:any){
+    if(i < 10){
+      i = '0'+i;
+    }
+
+    return i;
+  }
+
   loadData(){
     this.http.get(this.url_api+"c_reservate/myReservation/" + this.cons + "/" + localStorage.getItem('UserId') + "/" + this.rowID, {headers:this.hd} )
     .subscribe(
@@ -489,7 +497,7 @@ export class ReservationReservePage {
           // this.data.lot = data.LotNo;
 
           var d = new Date(data.expired_time);
-          this.dates = 'Expired Time : '+d.getDate().toString()+' '+this.months[d.getMonth().toString()]+' '+d.getFullYear().toString()+' '+d.getHours().toString()+':'+d.getMinutes().toString();
+          this.dates = 'Expired Time : '+d.getDate().toString()+' '+this.months[d.getMonth().toString()]+' '+d.getFullYear().toString()+' '+this.addZero(d.getHours())+':'+this.addZero(d.getMinutes());
           this.reserveForm.get('rowID').setValue(this.rowID);
           this.reserveForm.get('businessID').setValue(data.business_id);
           this.reserveForm.get('reserveBy').setValue(data.reserve_by);

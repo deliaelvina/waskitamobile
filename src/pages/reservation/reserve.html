@@ -30,11 +30,12 @@
                 <ion-item>
                     <ion-label floating class="labelnya">{{'RESERVED BY' | translate}}</ion-label>
                     <!-- <ion-input type="text" formControlName="reservedBy" value="Haniyya Ulfah"></ion-input> -->
-                    <ion-input type="text" formControlName="reserveBy" name="reserveBy" readonly></ion-input>
+                    <ion-input *ngIf="edit && dates" type="text" formControlName="reserveBy" name="reserveBy" readonly style="margin-bottom: 15px;"></ion-input>
+                    <ion-input *ngIf="!edit" type="text" formControlName="reserveBy" name="reserveBy" readonly></ion-input>
                     <!-- <ion-input type="hidden" formControlName="lotNo" name="lotNo" readonly></ion-input> -->
                 </ion-item>
-                <div class="validation-errors" style="margin-left:18px">
-                    {{dates}}
+                <div *ngIf="edit && dates" class="validation-errors" style="margin-left:17px;position: relative;top: -21px;margin-bottom: -19px;">
+                  <font color="red">{{dates}}</font>
                 </div>
                 <!-- <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.username">
@@ -88,7 +89,7 @@
                 <ion-item>
                     <ion-label floating class="labelnya">{{'IDENTITY NO.' | translate}}</ion-label>
                     <!-- <ion-input type="text" formControlName="idNo"></ion-input> -->
-                    <ion-input [readonly]="view" type="text" formControlName="idNo" name="idNo" required></ion-input>
+                    <ion-input [readonly]="view" type="text" formControlName="idNo" name="idNo"></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.idNo">
@@ -179,7 +180,7 @@
 
                 <ion-item>
                     <ion-label floating class="labelnya">{{'AMOUNT' | translate}}</ion-label>
-                    <ion-input [readonly]="view" type="text" formControlName="amount" name="amount" readonly [(ngModel)]="amt" [value]="amt"></ion-input>
+                    <ion-input type="text" formControlName="amount" name="amount" readonly [(ngModel)]="amt" [value]="amt"></ion-input>
                 </ion-item>
 
                 <ion-item>
