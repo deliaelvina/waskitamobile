@@ -139,14 +139,65 @@ profile-page {
         // float: left;
     }
     #img2 {
+        // position: absolute;
+        // // left: 50px;
+        // top: 35%;
+        // border-radius: 50%;
+        // width: 20%;
+        // // padding-bottom: 50px;
+        // // padding-top: 45px;
+        // left: 40%;
+
+
         position: absolute;
-        // left: 50px;
-        top: 35%;
-        border-radius: 50%;
-        width: 20%;
-        // padding-bottom: 50px;
-        // padding-top: 45px;
-        left: 40%;
+    top: 14%;
+    border-radius: 50%;
+
+    left: 35%;
+    height: 100px;
+    width: 100px;
+    }
+    @media only screen and (min-width: 768px){
+      #img2 {
+        // position: absolute;
+        // // left: 50px;
+        // top: 35%;
+        // border-radius: 50%;
+        // width: 20%;
+        // // padding-bottom: 50px;
+        // // padding-top: 45px;
+        // left: 40%;
+
+
+        position: absolute;
+    top: 14%;
+    border-radius: 50%;
+
+    left: 44%;
+    height: 100px;
+    width: 100px;
+    }
+    }
+    @media only screen and (min-width: 1024px){
+      #img2 {
+        // position: absolute;
+        // // left: 50px;
+        // top: 35%;
+        // border-radius: 50%;
+        // width: 20%;
+        // // padding-bottom: 50px;
+        // // padding-top: 45px;
+        // left: 40%;
+
+
+        position: absolute;
+    top: 14%;
+    border-radius: 50%;
+
+    left: 45%;
+    height: 100px;
+    width: 100px;
+    }
     }
     #img1 {
         // width: 100%;
