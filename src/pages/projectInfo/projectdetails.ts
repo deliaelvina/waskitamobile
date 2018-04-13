@@ -46,7 +46,8 @@ export class ProjectDetailsPage {
   pro = {
     projectName:'',
     entity:'',
-    projectNo:''};
+    projectNo:'',
+    cons:''};
   plans = [
     this.url_api+'images/noimage.png'
   ];
@@ -86,6 +87,7 @@ export class ProjectDetailsPage {
     this.pro.projectName = this.project.descs;
     this.pro.entity = this.project.entity;
     this.pro.projectNo = this.project.project;
+    this.pro.cons = this.project.cons_project;
     this.display ="I";
     this.loading = this.loadingCtrl.create();
     this._imageViewerCtrl = imageViewerCtrl;
@@ -145,7 +147,7 @@ export class ProjectDetailsPage {
       fileTransfer.download(url, this.storageDirectory + 'brochure.pdf').then((entry) => {
         let urlpdf = entry.toURL();
         // alert(urlpdf);
-      
+
         // alert('hi');
         this.fileOpener.open(urlpdf, 'application/pdf').then(() => {
           this.loading.dismiss();
@@ -154,9 +156,9 @@ export class ProjectDetailsPage {
           this.ErrorList = this.ErrorList.filter(function(er){
               return er.Code == err.status;
           });
-  
+
           var errS;
-        
+
           if(this.ErrorList.length == 1 ){
             // alert('a');
             errS = this.ErrorList[0].Description;
@@ -165,13 +167,13 @@ export class ProjectDetailsPage {
             errS = err;
           }
           this.showAlert("Download failed!", JSON.stringify(errS),'donothing');
-          this.loading.dismiss();	
+          this.loading.dismiss();
           })
           .catch(e => {
             alert('eror bray:'+JSON.stringify(e))
           });
        //end of file opener
-        
+
       }, (err) => {
         // handle error
         this.ErrorList = this.ErrorList.filter(function(er){
@@ -179,7 +181,7 @@ export class ProjectDetailsPage {
         });
 
         var errS;
-      
+
         if(this.ErrorList.length == 1 ){
           alert('a');
           errS = this.ErrorList[0].Description;
@@ -188,10 +190,10 @@ export class ProjectDetailsPage {
           errS = err;
         }
         this.showAlert("Download failed!", JSON.stringify(errS),'donothing');
-        this.loading.dismiss();	
+        this.loading.dismiss();
         });
     });
-    
+
   }
 
   loadData(){
