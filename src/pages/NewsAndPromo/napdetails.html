@@ -17,7 +17,7 @@
                 <ion-card-tittle><b>{{pro.sub}}</b></ion-card-tittle>
               </ion-card-header>
               <!-- <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs" style="padding-bottom: 50% !important;"></preload-image> -->
-              <img [src]="pro.pict" title="pro.descs" *ngIf='pro.p'>
+              <img [src]="pro.pict" title="pro.descs" #myImage (click)="presentImage(myImage)" *ngIf='pro.p'>
               <iframe [src]="pro.youtube" frameborder="0" *ngIf='pro.y' width="100%"></iframe>
 
               <ion-card-content>
