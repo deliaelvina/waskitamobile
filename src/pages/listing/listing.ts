@@ -7,6 +7,7 @@ import { ReservationProjectPage } from '../reservation/project';
 import { NewsPage } from '../NewsAndPromo/news';
 import { PromoPage } from '../NewsAndPromo/promo';
 import 'rxjs/Rx';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ListingModel } from './listing.model';
 import { ListingService } from './listing.service';
@@ -17,6 +18,8 @@ import { ReservationReservePage } from '../reservation/reserve';
 import { MyReservationProjectPage } from '../reservation/myReservation';
 import { CameraOptions, Camera } from '@ionic-native/camera';
 import { CameraPage } from '../camera/camera';
+import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
+import { environment } from '../../environment/environment';
 
 @Component({
   selector: 'listing-page',
@@ -38,6 +41,11 @@ export class ListingPage {
   link: any[] = [];
   img:any[] = [];
   device:string;
+  hd = new HttpHeaders({
+    Token : localStorage.getItem("Token")
+  });
+  ErrorList:any;
+  url_api = environment.Url_API;
   constructor(
     public nav: NavController,
     public listingService: ListingService,
@@ -45,6 +53,8 @@ export class ListingPage {
     public camera: Camera,
     public alertCtrl: AlertController,
     public platform: Platform,
+    private _errorService: ErrorhandlerService,
+    private http: HttpClient
   ) {
     platform.ready().then((source) => {
       if (this.platform.is('android')) {
@@ -96,26 +106,6 @@ export class ListingPage {
   }
 
   logout() {
-    // navigate to the new page if it is not the current page
-    // if(confirm("Are you sure want to logout?")){
-    //   // this.nav.setRoot(this.rootPage);
-    //   window.location.reload(true);
-    //   // localStorage.removeItem("isLogin");
-    //   // localStorage.removeItem('MenuDash');
-    //   // localStorage.removeItem('Group');
-    //   // localStorage.removeItem('UserId');
-    //   // localStorage.removeItem('Token');
-    //   // localStorage.removeItem('User');
-    //   localStorage.clear();
-    //   if(this.device=='iOS'){
-
-    //   }else if(this.device=='android'){
-    //     navigator['app'].exitApp();
-    //   }else{
-
-    //   }
-
-    // }
     let alertA = this.alertCtrl.create({
       title: 'Sign Out',
       message: 'Are you sure want to Sign Out?',
@@ -130,7 +120,33 @@ export class ListingPage {
         {
           text: 'Yes',
           handler: () => {
-            // console.log('Buy clicked');
+
+            this.logoutAPi();
+          }
+        }
+      ]
+    });
+    alertA.present();
+  }
+
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
+
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+              // this.nav.pop(); 
+            }
+          }
+          else {
             localStorage.clear();
             // alert('ok');
               if(this.device=='iOS'){
@@ -140,29 +156,27 @@ export class ListingPage {
               }else{
                 this.platform.exitApp();
               }
-
-
+           
           }
+        },  
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array 
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+          
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;            
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS);
         }
-      ]
-    });
-    alertA.present();
+      );
   }
-
-  // ionViewDidLoad() {
-  //   this.loading.present();
-  //   this.listingService
-  //     .getData()
-  //     .then(data => {
-  //       this.listing.banner_image = data.banner_image;
-  //       this.listing.banner_title = data.banner_title;
-  //       // this.listing.banner_title_2 = data.banner_title_2;
-  //       this.listing.populars = data.populars;
-  //       this.listing.categories = data.categories;
-  //       this.loading.dismiss();
-  //     });
-  // }
-
 
   goToFeed(category: any) {
     // console.log(category);
@@ -183,5 +197,20 @@ export class ListingPage {
   //   // alert('a');
   //   this.nav.push(MyReservationProjectPage, { user: localStorage.getItem("UserId") });
   // }
+  showAlert(title:any, subTitle:any) {
+    
+    let warning = this.alertCtrl.create({
+      cssClass: 'alert',
+      title : title,
+      subTitle : subTitle,
+      buttons : [
+        {text : 'Ok', handler: () => {
+          this.nav.pop();
+        }}
+      ]
+    });
+
+    warning.present();
+  }
 
 }
