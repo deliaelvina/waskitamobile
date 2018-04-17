@@ -20,6 +20,7 @@ import { CameraOptions, Camera } from '@ionic-native/camera';
 import { CameraPage } from '../camera/camera';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { environment } from '../../environment/environment';
+import { MyUnitPage } from '../MyUnit/myUnit';
 
 @Component({
   selector: 'listing-page',
@@ -73,6 +74,7 @@ export class ListingPage {
       // alert(source);
     });
     // this.initDash();
+    this.link['MyUnitPage'] = MyUnitPage;
     this.link['ProjectPage'] = ProjectPage;
     this.link['ReservationProjectPage'] = ReservationProjectPage;
     this.link['NewsPage'] = NewsPage;

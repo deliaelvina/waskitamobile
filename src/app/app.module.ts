@@ -32,6 +32,10 @@ import { ReservationUnitPage } from '../pages/reservation/unit';
 import { ReservationReservePage } from '../pages/reservation/reserve';
 import { UnitModalPage } from '../pages/reservation/unitModal';
 
+//myUnit
+import { MyUnitPage } from '../pages/MyUnit/myUnit';
+import { PaymentSchedulePage } from '../pages/MyUnit/payment';
+
 //Product Info
 // import { ProductInfoPage } from '../pages/productInfo/productInfo';
 import { UnitTypePage } from '../pages/productInfo/unitType';
@@ -179,7 +183,9 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationReservePage,
     UnitModalPage,
     MyReservationProjectPage,
-
+    //myunit
+    PaymentSchedulePage,
+    MyUnitPage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -308,7 +314,9 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationReservePage,
     UnitModalPage,
     MyReservationProjectPage,
-
+    //myunit
+    MyUnitPage,
+    PaymentSchedulePage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,

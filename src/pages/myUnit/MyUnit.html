@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span>Choose Units</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content" *ngIf="available; else na" style="background-color: #f3f3f3 !important">
+    <!-- <div class="row"> -->
+    <div class="feed-item" *ngFor="let Res of myRes" (click)="goPayment(Res)">
+        <ion-card>
+         
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    <b style="font-size:15px;text-align:left;">{{Res.ProjectName}}</b><span>
+                        <b [style.color]="Res.style" style="font-size:15px;float:right;">{{Res.StatusText}}</b>
+                    </span>
+
+                </ion-card-title>
+                <table>
+                    <tr>
+                        <td width="40%" style="vertical-align: text-top;">
+                            Agent :
+                            <p>{{Res.AgentName}}</p>
+                            <p style="color:#02da00"> {{Res.AgentPhone}}</p>
+                        </td>
+
+                        <td width="30%" style="vertical-align: text-top;">
+                            {{Res.Property}} | {{Res.Level}} <br>
+                            <span *ngIf="Res.Studio">{{Res.LotTypeDesc}} </span>
+                            <br><span style="color:#ff720d;font-weight:600">{{Res.LotNo}}</span>
+                            <span *ngIf="!Res.Studio">
+                                <img style="width:20px !important;" src="./assets/images/bed.png">&nbsp;: {{Res.Bed}} | <img style="width:20px !important;" src="./assets/images/bathtub.png">&nbsp;: {{Res.Bath}} | {{Res.LotNo}}
+                            </span>
+                        </td>
+                     
+                    </tr>
+                </table>
+
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+    <!-- </div> -->
+</ion-content>
+
+<ng-template #na>
+    <ion-content class="feed-content" style="background-color: #f3f3f3 !important">
+        <!-- <div class="row"> -->
+        <div class="feed-item">
+            <ion-card>
+                <ion-card-content>
+                    <ion-card-title class="item-title">
+                        No Unit Available
+                    </ion-card-title>
+                </ion-card-content>
+
+            </ion-card>
+        </div>
+        <!-- </div> -->
+    </ion-content>
+</ng-template>
