@@ -1,4 +1,16 @@
-reserve-page {
+payment-schedule-page {
+
+    .card-content-ios{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    tr{
+        font-size: 11px;
+    }
+    td{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
     // title header black
     // title header black
     // reserve-page ion-header .toolbar-title, reserve-page ion-header .back-button, reserve-page ion-header .bar-button

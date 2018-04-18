@@ -37,8 +37,8 @@
                     </tr>
                     <tr *ngFor="let item of plans">
                         <td>{{item.due_date}}</td>
-                        <td width="60%">{{item.plan}}</td>
-                        <td valign="middle" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                        <td>{{item.plan}}</td>
+                        <td valign="left" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
                         <td>{{item.status_descs}}</td>
                         <td><span *ngIf="item.status=='Y';else b" ></span><ng-template #b><button (click)="gotoTransfer(item)">Already paid?</button> </ng-template></td>
                     </tr>
