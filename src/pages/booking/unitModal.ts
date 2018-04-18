@@ -12,7 +12,7 @@ import { ListingPage } from '../listing/listing';
 import { BookingPaymentDetailPage } from './paymentDtl';
 
 @Component({
-  selector: 'unitModal-page',
+  selector: 'payment-method',
   templateUrl: 'unitModal.html'
 })
 export class BookingUnitModalPage {

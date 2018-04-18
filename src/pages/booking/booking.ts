@@ -21,7 +21,7 @@ declare var cordova: any;
 
 @Component({
   selector: 'bookingReserve-page',
-  templateUrl: 'reserve.html'
+  templateUrl: 'booking.html'
 })
 export class BookingReservePage {
   reserveForm: FormGroup;
@@ -693,19 +693,19 @@ export class BookingReservePage {
       });
       toast.present();
     }
-    else if(idLen < 16){
-      this.loading.dismiss();
-      let toast = this.toastCtrl.create({
-        message: "ID Number must be 16 numbers long.",
-        duration: 3000,
-        position: 'top'
-      });
+    // else if(idLen < 16){
+    //   this.loading.dismiss();
+    //   let toast = this.toastCtrl.create({
+    //     message: "ID Number must be 16 numbers long.",
+    //     duration: 3000,
+    //     position: 'top'
+    //   });
 
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-      toast.present();
-    }
+    //   toast.onDidDismiss(() => {
+    //     console.log('Dismissed toast');
+    //   });
+    //   toast.present();
+    // }
     else if(types){
       this.loading.dismiss();
       let toast = this.toastCtrl.create({

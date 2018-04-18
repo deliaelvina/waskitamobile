@@ -1,8 +1,25 @@
-paymentDtl-page {
+paymentDtl-page{
     // title header black
     ion-header .toolbar-title {
         color: $title-header;
     }
+    .paymentdetail{
+        font-size: 1.4rem !important;
+        color: #666 !important;
+    }
+    // td.desc{
+    //     font-size: 1.4rem !important;
+    //     color: #666 !important;
+    // }
+    // td.amt{
+    //     font-size: 1.4rem !important;
+    //     color: #666 !important;
+    // }
+    // .card-title-ios{
+    //     font-size: 1.4rem !important;
+	//     color: #666 !important;
+    // }
+    
     .grid-example {
         padding: 10px 5px 0px 5px;
         flex-wrap: wrap;

@@ -1,4 +1,45 @@
-reserve-page {
+payment-schedule-page {
+    .card-ios{
+        margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    width: 100%;
+    }
+    .card-content-ios{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    tr{
+        font-size: 11px;
+    }
+    td.tgl{
+        padding-left: 0px !important;
+        padding-right: 2px !important;
+        // color: aqua; 
+    }
+    td.tes{
+        padding-left: 0px !important;
+        padding-right: 4px !important;
+        // color: aqua;
+    }
+    td.desc{
+        padding-left: 3px !important;
+        padding-right: 4px !important;
+        // color: aqua;
+    }
+    td.stat{
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        // color: aqua; 
+    }
+    td.but{
+        padding-left: 0px !important;
+        padding-right: 2px !important;
+        // color: aqua; 
+    }
+    .btnkecil{
+        width: 60px;
+    }
     // title header black
     // title header black
     // reserve-page ion-header .toolbar-title, reserve-page ion-header .back-button, reserve-page ion-header .bar-button
