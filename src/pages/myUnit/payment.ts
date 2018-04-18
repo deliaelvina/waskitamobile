@@ -57,7 +57,7 @@ export class PaymentSchedulePage {
     this.loading = this.loadingCtrl.create();
     this.cons = this.navParams.get('cons');
     this.data = this.navParams.get('datas');
-    console.log(this.data);
+    // console.log(this.data);
     this._errorService.getData()
     .then(data=>{
       this.ErrorList = data.Error_Status;
@@ -140,7 +140,7 @@ export class PaymentSchedulePage {
   }
 
   gotoTransfer(data:any){
-    console.log(data);
+    // console.log(data);
     this.nav.push(UploadBuktiPage, { cons:this.cons,datas:data,data1:this.data});
   }
   showAlert(title:any, subTitle:any, act:any) {

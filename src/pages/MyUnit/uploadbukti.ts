@@ -110,9 +110,14 @@ export class UploadBuktiPage {
     .then(data=>{
       this.ErrorList = data.Error_Status;
     });
-
+    console.log(this.parmhd);
     this.reserveForm = new FormGroup({
       rowID : new FormControl(this.parm.rowID),
+      email : new FormControl(localStorage.getItem('User')),
+      name : new FormControl(localStorage.getItem('Name')),
+      entity : new FormControl(this.parmhd.entity.trim()),
+      project : new FormControl(this.parmhd.project.trim()),
+      debtor : new FormControl(this.parmhd.debtor_acct),
       cons : new FormControl(this.cons),
       pict: new FormControl(this.pictPost)
     });
@@ -130,7 +135,7 @@ export class UploadBuktiPage {
     // console.log('enter');
     let images = JSON.parse(localStorage.getItem('image'));
     var rand = Math.floor(Math.random() * 100);
-    console.log(images);
+    // console.log(images);
     if(images){
       this.avPict = true;
       let z = images.for;
@@ -138,7 +143,7 @@ export class UploadBuktiPage {
         this.imgBukti = images.imgHere;
         this.pict[0].img = images.imgHere;
         this.pict[0].name = 'bukti_ID_'+rand+'.jpg';
-        this.pictPost.imgID = this.url_api+'images/myunit/bukti_ID_'+rand+'.jpg';
+        this.pictPost.imgBukti = this.url_api+'images/myunit/bukti_ID_'+rand+'.jpg';
       }
      
     }
@@ -240,7 +245,7 @@ export class UploadBuktiPage {
   }
 
   actSave(data:any){
-    alert('hi save');
+    // alert('hi save');
     this.http.post(this.url_api+"c_myunits/save/" , data, {headers:this.hd})
     .subscribe(
       (x:any) => {
@@ -257,6 +262,7 @@ export class UploadBuktiPage {
         }
         else {
           //Success
+          localStorage.removeItem('image');
           this.loading.dismiss();
           this.showAlert("Success!", x.Pesan, 'menu');
         }
@@ -285,8 +291,8 @@ export class UploadBuktiPage {
     var bah:any;
     if(act == 'menu'){
       bah = {text : 'Ok', handler : () => {
-        this.nav.setRoot(this.main_page.component);
-        localStorage.removeItem('data');
+        this.nav.pop();
+        // localStorage.removeItem('data');
       }};
     }
     else {
