@@ -1,14 +1,35 @@
-<ion-header class="walkthrough-header">
+<!-- <ion-header class="walkthrough-header">
   <ion-toolbar>
     <ion-buttons end>
       <button ion-button class="skip-button" (click)="skipIntro()" [hidden]="lastSlide">{{'SKIP' | translate}}</button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content class="walkthrough-content">
+<ion-content class="walkthrough-content" (click)="goToLogin()">
+  <div>
+    <!-- <img src="{{logo}}" alt="" > -->
+    <img src="{{logo}}" alt="" class="logo">
+    <!-- <img src="{{logo}}" alt="" style="position: absolute;z-index: 2;left:40%;width:50px;height:auto;"> -->
+  </div>
+  <!-- <div style="position: relative;z-index: 2;top:20%;left:35%;">
+      <button ion-button primary (click)="goToLogin()">{{'LOG_IN' | translate}}</button>
+      <button ion-button primary (click)="goToSignup()">{{'SIGN_UP' | translate}}</button>
+    </div> -->
   <ion-slides #slider (ionSlideDidChange)="onSlideChanged()" pager="true">
-    <ion-slide class="slide-1">
+      <ion-slide class="slide-1" *ngFor="let pic of pict">
+          <ion-row class="intro-image-row" > 
+            <!-- <ion-col center no-padding> -->
+              <!-- <preload-image [ratio]="{w:2, h:1}" src={{pic}} alt="app logo" title="ion2FullApp"></preload-image> -->
+              <div>
+                  <img src="{{pic}}" alt="" class="img">
+              </div>
+              
+            <!-- </ion-col> -->
+          </ion-row>
+          
+        </ion-slide>
+    <!-- <ion-slide class="slide-1">
       <ion-row class="intro-image-row">
         <ion-col center width-64 no-padding>
           <preload-image [ratio]="{w:1, h:1}" src="./assets/images/logo_white.png" alt="app logo" title="ion2FullApp"></preload-image>
@@ -64,6 +85,14 @@
         <button ion-button primary (click)="goToLogin()">{{'LOG_IN' | translate}}</button>
         <button ion-button primary (click)="goToSignup()">{{'SIGN_UP' | translate}}</button>
       </div>
-    </ion-slide>
+    </ion-slide> -->
   </ion-slides>
+  <!-- <div class="button-login">
+    <button class="btn-login" (click)="goToLogin()">{{'LOG_IN' | translate}}</button>
+    <button ion-button primary (click)="goToSignup()">{{'SIGN_UP' | translate}}</button>
+  </div> -->
 </ion-content>
+<div class="button-login">
+    <button class="btn-login" (click)="goToLogin()">{{'LOG_IN' | translate}}</button>
+    <!-- <button ion-button primary (click)="goToSignup()">{{'SIGN_UP' | translate}}</button> -->
+  </div>

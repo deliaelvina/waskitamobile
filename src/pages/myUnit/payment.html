@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span>Payment Schedule</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content" style="background-color: #f3f3f3 !important">
+    <ion-card>
+        <ion-card-content>
+            <ion-card-title class="item-title">
+                <strong>Payment Details</strong>
+            </ion-card-title>
+            <h2>{{data.projectName}}</h2>
+            <h2>{{data.towerName}} | {{data.level_descs}} | <span style="color:rgb(253, 42, 42);"><strong>{{data.lot}}</strong></span></h2>
+        </ion-card-content>
+
+    </ion-card>
+    <ion-card>
+        <ion-card-content>
+            <ion-card-title class="item-title" id="payment">
+                <strong>Payment Schedule</strong>
+            </ion-card-title>
+
+            <div *ngIf="available; else a">
+                <table width="100%">
+                    <tr>
+                        <td>Due Date</td>
+                        <td>Description</td>
+                        <td>Amount</td>
+                        <td>Status</td>
+                        <td></td>
+                    </tr>
+                    <tr *ngFor="let item of plans">
+                        <td>{{item.due_date}}</td>
+                        <td width="60%">{{item.plan}}</td>
+                        <td valign="middle" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                        <td>{{item.status_descs}}</td>
+                        <td><span *ngIf="item.status=='Y';else b" ></span><ng-template #b><button (click)="gotoTransfer(item)">Already paid?</button> </ng-template></td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <ng-template #a>
+                <div>
+                    <span>No Payment Schedule Available</span>
+                </div>
+            </ng-template>
+
+        </ion-card-content>
+
+    </ion-card>
+
+</ion-content>

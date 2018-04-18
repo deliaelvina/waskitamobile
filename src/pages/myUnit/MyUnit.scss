@@ -1,0 +1,27 @@
+MyUnit-page {
+    // ion-card-title {
+    //     font-size: 1.4rem !important;
+    // }
+    // line bottom oren
+    .card-ios {
+        // border-bottom-color: #ff720d !important;
+        border-bottom-color: $list-bawah-ion-card !important;
+        border-bottom-width: 5px !important;
+        margin-top: 50px;
+    }
+    // title header black
+    ion-header .toolbar-title {
+        color: $title-header;
+    }
+    .scroll-content {
+        margin-top: 50px;
+    }
+    button.btn-oren-kecil {
+        background-color: #ff720d;
+        border-radius: 8px;
+        color: #fff;
+        height: 20px;
+        width: 80%;
+        font-size: 15px;
+    }
+}

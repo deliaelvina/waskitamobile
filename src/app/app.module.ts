@@ -42,6 +42,11 @@ import { BookingUnitModalPage } from "../pages/booking/unitModal";
 import { BookingPaymentDetailPage } from "../pages/booking/paymentDtl";
 import { BookingReservePage } from '../pages/booking/reserve';
 
+//myUnit
+import { MyUnitPage } from '../pages/MyUnit/myUnit';
+import { PaymentSchedulePage } from '../pages/MyUnit/payment';
+import { UploadBuktiPage } from '../pages/MyUnit/uploadbukti';
+
 //Product Info
 // import { ProductInfoPage } from '../pages/productInfo/productInfo';
 import { UnitTypePage } from '../pages/productInfo/unitType';
@@ -167,6 +172,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -189,6 +195,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationReservePage,
     UnitModalPage,
     MyReservationProjectPage,
+<<<<<<< HEAD
 
     //booking
     BookingPage,
@@ -199,6 +206,12 @@ export function createTranslateLoader(http: HttpClient) {
     BookingPaymentDetailPage,
     BookingReservePage,
 
+=======
+    //myunit
+    PaymentSchedulePage,
+    MyUnitPage,
+    UploadBuktiPage,
+>>>>>>> 95d34f2d483759962fcb92f877c2eca678eeac13
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -327,6 +340,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationReservePage,
     UnitModalPage,
     MyReservationProjectPage,
+<<<<<<< HEAD
 
     //booking
     BookingPage,
@@ -337,6 +351,12 @@ export function createTranslateLoader(http: HttpClient) {
     BookingPaymentDetailPage,
     BookingReservePage,
 
+=======
+    //myunit
+    MyUnitPage,
+    PaymentSchedulePage,
+    UploadBuktiPage,
+>>>>>>> 95d34f2d483759962fcb92f877c2eca678eeac13
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
