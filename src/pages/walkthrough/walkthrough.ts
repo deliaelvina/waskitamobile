@@ -17,6 +17,14 @@ export class WalkthroughPage {
   constructor(public nav: NavController) {
 
   }
+  pict:any[]=[
+    "http://35.197.137.111/waskitaAPI/images/landing/nines.jpg",
+    "http://35.197.137.111/waskitaAPI/images/landing/solterra.jpg",
+    "http://35.197.137.111/waskitaAPI/images/landing/yukata.jpg"
+  ];
+  logo:any[]=[
+    "http://35.197.137.111/waskitaAPI/images/logo.png"
+  ]
 
   skipIntro() {
     // You can skip to main app
