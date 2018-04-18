@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment/environment';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 //pages
@@ -31,6 +32,15 @@ import { ReservationBlockPage } from '../pages/reservation/block';
 import { ReservationUnitPage } from '../pages/reservation/unit';
 import { ReservationReservePage } from '../pages/reservation/reserve';
 import { UnitModalPage } from '../pages/reservation/unitModal';
+
+//booking
+import { BookingUnitPage } from '../pages/booking/unit';
+import { BookingBlockPage } from '../pages/booking/block';
+import { BookingPhasePage } from '../pages/booking/phase';
+import { BookingPage } from '../pages/booking/project';
+import { BookingUnitModalPage } from "../pages/booking/unitModal";
+import { BookingPaymentDetailPage } from "../pages/booking/paymentDtl";
+import { BookingReservePage } from '../pages/booking/reserve';
 
 //Product Info
 // import { ProductInfoPage } from '../pages/productInfo/productInfo';
@@ -180,6 +190,15 @@ export function createTranslateLoader(http: HttpClient) {
     UnitModalPage,
     MyReservationProjectPage,
 
+    //booking
+    BookingPage,
+    BookingPhasePage,
+    BookingBlockPage,
+    BookingUnitPage,
+    BookingUnitModalPage,
+    BookingPaymentDetailPage,
+    BookingReservePage,
+
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -309,6 +328,15 @@ export function createTranslateLoader(http: HttpClient) {
     UnitModalPage,
     MyReservationProjectPage,
 
+    //booking
+    BookingPage,
+    BookingPhasePage,
+    BookingBlockPage,
+    BookingUnitPage,
+    BookingUnitModalPage,
+    BookingPaymentDetailPage,
+    BookingReservePage,
+
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -416,7 +444,8 @@ export function createTranslateLoader(http: HttpClient) {
     FileTransfer,
     FileTransferObject,
     File,
-    FileOpener
+    FileOpener,
+    PhotoViewer
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
