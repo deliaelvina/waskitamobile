@@ -35,6 +35,7 @@ import { UnitModalPage } from '../pages/reservation/unitModal';
 //myUnit
 import { MyUnitPage } from '../pages/MyUnit/myUnit';
 import { PaymentSchedulePage } from '../pages/MyUnit/payment';
+import { UploadBuktiPage } from '../pages/MyUnit/uploadbukti';
 
 //Product Info
 // import { ProductInfoPage } from '../pages/productInfo/productInfo';
@@ -161,6 +162,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -186,6 +188,7 @@ export function createTranslateLoader(http: HttpClient) {
     //myunit
     PaymentSchedulePage,
     MyUnitPage,
+    UploadBuktiPage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -317,6 +320,7 @@ export function createTranslateLoader(http: HttpClient) {
     //myunit
     MyUnitPage,
     PaymentSchedulePage,
+    UploadBuktiPage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,

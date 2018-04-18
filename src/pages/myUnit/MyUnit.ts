@@ -51,7 +51,7 @@ export class MyUnitPage {
 
   ionViewWillEnter(){
     // this.loading.present();
-    alert('tes');
+    // alert('tes');
     this.http.get(this.url_api+"c_reservate/getData/" + this.cons_mobile + "/" + this.user, {headers:this.hd}  )
       .subscribe(
         (x:any) => {
@@ -83,12 +83,14 @@ export class MyUnitPage {
                   if(x.Error == true) {
                     if(x.Status == 401){
                       // alert(x.Pesan);
+                      // alert('b');
                       this.showAlert("Warning!", x.Pesan);
                       this.loading.dismiss();
                       return true;
                     }
                     else {
-                      // alert(x.Pesan);
+                      //kalo ga ada data kesini
+                      // console.log('hi:'+this.count);
                       if(this.count == 0){
                         this.available = false;
                       }
@@ -105,7 +107,6 @@ export class MyUnitPage {
                   }
                   else {
                     var datas = x.Data;
-
 
                     // console.log(datas);
                     // var a = 1;
@@ -143,7 +144,7 @@ export class MyUnitPage {
                       this.count = cnt;
                       this.available = true;
                       cnt += 1;
-                     
+                     console.log(cnt);
                       if(now == end){
                         // alert(now +'/'+end);
                         this.loading.dismiss();
@@ -163,6 +164,7 @@ export class MyUnitPage {
                   }
                 },
                 (err)=>{
+                  // alert('a');
                   this.loading.dismiss();
                   //filter error array
                   this.ErrorList = this.ErrorList.filter(function(er){
@@ -180,6 +182,7 @@ export class MyUnitPage {
                     return;
                 }
               );
+              console.log(now);
             });
 
             // this.loading.dismiss();
@@ -214,7 +217,7 @@ export class MyUnitPage {
   }
 
   goPayment(data:any) {
-
+    console.log(data);
     // alert('edit');
     var datas = {
       entity : data.entity_cd,
@@ -222,16 +225,11 @@ export class MyUnitPage {
       projectName : data.ProjectName,
       towerName : data.Property,
       level_descs : data.Level,
-      lot : data.LotNo
+      lot : data.LotNo,
+      debtor_acct : data.debtor_acct
     };
 
-    if(data.Status == 'S'){
-      this.nav.push(PaymentSchedulePage, {act:'edit', cons:data.db, id:data.rowID, datas:datas});
-    }
-    else {
-      this.nav.push(PaymentSchedulePage, {act:'view', cons:data.db, id:data.rowID, datas:datas});
-    }
-
+    this.nav.push(PaymentSchedulePage, { cons:data.db, id:data.rowID, datas:datas});
   }
 
 
