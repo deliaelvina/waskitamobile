@@ -40,7 +40,7 @@ import { BookingPhasePage } from '../pages/booking/phase';
 import { BookingPage } from '../pages/booking/project';
 import { BookingUnitModalPage } from "../pages/booking/unitModal";
 import { BookingPaymentDetailPage } from "../pages/booking/paymentDtl";
-import { BookingReservePage } from '../pages/booking/reserve';
+import { BookingReservePage } from '../pages/booking/booking';
 
 //myUnit
 import { MyUnitPage } from '../pages/MyUnit/myUnit';

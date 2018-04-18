@@ -29,18 +29,18 @@
             <div *ngIf="available; else a">
                 <table width="100%">
                     <tr>
-                        <td>Due Date</td>
-                        <td>Description</td>
-                        <td>Amount</td>
-                        <td>Status</td>
-                        <td></td>
+                        <td class="tgl">Due Date</td>
+                        <td class="desc">Description</td>
+                        <td >Amount</td>
+                        <td class="stat">Status</td>
+                        <td class=but></td>
                     </tr>
                     <tr *ngFor="let item of plans">
-                        <td>{{item.due_date}}</td>
-                        <td>{{item.plan}}</td>
-                        <td valign="left" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
-                        <td>{{item.status_descs}}</td>
-                        <td><span *ngIf="item.status=='Y';else b" ></span><ng-template #b><button (click)="gotoTransfer(item)">Already paid?</button> </ng-template></td>
+                        <td class="tgl">{{item.due_date}}</td>
+                        <td class="desc">{{item.plan}}</td>
+                        <td valign="left" align="right" ><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                        <td class="stat">{{item.status_descs}}</td>
+                        <td class="but"><span *ngIf="item.status=='Y';else b" ></span><ng-template #b><button class="btnkecil"  (click)="gotoTransfer(item)">Already paid?</button> </ng-template></td>
                     </tr>
                 </table>
             </div>

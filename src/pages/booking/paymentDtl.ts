@@ -8,7 +8,7 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ListingPage } from '../listing/listing';
-import { BookingReservePage } from './reserve';
+import { BookingReservePage } from './booking';
 
 @Component({
   selector: 'paymentDtl-page',

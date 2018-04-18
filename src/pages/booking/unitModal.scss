@@ -1,13 +1,26 @@
-unitModal-page {
+payment-method{
+    .card-ios{
+        margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    width: 100%;
+    }
+    .card-content-ios {
+        padding: 3px !important;
+    }
     // title header black
     ion-header .toolbar-title {
         color: $title-header;
     }
     .grid-example {
-        padding: 10px 5px 0px 5px;
+        // padding: 10px 5px 0px 5px;
+        padding-left: 0px;
+        padding-right: 0px;
         flex-wrap: wrap;
         .grid-item {
-            padding: 0px 5px 10px;
+            // padding: 0px 5px 10px;
+            padding-left: 0px;
+        padding-right: 0px;
             &>.double-item {
                 &>.grid-item {
                     padding: 5px 0px;
@@ -34,6 +47,9 @@ unitModal-page {
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    box-shadow: 0 1px 5px -3px #333 !important;
                     .item-title {
                         margin: 0px;
                         color: $black-c;

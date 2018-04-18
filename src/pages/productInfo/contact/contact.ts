@@ -58,6 +58,7 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
     this.userid = localStorage.getItem('UserId');
       this.loading = this.loadingCtrl.create();
       this.parm=this.navParams.get('data');
+      this.descrip = this.navParams.get('desc');
       console.log(this.parm);
         // this.contacs.Project=this.parm.projectName;
       this.loading.present();
@@ -149,7 +150,7 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
         this.contactForm.get('Project_no').setValue(this.parm.projectNo);
         // this.contactForm.get('Entity').setValue(this.parm.Entity);
         // this.contactForm.get('Project_no').setValue(this.parm.Project_no);
-        this.descrip = 'Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.';
+        // this.descrip = 'Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.';
         // this.contactForm.get('Desc').setValue('Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.');
         // console.log(this.parm.entity_cd);
         // console.log(this.parm.project_no);

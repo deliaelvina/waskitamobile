@@ -4,7 +4,7 @@
         <ion-icon name="menu"></ion-icon>
       </button> -->
         <ion-title>
-            <span>Choose Payment Method</span>
+            <span>Choose Payment Plan</span>
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -34,7 +34,7 @@
             </div>
             <ion-card-content>
 
-                <ion-card-title class="item-title" *ngIf="details">
+                <ion-card-title class="item-title" *ngIf="details" style="padding-left:15px;">
                     {{details.descs}}
                     <p>
                         <strong>{{details.project}}</strong> <br> {{details.tower}} | {{details.level}} | <strong><span style="color:rgb(253, 42, 42);">{{details.lot}}</span></strong>
@@ -52,14 +52,7 @@
             </ion-card-content>
 
         </ion-card>
-
-        <ion-card>
-          <ion-card-content>
-            <ion-card-title class="item-title" id="payment">
-                Payment Plans
-            </ion-card-title>
-
-            <div *ngIf="av; else a">
+        <div *ngIf="av; else a" style="padding-bottom:10px;">
                 <!-- <table width="100%">
                     <tr *ngFor="let item of plans">
                         <td width="60%">{{item.plans}}</td>
@@ -67,6 +60,29 @@
                     </tr>
                 </table> -->
                 <ion-row class="grid-example" *ngFor="let item of plans" (click)="goToDetails(item)">
+                  <ion-col width-100 class="grid-item">
+                      <div class="grid-item-wrapper" style="padding-bottom:10%;">
+                          <div class="grid-item-inner" style="font-size:1.2rem;">
+                            <table width="100%">
+                              <tr>
+                                  <td width="60%" style="font-size: 14px;font-weight: 600">{{item.plans}}</td>
+                                  <td valign="middle" align="right" style="font-size: 14px;font-weight: 600"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                              </tr>
+                            </table>
+                          </div>
+                      </div>
+                  </ion-col>
+              </ion-row>
+            </div>
+        <!-- <ion-card>
+          <ion-card-content>
+            <ion-card-title class="item-title" id="payment">
+                Payment Plans
+            </ion-card-title>
+
+            <div *ngIf="av; else a">
+                
+                <ion-row class="grid-example" *ngFor="let item of plans" (click)="goToDetails(item)" style="background-color:#06b139">
                   <ion-col width-100 class="grid-item">
                       <div class="grid-item-wrapper" style="padding-bottom:10%;">
                           <div class="grid-item-inner" style="font-size:1.2rem;">
@@ -90,6 +106,11 @@
             </ng-template>
 
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
+      <ng-template #a>
+            <div>
+                <span>No Payment Plans</span>
+            </div>
+        </ng-template>
     </div>
 </ion-content>

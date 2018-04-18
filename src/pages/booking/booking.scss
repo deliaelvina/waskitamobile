@@ -5,6 +5,11 @@ bookingReserve-page {
     ion-header .toolbar-title {
         color: $title-header !important;
     }
+    .title-ios{
+        padding-right: 50px !important;
+    padding-left: 50px !important;
+    }
+    
     // ion-header {
     //     @include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
     // }
