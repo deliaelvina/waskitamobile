@@ -20,6 +20,7 @@ import { CameraOptions, Camera } from '@ionic-native/camera';
 import { CameraPage } from '../camera/camera';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { environment } from '../../environment/environment';
+import { BookingPage } from '../booking/project';
 import { MyUnitPage } from '../MyUnit/myUnit';
 
 @Component({
@@ -81,6 +82,7 @@ export class ListingPage {
     this.link['PromoPage'] = PromoPage;
     this.link['ProductProjectPage'] = ProductProjectPage;
     this.link['MyReservationProjectPage'] = MyReservationProjectPage;
+    this.link['BookingPage'] = BookingPage;
     this.loading = this.loadingCtrl.create();
   }
 
@@ -145,7 +147,7 @@ export class ListingPage {
             else {
               this.showAlert("Warning!", x.Pesan);
               this.loading.dismiss();
-              // this.nav.pop(); 
+              // this.nav.pop();
             }
           }
           else {
@@ -158,20 +160,20 @@ export class ListingPage {
               }else{
                 this.platform.exitApp();
               }
-           
+
           }
-        },  
+        },
         (err)=>{
           this.loading.dismiss();
-          //filter error array 
+          //filter error array
           this.ErrorList = this.ErrorList.filter(function(er){
               return er.Code == err.status;
           });
-          
+
           var errS;
           //filter klo error'a tidak ada di array error
           if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;            
+            errS = this.ErrorList[0].Description;
           }else{
             errS = err;
           }
@@ -200,7 +202,7 @@ export class ListingPage {
   //   this.nav.push(MyReservationProjectPage, { user: localStorage.getItem("UserId") });
   // }
   showAlert(title:any, subTitle:any) {
-    
+
     let warning = this.alertCtrl.create({
       cssClass: 'alert',
       title : title,

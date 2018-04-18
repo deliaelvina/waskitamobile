@@ -5,7 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 
-// import { WalkthroughPage } from '../walkthrough/walkthrough';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { LoginPage } from '../login/login';
 
 import 'rxjs/Rx';
@@ -27,7 +27,8 @@ import { Crop } from '@ionic-native/crop';
 export class SettingsPage {
   settingsForm: FormGroup;
   // make WalkthroughPage the root (or first) page
-  rootPage: any = LoginPage;
+  // rootPage: any = LoginPage;?
+  rootPage: any = WalkthroughPage;
   loading: any;
 
   profile: ProfileModel = new ProfileModel();

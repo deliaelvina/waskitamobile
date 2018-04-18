@@ -1,13 +1,145 @@
 walkthrough-page {
+	@font-face {
+		font-family: 'Exo-Regular';
+		font-style: normal;
+		font-weight: 400;
+		src: url("../assets/fonts/Exo-Medium.ttf") format("truetype");
+	}
+	//ipad
+	@media only screen and (min-width: 768px) {
+		.button-login{
+			position: absolute;z-index: 1;top:80%;left:40%;
+		}
+		.btn-login{
+			// background-color: #1f3e80;
+			background-color: rgba(31, 62, 128, 0.589);
+			border-radius: 8px;
+			color: #fff;
+			// opacity: 0.8;
+			height: 50px;
+			width: 200px;
+			font-size: 14px;
+			font-family: 'Exo-Regular';
+		}
+	}
+	// ip5
+	@media only screen and (min-width: 320px)  {
+		.button-login{
+			position: absolute;z-index: 1;top:80%;left:19%;
+		}
+		.btn-login{
+		
+			background-color: rgba(31, 62, 128, 0.589);
+			border-radius: 8px;
+			color: #fff;
+			
+			height: 50px;
+			width: 200px;
+			font-size: 14px;
+			font-family: 'Exo-Regular';
+		}
+	}
+	// ip678
+	@media only screen and (min-width: 375px)  {
+		.button-login{
+			position: absolute;z-index: 1;top:80%;left:24%;
+		}
+		.btn-login{
+		
+			background-color: rgba(31, 62, 128, 0.589);
+			border-radius: 8px;
+			color: #fff;
+			
+			height: 50px;
+			width: 200px;
+			font-size: 14px;
+			font-family: 'Exo-Regular';
+		}
+	}
+	//ip678plus
+	@media only screen and (min-width: 414px)  {
+		.button-login{
+			position: absolute;z-index: 1;top:80%;left:24%;
+		}
+		.btn-login{
+		
+			background-color: rgba(31, 62, 128, 0.589);
+			border-radius: 8px;
+			color: #fff;
+			
+			height: 50px;
+			width: 200px;
+			font-size: 14px;
+			font-family: 'Exo-Regular';
+		}
+	}
+	//ipx
+	// @media only screen and (min-height: 812px) and (min-width: 375px) {
+	// 	.button-login{
+	// 		position: absolute;z-index: 1;top:80%;left:24%;
+	// 	}
+	// 	.btn-login{
+		
+	// 		background-color: rgba(31, 62, 128, 0.589);
+	// 		border-radius: 8px;
+	// 		color: #fff;
+			
+	// 		height: 50px;
+	// 		width: 200px;
+	// 		font-size: 14px;
+	// 		font-family: 'Exo-Regular';
+	// 	}
+	// }
+	
+	//ipadpro
+	@media only screen and (min-width: 1024px)  {
+		.button-login{
+				position: absolute;z-index: 1;top:80%;left:40%;
+			}
+			.btn-login{
+			
+				background-color: rgba(31, 62, 128, 0.589);
+				border-radius: 8px;
+				color: #fff;
+				
+				height: 50px;
+				width: 200px;
+				font-size: 14px;
+				font-family: 'Exo-Regular';
+			}
+	}
+	.logo{
+		position: absolute;
+		z-index: 2;
+		left:40%;
+		top:5%;
+		width:100px;
+		height:auto;
+	}
+	// .button-login{
+	// 	position: absolute;z-index: 1;top:80%;left:24%;
+	// }
+	// .btn-login{
+	
+	// 	background-color: rgba(31, 62, 128, 0.589);
+	// 	border-radius: 8px;
+	// 	color: #fff;
+		
+	// 	height: 50px;
+	// 	width: 200px;
+	// 	font-size: 14px;
+	// 	font-family: 'Exo-Regular';
+	// }
 	.walkthrough-header
 	{
+		
 		@include header-styles(color($colors, walkthrough-header, base), color($colors, walkthrough-header, contrast));
 	}
 
 	.walkthrough-content
 	{
 		// Default background when bouncing isn't disabled
-		background-color: color($colors, walkthrough, base);
+		// background-color: color($colors, walkthrough, base);
 
 		.scroll-content
 		{
@@ -16,14 +148,19 @@ walkthrough-page {
 
 		ion-slide:nth-child(odd)
 		{
-			background-color: color($colors, walkthrough, base);
-			color: color($colors, walkthrough, contrast);
+			// background-color: color($colors, walkthrough, base);
+			// color: color($colors, walkthrough, contrast);
+			// background-size: cover;
+			// background-image: url("http://35.197.137.111//waskitaAPI/images/landing/nines.jpg");
+			object-fit: cover;
+			// background-image: url("")
 		}
 
 		ion-slide:nth-child(even)
 		{
-			background-color: color($colors, walkthrough-alt, base);
-			color: color($colors, walkthrough-alt, contrast);
+			// background-color: color($colors, walkthrough-alt, base);
+			// color: color($colors, walkthrough-alt, contrast);
+			object-fit: cover;
 		}
 
 		.swiper-pagination-bullet
@@ -45,10 +182,82 @@ walkthrough-page {
 
 			.intro-image-row
 			{
-				justify-content: center;
-				margin-top: 90px;
-				margin-top: 16vh;
+				// justify-content: center;
+				// margin-top: 90px;
+				// margin-top: 16vh;
+				// width: 500px;
+				// height:300px;
+				object-fit: cover !important;
+				
 			}
+			@media only screen and (min-height: 731px)  {
+				.img{
+					height: 780px;
+					position: relative;
+				}
+			}
+			@media only screen and (min-height: 823px)  {
+				.img{
+					height: 750px;
+					position: relative;
+				}
+			}
+			@media only screen and (min-width: 360px)  {
+				.img{
+					// width:360px;
+					height: 740px;
+					position: relative;
+				}
+			}
+			// ip5
+			@media only screen and (min-width: 320px)  {
+				.img{
+					height: 568px;
+					position: relative;
+				}
+			}
+			// ip678
+			@media only screen and (min-width: 375px)  {
+				.img{
+					height: 670px;
+					position: relative;
+				}
+			}
+			//ip678plus
+			@media only screen and (min-width: 414px)  {
+				.img{
+					height: 735px;
+					position: relative;
+				}
+			}
+			//ipx
+			@media only screen and (min-height: 812px)  {
+				.img{
+					height: 812px;
+					position: relative;
+				}
+			}
+			//ipad
+			@media only screen and (min-width: 768px)  {
+				.img{
+					height: 1024px;
+					width: 768px;
+					position: relative;
+				}
+			}
+			//ipadpro
+			@media only screen and (min-width: 1024px)  {
+				.img{
+					width: 1024px;
+					height: 1366px;
+					position: relative;
+				}
+			}
+			// .img{
+			// 	height: 700px;
+			// 	position: relative;
+			// }
+			
 
 			.main-title
 			{

@@ -1,0 +1,90 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+            <span>Choose Unit</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- <div class="feed-item" *ngFor="let pro of projects">
+      <ion-card (click)="goToPhase(pro)">
+        <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs"></preload-image>
+        <ion-card-content>
+          <ion-card-title class="item-title">
+            {{pro.descs}}
+          </ion-card-title>
+
+        </ion-card-content>
+
+      </ion-card>
+    </div> -->
+    <div>
+        <img [src]="pict" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(floorImg)">
+    </div>
+    <div class="project_des">
+        {{project_name}}
+    </div>
+    <div class="phase_des">
+        {{phase_desc}} | {{floor_desc}}
+    </div>
+    <hr>
+
+    <hr>
+    <ion-item-group>
+        <ng-template #na>
+            <ion-row class="grid-example">
+                <ion-col width-100 class="grid-item">
+                    <div class="grid-item-wrapper" style="padding-bottom:10%;">
+                        <div class="grid-item-inner" [ngStyle]="{'background-color' : '#ff3333','border-radius': '10px', 'font-size':'1.2rem'}">
+                            <h2 class="item-title">
+                                No Unit Available
+                            </h2>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ng-template>
+        <div class="row-kotak" *ngIf="available; else na">
+            <div class="square" *ngFor="let item of units" (click)="goToReserve(item)" [ngStyle]="item.style">
+                <img class="contentss">
+                <div class="textt">
+                    <h2 class="item-title"> {{item.lot}} </h2>
+                    <br>
+                    <p *ngIf="item.studios;then s;else b"></p>
+                    <ng-template #s>
+                        <h4 class="item-title">{{item.typeDesc}}</h4>
+                    </ng-template>
+                    <ng-template #b>
+                        <h4 class="item-title"><img style="width:20px !important;" src="./assets/images/bed.png">&nbsp;: {{item.bed}} | <img style="width:20px !important;" src="./assets/images/bathtub.png">&nbsp;: {{item.bath}}</h4>
+                    </ng-template>
+                </div>
+            </div>
+
+        </div>
+        <!-- <ion-row class="grid-example" *ngIf="available; else na">
+                <ion-col width-33 class="grid-item" *ngFor="let item of units" (click)="goToReserve(item)">
+                    <div class="grid-item-wrapper">
+                        <div class="grid-item-inner multi-line" [ngStyle]="item.style">
+                            <h2 class="item-title"> {{item.lot}} </h2>
+                            <br>
+                            <p *ngIf="item.studios;then s;else b"></p>
+                            <ng-template #s>
+                                <h4 class="item-title">STUDIO</h4>
+                            </ng-template>
+                            <ng-template #b>
+                                <h4 class="item-title"><img src="./assets/images/bed.png">: {{item.bed}} | <img src="./assets/images/bathtub.png"> : {{item.bath}}</h4>
+                            </ng-template>
+                        </div>
+                    </div>
+                </ion-col>
+
+            </ion-row> -->
+
+    </ion-item-group>
+
+
+</ion-content>
