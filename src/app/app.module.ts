@@ -195,7 +195,6 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationReservePage,
     UnitModalPage,
     MyReservationProjectPage,
-<<<<<<< HEAD
 
     //booking
     BookingPage,
@@ -206,12 +205,10 @@ export function createTranslateLoader(http: HttpClient) {
     BookingPaymentDetailPage,
     BookingReservePage,
 
-=======
     //myunit
     PaymentSchedulePage,
     MyUnitPage,
     UploadBuktiPage,
->>>>>>> 95d34f2d483759962fcb92f877c2eca678eeac13
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -340,7 +337,6 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationReservePage,
     UnitModalPage,
     MyReservationProjectPage,
-<<<<<<< HEAD
 
     //booking
     BookingPage,
@@ -351,12 +347,10 @@ export function createTranslateLoader(http: HttpClient) {
     BookingPaymentDetailPage,
     BookingReservePage,
 
-=======
     //myunit
     MyUnitPage,
     PaymentSchedulePage,
     UploadBuktiPage,
->>>>>>> 95d34f2d483759962fcb92f877c2eca678eeac13
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
