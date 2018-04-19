@@ -135,10 +135,18 @@ export class ProjectDetailsPage {
 
   }
 
-  presentImage(myImage) {
+  presentImage(myImage,from:any) {
     console.log(myImage);
     // const imageViewer = this._imageViewerCtrl.create(myImage);
     // imageViewer.present(); 
+    var judul = '';
+    if(from=='project'){
+      judul = this.pro.projectName;
+    } else if (from=='plan'){
+      judul = this.pro.projectName+' Plans';
+    } else {
+      judul = this.pro.projectName;
+    }
     if(myImage.search('assets/images') == -1){
       //image from API
       myImage = myImage.replace(' ', '%20');
@@ -149,7 +157,7 @@ export class ProjectDetailsPage {
     }
     this.photoViewer.show(
       myImage,
-      this.pro.projectName,
+      judul,
       {share:false}
     );
   }
