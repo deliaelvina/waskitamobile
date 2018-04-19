@@ -13,7 +13,7 @@ import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.s
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
-
+import { normalizeURL } from 'ionic-angular';
 @Component({
     selector: 'camera-page',
     templateUrl: 'camera.html'
@@ -92,23 +92,52 @@ import { File } from '@ionic-native/file';
     }
 
     takeFoto(){
+      // const options: CameraOptions = {
+      //   quality: 100,
+      //   destinationType: this.camera.DestinationType.DATA_URL,
+      //   encodingType: this.camera.EncodingType.JPEG,
+      //   mediaType: this.camera.MediaType.PICTURE,
+      //   sourceType: this.camera.PictureSourceType.CAMERA,
+      //   allowEdit: true,
+      //   targetHeight: 300,
+      //   targetWidth: 300,
+      //   saveToPhotoAlbum: true
+      // };
       const options: CameraOptions = {
         quality: 100,
-        destinationType: this.camera.DestinationType.DATA_URL,
+        destinationType: this.platform.is('ios') ? this.camera.DestinationType.FILE_URI : this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
+        sourceType: this.camera.PictureSourceType.CAMERA,
         allowEdit: true,
         targetHeight: 300,
         targetWidth: 300,
         saveToPhotoAlbum: true
-      };
+      }
 
       this.camera.getPicture(options).then((imageData) => {
-        let imgs = 'data:image/jpeg;base64,' + imageData;
+        // let imgs = 'data:image/jpeg;base64,' + imageData;
 
+        // this.image.base64img = imageData;
+        // this.image.imgHere = imgs;
+
+        let base64Image = null;
+
+        //get photo from the camera based on platform type
+        if (this.platform.is('ios'))
+          {
+            base64Image = normalizeURL(imageData);
+          }
+        else
+          {
+            base64Image = "data:image/jpeg;base64," + imageData;
+          }
+
+          // alert(JSON.stringify(base64Image));
         this.image.base64img = imageData;
-        this.image.imgHere = imgs;
-
+        this.image.imgHere = base64Image;
+        //add photo to the array of photos
+        // this.addPhoto(base64Image);
       }, (err) => {
        // Handle error
       //  alert("yah error");
