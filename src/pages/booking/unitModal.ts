@@ -10,6 +10,8 @@ import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.s
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ListingPage } from '../listing/listing';
 import { BookingPaymentDetailPage } from './paymentDtl';
+import { File } from '@ionic-native/file';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @Component({
   selector: 'payment-method',
@@ -55,6 +57,8 @@ export class BookingUnitModalPage {
     private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
     public imgVw: ImageViewerController,
+    private file: File,
+    private photoViewer: PhotoViewer
   ) {
     this.cons = this.data.cons;
     this.viewImg = imgVw;
@@ -72,8 +76,24 @@ export class BookingUnitModalPage {
   }
 
   presentImage(floorImg) {
-    const imageViewer = this.viewImg.create(floorImg);
-    imageViewer.present();
+    // alert(floorImg);
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
+    // alert(floorImg);
+    // console.log(floorImg);
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    this.photoViewer.show(
+      floorImg,
+      this.details.lot,
+      {share:false}
+    );
   }
 
   loadFrame() {

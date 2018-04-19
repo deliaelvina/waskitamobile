@@ -8,6 +8,8 @@ import { UnitModalPage } from './unitModal';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { ReservationReservePage } from './reserve';
+import { File } from '@ionic-native/file';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @Component({
   selector: 'unit-page',
@@ -49,6 +51,8 @@ export class ReservationUnitPage {
     public imgVw: ImageViewerController,
     private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
+    private file: File,
+    private photoViewer: PhotoViewer
   ) {
     var data = JSON.parse(localStorage.getItem('data'));
     this.project_name = data.projectName;
@@ -210,7 +214,23 @@ export class ReservationUnitPage {
   }
 
   presentImage(floorImg) {
-    const imageViewer = this.viewImg.create(floorImg);
-    imageViewer.present();
+    // alert(floorImg);
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
+    // alert(floorImg);
+    // console.log(floorImg);
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    this.photoViewer.show(
+      floorImg,
+      this.floor_desc,
+      {share:false}
+    );
   }
 }

@@ -8,6 +8,7 @@ import { ImageViewerController } from 'ionic-img-viewer';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { ContactPage } from './contact/contact';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { File } from '@ionic-native/file';
 
 @Component({
   selector: 'unitPay-page',
@@ -42,6 +43,7 @@ export class UnitPayPage {
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
     private photoViewer:PhotoViewer,
+    private file: File
   ) {
     this.loading = this.loadingCtrl.create();
     this.parm =  this.navParams.get('data');
@@ -77,13 +79,23 @@ export class UnitPayPage {
   }
 
   presentImage(floorImg) {
+    // alert(floorImg);
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
+    // alert(floorImg);
+    // console.log(floorImg);
     // const imageViewer = this.viewImg.create(floorImg);
     // imageViewer.present();
-    floorImg = floorImg.replace('%20', ' ');
     this.photoViewer.show(
       floorImg,
-      'Testing Gambar !',
-      {share:true}
+      this.parm.lot_no,
+      {share:false}
     );
   }
 
