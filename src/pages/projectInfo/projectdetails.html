@@ -40,7 +40,7 @@
         <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
             <ion-slide class="contact-slide" *ngFor="let img of images">
                 <!-- <background-image class="slide-image" [src]="img"></background-image> -->
-                <img src='{{img}}' class="slide-image" #myImage (click)="presentImage(myImage)" onerror="this.src='./assets/images/noimage.png';" alt="Can't Load This Picture">
+                <img src='{{img}}' class="slide-image" #myImage (click)="presentImage(img)" onerror="this.src='./assets/images/noimage.png';" alt="Can't Load This Picture">
                 <!-- <preload-image [ratio]="{w:3, h:2}" [src]="img" ></preload-image> -->
             </ion-slide>
         </ion-slides>
@@ -98,7 +98,7 @@
                     <ion-col width-33 class="grid-item" *ngFor="let img of plans">
                         <div class="grid-item-wrapper">
                             <div class="grid-item-inner">
-                                <img src='{{img}}' class="slide-image" #myImage (click)="presentImage(myImage)" onerror="this.src='./assets/images/noimage.png';" alt="Can't Load This Picture">
+                                <img src='{{img}}' class="slide-image" #myImage (click)="presentImage(img)" onerror="this.src='./assets/images/noimage.png';" alt="Can't Load This Picture">
                             </div>
                         </div>
                     </ion-col>

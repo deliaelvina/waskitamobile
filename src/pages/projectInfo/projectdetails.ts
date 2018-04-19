@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
-import { ImageViewerController } from 'ionic-img-viewer';
+// import { ImageViewerController } from 'ionic-img-viewer';
 import { ProfilePage } from '../profile/profile';
 import { DomSanitizer} from '@angular/platform-browser';
 
 import { FileTransfer,  FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -20,6 +21,7 @@ import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { empty } from 'rxjs/Observer';
 
+
 declare var cordova: any;
 
 @Component({
@@ -31,7 +33,7 @@ export class ProjectDetailsPage {
 
   @ViewChild(Slides) slides: Slides;
   projects:any[] = [];
-  _imageViewerCtrl: ImageViewerController;
+  // _imageViewerCtrl: ImageViewerController;
   loading:any;
   display: string;
   project:any;
@@ -74,7 +76,8 @@ export class ProjectDetailsPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public socialSharing: SocialSharing,
-    public imageViewerCtrl: ImageViewerController,
+    // public imageViewerCtrl: ImageViewerController,
+    private photoViewer:PhotoViewer,
     private sanitizer: DomSanitizer,
     public platform: Platform,
     private transfer: FileTransfer, private file: File,
@@ -90,7 +93,7 @@ export class ProjectDetailsPage {
     this.pro.cons = this.project.cons_project;
     this.display ="I";
     this.loading = this.loadingCtrl.create();
-    this._imageViewerCtrl = imageViewerCtrl;
+    // this._imageViewerCtrl = imageViewerCtrl;
     // this.parm =  this.navParams.get('data');
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
@@ -134,9 +137,21 @@ export class ProjectDetailsPage {
 
   presentImage(myImage) {
     console.log(myImage);
-    const imageViewer = this._imageViewerCtrl.create(myImage);
-    imageViewer.present();
-
+    // const imageViewer = this._imageViewerCtrl.create(myImage);
+    // imageViewer.present(); 
+    if(myImage.search('assets/images') == -1){
+      //image from API
+      myImage = myImage.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      myImage = this.file.applicationDirectory + 'www'+myImage.substring(1,myImage.length);
+    }
+    this.photoViewer.show(
+      myImage,
+      this.pro.projectName,
+      {share:false}
+    );
   }
   downloadpdf() {
     this.loading = this.loadingCtrl.create();
