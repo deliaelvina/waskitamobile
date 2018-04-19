@@ -138,18 +138,9 @@
         <variable name="APP_NAME" value="waskitaApp" />
     </plugin>
     <plugin name="cordova-plugin-document-viewer" spec="^0.9.9" />
-<<<<<<< HEAD
-    <engine name="android" spec="6.3.0" />
-    <engine name="ios" spec="~4.5.4" />
-    <plugin name="cordova-plugin-camera" spec="^4.0.3">
-        <variable name="CAMERA_USAGE_DESCRIPTION" value="your usage message" />
-        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="your usage message" />
-    </plugin>
-=======
     <plugin name="cordova-plugin-file-opener2" spec="^2.0.19" />
     <engine name="browser" spec="~5.0.3" />
     <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="com-sarriaroman-photoviewer" spec="^1.1.16" />
->>>>>>> 8abdcfac75ee3081230e7e8aaebb487ae3b43f81
 </widget>
