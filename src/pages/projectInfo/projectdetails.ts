@@ -379,7 +379,15 @@ export class ProjectDetailsPage {
     // alert('a');
     // console.log(this.project);
     // var project
-    this.nav.push(ContactPage,{data:this.pro});
+    // var lot = "";
+    // if (this.parm.studios) {
+    //   lot = this.parm.lot_type_desc;
+
+    // }else{
+    //   lot = this.parm.lot_descs;
+    // }
+    var desc="Saya tertarik reservasi\n"+this.pro.projectName+"\nHubungi Saya untuk info detail.";
+    this.nav.push(ContactPage,{data:this.pro, desc:desc});
   }
 
   // showAlert(title:any, subTitle:any) {
