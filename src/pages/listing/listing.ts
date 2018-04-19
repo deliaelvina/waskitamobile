@@ -22,6 +22,7 @@ import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.s
 import { environment } from '../../environment/environment';
 import { BookingPage } from '../booking/project';
 import { MyUnitPage } from '../MyUnit/myUnit';
+import { SimulasiPage } from '../simulasi/simulasi';
 
 @Component({
   selector: 'listing-page',
@@ -76,6 +77,7 @@ export class ListingPage {
     });
     // this.initDash();
     this.link['MyUnitPage'] = MyUnitPage;
+    this.link['SimulasiPage'] = SimulasiPage;
     this.link['ProjectPage'] = ProjectPage;
     this.link['ReservationProjectPage'] = ReservationProjectPage;
     this.link['NewsPage'] = NewsPage;
