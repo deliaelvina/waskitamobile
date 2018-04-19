@@ -7,6 +7,7 @@ import { environment } from '../../environment/environment';
 import { UnitPayPage } from './unitPay';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @Component({
   selector: 'pilihUnit-page',
@@ -39,6 +40,7 @@ export class PilihUnitPage {
     public imgVw: ImageViewerController,
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
+    private photoViewer:PhotoViewer,
   ) {
     this.loading = this.loadingCtrl.create();
     this.parm = this.navParams.get('data');
@@ -93,8 +95,14 @@ export class PilihUnitPage {
   }
 
   presentImage(floorImg) {
-    const imageViewer = this.viewImg.create(floorImg);
-    imageViewer.present();
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    floorImg = floorImg.replace('%20', ' ');
+    this.photoViewer.show(
+      floorImg,
+      'Testing Gambar (Langsung) !',
+      {share:false}
+    );
   }
 
   loadData() {

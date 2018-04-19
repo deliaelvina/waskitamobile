@@ -7,6 +7,8 @@ import { environment } from '../../environment/environment';
 import { FormSearchPage } from './formSearch';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { File } from '@ionic-native/file';
 
 @Component({
   selector: 'cariUnit-page',
@@ -39,6 +41,8 @@ export class CariUnitPage {
     public imgVw:ImageViewerController,
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
+    private photoViewer:PhotoViewer,
+    private file: File
   ) {
     this.loading = this.loadingCtrl.create();
     this.parm = this.navParams.get('data');
@@ -75,8 +79,20 @@ export class CariUnitPage {
   }
 
   presentImage(floorImg) {
-    const imageViewer = this.viewImg.create(floorImg);
-    imageViewer.present();
+    // alert(floorImg);
+    floorImg = floorImg.replace(' ', '%20');
+    var x = './assets/images/noimage.png';
+    console.log(x.search('assets/images'));
+    console.log('www'+x.substring(1,x.length));
+    // alert(floorImg);
+    // console.log(floorImg);
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    this.photoViewer.show(
+      this.file.applicationDirectory + x,
+      'Testing Gambar (Local) !',
+      {share:false}
+    );
   }
 
   cariUnit() {

@@ -7,6 +7,8 @@ import { environment } from '../../environment/environment';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { ContactPage } from './contact/contact';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 @Component({
   selector: 'unitPay-page',
   templateUrl: 'unitPay.html'
@@ -39,6 +41,7 @@ export class UnitPayPage {
     public imgVw: ImageViewerController,
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
+    private photoViewer:PhotoViewer,
   ) {
     this.loading = this.loadingCtrl.create();
     this.parm =  this.navParams.get('data');
@@ -74,8 +77,14 @@ export class UnitPayPage {
   }
 
   presentImage(floorImg) {
-    const imageViewer = this.viewImg.create(floorImg);
-    imageViewer.present();
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    floorImg = floorImg.replace('%20', ' ');
+    this.photoViewer.show(
+      floorImg,
+      'Testing Gambar !',
+      {share:true}
+    );
   }
 
   loadData() {
@@ -201,9 +210,9 @@ export class UnitPayPage {
       lot = this.parm.lot_descs;
     }
     var desc="Saya tertarik reservasi\n"+this.parm.projectName+"\n"+this.parm.towerName+" | "+this.parm.levelDesc+"\n"+lot+" | "+this.parm.lot_no+"\nHubungi Saya untuk info detail.";
-    
+
     this.nav.push(ContactPage,{data:this.parm, desc:desc});
-    
+
   }
 
 }
