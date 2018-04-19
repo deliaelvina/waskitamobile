@@ -8,6 +8,7 @@ import { UnitPayPage } from './unitPay';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { File } from '@ionic-native/file';
 
 @Component({
   selector: 'pilihUnit-page',
@@ -41,6 +42,7 @@ export class PilihUnitPage {
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
     private photoViewer:PhotoViewer,
+    private file: File
   ) {
     this.loading = this.loadingCtrl.create();
     this.parm = this.navParams.get('data');
@@ -95,12 +97,22 @@ export class PilihUnitPage {
   }
 
   presentImage(floorImg) {
+    // alert(floorImg);
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
+    // alert(floorImg);
+    // console.log(floorImg);
     // const imageViewer = this.viewImg.create(floorImg);
     // imageViewer.present();
-    floorImg = floorImg.replace('%20', ' ');
     this.photoViewer.show(
       floorImg,
-      'Testing Gambar (Langsung) !',
+      this.parm.levelDesc,
       {share:false}
     );
   }

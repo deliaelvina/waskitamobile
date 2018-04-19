@@ -80,17 +80,21 @@ export class CariUnitPage {
 
   presentImage(floorImg) {
     // alert(floorImg);
-    floorImg = floorImg.replace(' ', '%20');
-    var x = './assets/images/noimage.png';
-    console.log(x.search('assets/images'));
-    console.log('www'+x.substring(1,x.length));
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
     // alert(floorImg);
     // console.log(floorImg);
     // const imageViewer = this.viewImg.create(floorImg);
     // imageViewer.present();
     this.photoViewer.show(
-      this.file.applicationDirectory + x,
-      'Testing Gambar (Local) !',
+      floorImg,
+      this.types.remarks,
       {share:false}
     );
   }
