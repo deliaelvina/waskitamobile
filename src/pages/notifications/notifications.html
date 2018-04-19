@@ -4,8 +4,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="notifications-content">
-  <ion-item-group>
+<!-- <ion-content class="notifications-content"> -->
+  <!-- <ion-item-group>
     <ion-item-divider class="notifications-divider">{{ 'TODAY' | translate }}</ion-item-divider>
     <ion-item class="notification-item" *ngFor="let notification of notifications.today">
       <ion-avatar item-left>
@@ -24,5 +24,21 @@
       <p class="item-description">{{notification.message}}</p>
       <ion-note class="item-time" item-right>{{notification.date}}</ion-note>
     </ion-item>
-  </ion-item-group>
-</ion-content>
+  </ion-item-group> -->
+  
+<!-- </ion-content> -->
+
+<ion-content class="feed-content" style="background-color: #f3f3f3 !important">
+          <!-- <div class="row"> -->
+          <div class="feed-item">
+              <ion-card>
+                  <ion-card-content>
+                      <ion-card-title class="item-title">
+                          No Notification
+                      </ion-card-title>
+                  </ion-card-content>
+  
+              </ion-card>
+          </div>
+          <!-- </div> -->
+      </ion-content>
