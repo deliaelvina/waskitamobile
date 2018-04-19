@@ -174,7 +174,6 @@
       "mx.ferreyra.callnumber": {},
       "call-number": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-camera": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-facebook4": {
         "APP_ID": "1737645236299589",
@@ -182,7 +181,11 @@
       },
       "cordova-plugin-document-viewer": {},
       "cordova-plugin-file-opener2": {},
-      "com-sarriaroman-photoviewer": {}
+      "com-sarriaroman-photoviewer": {},
+      "cordova-plugin-camera": {
+        "CAMERA_USAGE_DESCRIPTION": "your usage message",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "your usage message"
+      }
     }
   }
 }

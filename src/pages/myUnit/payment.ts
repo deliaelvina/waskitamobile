@@ -74,14 +74,28 @@ export class PaymentSchedulePage {
   ionViewWillEnter(){
   
   }
-  addZero(i:any){
+  // addZero(i:any){
+  //   if(i < 10){
+  //     i = '0'+i;
+  //   }
+
+  //   return i;
+  // }
+  addZero(i){
     if(i < 10){
       i = '0'+i;
     }
-
+  
     return i;
   }
-  loadData(){
+  
+ convertDate(date){
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var d = new Date(date);
+  
+    return d.getDate().toString()+' '+months[d.getMonth().toString()]+' '+d.getFullYear().toString();
+  }
+  loadData(){ 
     
     this.http.get(this.url_api+"c_myunits/getPrice/" + this.cons + "/" + this.data.entity.trim() + "/" + this.data.project.trim()  + "/" + this.data.debtor_acct, {headers:this.hd} )
     .subscribe(
@@ -102,9 +116,17 @@ export class PaymentSchedulePage {
           
           this.available = true;
           data.forEach(val => {
+            var font_color = '';
+
+                      if(val.status_pembayaran == 'Y' ){
+                      font_color = ' #007eca';
+                      }else{
+                        font_color = ' red';
+                      }
             var d = new Date(val.due_date);
             var fulldates = d.getDate().toString()+' '+this.months[d.getMonth().toString()]+' '+d.getFullYear().toString()+' '+this.addZero(d.getHours())+':'+this.addZero(d.getMinutes());
-            var dates = d.getDate().toString()+'/'+this.addZero(d.getMonth().toString())+'/'+d.getFullYear().toString();
+            var dates = this.convertDate(d);
+            // console.log(dates);
             this.plans.push({
               due_date: dates,
               full_due_date:fulldates,
@@ -112,11 +134,12 @@ export class PaymentSchedulePage {
               status_descs:val.status_pemb_descs,
               plan: val.payment_descs,
               amt: val.trx_amt,
-              rowID:val.rowID
+              rowID:val.rowID,
+              style: font_color
             });
           });
           this.loading.dismiss();
-          // console.log(this.plans);
+          console.log(this.plans);
         }
       },
       (err)=>{

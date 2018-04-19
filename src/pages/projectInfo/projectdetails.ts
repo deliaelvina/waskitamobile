@@ -386,7 +386,7 @@ export class ProjectDetailsPage {
     // }else{
     //   lot = this.parm.lot_descs;
     // }
-    var desc="Saya tertarik reservasi\n"+this.pro.projectName+"\nHubungi Saya untuk info detail.";
+    var desc="Saya tertarik reservasi\n"+this.pro.projectName+"\n";
     this.nav.push(ContactPage,{data:this.pro, desc:desc});
   }
 

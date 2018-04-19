@@ -26,6 +26,7 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
     //     Desc:''
     // };
     ErrorList:any;
+    desc:any;
     descrip:any;
     parm:any;
     loading:any;
@@ -38,6 +39,11 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
     hd = new HttpHeaders({
         Token : localStorage.getItem("Token")
       });
+    anu = {
+      nama : '',
+      telp : '',
+      mail : ''
+    };
     constructor(
       public nav: NavController,
       public alertCtrl: AlertController,
@@ -58,8 +64,9 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
     this.userid = localStorage.getItem('UserId');
       this.loading = this.loadingCtrl.create();
       this.parm=this.navParams.get('data');
-      this.descrip = this.navParams.get('desc');
+      this.desc = this.navParams.get('desc');
       console.log(this.parm);
+      this.descrip = this.desc+"Nama : "+this.anu.nama+"\nHandphone : "+this.anu.telp+"\nEmail : "+this.anu.mail+"\nHubungi saya untuk info detail.\n";
         // this.contacs.Project=this.parm.projectName;
       this.loading.present();
 
@@ -180,9 +187,14 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
               var data = x;
 
               this.contactForm.get('Email').setValue(data[0].email);
-              this.contactForm.get('Name').setValue(data[0].name);
-              this.contactForm.get('Handphone').setValue(data[0].Handphone);
-              // this.contactForm.get('Desc').setValue(data[0].description);
+              // this.contactForm.get('Name').setValue(data[0].name);
+              // this.contactForm.get('Handphone').setValue(data[0].Handphone);
+              this.anu.nama = data[0].name;
+              this.anu.telp = data[0].Handphone;
+              this.anu.mail = data[0].email;
+              console.log(this.anu);
+              this.descrip = this.desc+"Nama : "+this.anu.nama+"\nHandphone : "+this.anu.telp+"\nEmail : "+this.anu.mail+"\nHubungi saya untuk info detail.\n";
+              this.contactForm.get('Desc').setValue(this.descrip);
               console.log(data);
               this.loading.dismiss();
             }
@@ -216,6 +228,10 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
               // this.nav.pop();
           }
         );
+    }
+
+    klik(){
+      this.descrip = this.desc+"Nama : "+this.anu.nama+"\nHandphone : "+this.anu.telp+"\nEmail : "+this.anu.mail+"\nHubungi saya untuk info detail.\n";
     }
 
     kirim(){
