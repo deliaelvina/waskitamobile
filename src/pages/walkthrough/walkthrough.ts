@@ -3,6 +3,8 @@ import { NavController, Slides } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
+import { Http } from '@angular/http';
+import { environment } from '../../environment/environment';
 
 @Component({
   selector: 'walkthrough-page',
@@ -11,17 +13,14 @@ import { SignupPage } from '../signup/signup';
 export class WalkthroughPage {
 
   lastSlide = false;
+  url_api = environment.Url_API;
 
   @ViewChild('slider') slider: Slides;
 
-  constructor(public nav: NavController) {
-
+  constructor(public nav: NavController, private http:Http) {
+    this.loadPict();
   }
-  pict:any[]=[
-    "http://35.197.137.111/waskitaAPI/images/landing/landing1.jpg",
-    "http://35.197.137.111/waskitaAPI/images/landing/landing2.jpg",
-    "http://35.197.137.111/waskitaAPI/images/landing/landing3.jpg"
-  ];
+  pict:any;
   logo:any[]=[
     "http://35.197.137.111/waskitaAPI/images/logo.png"
   ]
@@ -46,5 +45,14 @@ export class WalkthroughPage {
 
   goToSignup() {
     this.nav.push(SignupPage);
+  }
+
+  loadPict(){
+    this.http.get(this.url_api + "c_profil/getPict")
+    .subscribe((data) => {
+      data = data.json();
+      // console.log(data);
+      this.pict = data;
+    });
   }
 }
