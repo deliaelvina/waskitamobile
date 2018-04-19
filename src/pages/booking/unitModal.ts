@@ -4,18 +4,18 @@ import { NavController, NavParams, LoadingController, ViewController, ToastContr
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environment/environment';
-import { ReservationReservePage } from './reserve';
 // import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ListingPage } from '../listing/listing';
+import { BookingPaymentDetailPage } from './paymentDtl';
 
 @Component({
-  selector: 'unitModal-page',
+  selector: 'payment-method',
   templateUrl: 'unitModal.html'
 })
-export class UnitModalPage {
+export class BookingUnitModalPage {
 
   loading:any;
   user:any;
@@ -29,7 +29,7 @@ export class UnitModalPage {
   ErrorList:any;
 
   gallery:any[] = [{
-    url : 'http://localhost:2121/waskitaAPI/images/noimage.png',
+    url : 'http://35.197.137.111/waskitaAPI/images/noimage.png',
     title : 'No Images'
   }];
 
@@ -39,6 +39,9 @@ export class UnitModalPage {
 
   data = JSON.parse(localStorage.getItem("data"));
   viewImg:any;
+
+  av:boolean = true;
+  plans:any[] = [];
 
   constructor(
     public nav: NavController,
@@ -65,7 +68,7 @@ export class UnitModalPage {
     });
 
     this.loading.present();
-    this.loadData();
+    this.loadPrice();
   }
 
   presentImage(floorImg) {
@@ -81,7 +84,7 @@ export class UnitModalPage {
     this.loading.dismiss();
   }
 
-  cekUnitStatus(){
+  cekUnitStatus(plan:any){
     var x = {
       entity:this.data.entity,
       project:this.data.project,
@@ -114,8 +117,26 @@ export class UnitModalPage {
 
           // console.log(datas);
           if(datas.status == 'A'){
-            this.viewCtrl.dismiss({parm:'parm'});
+            // this.viewCtrl.dismiss({parm:'parm'});
             // this.nav.push(ReservationReservePage, {act:'no'});
+
+            this.data.payment_cd = plan.payment_cd;
+            this.data.payment_descs = plan.plans;
+            this.data.payment_amt = plan.amt;
+            this.data.payment_amt2 = plan.amt2;
+
+            this.data.gallery = this.gallery;
+
+            this.data.bath = this.details.bath;
+            this.data.bed = this.details.bed;
+            this.data.direct = this.details.direct;
+            this.data.area = this.details.area;
+            this.data.uom = this.details.uom;
+
+            localStorage.setItem('data', JSON.stringify(this.data));
+            this.nav.push(BookingPaymentDetailPage);
+
+
           }
           else {
             this.showAlert("Warning!", "This Lot is Already Reserved");
@@ -156,7 +177,7 @@ export class UnitModalPage {
 
   loadData() {
     //Load Data
-    this.http.get(this.url_api+"c_reservate/getInfo/" + this.cons + "/" + this.data.entity + "/" + this.data.project + "/" + this.data.towerCd + "/" + this.data.level + "/" + this.data.lot, {headers:this.hd} )
+    this.http.get(this.url_api+"c_booking/getInfo/" + this.cons + "/" + this.data.entity + "/" + this.data.project + "/" + this.data.towerCd + "/" + this.data.level + "/" + this.data.lot, {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
@@ -168,7 +189,7 @@ export class UnitModalPage {
             // alert(x.Pesan);
             // this.available = false;
             this.showAlert("Warning!", "No Info Available");
-            this.viewCtrl.dismiss();
+            // this.viewCtrl.dismiss();
             // alert(1);
             this.loading.dismiss();
           }
@@ -204,7 +225,7 @@ export class UnitModalPage {
           };
 
           //Load Gallery
-          this.http.get(this.url_api+"c_reservate/getGallery/" + this.cons + "/" + this.data.entity + "/" + this.data.project + "/" + this.data.lot_type , {headers:this.hd} )
+          this.http.get(this.url_api+"c_booking/getGallery/" + this.cons + "/" + this.data.entity + "/" + this.data.project + "/" + this.data.lot_type , {headers:this.hd} )
           .subscribe(
             (z:any) => {
               if(z.Error == true) {
@@ -300,6 +321,65 @@ export class UnitModalPage {
 
   }
 
+  loadPrice(){
+    this.http.get(this.url_api+"c_booking/getPrice/" + this.cons + "/" + this.data.entity + "/" + this.data.project  + "/" + this.data.lot, {headers:this.hd} )
+    .subscribe(
+      (x:any) => {
+        if(x.Error == true) {
+          if(x.Status == 401){
+            this.showAlert("Warning!", x.Pesan);
+            this.loading.dismiss();
+          }
+          else {
+            // alert(x.Pesan);
+            this.av = false;
+            this.loading.dismiss();
+          }
+        }
+        else {
+          var data = x.Data;
+          data.forEach(val => {
+            this.plans.push({
+              payment_cd:val.payment_cd,
+              plans: val.descs,
+              amt: val.trx_amt,
+              amt2: val.trx_amt2
+            });
+          });
+          // this.loading.dismiss();
+          this.loadData();
+        }
+      },
+      (err)=>{
+        this.loading.dismiss();
+        //filter error array
+        this.ErrorList = this.ErrorList.filter(function(er){
+            return er.Code == err.status;
+        });
+
+        var errS;
+        //filter klo error'a tidak ada di array error
+        if(this.ErrorList.length == 1 ){
+          errS = this.ErrorList[0].Description;
+        }else{
+          errS = err;
+        }
+          // alert(errS);
+          // let toast = this.toastCtrl.create({
+          //   message: errS,
+          //   duration: 3000,
+          //   position: 'top'
+          // });
+
+          // toast.onDidDismiss(() => {
+          //   console.log('Dismissed toast');
+          // });
+          // toast.present();
+          this.showAlert("Error!", errS);
+      }
+    );
+  }
+
   showAlert(title:any, subTitle:any) {
     let warning = this.alertCtrl.create({
       cssClass: 'alert',
@@ -313,14 +393,14 @@ export class UnitModalPage {
     warning.present();
   }
 
-  onReserve() {
-    this.loading = this.loadingCtrl.create();
-    this.loading.present();
-    this.cekUnitStatus();
-  }
+  goToDetails(plan:any){
+    // console.log(this.data);
+    // console.log(plan);
+    // console.log(this.gallery);
+    // console.log(this.details);
 
-  onCancel() {
-    this.viewCtrl.dismiss();
+    this.cekUnitStatus(plan);
+
   }
 
 }

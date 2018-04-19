@@ -58,6 +58,7 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
     this.userid = localStorage.getItem('UserId');
       this.loading = this.loadingCtrl.create();
       this.parm=this.navParams.get('data');
+      this.descrip = this.navParams.get('desc');
       console.log(this.parm);
         // this.contacs.Project=this.parm.projectName;
       this.loading.present();
@@ -145,11 +146,11 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
       this.ErrorList = data.Error_Status;
     });
         this.contactForm.get('Project').setValue(this.parm.projectName);
-        this.contactForm.get('Entity').setValue(this.parm.entity_cd);
-        this.contactForm.get('Project_no').setValue(this.parm.project_no);
+        this.contactForm.get('Entity').setValue(this.parm.entity);
+        this.contactForm.get('Project_no').setValue(this.parm.projectNo);
         // this.contactForm.get('Entity').setValue(this.parm.Entity);
         // this.contactForm.get('Project_no').setValue(this.parm.Project_no);
-        this.descrip = 'Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.';
+        // this.descrip = 'Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.';
         // this.contactForm.get('Desc').setValue('Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.');
         // console.log(this.parm.entity_cd);
         // console.log(this.parm.project_no);
@@ -218,6 +219,8 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
     }
 
     kirim(){
+      this.loading = this.loadingCtrl.create();
+      this.loading.present();
         // let toast = this.toastCtrl.create({
         //     message: 'Email Delivered',
         //     duration: 3000,
@@ -234,7 +237,8 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
         // alert('save');
         var datas = this.contactForm.value;
         datas.Desc= this.descrip;
-        datas.cons = localStorage.getItem('cons_project');
+        datas.cons = this.parm.cons;
+        // datas.cons = localStorage.getItem('cons_project');
         datas.Uid = localStorage.getItem('UserId');
         console.log(datas);
         this.formservice.Contact_Form(datas).subscribe(
@@ -253,8 +257,9 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
                   //   console.log('Dismissed toast');
                   // });
                   // toast.present();
-                  this.showAlert("Warning!",data.Pesan,'');
                   this.loading.dismiss();
+                  this.showAlert("Warning!",data.Pesan,'');
+                  // this.loading.dismiss();
                 }else{
 
                   // let toast = this.toastCtrl.create({
@@ -267,6 +272,7 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
                   //   console.log('Dismissed toast');
                   // });
                   // toast.present();
+                  this.loading.dismiss();
                   this.showAlert("Information!",data.Pesan,'menu');
 
                   // this.nav.setRoot(this.main_page.component);

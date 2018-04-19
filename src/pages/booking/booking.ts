@@ -20,10 +20,10 @@ import { FileUploadOptions, FileTransfer, FileTransferObject } from '@ionic-nati
 declare var cordova: any;
 
 @Component({
-  selector: 'reserve-page',
-  templateUrl: 'reserve.html'
+  selector: 'bookingReserve-page',
+  templateUrl: 'booking.html'
 })
-export class ReservationReservePage {
+export class BookingReservePage {
   reserveForm: FormGroup;
 
   countries: Array<Country>;
@@ -53,7 +53,7 @@ export class ReservationReservePage {
   imgNPWP:any = null;
   imgTF:any = null;
   // photos:any[] = [];
-  edit:any;
+  edit:boolean = false;
   data:any;
   validation_messages:any;
   natSelect:any;
@@ -78,6 +78,10 @@ export class ReservationReservePage {
   pictPost:any;
   storageDirectory: string = '';
   avPict:boolean = false;
+  payment = {
+    payment_cd:null,
+    amt:null
+  };
 
   constructor(
     public nav: NavController,
@@ -94,15 +98,12 @@ export class ReservationReservePage {
     public camera: Camera,
     private fileTf:FileTransfer,
   ) {
-    this.main_page = { component: TabsNavigationPage };
+    this.main_page = { component: ListingPage };
+    // this.main_page = { component: TabsNavigationPage };
     this.loading = this.loadingCtrl.create();
     this.act = this.navParams.get('act');
     this.rowID = this.navParams.get('id');
     this.group = localStorage.getItem('Group');
-
-    this.imgID = null;
-    this.imgNPWP = null;
-    this.imgTF = null;
 
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
@@ -144,6 +145,11 @@ export class ReservationReservePage {
     }
     else {
       this.data = JSON.parse(localStorage.getItem('data'));
+      if(this.act == 'book'){
+        this.payment.payment_cd = this.data.payment_cd;
+        this.payment.amt = this.data.payment_amt2;
+      }
+      // this.data = JSON.parse(localStorage.getItem('data'));
       this.cons = this.data.cons;
 
       this.agent = {
@@ -175,6 +181,10 @@ export class ReservationReservePage {
       imgNPWP : '',
       imgTF : ''
     };
+
+    this.imgID = null;
+    this.imgNPWP = null;
+    this.imgTF = null;
 
     this._errorService.getData()
     .then(data=>{
@@ -219,6 +229,7 @@ export class ReservationReservePage {
       lot: new FormControl(this.dataLot),
       pict: new FormControl(this.pictPost),
       agent: new FormControl(this.agent),
+      payment: new FormControl(this.payment),
       // terms: new FormControl(true, Validators.pattern('true'))
     });
 
@@ -251,7 +262,7 @@ export class ReservationReservePage {
   }
 
   loadNats(parm:any) {
-    this.http.get(this.url_api+"c_reservate/getNationality/" + this.cons , {headers:this.hd} )
+    this.http.get(this.url_api+"c_booking/getNationality/" + this.cons , {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
@@ -317,7 +328,7 @@ export class ReservationReservePage {
   }
 
   loadNupType(parm:any) {
-    this.http.get(this.url_api+"c_reservate/getNupType/" + this.cons + "/" + this.data.entity + "/" + this.data.project , {headers:this.hd} )
+    this.http.get(this.url_api+"c_booking/getNupType/" + this.cons + "/" + this.data.entity + "/" + this.data.project , {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
@@ -394,6 +405,7 @@ export class ReservationReservePage {
     // console.log('enter');
     let images = JSON.parse(localStorage.getItem('image'));
     var rand = Math.floor(Math.random() * 100);
+    localStorage.removeItem('image');
 
     if(images){
       this.avPict = true;
@@ -461,7 +473,7 @@ export class ReservationReservePage {
   }
 
   loadData(){
-    this.http.get(this.url_api+"c_reservate/myReservation/" + this.cons + "/" + localStorage.getItem('UserId') + "/" + this.rowID, {headers:this.hd} )
+    this.http.get(this.url_api+"c_booking/myReservation/" + this.cons + "/" + localStorage.getItem('UserId') + "/" + this.rowID, {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
@@ -689,19 +701,19 @@ export class ReservationReservePage {
       });
       toast.present();
     }
-    else if(idLen < 16){
-      this.loading.dismiss();
-      let toast = this.toastCtrl.create({
-        message: "ID Number must be 16 numbers long.",
-        duration: 3000,
-        position: 'top'
-      });
+    // else if(idLen < 16){
+    //   this.loading.dismiss();
+    //   let toast = this.toastCtrl.create({
+    //     message: "ID Number must be 16 numbers long.",
+    //     duration: 3000,
+    //     position: 'top'
+    //   });
 
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-      toast.present();
-    }
+    //   toast.onDidDismiss(() => {
+    //     console.log('Dismissed toast');
+    //   });
+    //   toast.present();
+    // }
     else if(types){
       this.loading.dismiss();
       let toast = this.toastCtrl.create({
@@ -827,7 +839,7 @@ export class ReservationReservePage {
         headers: {'Token':localStorage.getItem("Token")}
       };
 
-      return transfer.upload(pict, this.url_api+'c_reservate/upload/', option);
+      return transfer.upload(pict, this.url_api+'c_booking/upload/', option);
       // .then((x) => {
       //   console.log(x);
       //   // this.actSave();
@@ -839,7 +851,7 @@ export class ReservationReservePage {
   }
 
   actSave(data:any){
-    this.http.post(this.url_api+"c_reservate/saveNup/" , data, {headers:this.hd})
+    this.http.post(this.url_api+"c_booking/saveNup/" , data, {headers:this.hd})
     .subscribe(
       (x:any) => {
         if(x.Error == true) {

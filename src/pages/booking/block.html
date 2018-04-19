@@ -1,0 +1,93 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+            <span>Choose Block / Floor</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #f3f3f3 !important">
+    <!-- <div class="feed-item" *ngFor="let pro of projects">
+      <ion-card (click)="goToPhase(pro)">
+        <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs"></preload-image>
+        <ion-card-content>
+          <ion-card-title class="item-title">
+            {{pro.descs}}
+          </ion-card-title>
+
+        </ion-card-content>
+
+      </ion-card>
+    </div> -->
+    <ion-item-group>
+        <div class="div-welcome">
+            <div class="project_des">
+                {{project_name}}
+
+            </div>
+        </div>
+        <div class="div-welcome">
+            <div class="phase_des">
+                {{phase_desc}}
+            </div>
+        </div>
+
+
+        <ng-template #na>
+            <ion-row class="grid-example">
+                <ion-col width-100 class="grid-item">
+                    <div class="grid-item-wrapper" style="padding-bottom:10%;">
+                        <div class="grid-item-inner" style="font-size:1.2rem;">
+                            <h4 class="item-title">
+                                No Block / Floor Available
+                            </h4>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ng-template>
+
+        <div *ngIf="available; else na">
+            <ion-row class="grid-example" *ngFor="let item of blocks" (click)="goToUnit(item)">
+                <ion-col width-100 class="grid-item">
+                    <div class="grid-item-wrapper" style="padding-bottom:10%;">
+                        <div class="grid-item-inner" style="font-size:1.2rem;">
+                            <h4 class="item-title">
+                                <!-- {{item.floor}}st Floor -->
+                                {{item.descs}}
+                            </h4>
+                            <!-- <h4 class="item-title" *ngIf="item.floor==1;else second">
+                              {{item.floor}}st Floor
+                          </h4>
+                          <ng-template #second>
+                              <h4 class="item-title" *ngIf="item.floor==2;else third">
+                                  {{item.floor}}nd Floor
+                              </h4>
+                          </ng-template>
+                          <ng-template #third>
+                              <h4 class="item-title" *ngIf="item.floor==3;else next">
+                                  {{item.floor}}rd Floor
+                              </h4>
+                          </ng-template>
+                          <ng-template #next>
+                              <h4 class="item-title">
+                                  {{item.floor}}th Floor
+                              </h4>
+                          </ng-template> -->
+                        </div>
+                    </div>
+                </ion-col>
+                <!-- <ion-col width-100 class="grid-item">
+            <div class="grid-item-wrapper">
+              <div class="grid-item-inner multi-line">
+                <h2 class="item-title">{{ item }}</h2>
+              </div>
+            </div>
+          </ion-col> -->
+            </ion-row>
+        </div>
+    </ion-item-group>
+</ion-content>

@@ -1,0 +1,260 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span *ngIf="!edit">Booking (Non Refundable)</span>
+            <span *ngIf="edit">Edit Booking</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- <div> -->
+    <ion-card>
+        <!-- <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs"></preload-image> -->
+        <ion-card-content>
+            <ion-card-title class="item-title">
+                <strong>Booking Details</strong>
+            </ion-card-title>
+            <h2>{{data.projectName}}</h2>
+            <h2>{{data.towerName}} | {{data.level_descs}} | {{data.lot}}</h2>
+            <h2>{{data.payment_descs}} | IDR. {{data.payment_amt}}</h2>
+        </ion-card-content>
+
+    </ion-card>
+    <ion-card-content padding class="">
+        <form class="validations-form" [formGroup]="reserveForm" (ngSubmit)="onSubmit(reserveForm.value)">
+            <section class="form-section">
+                <!-- <h2 class="section-title">{{'BASIC_VALIDATIONS' | translate}}</h2> -->
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'BOOKED BY' | translate}}</ion-label>
+                    <!-- <ion-input type="text" formControlName="reservedBy" value="Haniyya Ulfah"></ion-input> -->
+                    <ion-input *ngIf="edit && dates" type="text" formControlName="reserveBy" name="reserveBy" readonly style="margin-bottom: 15px;"></ion-input>
+                    <ion-input *ngIf="!edit" type="text" formControlName="reserveBy" name="reserveBy" readonly></ion-input>
+                    <!-- <ion-input type="hidden" formControlName="lotNo" name="lotNo" readonly></ion-input> -->
+                </ion-item>
+                <div *ngIf="edit && dates" class="validation-errors" style="margin-left:17px;position: relative;top: -21px;margin-bottom: -19px;">
+                    <font color="red">{{dates}}</font>
+                </div>
+                <!-- <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.username">
+                  <div class="error-message" *ngIf="validations_form.get('username').hasError(validation.type) && (validations_form.get('username').dirty || validations_form.get('username').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div> -->
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'FULL NAME' | translate}}
+                        <font color="red">*</font>
+                    </ion-label>
+                    <!-- <ion-input type="text" formControlName="idNo"></ion-input> -->
+                    <ion-input [readonly]="view" type="text" formControlName="fullName" name="fullName" required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.fullName">
+                        <div class="error-message" *ngIf="reserveForm.get('fullName').hasError(validation.type)">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'MOBILE NUMBER' | translate}}</ion-label>
+                    <!-- <ion-input type="text" formControlName="mobile"></ion-input> -->
+                    <ion-input [readonly]="view" type="tel" formControlName="number" name="number" required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.number">
+                        <div class="error-message" *ngIf="reserveForm.get('number').hasError(validation.type)">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'EMAIL ADDRESS' | translate}}</ion-label>
+                    <!-- <ion-input type="text" formControlName="email"></ion-input> -->
+                    <ion-input [readonly]="view" type="email" formControlName="email" name="email" required></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.email">
+                        <div class="error-message" *ngIf="reserveForm.get('email').hasError(validation.type)">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'IDENTITY NO.' | translate}}</ion-label>
+                    <!-- <ion-input type="text" formControlName="idNo"></ion-input> -->
+                    <ion-input [readonly]="view" type="text" formControlName="idNo" name="idNo"></ion-input>
+                </ion-item>
+                <!-- <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.idNo">
+                        <div class="error-message" *ngIf="reserveForm.get('idNo').hasError(validation.type)">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div> -->
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'NATIONALITY' | translate}}</ion-label>
+                    <!-- <ion-select formControlName="nationality" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}"> -->
+                    <ion-select [disabled]="view" (ionChange)="optionSelected('national');" formControlName="national" name="national" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                        <ion-option *ngFor="let nat of nats" [value]="nat">{{ nat.descs }}</ion-option>
+                    </ion-select>
+                </ion-item>
+
+                <!-- <ion-item>
+                <ion-label floating class="labelnya">{{'GENDER' | translate}}</ion-label>
+                <ion-select formControlName="gender" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                <ion-select cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                  <ion-option *ngFor="let gender of genders" [value]="gender" >{{ gender }}</ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label floating class="labelnya">{{'RELIGION' | translate}}</ion-label>
+                <ion-select formControlName="gender" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                <ion-select cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                  <ion-option *ngFor="let rel of religion" [value]="rel" >{{ rel }}</ion-option>
+                </ion-select>
+              </ion-item> -->
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'YOUR ADDRESS' | translate}}</ion-label>
+                    <!-- <ion-input type="text" formControlName="address"></ion-input> -->
+                    <ion-input [readonly]="view" type="text" formControlName="address" name="address"></ion-input>
+                </ion-item>
+                <!-- <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.lastname">
+                  <div class="error-message" *ngIf="validations_form.get('lastname').hasError(validation.type) && (validations_form.get('lastname').dirty || validations_form.get('lastname').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div> -->
+
+                <!-- <ion-item>
+                <ion-label floating class="labelnya">{{'POSTCODE' | translate}}</ion-label>
+                <ion-input type="text" formControlName="postcode"></ion-input>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.email">
+                  <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div> -->
+
+                <!-- <ion-item>
+                <ion-label floating class="labelnya">{{'CITY' | translate}}</ion-label>
+                <ion-input type="text" formControlName="city"></ion-input>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.email">
+                  <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div> -->
+
+                <!-- <ion-item>
+                <ion-label floating class="labelnya">{{'COUNTRY' | translate}}</ion-label>
+                <ion-select formControlName="country" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                <ion-select cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                  <ion-option *ngFor="let country of countries" [value]="country" >{{ country }}</ion-option>
+                </ion-select>
+              </ion-item> -->
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'BOOKING TYPE' | translate}}</ion-label>
+                    <!-- <ion-select formControlName="country" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}"> -->
+                    <ion-select [disabled]="view" (ionChange)="optionSelected();" formControlName="reserveType" name="reserveType" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}" required>
+                        <ion-option *ngFor="let nup of NUP_Type" [value]="nup">{{nup.prefix}} - {{ nup.descs }}</ion-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'AMOUNT' | translate}}</ion-label>
+                    <ion-input type="text" formControlName="amount" name="amount" readonly [(ngModel)]="amt" [value]="amt"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'YOUR REMARKS' | translate}}</ion-label>
+                    <!-- <ion-textarea rows="3" placeholder="Your Remarks Here" formControlName="remarks"></ion-textarea> -->
+                    <ion-textarea [readonly]="view" rows="3" formControlName="remarks" name="remarks"></ion-textarea>
+                </ion-item>
+                <!-- <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.email">
+                  <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div> -->
+                <div class="labelkamera">
+                    <strong>UPLOAD KTP</strong>
+                </div>
+                <ion-item style="text-align:center">
+                    <!-- <ion-label>{{'UPLOAD ID CARD' | translate}}</ion-label> -->
+                    <button type="button" *ngIf="!imgID && !view" ion-button block large class="upload-image-button" (click)="openCamera('id')">
+                    <ion-icon name="camera"></ion-icon>
+                    <h3 class="button-title">{{'UPLOAD ID CARD' | translate}}</h3>
+                  </button>
+                    <!-- <preload-image *ngIf="imgID" [ratio]="{w:1, h:1}" [src]="imgID" alt="this is the image" title="IMAGE!"></preload-image> -->
+                    <img *ngIf="!view && imgID" [src]="imgID" (click)="openCamera('id',imgID)" onerror="this.src='./assets/images/noimage.png'">
+                    <img *ngIf="view" [src]="imgID" onerror="this.src='./assets/images/noimage.png'">
+                </ion-item>
+
+                <div class="labelkamera">
+                    <strong>UPLOAD NPWP</strong>
+                </div>
+                <ion-item style="text-align:center">
+                    <!-- <ion-label>{{'UPLOAD NPWP' | translate}}</ion-label> -->
+                    <button type="button" *ngIf="!imgNPWP && !view" ion-button block large class="upload-image-button" (click)="openCamera('npwp')">
+                    <ion-icon name="camera"></ion-icon>
+                    <h3 class="button-title">{{'UPLOAD NPWP' | translate}}</h3>
+                  </button>
+                    <!-- <preload-image *ngIf="imgNPWP" [ratio]="{w:1, h:1}" [src]="imgNPWP" alt="this is the image" title="IMAGE!"></preload-image> -->
+                    <img *ngIf="!view && imgNPWP" [src]="imgNPWP" (click)="openCamera('npwp',imgNPWP)" onerror="this.src='./assets/images/noimage.png'">
+                    <img *ngIf="view" [src]="imgNPWP" onerror="this.src='./assets/images/noimage.png'">
+                </ion-item>
+
+                <div class="labelkamera">
+                    <strong>UPLOAD BUKTI TRANSFER</strong>
+                </div>
+                <ion-item style="text-align:center">
+                    <!-- <ion-label>{{'UPLOAD APPROVAL OF TRANSFER' | translate}}</ion-label> -->
+                    <button type="button" *ngIf="!imgTF && !view" ion-button block large class="upload-image-button" (click)="openCamera('tf')">
+                    <ion-icon name="camera"></ion-icon>
+                    <h3 class="button-title">{{'UPLOAD APPROVAL OF TRANSFER' | translate}}</h3>
+                  </button>
+                    <!-- <preload-image *ngIf="imgTF" [ratio]="{w:1, h:1}" [src]="imgTF" alt="this is the image" title="IMAGE!"></preload-image> -->
+                    <img *ngIf="!view && imgTF" [src]="imgTF" (click)="openCamera('tf',imgTF)" onerror="this.src='./assets/images/noimage.png'">
+                    <img *ngIf="view" [src]="imgTF" onerror="this.src='./assets/images/noimage.png'">
+                </ion-item>
+            </section>
+
+            <section class="form-section" *ngIf="!view">
+                <button ion-button block class="form-action-button" type="submit" style="background-color: #ff720d">Confirm</button>
+            </section>
+        </form>
+        <br><br>
+
+        <!-- <button (click)="openCamera('id')">Take Picture</button>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6 *ngFor="let photo of photos">
+                <ion-card>
+                  <img [src]="photo">
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid> -->
+    </ion-card-content>
+    <!-- </div> -->
+</ion-content>

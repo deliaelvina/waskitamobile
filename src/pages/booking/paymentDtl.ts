@@ -4,18 +4,17 @@ import { NavController, NavParams, LoadingController, ViewController, ToastContr
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environment/environment';
-import { ReservationReservePage } from './reserve';
-// import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ListingPage } from '../listing/listing';
+import { BookingReservePage } from './booking';
 
 @Component({
-  selector: 'unitModal-page',
-  templateUrl: 'unitModal.html'
+  selector: 'paymentDtl-page',
+  templateUrl: 'paymentDtl.html'
 })
-export class UnitModalPage {
+export class BookingPaymentDetailPage {
 
   loading:any;
   user:any;
@@ -29,7 +28,7 @@ export class UnitModalPage {
   ErrorList:any;
 
   gallery:any[] = [{
-    url : 'http://localhost:2121/waskitaAPI/images/noimage.png',
+    url : 'http://35.197.137.111/waskitaAPI/images/noimage.png',
     title : 'No Images'
   }];
 
@@ -39,6 +38,9 @@ export class UnitModalPage {
 
   data = JSON.parse(localStorage.getItem("data"));
   viewImg:any;
+
+  av:boolean = true;
+  plans:any[] = [];
 
   constructor(
     public nav: NavController,
@@ -56,6 +58,23 @@ export class UnitModalPage {
     this.cons = this.data.cons;
     this.viewImg = imgVw;
     this.loading = this.loadingCtrl.create();
+    this.gallery = this.data.gallery;
+
+    this.details = {
+      project:this.data.projectName,
+      tower:this.data.towerName,
+      level:this.data.level_descs,
+      lot:this.data.lot,
+      area:this.data.area,
+      uom:this.data.uom,
+      typeDesc:this.data.lot_type_desc,
+      studios:this.data.studio,
+      bed:this.data.bed,
+      bath:this.data.bath,
+      direct:this.data.direct,
+      payment:this.data.payment_descs,
+      payment_amt:this.data.payment_amt
+    };
   }
 
   ionViewDidLoad() {
@@ -66,6 +85,7 @@ export class UnitModalPage {
 
     this.loading.present();
     this.loadData();
+    console.log(this.details);
   }
 
   presentImage(floorImg) {
@@ -156,7 +176,7 @@ export class UnitModalPage {
 
   loadData() {
     //Load Data
-    this.http.get(this.url_api+"c_reservate/getInfo/" + this.cons + "/" + this.data.entity + "/" + this.data.project + "/" + this.data.towerCd + "/" + this.data.level + "/" + this.data.lot, {headers:this.hd} )
+    this.http.get(this.url_api+"c_booking/getPayDetail/" + this.cons + "/" + this.data.entity + "/" + this.data.project + "/" + this.data.lot + "/" + this.data.payment_cd, {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
@@ -166,9 +186,9 @@ export class UnitModalPage {
           }
           else {
             // alert(x.Pesan);
-            // this.available = false;
-            this.showAlert("Warning!", "No Info Available");
-            this.viewCtrl.dismiss();
+            this.av = false;
+            // this.showAlert("Warning!", "No Info Available");
+            // this.viewCtrl.dismiss();
             // alert(1);
             this.loading.dismiss();
           }
@@ -176,95 +196,22 @@ export class UnitModalPage {
         else {
           // console.log(x);
 
-          var datas = x.Data[0];
+          var datas = x.Data;
 
-          var bd = this.data.bed+' Bedroom';
-          var bt = this.data.bath+' Bathroom';
-
-          if(this.data.bed > 1){
-            bd += 's';
-          }
-          if(this.data.bath > 1){
-            bt += 's';
-          }
-
-          this.details = {
-            'type' : this.data.lot_type,
-            'typeDesc' : this.data.lot_type_desc,
-            'project' : this.data.projectName,
-            'tower' : this.data.towerName,
-            'level' : this.data.level_descs,
-            'lot' : this.data.lot,
-            'bed' : bd,
-            'bath' : bt,
-            'studios' : this.data.studio,
-            'area' : datas.build_up_area,
-            'uom' : datas.area_uom,
-            'direct' : datas.direction_descs,
-          };
-
-          //Load Gallery
-          this.http.get(this.url_api+"c_reservate/getGallery/" + this.cons + "/" + this.data.entity + "/" + this.data.project + "/" + this.data.lot_type , {headers:this.hd} )
-          .subscribe(
-            (z:any) => {
-              if(z.Error == true) {
-                  if(z.Status == 401){
-                    this.showAlert("Warning!", z.Pesan);
-                    this.loading.dismiss();
-                  }
-                  else {
-                    // alert(x.Pesan);
-                    // this.available = false;
-                    // this.viewCtrl.dismiss();
-                    // alert(2);
-                    this.loading.dismiss();
-                  }
-                }
-                else {
-                  var dataZ = z.Data;
-                  dataZ.forEach(val => {
-                    this.gallery = [];
-                    this.gallery.push({
-                      url : val.gallery_url,
-                      title : val.gallery_title
-                    });
-                  });
-
-                  console.log(this.gallery);
-                  this.loading.dismiss();
-                }
-            },
-            (err)=>{
-              this.loading.dismiss();
-              //filter error array
-              this.ErrorList = this.ErrorList.filter(function(er){
-                  return er.Code == err.status;
-              });
-
-              var errS;
-              //filter klo error'a tidak ada di array error
-              if(this.ErrorList.length == 1 ){
-                errS = this.ErrorList[0].Description;
-              }else{
-                errS = err;
-              }
-                // alert(errS);
-                // let toast = this.toastCtrl.create({
-                //   message: errS,
-                //   duration: 3000,
-                //   position: 'top'
-                // });
-
-                // toast.onDidDismiss(() => {
-                //   console.log('Dismissed toast');
-                // });
-                // toast.present();
-                this.showAlert("Error!", errS);
-                return true;
+          console.log(datas);
+          datas.forEach(val => {
+            var x = val.descs.substring(val.descs.length,val.descs.length-1);
+            var at = '';
+            if(x == 'X'){
+              at = '@';
             }
-          );
-          // console.log(this.details);
-          // this.loading.dismiss();
+            this.plans.push({
+              descs: val.descs,
+              amt: val.trx_amt,
+              at:at
+            });
+          });
+          this.loading.dismiss();
         }
       },
       (err)=>{
@@ -313,14 +260,8 @@ export class UnitModalPage {
     warning.present();
   }
 
-  onReserve() {
-    this.loading = this.loadingCtrl.create();
-    this.loading.present();
-    this.cekUnitStatus();
-  }
-
-  onCancel() {
-    this.viewCtrl.dismiss();
+  onBooking(plan:any){
+    this.nav.push(BookingReservePage,{act:'book'});
   }
 
 }

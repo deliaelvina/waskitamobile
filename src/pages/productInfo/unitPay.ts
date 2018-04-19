@@ -192,7 +192,18 @@ export class UnitPayPage {
 
   contact(){
     // alert('a');
-    this.nav.push(ContactPage,{data:this.parm});
+    // console.log(this.parm);
+    var lot = "";
+    if (this.parm.studios) {
+      lot = this.parm.lot_type_desc;
+
+    }else{
+      lot = this.parm.lot_descs;
+    }
+    var desc="Saya tertarik reservasi\n"+this.parm.projectName+"\n"+this.parm.towerName+" | "+this.parm.levelDesc+"\n"+lot+" | "+this.parm.lot_no+"\nHubungi Saya untuk info detail.";
+    
+    this.nav.push(ContactPage,{data:this.parm, desc:desc});
+    
   }
 
 }

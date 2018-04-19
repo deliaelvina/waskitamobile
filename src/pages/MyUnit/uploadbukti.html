@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span>Payment Schedule Details</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- <div> -->
+    <ion-card>
+        <!-- <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs"></preload-image> -->
+        <ion-card-content>
+                <ion-card-title class="item-title">
+                    <strong>Payment Schedule Details</strong>
+                </ion-card-title>
+                <h2>{{parmhd.projectName}}</h2>
+                <h2>{{parmhd.towerName}} | {{parmhd.level_descs}} | <span style="color:rgb(253, 42, 42);"><strong>{{parmhd.lot}}</strong></span></h2>
+                <h2>{{parm.full_due_date}}</h2>
+                <h2><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{parm.amt}}</span></h2>
+  
+            </ion-card-content>
+
+    </ion-card>
+    <ion-card-content padding class="">
+        <form class="validations-form" [formGroup]="reserveForm" (ngSubmit)="onSubmit(reserveForm.value)">
+            <section class="form-section">
+      
+                <div class="labelkamera">
+                    <h2><strong>Already paid?</strong></h2>
+                    Please upload your payment receipt.
+                </div>
+                <ion-item style="text-align:center">
+                  <button type="button" *ngIf="!imgBukti" ion-button block large class="upload-image-button" (click)="openCamera('bukti')">
+                    <ion-icon name="camera"></ion-icon>
+                    <h3 class="button-title">{{'UPLOAD BUKTI' | translate}}</h3>
+                  </button>
+                    <img *ngIf="imgBukti" [src]="imgBukti" (click)="openCamera('bukti',imgBukti)" onerror="this.src='./assets/images/noimage.png'">
+   
+                </ion-item>
+
+             
+            </section>
+
+            <section class="form-section">
+                <button ion-button block class="form-action-button" type="submit" style="background-color: #1f3e80">Submit</button>
+            </section>
+        </form>
+        <br><br>
+
+    </ion-card-content>
+</ion-content>

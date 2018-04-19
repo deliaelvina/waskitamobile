@@ -1,0 +1,111 @@
+<ion-header>
+    <ion-navbar>
+        <!-- <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button> -->
+        <ion-title>
+            <span>Payment Details</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content" style="background-color: #f3f3f3 !important">
+    <div class="feed-item">
+        <ion-card>
+            <!-- <div class="feed-item" *ngIf="picts">
+                    <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
+                        <ion-slide class="contact-slide" *ngFor="let img of picts">
+
+                            <img [src]="img.url" #floorImg (click)="presentImage(floorImg)">
+
+                        </ion-slide>
+                    </ion-slides>
+                </div> -->
+
+            <!-- <preload-image [ratio]="{w:3, h:2}" src="http://localhost:2121/waskitaAPI/images/reservation/floorplan1.jpg" title="Unit Information"></preload-image> -->
+            <div class="feed-item" *ngIf="gallery">
+                <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
+                    <ion-slide class="contact-slide" *ngFor="let img of gallery">
+                        <!-- <h2>{{ img.title }}</h2> -->
+                        <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(floorImg)" class="imgcenter">
+                        <!-- <preload-image [ratio]="{w:3, h:2}" [src]="img"></preload-image> -->
+                    </ion-slide>
+                </ion-slides>
+            </div>
+            <ion-card-content>
+
+                <ion-card-title class="item-title" *ngIf="details">
+                    <p>
+                        <strong>{{details.project}}</strong> <br> {{details.tower}} | {{details.level}} | <strong><span style="color:rgb(253, 42, 42);">{{details.lot}}</span></strong>
+                        <br> {{details.area}} {{details.uom}} <br>
+                        <span *ngIf="details.studios">{{details.typeDesc}}</span>
+                        <span *ngIf="!details.studios">{{details.bed}} | {{details.bath}}</span>
+                        <br> {{details.direct}}
+                        <br>
+                        <br style="padding-top:5px;"><b>{{details.payment}}</b>  | <b><span style="color:#06b139">{{details.payment_amt}}</span></b>
+                        <!-- <br> Payment Details -->
+                        <br>
+                    </p>
+                    <div *ngIf="av; else a" class="paymentdetail">
+                        <table width="100%">
+                            <tr *ngFor="let item of plans">
+                                <td width="60%" class="desc">{{item.descs}}</td>
+                                <td valign="middle" align="right" class="amt"><span style="float:left !important;">{{item.at}}IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                            </tr>
+                        </table>
+                        </div>
+                    <!-- <iframe [src]="link_iframe" frameborder="0"></iframe> -->
+                    <!-- <iframe src="http://localhost:2121/WaskitaAPI/c_iFrame/getReservation/IFCAPB/2101/210101/11/01/IFCA001"></iframe> -->
+                    <!-- <button class="btn" (click)="onReserve()">Reserve Now</button>
+                    <button class="btn" (click)="onCancel()">Cancel</button> -->
+                </ion-card-title>
+                <!-- <ion-card-title class="item-title" id="payment">
+                    Payment Details
+                </ion-card-title>
+
+                <div *ngIf="av; else a">
+                    <table width="100%">
+                        <tr *ngFor="let item of plans">
+                            <td width="60%">{{item.descs}}</td>
+                            <td valign="middle" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                        </tr>
+                    </table>
+                </div> -->
+                <button class="btn" (click)="onBooking()">Booking Now</button>
+                <button class="btn" (click)="this.nav.pop()">Cancel</button>
+            </ion-card-content>
+
+        </ion-card>
+
+        <!-- <ion-card>
+          <ion-card-content>
+            <ion-card-title class="item-title" id="payment">
+                Payment Details
+            </ion-card-title>
+
+            <div *ngIf="av; else a">
+                <table width="100%">
+                    <tr *ngFor="let item of plans">
+                        <td width="60%">{{item.descs}}</td>
+                        <td valign="middle" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <ng-template #a>
+                <div>
+                    <span>No Payment Details</span>
+                </div>
+            </ng-template>
+
+        </ion-card-content>
+      </ion-card> -->
+      <ng-template #a>
+        <div>
+            <span>No Payment Details</span>
+        </div>
+    </ng-template>
+    </div>
+    
+</ion-content>

@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-navbar>
+        <!-- <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button> -->
+        <ion-title>
+            <span>Choose Payment Plan</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content" style="background-color: #f3f3f3 !important">
+    <div class="feed-item">
+        <ion-card>
+            <!-- <div class="feed-item" *ngIf="picts">
+                    <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
+                        <ion-slide class="contact-slide" *ngFor="let img of picts">
+
+                            <img [src]="img.url" #floorImg (click)="presentImage(floorImg)">
+
+                        </ion-slide>
+                    </ion-slides>
+                </div> -->
+
+            <!-- <preload-image [ratio]="{w:3, h:2}" src="http://localhost:2121/waskitaAPI/images/reservation/floorplan1.jpg" title="Unit Information"></preload-image> -->
+            <div class="feed-item" *ngIf="gallery">
+                <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
+                    <ion-slide class="contact-slide" *ngFor="let img of gallery">
+                        <!-- <h2>{{ img.title }}</h2> -->
+                        <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(floorImg)">
+                        <!-- <preload-image [ratio]="{w:3, h:2}" [src]="img"></preload-image> -->
+                    </ion-slide>
+                </ion-slides>
+            </div>
+            <ion-card-content>
+
+                <ion-card-title class="item-title" *ngIf="details" style="padding-left:15px;">
+                    {{details.descs}}
+                    <p>
+                        <strong>{{details.project}}</strong> <br> {{details.tower}} | {{details.level}} | <strong><span style="color:rgb(253, 42, 42);">{{details.lot}}</span></strong>
+                        <br> {{details.area}} {{details.uom}} <br>
+                        <span *ngIf="details.studios">{{details.typeDesc}}</span>
+                        <span *ngIf="!details.studios">{{details.bed}} | {{details.bath}}</span>
+                        <br> {{details.direct}}
+                    </p>
+                    <!-- <iframe [src]="link_iframe" frameborder="0"></iframe> -->
+                    <!-- <iframe src="http://localhost:2121/WaskitaAPI/c_iFrame/getReservation/IFCAPB/2101/210101/11/01/IFCA001"></iframe> -->
+                    <!-- <button class="btn" (click)="onReserve()">Reserve Now</button>
+                    <button class="btn" (click)="onCancel()">Cancel</button> -->
+                </ion-card-title>
+
+            </ion-card-content>
+
+        </ion-card>
+        <div *ngIf="av; else a" style="padding-bottom:10px;">
+                <!-- <table width="100%">
+                    <tr *ngFor="let item of plans">
+                        <td width="60%">{{item.plans}}</td>
+                        <td valign="middle" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                    </tr>
+                </table> -->
+                <ion-row class="grid-example" *ngFor="let item of plans" (click)="goToDetails(item)">
+                  <ion-col width-100 class="grid-item">
+                      <div class="grid-item-wrapper" style="padding-bottom:10%;">
+                          <div class="grid-item-inner" style="font-size:1.2rem;">
+                            <table width="100%">
+                              <tr>
+                                  <td width="60%" style="font-size: 14px;font-weight: 600">{{item.plans}}</td>
+                                  <td valign="middle" align="right" style="font-size: 14px;font-weight: 600"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                              </tr>
+                            </table>
+                          </div>
+                      </div>
+                  </ion-col>
+              </ion-row>
+            </div>
+        <!-- <ion-card>
+          <ion-card-content>
+            <ion-card-title class="item-title" id="payment">
+                Payment Plans
+            </ion-card-title>
+
+            <div *ngIf="av; else a">
+                
+                <ion-row class="grid-example" *ngFor="let item of plans" (click)="goToDetails(item)" style="background-color:#06b139">
+                  <ion-col width-100 class="grid-item">
+                      <div class="grid-item-wrapper" style="padding-bottom:10%;">
+                          <div class="grid-item-inner" style="font-size:1.2rem;">
+                            <table width="100%">
+                              <tr>
+                                  <td width="60%">{{item.plans}}</td>
+                                  <td valign="middle" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                              </tr>
+                            </table>
+                          </div>
+                      </div>
+                  </ion-col>
+              </ion-row>
+            </div>
+
+
+            <ng-template #a>
+                <div>
+                    <span>No Payment Plans</span>
+                </div>
+            </ng-template>
+
+        </ion-card-content>
+      </ion-card> -->
+      <ng-template #a>
+            <div>
+                <span>No Payment Plans</span>
+            </div>
+        </ng-template>
+    </div>
+</ion-content>

@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment/environment';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 //pages
@@ -31,6 +32,21 @@ import { ReservationBlockPage } from '../pages/reservation/block';
 import { ReservationUnitPage } from '../pages/reservation/unit';
 import { ReservationReservePage } from '../pages/reservation/reserve';
 import { UnitModalPage } from '../pages/reservation/unitModal';
+
+//booking
+import { BookingUnitPage } from '../pages/booking/unit';
+import { BookingBlockPage } from '../pages/booking/block';
+import { BookingPhasePage } from '../pages/booking/phase';
+import { BookingPage } from '../pages/booking/project';
+import { BookingUnitModalPage } from "../pages/booking/unitModal";
+import { BookingPaymentDetailPage } from "../pages/booking/paymentDtl";
+import { BookingReservePage } from '../pages/booking/booking';
+
+//myUnit
+import { MyUnitPage } from '../pages/MyUnit/myUnit';
+import { PaymentSchedulePage } from '../pages/MyUnit/payment';
+import { UploadBuktiPage } from '../pages/MyUnit/uploadbukti';
+import { SimulasiPage } from '../pages/simulasi/simulasi';
 
 //Product Info
 // import { ProductInfoPage } from '../pages/productInfo/productInfo';
@@ -155,6 +171,7 @@ import { MyReservationProjectPage } from '../pages/reservation/myReservation';
 //file transfer
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -178,6 +195,21 @@ export function createTranslateLoader(http: HttpClient) {
     ReservationReservePage,
     UnitModalPage,
     MyReservationProjectPage,
+
+    //booking
+    BookingPage,
+    BookingPhasePage,
+    BookingBlockPage,
+    BookingUnitPage,
+    BookingUnitModalPage,
+    BookingPaymentDetailPage,
+    BookingReservePage,
+
+    //myunit
+    PaymentSchedulePage,
+    MyUnitPage,
+    UploadBuktiPage,
+    SimulasiPage,
 
     //Product Info
     // ProductInfoPage,
@@ -308,6 +340,20 @@ export function createTranslateLoader(http: HttpClient) {
     UnitModalPage,
     MyReservationProjectPage,
 
+    //booking
+    BookingPage,
+    BookingPhasePage,
+    BookingBlockPage,
+    BookingUnitPage,
+    BookingUnitModalPage,
+    BookingPaymentDetailPage,
+    BookingReservePage,
+
+    //myunit
+    SimulasiPage,
+    MyUnitPage,
+    PaymentSchedulePage,
+    UploadBuktiPage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -414,7 +460,9 @@ export function createTranslateLoader(http: HttpClient) {
     FormService,
     FileTransfer,
     FileTransferObject,
-    File
+    File,
+    FileOpener,
+    PhotoViewer
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
