@@ -200,7 +200,7 @@ export class UnitPayPage {
     }else{
       lot = this.parm.lot_descs;
     }
-    var desc="Saya tertarik reservasi\n"+this.parm.projectName+"\n"+this.parm.towerName+" | "+this.parm.levelDesc+"\n"+lot+" | "+this.parm.lot_no+"\nHubungi Saya untuk info detail.";
+    var desc="Saya tertarik reservasi\n"+this.parm.projectName+"\n"+this.parm.towerName+" | "+this.parm.levelDesc+"\n"+lot+" | "+this.parm.lot_no+"\n";
     
     this.nav.push(ContactPage,{data:this.parm, desc:desc});
     
