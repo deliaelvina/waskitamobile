@@ -143,4 +143,8 @@
     <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="com-sarriaroman-photoviewer" spec="^1.1.16" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="your usage message" />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="your usage message" />
+    </plugin>
 </widget>

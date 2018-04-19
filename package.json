@@ -183,7 +183,11 @@
       },
       "cordova-plugin-document-viewer": {},
       "cordova-plugin-file-opener2": {},
-      "com-sarriaroman-photoviewer": {}
+      "com-sarriaroman-photoviewer": {},
+      "cordova-plugin-camera": {
+        "CAMERA_USAGE_DESCRIPTION": "your usage message",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "your usage message"
+      }
     }
   }
 }
