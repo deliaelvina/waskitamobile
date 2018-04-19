@@ -423,12 +423,6 @@ export class ReservationReservePage {
     }
   }
 
-  // ionViewWillLeave(){
-  //   this.imgID = null;
-  //   this.imgNPWP = null;
-  //   this.imgTF = null;
-  // }
-
   openImagePicker(){
     // this.imagePicker.hasReadPermission().then(
     //   (result) => {
@@ -570,7 +564,15 @@ export class ReservationReservePage {
   }
 
   cekUnitStatus(frmData:any){
-    this.http.get(this.url_api+"c_reservate/cekUnit/" + this.cons + "/" + this.data.entity + "/" + this.data.project + "/" + this.data.towerCd + "/" + this.data.level + "/" + this.data.lot, {headers:this.hd} )
+    var x = {
+      entity:this.data.entity,
+      project:this.data.project,
+      towerCd:this.data.towerCd,
+      level:this.data.level,
+      lot: this.data.lot
+    };
+
+    this.http.post(this.url_api+"c_reservate/cekUnit/" + this.cons, x, {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
