@@ -256,7 +256,7 @@ export class BookingReservePage {
         { type: 'minLength', message: 'ID Number must be at least 16 numbers long.' },
       ],
       'reserveType' : [
-        { type: 'required', message: 'Reservation Type is required.' },
+        { type: 'required', message: 'Booking Type is required.' },
       ],
     };
   }

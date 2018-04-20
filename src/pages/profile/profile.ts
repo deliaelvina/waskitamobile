@@ -81,6 +81,14 @@ export class ProfilePage {
   };
   pict_name:any;
 
+  toPost:boolean = false;
+  bfPost = {
+    Name : '',
+    Gender : '',
+    Handphone : '',
+    Pict_profil:''
+  };
+
   constructor(
     public menu: MenuController,
     public app: App,
@@ -123,6 +131,42 @@ export class ProfilePage {
       Pict_profil: new FormControl(''),
       Header_profil: new FormControl('')
     });
+  }
+
+  cekPost(){
+    var name, hp, gender, photo;
+    name = this.form_profil.get('Name').value;
+    hp = this.form_profil.get('Handphone').value;
+    gender = this.form_profil.get('Gender').value;
+    photo = this.form_profil.get('Pict_profil').value;
+
+    if(this.bfPost.Name == name && this.bfPost.Handphone == hp && this.bfPost.Gender == gender && this.bfPost.Pict_profil == ''){
+      this.toPost = false;
+    }
+    else {
+      this.toPost = true;
+    }
+  }
+
+  post(data:any){
+    var name = data.target.name;
+    var val = data.target.value;
+    if(name == 'Name'){
+      if(this.bfPost.Name !== val){
+        this.toPost = true;
+      }
+      else {
+        this.cekPost();
+      }
+    }
+    else if(name == 'Handphone'){
+      if(this.bfPost.Handphone !== val){
+        this.toPost = true;
+      }
+      else {
+        this.cekPost();
+      }
+    }
   }
 
   changepass(){
@@ -268,11 +312,20 @@ export class ProfilePage {
       this.pict_name = 'profile_'+rand+'.png';
       this.form_profil.get('Pict_profil').setValue(this.url_api+'images/profil/profile_'+rand+'.png');
       // console.log(this.images);
+      this.bfPost.Pict_profil = images.imgHere;
+      this.toPost = true;
     }
   }
 
   Gender(t:any): void {
     //  alert(t);
+    if(this.bfPost.Gender !== t){
+      this.toPost = true;
+    }
+    else {
+      this.cekPost();
+    }
+
     this.dt.Gender=t;
  }
 
@@ -339,13 +392,17 @@ export class ProfilePage {
               var data = x;
               this.dt.UserName=data[0].email;
               this.dt.Name= data[0].name;
+              this.bfPost.Name= data[0].name;
               this.dt.Password= data[0].password;
               this.dt.Gender= data[0].gender;
+              this.bfPost.Gender= data[0].gender;
               this.form_profil.get('Gender').setValue(data[0].gender);
               this.dt.Handphone= data[0].Handphone;
+              this.bfPost.Handphone= data[0].Handphone;
 
               // this.dt.Pict_profil= data[0].pict;
               this.dt.Pict_profil = data[0].pict?data[0].pict:'./assets/images/noimage.png';
+              this.bfPost.Pict_profil = data[0].pict?data[0].pict:'';
               // this.dt.Header_profil = data[0].pict_header?data[0].pict_header:'./assets/images/noimage.png';
               // this.dt.Header_profil=data[0].pict_header;
               console.log(data);
@@ -358,7 +415,7 @@ export class ProfilePage {
         //         "Male",
         //         "Female"
         //       ];
-    }
+}
 
     gantiprofil2(img:any){
       this.navCtrl.push(CameraPage,{from:'profile', image:img});
