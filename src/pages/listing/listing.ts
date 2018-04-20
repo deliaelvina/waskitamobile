@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController,Platform } from 'ionic-angular';
+import { NavController, LoadingController, AlertController,Platform ,MenuController} from 'ionic-angular';
 
 import { FeedPage } from '../feed/feed';
 import { ProjectPage } from '../projectInfo/project';
@@ -57,7 +57,8 @@ export class ListingPage {
     public alertCtrl: AlertController,
     public platform: Platform,
     private _errorService: ErrorhandlerService,
-    private http: HttpClient
+    private http: HttpClient,
+    private menu: MenuController
   ) {
     platform.ready().then((source) => {
       if (this.platform.is('android')) {
@@ -155,6 +156,7 @@ export class ListingPage {
           else {
             localStorage.clear();
             // alert('ok');
+            this.menu.close();
               if(this.device=='iOS'){
                   this.platform.exitApp();
               }else if(this.device=='android'){
