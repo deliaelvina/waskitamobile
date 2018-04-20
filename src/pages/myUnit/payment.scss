@@ -65,19 +65,42 @@ payment-schedule-page {
     }
     .column1{
         float: left;
-        width: 45%;
+        width: 56%;
         padding: 5px;
         padding-left: 10px !important;
+        // z-index: 2;
     }
     .column2{
         float: left;
-        width: 35%;
+        width: 25%; 
         padding: 5px;
+        // z-index: 1;
     }
     .column3{
         float: left;
-        width: 20%;
+        width: 15%;
         padding: 5px;
+        // z-index: 2
+    }
+    .duedate{
+        float: left;
+        // width: 50%;
+        
+        // padding: 5px;
+    }
+    .desc{
+        float: left;
+        width: 55%;
+        z-index: 2
+        // padding: 5px;
+    }
+    .status{ 
+        float: left;
+        width: 25%;
+        // padding: 5px;
+    }
+    .amt{
+        width: 50%;
     }
     /* Clear floats after the columns */
     .row:after {
@@ -243,6 +266,7 @@ payment-schedule-page {
         border-right-style: none !important;
         border-top-style: none !important;
         box-shadow: 0 1px 5px -3px #333 !important;
+        // background-color: aqua !important;
     }
 }
 
