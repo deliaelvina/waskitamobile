@@ -20,6 +20,7 @@ import { ContactPage } from '../productInfo/contact/contact';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { empty } from 'rxjs/Observer';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
 
 declare var cordova: any;
@@ -227,7 +228,8 @@ export class ProjectDetailsPage {
         (x:any) => {
           if(x.Error == true) {
             if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan,'');
+              // this.showAlert("Warning!", x.Pesan,'');
+              this.logoutAPi();
               this.loading.dismiss();
             }
             else {
@@ -324,12 +326,13 @@ export class ProjectDetailsPage {
         (x:any) => {
           if(x.Error == true) {
             if(x.Status == 401){
-              console.log('napasi');
-              this.showAlert("Warning!", x.Pesan,'');
+              // console.log('napasi');
+              // this.showAlert("Warning!", x.Pesan,'');
               this.loading.dismiss();
+              this.logoutAPi();
             }
             else {
-              console.log('dimari');
+              // console.log('dimari');
               this.showAlert("Warning!", x.Pesan,'');
               this.loading.dismiss();
               // this.nav.pop();
@@ -427,6 +430,48 @@ export class ProjectDetailsPage {
 
   //   warning.present();
   // }
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
+
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan,'401');
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan,'');
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS,'');
+        }
+      );
+  }
   showAlert(title:any, subTitle:any, act:any) {
     var cmd:any;
     if(act == 'donothing'){
