@@ -133,7 +133,6 @@
     <plugin name="com-sarriaroman-photoviewer" />
     <plugin name="cordova-plugin-file-opener2" spec="^2.0.19" />
     <engine name="android" spec="~6.3.0" />
-    <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="cordova-plugin-ionic" spec="^2.0.4">
         <variable name="APP_ID" value="aca79ad1" />
         <variable name="CHANNEL_NAME" value="Master" />
