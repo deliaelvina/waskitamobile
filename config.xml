@@ -140,4 +140,5 @@
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />
     </plugin>
+    <plugin name="cordova-plugin-file-transfer" spec="~1.7.1" />
 </widget>
