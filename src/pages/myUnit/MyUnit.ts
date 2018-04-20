@@ -125,6 +125,7 @@ export class MyUnitPage {
                         db : el.db_profile,
                         entity_cd : es.entity_cd,
                         project_no : es.project_no,
+                        sell_price: es.sell_price,
                         debtor_acct : es.debtor_acct,
                         ProjectName : es.ProjectName,
                         AgentName : es.agent_name,
@@ -217,18 +218,19 @@ export class MyUnitPage {
   }
 
   goPayment(data:any) {
-    console.log(data);
-    // alert('edit');
+    // console.log(data);
+    console.log('edit');
     var datas = {
       entity : data.entity_cd,
       project : data.project_no,
       projectName : data.ProjectName,
       towerName : data.Property,
       level_descs : data.Level,
+      sell_price : data.sell_price,
       lot : data.LotNo,
       debtor_acct : data.debtor_acct
     };
-
+    // console.log(datas);
     this.nav.push(PaymentSchedulePage, { cons:data.db, id:data.rowID, datas:datas});
   }
 

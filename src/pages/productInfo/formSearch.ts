@@ -206,6 +206,7 @@ export class FormSearchPage {
   }
 
   showSearchType() {
+    // alert('test');
     let modal = this.modal.create(SearchBlok, {data:this.parm});
     modal.onDidDismiss(data=>{
       this.loading = this.loadingCtrl.create();
@@ -234,7 +235,7 @@ export class FormSearchPage {
     this.parm.level = i.level_no;
     this.parm.levelDesc = i.descs;
     this.parm.levelPict = i.pict;
-    // console.log(this.parm);
+    console.log(this.parm);
     this.nav.push(PilihUnitPage, {data : this.parm});
   }
 

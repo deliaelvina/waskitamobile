@@ -3,7 +3,7 @@
         <ion-title>
             <span>Profile</span>
         </ion-title>
-        <button class="checkmark" (click)="save()">
+        <button class="checkmark" (click)="save()" *ngIf="toPost">
                 <!-- <ion-icon name="checkmark" > </ion-icon>
                  -->
                  <!-- <h5 class="">Save</h5> -->
@@ -111,7 +111,7 @@
                 </ion-item>
                 <ion-item>
                     <ion-label floating>{{'Name' | translate}}</ion-label>
-                    <ion-input type="text" formControlName="Name" [value]="dt.Name" class="form-controll" name="Name"></ion-input>
+                    <ion-input type="text" formControlName="Name" [value]="dt.Name" class="form-controll" name="Name" (keyup)="post($event)"></ion-input>
                 </ion-item>
                 <!-- <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.username">
@@ -130,8 +130,8 @@
                         <ion-option *ngFor="let gender of genders" [value]="dt.Gender" formControlName="Gender">{{gender}}</ion-option>
                     </ion-select> -->
                     <ion-select cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}" formControlName="Gender" [value]="dt.Gender">
-                        <ion-option [value]="Female" (ionSelect)="Gender('Female');" checked='true'>Female</ion-option>
-                        <ion-option [value]="Male" (ionSelect)="Gender('Male');">Male</ion-option>
+                        <ion-option value="Female" (ionSelect)="Gender('Female');" checked='true'>Female</ion-option>
+                        <ion-option value="Male" (ionSelect)="Gender('Male');">Male</ion-option>
                     </ion-select>
                     <!-- <ion-input type="text" formControlName="Gender" [value]="dt.Gender"></ion-input> -->
                 </ion-item>
@@ -142,7 +142,7 @@
                 </ion-item> -->
                 <ion-item>
                     <ion-label floating>{{'Handphone' | translate}}</ion-label>
-                    <ion-input type="text" formControlName="Handphone" [value]="dt.Handphone" class="form-controll" name="Handphone"></ion-input>
+                    <ion-input type="text" formControlName="Handphone" [value]="dt.Handphone" class="form-controll" name="Handphone" (keyup)="post($event)"></ion-input>
                 </ion-item>
                 <!-- <ion-item>
                     <ion-label floating>{{'EMAIL' | translate}}</ion-label>

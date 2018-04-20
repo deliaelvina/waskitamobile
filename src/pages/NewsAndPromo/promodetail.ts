@@ -1,8 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
-import { ImageViewerController } from 'ionic-img-viewer';
+// import { ImageViewerController } from 'ionic-img-viewer';
 import { ProfilePage } from '../profile/profile';
-
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { File } from '@ionic-native/file';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -22,7 +23,7 @@ export class PromoDetail {
   map:any;
  
   projects:any[] = [];
-  _imageViewerCtrl: ImageViewerController;
+  // _imageViewerCtrl: ImageViewerController;
   loading:any;
   display: string;
   project:any;
@@ -49,7 +50,9 @@ export class PromoDetail {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public socialSharing: SocialSharing,
-    public imageViewerCtrl: ImageViewerController,
+    // public imageViewerCtrl: ImageViewerController,
+    private photoViewer:PhotoViewer,
+    private file: File,
     public sanitizer:DomSanitizer,
     // private toastCtrl: ToastController
     public alertCtrl: AlertController
@@ -58,7 +61,7 @@ export class PromoDetail {
   ) {
     this.project = navParams.get('project');
     this.loading = this.loadingCtrl.create();
-    this._imageViewerCtrl = imageViewerCtrl;
+    // this._imageViewerCtrl = imageViewerCtrl;
     this.loadData();
     
     
@@ -93,11 +96,24 @@ export class PromoDetail {
       map
     });
   }
-  presentImage(myImage) {
-    console.log(myImage);
-    const imageViewer = this._imageViewerCtrl.create(myImage);
-    imageViewer.present();
- 
+  presentImage(myImage,judul:any) {
+    // console.log(myImage);
+    // const imageViewer = this._imageViewerCtrl.create(myImage);
+    // imageViewer.present();
+    
+    if(myImage.search('assets/images') == -1){
+      //image from API
+      myImage = myImage.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      myImage = this.file.applicationDirectory + 'www'+myImage.substring(1,myImage.length);
+    }
+    this.photoViewer.show(
+      myImage,
+      judul,
+      {share:false}
+    );
   }
   showAlert(title:any, subTitle:any) {
     let warning = this.alertCtrl.create({
