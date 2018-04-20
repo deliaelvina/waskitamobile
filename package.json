@@ -186,7 +186,7 @@
       "cordova-plugin-camera": {
         "CAMERA_USAGE_DESCRIPTION": "your usage message",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": "your usage message"
-      },
+      }
     }
   }
 }
