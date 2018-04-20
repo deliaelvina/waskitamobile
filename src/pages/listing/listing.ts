@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController,Platform ,MenuController} from 'ionic-angular';
+import { NavController, LoadingController, AlertController,Platform ,MenuController,App} from 'ionic-angular';
 
 import { FeedPage } from '../feed/feed';
 import { ProjectPage } from '../projectInfo/project';
@@ -23,6 +23,7 @@ import { environment } from '../../environment/environment';
 import { BookingPage } from '../booking/project';
 import { MyUnitPage } from '../MyUnit/myUnit';
 import { SimulasiPage } from '../simulasi/simulasi';
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'listing-page',
@@ -58,7 +59,8 @@ export class ListingPage {
     public platform: Platform,
     private _errorService: ErrorhandlerService,
     private http: HttpClient,
-    private menu: MenuController
+    private menu: MenuController,
+    private _app: App
   ) {
     platform.ready().then((source) => {
       if (this.platform.is('android')) {
@@ -137,6 +139,7 @@ export class ListingPage {
   }
 
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
 
     this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
@@ -158,11 +161,11 @@ export class ListingPage {
             // alert('ok');
             this.menu.close();
               if(this.device=='iOS'){
-                  this.platform.exitApp();
+                this._app.getRootNav().setRoot(MyApp); 
               }else if(this.device=='android'){
                   navigator['app'].exitApp();
               }else{
-                this.platform.exitApp();
+                this._app.getRootNav().setRoot(MyApp); 
               }
 
           }
