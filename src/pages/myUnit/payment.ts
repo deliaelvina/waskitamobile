@@ -10,6 +10,7 @@ import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.s
 import { ListingPage } from '../listing/listing';
 import { UploadBuktiPage } from './uploadbukti';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
 
 declare var cordova: any;
@@ -57,7 +58,7 @@ export class PaymentSchedulePage {
     this.loading = this.loadingCtrl.create();
     this.cons = this.navParams.get('cons');
     this.data = this.navParams.get('datas');
-    // console.log(this.data);
+    console.log(this.data);
     this._errorService.getData()
     .then(data=>{
       this.ErrorList = data.Error_Status;
@@ -65,7 +66,48 @@ export class PaymentSchedulePage {
 
     
   }
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
 
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan,'401');
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan,'');
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS,'');
+        }
+      );
+  }
   ionViewDidLoad() {
     this.loading.present();
     this.loadData();
@@ -74,21 +116,36 @@ export class PaymentSchedulePage {
   ionViewWillEnter(){
   
   }
-  addZero(i:any){
+  // addZero(i:any){
+  //   if(i < 10){
+  //     i = '0'+i;
+  //   }
+
+  //   return i;
+  // }
+  addZero(i){
     if(i < 10){
       i = '0'+i;
     }
-
+  
     return i;
   }
-  loadData(){
+  
+ convertDate(date){
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var d = new Date(date);
+  
+    return d.getDate().toString()+' '+months[d.getMonth().toString()]+' '+d.getFullYear().toString();
+  }
+  loadData(){ 
     
     this.http.get(this.url_api+"c_myunits/getPrice/" + this.cons + "/" + this.data.entity.trim() + "/" + this.data.project.trim()  + "/" + this.data.debtor_acct, {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan,'');
+            // this.showAlert("Warning!", x.Pesan,'');
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {
@@ -102,9 +159,17 @@ export class PaymentSchedulePage {
           
           this.available = true;
           data.forEach(val => {
+            var font_color = '';
+
+                      if(val.status_pembayaran == 'Y' ){
+                      font_color = ' #007eca';
+                      }else{
+                        font_color = ' red';
+                      }
             var d = new Date(val.due_date);
             var fulldates = d.getDate().toString()+' '+this.months[d.getMonth().toString()]+' '+d.getFullYear().toString()+' '+this.addZero(d.getHours())+':'+this.addZero(d.getMinutes());
-            var dates = d.getDate().toString()+'/'+this.addZero(d.getMonth().toString())+'/'+d.getFullYear().toString();
+            var dates = this.convertDate(d);
+            // console.log(dates);
             this.plans.push({
               due_date: dates,
               full_due_date:fulldates,
@@ -112,11 +177,12 @@ export class PaymentSchedulePage {
               status_descs:val.status_pemb_descs,
               plan: val.payment_descs,
               amt: val.trx_amt,
-              rowID:val.rowID
+              rowID:val.rowID,
+              style: font_color
             });
           });
           this.loading.dismiss();
-          // console.log(this.plans);
+          console.log(this.plans);
         }
       },
       (err)=>{

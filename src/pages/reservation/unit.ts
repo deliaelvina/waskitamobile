@@ -8,6 +8,9 @@ import { UnitModalPage } from './unitModal';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { ReservationReservePage } from './reserve';
+import { File } from '@ionic-native/file';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
 @Component({
   selector: 'unit-page',
@@ -49,6 +52,8 @@ export class ReservationUnitPage {
     public imgVw: ImageViewerController,
     private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
+    private file: File,
+    private photoViewer: PhotoViewer
   ) {
     var data = JSON.parse(localStorage.getItem('data'));
     this.project_name = data.projectName;
@@ -66,6 +71,47 @@ export class ReservationUnitPage {
     this.loading = this.loadingCtrl.create();
   }
 
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
+
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS);
+        }
+      );
+  }
 
   ionViewDidLoad() {
     this._errorService.getData()
@@ -79,7 +125,8 @@ export class ReservationUnitPage {
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan);
+            // this.showAlert("Warning!", x.Pesan);
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {
@@ -210,7 +257,23 @@ export class ReservationUnitPage {
   }
 
   presentImage(floorImg) {
-    const imageViewer = this.viewImg.create(floorImg);
-    imageViewer.present();
+    // alert(floorImg);
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
+    // alert(floorImg);
+    // console.log(floorImg);
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    this.photoViewer.show(
+      floorImg,
+      this.floor_desc,
+      {share:false}
+    );
   }
 }

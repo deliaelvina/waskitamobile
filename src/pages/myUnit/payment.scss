@@ -39,6 +39,78 @@ payment-schedule-page {
     }
     .btnkecil{
         width: 60px;
+        height: 38px;
+        background-color: #1f3e80;
+        color: #fff;
+        // color: #000;
+        // background-color: #ff720d;
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 5px;
+    }
+    .landing {
+        // height: 100%; 
+        width: 100%;
+        position: fixed;
+    }
+    .landing-wrapper {
+        height: 15%;
+    }
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+        // height: 300px; 
+        /* Should be removed. Only for demonstration */
+    }
+    .column1{
+        float: left;
+        width: 56%;
+        padding: 5px;
+        padding-left: 10px !important;
+        // z-index: 2;
+    }
+    .column2{
+        float: left;
+        width: 25%; 
+        padding: 5px;
+        // z-index: 1;
+    }
+    .column3{
+        float: left;
+        width: 15%;
+        padding: 5px;
+        // z-index: 2
+    }
+    .duedate{
+        float: left;
+        // width: 50%;
+        
+        // padding: 5px;
+    }
+    .desc{
+        float: left;
+        width: 55%;
+        z-index: 2
+        // padding: 5px;
+    }
+    .status{ 
+        float: left;
+        width: 25%;
+        // padding: 5px;
+    }
+    .amt{
+        width: 50%;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .card-content-ios{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
     }
     // title header black
     // title header black
@@ -194,6 +266,7 @@ payment-schedule-page {
         border-right-style: none !important;
         border-top-style: none !important;
         box-shadow: 0 1px 5px -3px #333 !important;
+        // background-color: aqua !important;
     }
 }
 

@@ -9,6 +9,9 @@ import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.s
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ListingPage } from '../listing/listing';
 import { BookingReservePage } from './booking';
+import { File } from '@ionic-native/file';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
 @Component({
   selector: 'paymentDtl-page',
@@ -54,6 +57,8 @@ export class BookingPaymentDetailPage {
     private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
     public imgVw: ImageViewerController,
+    private file: File,
+    private photoViewer: PhotoViewer
   ) {
     this.cons = this.data.cons;
     this.viewImg = imgVw;
@@ -77,6 +82,48 @@ export class BookingPaymentDetailPage {
     };
   }
 
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
+
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS);
+        }
+      );
+  }
+
   ionViewDidLoad() {
     this._errorService.getData()
     .then(data=>{
@@ -89,8 +136,24 @@ export class BookingPaymentDetailPage {
   }
 
   presentImage(floorImg) {
-    const imageViewer = this.viewImg.create(floorImg);
-    imageViewer.present();
+    // alert(floorImg);
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
+    // alert(floorImg);
+    // console.log(floorImg);
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    this.photoViewer.show(
+      floorImg,
+      this.details.lot,
+      {share:false}
+    );
   }
 
   loadFrame() {
@@ -115,7 +178,8 @@ export class BookingPaymentDetailPage {
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan);
+            // this.showAlert("Warning!", x.Pesan);
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {
@@ -181,7 +245,8 @@ export class BookingPaymentDetailPage {
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan);
+            // this.showAlert("Warning!", x.Pesan);
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {

@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandler.service';
+import { WalkthroughPage } from '../../walkthrough/walkthrough';
 
 @Component({
   selector: 's_blok',
@@ -46,6 +47,47 @@ export class SearchBlok {
     this.parm = this.navParams.get('data');
   }
 
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
+
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS);
+        }
+      );
+  }
 
   ionViewDidLoad() {
     this._errorService.getData()
@@ -84,7 +126,8 @@ export class SearchBlok {
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan);
+            // this.showAlert("Warning!", x.Pesan);
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {

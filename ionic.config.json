@@ -1,6 +1,10 @@
 {
   "name": "ion2-fullapp-ELITE",
+<<<<<<< HEAD
   "app_id": "056dc17a",
+=======
+  "app_id": "153d2263",
+>>>>>>> a40fdca7b4b89ade0d579910529f819ebc9b26d2
   "integrations": {
     "cordova": {}
   },

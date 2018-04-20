@@ -27,7 +27,7 @@
                 <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
                     <ion-slide class="contact-slide" *ngFor="let img of gallery">
                         <!-- <h2>{{ img.title }}</h2> -->
-                        <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(floorImg)" class="imgcenter">
+                        <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(img.url)" class="imgcenter">
                         <!-- <preload-image [ratio]="{w:3, h:2}" [src]="img"></preload-image> -->
                     </ion-slide>
                 </ion-slides>
@@ -49,8 +49,8 @@
                     <div *ngIf="av; else a" class="paymentdetail">
                         <table width="100%">
                             <tr *ngFor="let item of plans">
-                                <td width="60%" class="desc">{{item.descs}}</td>
-                                <td valign="middle" align="right" class="amt"><span style="float:left !important;">{{item.at}}IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                                <td width="70%" class="desc">{{item.descs}}<span style="float:right !important; text-align: right !important;">{{item.at}}IDR.</span></td>
+                                <td valign="middle" align="right" class="amt" width="100"><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
                             </tr>
                         </table>
                         </div>
@@ -107,5 +107,5 @@
         </div>
     </ng-template>
     </div>
-    
+
 </ion-content>

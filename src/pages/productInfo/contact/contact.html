@@ -34,7 +34,7 @@
                 </ion-item>
                 <ion-item>
                     <ion-label floating>{{'Nama Anda' | translate}}</ion-label>
-                    <ion-input type="text" formControlName="Name" class="form-controll" name="Name"></ion-input>
+                    <ion-input type="text" formControlName="Name" [(ngModel)]="anu.nama" (keyup)="klik()" class="form-controll" name="Name"></ion-input>
                 </ion-item>
                 <!-- <ion-item>
                     <ion-label floating>{{'Email' | translate}}</ion-label>
@@ -42,11 +42,11 @@
                 </ion-item> -->
                 <ion-item>
                     <ion-label floating>{{'Handphone' | translate}}</ion-label>
-                    <ion-input type="text" formControlName="Handphone" class="form-controll" name="Handphone"></ion-input>
+                    <ion-input type="tel" formControlName="Handphone" [(ngModel)]="anu.telp" (keyup)="klik()" class="form-controll" name="Handphone"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>{{'Deskripsi' | translate}}</ion-label>
-                    <ion-textarea rows="5" formControlName="Desc" class="form-controll" name="Desc" [value]="descrip" [(ngModel)]="descrip"></ion-textarea>
+                    <ion-textarea rows="8" formControlName="Desc" class="form-controll" name="Desc" [value]="descrip" [(ngModel)]="descrip"></ion-textarea>
                     <!-- <textarea rows="4" formControlName="Desc" class="form-controll" name="Desc" [value]="descrip" [(ngModel)]="descrip" style="width: 300px;height: 150px;"></textarea> -->
                 </ion-item>
                 <!-- <div class="validation-errors">

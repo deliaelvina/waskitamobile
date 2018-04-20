@@ -34,7 +34,7 @@
                     <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
                         <ion-slide class="contact-slide" *ngFor="let img of picts">
                             <!-- <h2>{{ img.title }}</h2> -->
-                            <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(floorImg)">
+                            <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(img.url)">
                             <!-- <preload-image [ratio]="{w:3, h:2}" [src]="img"></preload-image> -->
                         </ion-slide>
                     </ion-slides>
