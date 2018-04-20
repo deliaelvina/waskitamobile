@@ -175,7 +175,6 @@
       "mx.ferreyra.callnumber": {},
       "call-number": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-file-transfer": {},
       "cordova-plugin-facebook4": {
         "APP_ID": "1737645236299589",
         "APP_NAME": "waskitaApp"
@@ -186,7 +185,8 @@
       "cordova-plugin-camera": {
         "CAMERA_USAGE_DESCRIPTION": "your usage message",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": "your usage message"
-      }
+      },
+      "cordova-plugin-file-transfer": {}
     }
   }
 }
