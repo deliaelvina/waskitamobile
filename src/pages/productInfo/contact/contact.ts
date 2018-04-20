@@ -185,18 +185,15 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
               x = x.Data;
             //   console.log(x);
               var data = x;
-              var tlp ='';
+              // var tlp ='';
               this.contactForm.get('Email').setValue(data[0].email);
               // this.contactForm.get('Name').setValue(data[0].name);
               // this.contactForm.get('Handphone').setValue(data[0].Handphone);
               this.anu.nama = data[0].name;
-              this.anu.telp = data[0].Handphone;
-              if (this.anu.telp == 'null'){
-                tlp = '';
-              }
+              this.anu.telp = data[0].Handphone?data[0].Handphone:'';
               this.anu.mail = data[0].email;
               console.log(this.anu);
-              this.descrip = this.desc+"Nama : "+this.anu.nama+"\nHandphone : "+tlp+"\nEmail : "+this.anu.mail+"\nHubungi saya untuk info detail.\n";
+              this.descrip = this.desc+"Nama : "+this.anu.nama+"\nHandphone : "+this.anu.telp+"\nEmail : "+this.anu.mail+"\nHubungi saya untuk info detail.\n";
               this.contactForm.get('Desc').setValue(this.descrip);
               console.log(data);
               this.loading.dismiss();

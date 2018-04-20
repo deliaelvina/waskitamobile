@@ -204,8 +204,8 @@ export class ReservationReservePage {
       ])),
       idNo: new FormControl('', Validators.compose([
         // Validators.required,
-        Validators.minLength(16),
-        Validators.pattern('^[0-9]+$')
+        // Validators.minLength(16),
+        // Validators.pattern('^[0-9]+$')
       ])),
       national : new FormControl(''),
       // national_cd : new FormControl(''),
@@ -239,11 +239,11 @@ export class ReservationReservePage {
         { type: 'pattern', message: 'Enter a valid Phone Number.' },
         { type: 'minLength', message: 'Phone Number must be at least 10 numbers long.' },
       ],
-      'idNo': [
-        // { type: 'required', message: 'ID Number is required.' },
-        { type: 'pattern', message: 'Enter a valid ID Number.' },
-        { type: 'minLength', message: 'ID Number must be at least 16 numbers long.' },
-      ],
+      // 'idNo': [
+      //   // { type: 'required', message: 'ID Number is required.' },
+      //   { type: 'pattern', message: 'Enter a valid ID Number.' },
+      //   { type: 'minLength', message: 'ID Number must be at least 16 numbers long.' },
+      // ],
       'reserveType' : [
         { type: 'required', message: 'Reservation Type is required.' },
       ],
@@ -689,19 +689,19 @@ export class ReservationReservePage {
       });
       toast.present();
     }
-    else if(idLen < 16){
-      this.loading.dismiss();
-      let toast = this.toastCtrl.create({
-        message: "ID Number must be 16 numbers long.",
-        duration: 3000,
-        position: 'top'
-      });
+    // else if(idLen < 16){
+    //   this.loading.dismiss();
+    //   let toast = this.toastCtrl.create({
+    //     message: "ID Number must be 16 numbers long.",
+    //     duration: 3000,
+    //     position: 'top'
+    //   });
 
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-      toast.present();
-    }
+    //   toast.onDidDismiss(() => {
+    //     console.log('Dismissed toast');
+    //   });
+    //   toast.present();
+    // }
     else if(types){
       this.loading.dismiss();
       let toast = this.toastCtrl.create({

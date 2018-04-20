@@ -49,8 +49,8 @@
                     <div *ngIf="av; else a" class="paymentdetail">
                         <table width="100%">
                             <tr *ngFor="let item of plans">
-                                <td width="60%" class="desc">{{item.descs}}</td>
-                                <td valign="middle" align="right" class="amt"><span style="float:left !important;">{{item.at}}IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                                <td width="70%" class="desc">{{item.descs}}<span style="float:right !important; text-align: right !important;">{{item.at}}IDR.</span></td>
+                                <td valign="middle" align="right" class="amt" width="100"><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
                             </tr>
                         </table>
                         </div>

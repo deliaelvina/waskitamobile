@@ -5,25 +5,37 @@ walkthrough-page {
 		font-weight: 400;
 		src: url("../assets/fonts/Exo-Medium.ttf") format("truetype");
 	}
-	//ipad
-	@media only screen and (min-width: 768px) {
-		.button-login{
-			position: absolute;z-index: 1;top:80%;left:40%;
-		}
-		.btn-login{
-			// background-color: #1f3e80;
-			background-color: rgba(31, 62, 128, 0.589);
-			border-radius: 8px;
-			color: #fff;
-			// opacity: 0.8;
-			height: 50px;
-			width: 200px;
-			font-size: 14px;
-			font-family: 'Exo-Regular';
-		}
+	
+	.logo{
+		position: absolute;
+		z-index: 2;
+		left:40%;
+		top:5%;
+		width:100px;
+		height:auto;
 	}
-	// ip5
-	@media only screen and (min-width: 320px)  {
+
+	
+
+	/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 500px) {
+	.button-login{
+		position: absolute;z-index: 1;top:80%;left:25%;
+	}
+	.btn-login{
+	
+		background-color: rgba(31, 62, 128, 0.589);
+		border-radius: 8px;
+		color: #fff;
+		
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+	}
+} 
+	/* Extra small devices (phones, 600px and down) */
+	@media only screen and (max-width: 320px) {
 		.button-login{
 			position: absolute;z-index: 1;top:80%;left:19%;
 		}
@@ -38,98 +50,78 @@ walkthrough-page {
 			font-size: 14px;
 			font-family: 'Exo-Regular';
 		}
+	} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.button-login{
+		position: absolute;z-index: 1;top:80%;left:24%;
 	}
-	// ip678
-	@media only screen and (min-width: 375px)  {
-		.button-login{
-			position: absolute;z-index: 1;top:80%;left:24%;
-		}
-		.btn-login{
-		
-			background-color: rgba(31, 62, 128, 0.589);
-			border-radius: 8px;
-			color: #fff;
-			
-			height: 50px;
-			width: 200px;
-			font-size: 14px;
-			font-family: 'Exo-Regular';
-		}
-	}
-	//ip678plus
-	@media only screen and (min-width: 414px)  {
-		.button-login{
-			position: absolute;z-index: 1;top:80%;left:24%;
-		}
-		.btn-login{
-		
-			background-color: rgba(31, 62, 128, 0.589);
-			border-radius: 8px;
-			color: #fff;
-			
-			height: 50px;
-			width: 200px;
-			font-size: 14px;
-			font-family: 'Exo-Regular';
-		}
-	}
-	//ipx
-	// @media only screen and (min-height: 812px) and (min-width: 375px) {
-	// 	.button-login{
-	// 		position: absolute;z-index: 1;top:80%;left:24%;
-	// 	}
-	// 	.btn-login{
-		
-	// 		background-color: rgba(31, 62, 128, 0.589);
-	// 		border-radius: 8px;
-	// 		color: #fff;
-			
-	// 		height: 50px;
-	// 		width: 200px;
-	// 		font-size: 14px;
-	// 		font-family: 'Exo-Regular';
-	// 	}
-	// }
+	.btn-login{
 	
-	//ipadpro
-	@media only screen and (min-width: 1024px)  {
-		.button-login{
-				position: absolute;z-index: 1;top:80%;left:40%;
-			}
-			.btn-login{
-			
-				background-color: rgba(31, 62, 128, 0.589);
-				border-radius: 8px;
-				color: #fff;
-				
-				height: 50px;
-				width: 200px;
-				font-size: 14px;
-				font-family: 'Exo-Regular';
-			}
-	}
-	.logo{
-		position: absolute;
-		z-index: 2;
-		left:40%;
-		top:5%;
-		width:100px;
-		height:auto;
-	}
-	// .button-login{
-	// 	position: absolute;z-index: 1;top:80%;left:24%;
-	// }
-	// .btn-login{
-	
-	// 	background-color: rgba(31, 62, 128, 0.589);
-	// 	border-radius: 8px;
-	// 	color: #fff;
+		background-color: rgba(31, 62, 128, 0.589);
+		border-radius: 8px;
+		color: #fff;
 		
-	// 	height: 50px;
-	// 	width: 200px;
-	// 	font-size: 14px;
-	// 	font-family: 'Exo-Regular';
-	// }
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+	}
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.button-login{
+		position: absolute;z-index: 1;top:80%;left:38%;
+	}
+	.btn-login{
+		// background-color: #1f3e80;
+		background-color: rgba(31, 62, 128, 0.589);
+		border-radius: 8px;
+		color: #fff;
+		// opacity: 0.8;
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+	}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.button-login{
+		position: absolute;z-index: 1;top:80%;left:40%;
+	}
+	.btn-login{
+	
+		background-color: rgba(31, 62, 128, 0.589);
+		border-radius: 8px;
+		color: #fff;
+		
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+	} 
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	.button-login{
+		position: absolute;z-index: 1;top:80%;left:40%;
+	}
+	.btn-login{
+	
+		background-color: rgba(31, 62, 128, 0.589);
+		border-radius: 8px;
+		color: #fff;
+		
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+	}
+}
 	.walkthrough-header
 	{
 		
@@ -190,76 +182,15 @@ walkthrough-page {
 				object-fit: cover !important;
 				
 			}
-			@media only screen and (min-height: 731px)  {
-				.img{
-					height: 780px;
-					position: relative;
-				}
-			}
-			@media only screen and (min-height: 823px)  {
-				.img{
-					height: 750px;
-					position: relative;
-				}
-			}
-			@media only screen and (min-width: 360px)  {
-				.img{
-					// width:360px;
-					height: 740px;
-					position: relative;
-				}
-			}
-			// ip5
-			@media only screen and (min-width: 320px)  {
-				.img{
-					height: 568px;
-					position: relative;
-				}
-			}
-			// ip678
-			@media only screen and (min-width: 375px)  {
-				.img{
-					height: 670px;
-					position: relative;
-				}
-			}
-			//ip678plus
-			@media only screen and (min-width: 414px)  {
-				.img{
-					height: 735px;
-					position: relative;
-				}
-			}
-			//ipx
-			@media only screen and (min-height: 812px)  {
-				.img{
-					height: 812px;
-					position: relative;
-				}
-			}
-			//ipad
-			@media only screen and (min-width: 768px)  {
-				.img{
-					height: 1024px;
-					width: 768px;
-					position: relative;
-				}
-			}
-			//ipadpro
-			@media only screen and (min-width: 1024px)  {
-				.img{
-					width: 1024px;
-					height: 1366px;
-					position: relative;
-				}
-			}
-			//xiomi and oppo
-			@media only screen and (min-width: 1080px) and (min-height: 2160px)  {
-				.img{
-					width: 1080px;
-					height: 2160px;
-					position: relative;
-				}
+			
+			//class buat auto height and width seluruh device
+			.img{
+				display: block;
+				// width: 100vw;
+				width: auto;
+				height: 100vh;
+				object-fit: cover;
+	// z-index: 1;
 			}
 			// .img{
 			// 	height: 700px;
