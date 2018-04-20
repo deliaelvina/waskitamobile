@@ -16,6 +16,7 @@ import { ListingPage } from '../listing/listing';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { CameraPage } from '../camera/camera';
 import { FileUploadOptions, FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
 declare var cordova: any;
 
@@ -261,13 +262,56 @@ export class BookingReservePage {
     };
   }
 
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
+
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan,'');
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan,'');
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS,'');
+        }
+      );
+  }
+
   loadNats(parm:any) {
     this.http.get(this.url_api+"c_booking/getNationality/" + this.cons , {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan,'');
+            // this.showAlert("Warning!", x.Pesan,'');
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {
@@ -333,7 +377,8 @@ export class BookingReservePage {
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan,'');
+            // this.showAlert("Warning!", x.Pesan,'');
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {
@@ -435,35 +480,6 @@ export class BookingReservePage {
     }
   }
 
-  openImagePicker(){
-    // this.imagePicker.hasReadPermission().then(
-    //   (result) => {
-    //     if(result == false){
-    //       // no callbacks required as this opens a popup which returns async
-    //       this.imagePicker.requestReadPermission();
-    //     }
-    //     else if(result == true){
-    //       this.imagePicker.getPictures({ maximumImagesCount: 1 }).then(
-    //         (results) => {
-    //           for (var i = 0; i < results.length; i++) {
-    //             this.cropService.crop(results[i], {quality: 75}).then(
-    //               newImage => {
-    //                 let image = newImage;
-    //                 if (this.platform.is('ios')) {
-    //                     image = image.replace(/^file:\/\//, '');
-    //                 }
-    //                 this.selected_image = image;
-    //               },
-    //               error => console.error("Error cropping image", error)
-    //             );
-    //           }
-    //         }, (err) => console.log(err)
-    //       );
-    //     }
-    //   }
-    // )
-  }
-
   addZero(i:any){
     if(i < 10){
       i = '0'+i;
@@ -478,7 +494,8 @@ export class BookingReservePage {
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan,'');
+            // this.showAlert("Warning!", x.Pesan,'');
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {
@@ -589,7 +606,8 @@ export class BookingReservePage {
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan,'');
+            // this.showAlert("Warning!", x.Pesan,'');
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {
@@ -785,7 +803,8 @@ export class BookingReservePage {
               var x = JSON.parse(datas.response);
               if(x.Error == true) {
                 if(x.Status == 401){
-                  this.showAlert("Warning!", x.Pesan,'');
+                  // this.showAlert("Warning!", x.Pesan,'');
+                  this.logoutAPi();
                   this.loading.dismiss();
                 }
                 else {
@@ -856,7 +875,8 @@ export class BookingReservePage {
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan,'');
+            // this.showAlert("Warning!", x.Pesan,'');
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {
