@@ -1,8 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { ImageViewerController } from 'ionic-img-viewer';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+// import { ImageViewerController } from 'ionic-img-viewer';
 import { ProfilePage } from '../profile/profile';
-
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { File } from '@ionic-native/file';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,8 +11,9 @@ import { environment } from '../../environment/environment';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastController } from 'ionic-angular';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
-declare var google:any; 
+declare var google:any;
 
 @Component({
   selector: 'napdetails-page',
@@ -20,9 +22,9 @@ declare var google:any;
 export class NapDetails {
   @ViewChild('map') mapRef: ElementRef;
   map:any;
- 
+
   projects:any[] = [];
-  _imageViewerCtrl: ImageViewerController;
+  // _imageViewerCtrl: ImageViewerController;
   loading:any;
   display: string;
   project:any;
@@ -42,35 +44,78 @@ export class NapDetails {
   });
 
   news:any[] = [];
-  
+
   constructor(
     public nav: NavController,
     private http: HttpClient,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public socialSharing: SocialSharing,
-    public imageViewerCtrl: ImageViewerController,
+    // public imageViewerCtrl: ImageViewerController,
+    private photoViewer:PhotoViewer,
+    private file: File,
     public sanitizer:DomSanitizer,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController
 
 
   ) {
     this.project = navParams.get('project');
     this.loading = this.loadingCtrl.create();
-    this._imageViewerCtrl = imageViewerCtrl;
+    // this._imageViewerCtrl = imageViewerCtrl;
     this.loadData();
-    
-    
   }
-  
+
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
+
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS);
+        }
+      );
+  }
+
   ionViewWillEnter(){
-    
+
     // console.log(this.mapRef);
     // console.log(this.project);
   }
 
   ionViewDidLoad(){
-    
+
     // console.log(this.mapRef);
     // this.showMap();
   }
@@ -92,11 +137,24 @@ export class NapDetails {
       map
     });
   }
-  presentImage(myImage) {
-    console.log(myImage);
-    const imageViewer = this._imageViewerCtrl.create(myImage);
-    imageViewer.present();
- 
+  presentImage(myImage,judul:any) {
+    // console.log(myImage);
+    // const imageViewer = this._imageViewerCtrl.create(myImage);
+    // imageViewer.present();
+
+    if(myImage.search('assets/images') == -1){
+      //image from API
+      myImage = myImage.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      myImage = this.file.applicationDirectory + 'www'+myImage.substring(1,myImage.length);
+    }
+    this.photoViewer.show(
+      myImage,
+      judul,
+      {share:false}
+    );
   }
 
   loadData(){
@@ -110,12 +168,14 @@ export class NapDetails {
         (x:any) => {
           if(x.Error == true) {
             if(x.Status == 401){
-              alert(x.Pesan);
-              alert("Ntar Logout");
+              // alert(x.Pesan);
+              // alert("Ntar Logout");
+              this.logoutAPi();
+              this.loading.dismiss();
               //Langsung Logout
             }
             else {
-              alert(x.Pesan);
+              this.showAlert('Warning!',x.Pesan);
             }
           }
           else {
@@ -145,19 +205,19 @@ export class NapDetails {
               }
             );
             this.loading.dismiss();
-        } 
+        }
       },
       (err)=>{
         this.loading.dismiss();
-        //filter error array 
+        //filter error array
         this.ErrorList = this.ErrorList.filter(function(er){
             return er.Code == err.status;
         });
-        
+
         var errS;
         //filter klo error'a tidak ada di array error
         if(this.ErrorList.length == 1 ){
-          errS = this.ErrorList[0].Description;            
+          errS = this.ErrorList[0].Description;
         }else{
           errS = err;
         }
@@ -167,15 +227,15 @@ export class NapDetails {
             duration: 3000,
             position: 'top'
           });
-        
+
           toast.onDidDismiss(() => {
             console.log('Dismissed toast');
           });
           toast.present();
       }
     );
-  }
-  
+    }
+
   }
 
   goToProfile(event, item) {
@@ -188,5 +248,19 @@ export class NapDetails {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  showAlert(title:any, subTitle:any) {
+    let warning = this.alertCtrl.create({
+      cssClass: 'alert',
+      title : title,
+      subTitle : subTitle,
+      buttons : [
+        {text : 'Ok', handler: () => {
+          this.nav.pop();
+        }}
+      ]
+    });
+
+    warning.present();
+  }
 
 }

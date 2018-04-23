@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
-import { ImageViewerController } from 'ionic-img-viewer';
+// import { ImageViewerController } from 'ionic-img-viewer';
 import { ProfilePage } from '../profile/profile';
 import { DomSanitizer} from '@angular/platform-browser';
 
 import { FileTransfer,  FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,6 +20,8 @@ import { ContactPage } from '../productInfo/contact/contact';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { empty } from 'rxjs/Observer';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
+
 
 declare var cordova: any;
 
@@ -31,7 +34,7 @@ export class ProjectDetailsPage {
 
   @ViewChild(Slides) slides: Slides;
   projects:any[] = [];
-  _imageViewerCtrl: ImageViewerController;
+  // _imageViewerCtrl: ImageViewerController;
   loading:any;
   display: string;
   project:any;
@@ -74,7 +77,8 @@ export class ProjectDetailsPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public socialSharing: SocialSharing,
-    public imageViewerCtrl: ImageViewerController,
+    // public imageViewerCtrl: ImageViewerController,
+    private photoViewer:PhotoViewer,
     private sanitizer: DomSanitizer,
     public platform: Platform,
     private transfer: FileTransfer, private file: File,
@@ -90,7 +94,7 @@ export class ProjectDetailsPage {
     this.pro.cons = this.project.cons_project;
     this.display ="I";
     this.loading = this.loadingCtrl.create();
-    this._imageViewerCtrl = imageViewerCtrl;
+    // this._imageViewerCtrl = imageViewerCtrl;
     // this.parm =  this.navParams.get('data');
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
@@ -132,11 +136,31 @@ export class ProjectDetailsPage {
 
   }
 
-  presentImage(myImage) {
+  presentImage(myImage,from:any) {
     console.log(myImage);
-    const imageViewer = this._imageViewerCtrl.create(myImage);
-    imageViewer.present();
-
+    // const imageViewer = this._imageViewerCtrl.create(myImage);
+    // imageViewer.present(); 
+    var judul = '';
+    if(from=='project'){
+      judul = this.pro.projectName;
+    } else if (from=='plan'){
+      judul = this.pro.projectName+' Plans';
+    } else {
+      judul = this.pro.projectName;
+    }
+    if(myImage.search('assets/images') == -1){
+      //image from API
+      myImage = myImage.replace(' ', '%20');
+    }
+    else {
+      //image from LOCAL
+      myImage = this.file.applicationDirectory + 'www'+myImage.substring(1,myImage.length);
+    }
+    this.photoViewer.show(
+      myImage,
+      judul,
+      {share:false}
+    );
   }
   downloadpdf() {
     this.loading = this.loadingCtrl.create();
@@ -204,7 +228,8 @@ export class ProjectDetailsPage {
         (x:any) => {
           if(x.Error == true) {
             if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan,'');
+              // this.showAlert("Warning!", x.Pesan,'');
+              this.logoutAPi();
               this.loading.dismiss();
             }
             else {
@@ -301,12 +326,13 @@ export class ProjectDetailsPage {
         (x:any) => {
           if(x.Error == true) {
             if(x.Status == 401){
-              console.log('napasi');
-              this.showAlert("Warning!", x.Pesan,'');
+              // console.log('napasi');
+              // this.showAlert("Warning!", x.Pesan,'');
               this.loading.dismiss();
+              this.logoutAPi();
             }
             else {
-              console.log('dimari');
+              // console.log('dimari');
               this.showAlert("Warning!", x.Pesan,'');
               this.loading.dismiss();
               // this.nav.pop();
@@ -404,6 +430,48 @@ export class ProjectDetailsPage {
 
   //   warning.present();
   // }
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
+
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan,'401');
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan,'');
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS,'');
+        }
+      );
+  }
   showAlert(title:any, subTitle:any, act:any) {
     var cmd:any;
     if(act == 'donothing'){

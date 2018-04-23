@@ -16,6 +16,7 @@ import { ListingPage } from '../listing/listing';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { CameraPage } from '../camera/camera';
 import { FileUploadOptions, FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
 declare var cordova: any;
 
@@ -202,7 +203,8 @@ export class UploadBuktiPage {
               var x = JSON.parse(datas.response);
               if(x.Error == true) {
                 if(x.Status == 401){
-                  this.showAlert("Warning!", x.Pesan,'');
+                  // this.showAlert("Warning!", x.Pesan,'');
+                  this.logoutAPi();
                   this.loading.dismiss();
                 }
                 else {
@@ -243,7 +245,48 @@ export class UploadBuktiPage {
       return transfer.upload(pict, this.url_api+'c_myunits/upload/', option);
 
   }
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
 
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan,'401');
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan,'');
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS,'');
+        }
+      );
+  }
   actSave(data:any){
     // alert('hi save');
     this.http.post(this.url_api+"c_myunits/save/" , data, {headers:this.hd})
@@ -251,7 +294,8 @@ export class UploadBuktiPage {
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
-            this.showAlert("Warning!", x.Pesan,'');
+            // this.showAlert("Warning!", x.Pesan,'');
+            this.logoutAPi();
             this.loading.dismiss();
           }
           else {

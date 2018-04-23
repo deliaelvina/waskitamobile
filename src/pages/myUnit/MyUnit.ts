@@ -8,6 +8,7 @@ import { environment } from '../../environment/environment';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PaymentSchedulePage } from './payment';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
 @Component({
   selector: 'MyUnit-page',
@@ -48,7 +49,48 @@ export class MyUnitPage {
 
     this.loading.present();
   }
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
 
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS);
+        }
+      );
+  }
   ionViewWillEnter(){
     // this.loading.present();
     // alert('tes');
@@ -58,7 +100,8 @@ export class MyUnitPage {
           if(x.Error == true) {
             if(x.Status == 401){
               // alert(x.Pesan);
-              this.showAlert("Warning!", x.Pesan);
+              // this.showAlert("Warning!", x.Pesan);
+              this.logoutAPi();
               this.loading.dismiss();
             }
             else {
@@ -84,7 +127,8 @@ export class MyUnitPage {
                     if(x.Status == 401){
                       // alert(x.Pesan);
                       // alert('b');
-                      this.showAlert("Warning!", x.Pesan);
+                      this.logoutAPi();
+                      // this.showAlert("Warning!", x.Pesan);
                       this.loading.dismiss();
                       return true;
                     }
@@ -125,6 +169,7 @@ export class MyUnitPage {
                         db : el.db_profile,
                         entity_cd : es.entity_cd,
                         project_no : es.project_no,
+                        sell_price: es.sell_price,
                         debtor_acct : es.debtor_acct,
                         ProjectName : es.ProjectName,
                         AgentName : es.agent_name,
@@ -217,18 +262,19 @@ export class MyUnitPage {
   }
 
   goPayment(data:any) {
-    console.log(data);
-    // alert('edit');
+    // console.log(data);
+    console.log('edit');
     var datas = {
       entity : data.entity_cd,
       project : data.project_no,
       projectName : data.ProjectName,
       towerName : data.Property,
       level_descs : data.Level,
+      sell_price : data.sell_price,
       lot : data.LotNo,
       debtor_acct : data.debtor_acct
     };
-
+    // console.log(datas);
     this.nav.push(PaymentSchedulePage, { cons:data.db, id:data.rowID, datas:datas});
   }
 

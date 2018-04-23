@@ -20,6 +20,7 @@
                             </ion-card-title> -->
                             <h2 style="padding-left:10px;">{{data.projectName}}</h2>
                             <h2 style="padding-left:10px;">{{data.towerName}} | {{data.level_descs}} | <span style="color:rgb(253, 42, 42);"><strong>{{data.lot}}</strong></span></h2>
+                            <h2 style="padding-left:10px;">Selling Price : <span style="text-align: left;">IDR. &nbsp;</span><span style="text-align:right;color:#06b139">{{data.sell_price}}</span></h2>
                         </ion-card-content>
                 
                     </ion-card>
@@ -47,24 +48,42 @@
                             <td class="stat">{{item.status_descs}}</td>
                             <td class="but"><span *ngIf="item.status=='Y';else b" ></span><ng-template #b><button class="btnkecil"  (click)="gotoTransfer(item)">Already paid?</button> </ng-template></td>
                         </tr> --> 
-                    </table>
-   
+                    </table> 
                     <div class="row" *ngFor="let item of plans" style="border-width:1px;border-bottom-style:solid;border-color: rgba(102, 102, 102, 0.24);">
                             <div class="column1"> 
-                              <p><strong>{{item.plan}}</strong></p> 
-                              <p>Due Date: {{item.due_date}}</p> 
-                            </div>
+                              <!-- <p> <strong>{{item.plan}}</strong><span></span><span style="text-align: left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></p> -->
+                                <p ><strong style="float: left;">{{item.plan}}</strong><span style="float:right !important;">IDR.</span></p>
+                                <p style="float: left;">Due Date: {{item.due_date}}</p>  
+                            </div> 
                             <div class="column2">
-                              <p valign="left" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></p>
+                                    <p align="right"><span style="color:#06b139" >{{item.amt}}</span></p>
+                             <!-- <p align="right" [style.color]="item.style" style="vertical-align: bottom" style="color: transparent !important">{{item.status_descs}}</p> -->
+                              
+                              <!-- <p align="right" [style.color]="item.style" style="display: inline-block !important;vertical-align: -20px !important;">{{item.status_descs}}</p> -->
                               <p align="right" [style.color]="item.style">{{item.status_descs}}</p>
-                            </div>
-                            <div class="column3">
+                            </div> 
+                            <div class="column3"> 
                                 
                               <p><span *ngIf="item.status=='Y';else b" ></span><ng-template #b><button class="btnkecil"  (click)="gotoTransfer(item)">Already paid?</button> </ng-template></p>
                             </div>
                            
                           </div> 
-                         
+                   
+                          <!-- <ion-grid>
+                                <ion-row *ngFor="let item of plans" tyle="border-width:1px;border-bottom-style:solid;border-color: rgba(102, 102, 102, 0.24);position: relative;">
+                                  <ion-col col-4>
+                                        <p><strong>{{item.plan}}</strong>
+                                            <p >Due Date: {{item.due_date}}</p> 
+                                  </ion-col>
+                                  <ion-col col-4>
+                                        <p  valign="left" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></p> 
+                                        <p align="right" [style.color]="item.style" >{{item.status_descs}}</p>
+                                  </ion-col>
+                                  <ion-col col-2>
+                                        <p><span *ngIf="item.status=='Y';else b" ></span><ng-template #b><button class="btnkecil"  (click)="gotoTransfer(item)">Already paid?</button> </ng-template></p>
+                                  </ion-col>
+                                </ion-row>
+                            </ion-grid> -->
                     <!-- <div *ngFor="let item of plans">
                         <div width-30 no-padding>{{item.plan}} | <span>IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></div>
                         <div width-30 no-padding>{{item.due_date}} | {{item.status_descs}}</div>

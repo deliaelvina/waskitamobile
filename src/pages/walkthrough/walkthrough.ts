@@ -5,6 +5,7 @@ import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
 import { Http } from '@angular/http';
 import { environment } from '../../environment/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'walkthrough-page',
@@ -17,10 +18,10 @@ export class WalkthroughPage {
 
   @ViewChild('slider') slider: Slides;
 
-  constructor(public nav: NavController, private http:Http) {
+  constructor(public nav: NavController, private http:Http, private _sanitize:DomSanitizer) {
     this.loadPict();
   }
-  pict:any;
+  pict:any[]=[];
   logo:any[]=[
     "http://35.197.137.111/waskitaAPI/images/logo.png"
   ]
@@ -48,11 +49,30 @@ export class WalkthroughPage {
   }
 
   loadPict(){
-    this.http.get(this.url_api + "c_profil/getPict")
+    this.http.get(this.url_api + "c_iFrame/getPict") 
     .subscribe((data) => {
-      data = data.json();
-      // console.log(data);
-      this.pict = data;
-    });
+      var x = data.json();
+      console.log(data);
+      console.log(x);
+      // this.pict = data;
+      var i = 0;
+      x.forEach(val => {
+        // console.log(val);
+        // this.pict.push({
+        //   'background-image':"'url("+this._sanitize.bypassSecurityTrustResourceUrl(val)+"'"
+        // });
+        console.log(val);
+        // this.pict.push(this._sanitize.bypassSecurityTrustResourceUrl(val));
+        this.pict.push(this._sanitize.bypassSecurityTrustResourceUrl(val));
+      
+  
+        i++;
+        // this.pict[] = this._sanitize.bypassSecurityTrustResourceUrl(val);
+      });
+    //   x.forEach(data, function(val){
+    //     this.pict.push(this._sanitize.bypassSecurityTrustResourceUrl(val));
+    // });
+      console.log(this.pict);
+    }); 
   }
 }

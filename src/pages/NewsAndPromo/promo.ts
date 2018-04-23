@@ -13,6 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ToastController } from 'ionic-angular';
 
 // import { NapDetails } from './napdetails';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
 @Component({
   selector: 'promo-page',
@@ -27,7 +28,7 @@ export class PromoPage {
   link_iframe:any ;
   ErrorList:any;
   available: boolean = true;
-  
+
   hd = new HttpHeaders({
     Token : localStorage.getItem("Token")
   });
@@ -45,6 +46,47 @@ export class PromoPage {
     this.loading = this.loadingCtrl.create();
   }
 
+  logoutAPi(){
+    let UserId = localStorage.getItem('UserId');
+
+    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+      .subscribe(
+        (x:any) => {
+          if(x.Error == true) {
+            if(x.Status == 401){
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+            }
+            else {
+              this.showAlert("Warning!", x.Pesan);
+              this.loading.dismiss();
+              // this.nav.pop();
+            }
+          }
+          else {
+            localStorage.clear();
+            // alert('ok');
+            this.nav.setRoot(WalkthroughPage);
+          }
+        },
+        (err)=>{
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function(er){
+              return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if(this.ErrorList.length == 1 ){
+            errS = this.ErrorList[0].Description;
+          }else{
+            errS = err;
+          }
+            this.showAlert("Error!", errS);
+        }
+      );
+  }
 
   ionViewDidLoad() {
     this.loading.present();
@@ -56,16 +98,17 @@ export class PromoPage {
           console.log(x);
           if(x.Error == true) {
             if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan);
+              // this.showAlert("Warning!", x.Pesan);
+              this.logoutAPi();
               this.loading.dismiss();
-              // this.nav.pop(); 
+              // this.nav.pop();
             }
             else {
               // this.available = false;
               // alert("No Data");
-              this.showAlert("Warning!", "No Data");              
+              this.showAlert("Warning!", "No Data");
               this.loading.dismiss();
-              // this.nav.pop();         
+              // this.nav.pop();
             }
           }
           else {
@@ -106,15 +149,15 @@ export class PromoPage {
         },
         (err)=>{
           this.loading.dismiss();
-          //filter error array 
+          //filter error array
           this.ErrorList = this.ErrorList.filter(function(er){
               return er.Code == err.status;
           });
-          
+
           var errS;
           //filter klo error'a tidak ada di array error
           if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;            
+            errS = this.ErrorList[0].Description;
           }else{
             errS = err;
           }
@@ -124,7 +167,7 @@ export class PromoPage {
             //   duration: 3000,
             //   position: 'top'
             // });
-          
+
             // toast.onDidDismiss(() => {
             //   console.log('Dismissed toast');
             // });

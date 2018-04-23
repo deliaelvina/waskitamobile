@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 // import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandler.service';
+import { WalkthroughPage } from '../../walkthrough/walkthrough';
 // import { FormService } from '../../../auth/form.service';
 import { ListingPage } from '../../listing/listing';
 import { TabsNavigationPage } from '../../tabs-navigation/tabs-navigation';
@@ -84,6 +85,48 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
       // this.contactForm.get('Desc').setValue('Saya tertarik dengan (NamaProject) ini. Hubungi Saya untuk info detail.');
     }
 
+    logoutAPi(){
+      let UserId = localStorage.getItem('UserId');
+
+      this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
+        .subscribe(
+          (x:any) => {
+            if(x.Error == true) {
+              if(x.Status == 401){
+                this.showAlert("Warning!", x.Pesan,'');
+                this.loading.dismiss();
+              }
+              else {
+                this.showAlert("Warning!", x.Pesan,'');
+                this.loading.dismiss();
+                // this.nav.pop();
+              }
+            }
+            else {
+              localStorage.clear();
+              // alert('ok');
+              this.nav.setRoot(WalkthroughPage);
+            }
+          },
+          (err)=>{
+            this.loading.dismiss();
+            //filter error array
+            this.ErrorList = this.ErrorList.filter(function(er){
+                return er.Code == err.status;
+            });
+
+            var errS;
+            //filter klo error'a tidak ada di array error
+            if(this.ErrorList.length == 1 ){
+              errS = this.ErrorList[0].Description;
+            }else{
+              errS = err;
+            }
+              this.showAlert("Error!", errS,'');
+          }
+        );
+    }
+
     validation_messages = {
       'Desc':[
         {type: 'required', message: 'Description is required.'}
@@ -124,6 +167,7 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
       //   { type: 'pattern', message: 'You must accept terms and conditions.' }
       // ],
     };
+
     showAlert(title:any, subTitle:any, act:any) {
       var bah:any;
       if(act == 'menu'){
@@ -149,88 +193,86 @@ import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandle
 
     ionViewDidLoad() {
       this._errorService.getData()
-    .then(data=>{
-      this.ErrorList = data.Error_Status;
-    });
-        this.contactForm.get('Project').setValue(this.parm.projectName);
-        this.contactForm.get('Entity').setValue(this.parm.entity);
-        this.contactForm.get('Project_no').setValue(this.parm.projectNo);
-        // this.contactForm.get('Entity').setValue(this.parm.Entity);
-        // this.contactForm.get('Project_no').setValue(this.parm.Project_no);
-        // this.descrip = 'Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.';
-        // this.contactForm.get('Desc').setValue('Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.');
-        // console.log(this.parm.entity_cd);
-        // console.log(this.parm.project_no);
-        // this.contactForm.get('Entity').setValue(this.parm.projectName);
-        // this.loading.dismiss();
+      .then(data=>{
+        this.ErrorList = data.Error_Status;
+      });
+          this.contactForm.get('Project').setValue(this.parm.projectName);
+          this.contactForm.get('Entity').setValue(this.parm.entity);
+          this.contactForm.get('Project_no').setValue(this.parm.projectNo);
+          // this.contactForm.get('Entity').setValue(this.parm.Entity);
+          // this.contactForm.get('Project_no').setValue(this.parm.Project_no);
+          // this.descrip = 'Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.';
+          // this.contactForm.get('Desc').setValue('Saya tertarik dengan '+this.parm.projectName+' ini. Hubungi Saya untuk info detail.');
+          // console.log(this.parm.entity_cd);
+          // console.log(this.parm.project_no);
+          // this.contactForm.get('Entity').setValue(this.parm.projectName);
+          // this.loading.dismiss();
 
-        this.loading.present();
-      // localStorage.removeItem('cons_project');
-      // console.log(this.cons);
-        this.http.get(this.url_api+"c_contact/getData/" + this.cons + "/" + this.email + "/" + this.userid, {headers:this.hd} )
-        .subscribe(
-          (x:any) => {
-            if(x.Error == true) {
-              if(x.Status == 401){
-                // alert('401:'+x.Pesan);
-                this.showAlert("Warning!", x.Pesan,'');
-                this.loading.dismiss();
+          this.loading.present();
+        // localStorage.removeItem('cons_project');
+        // console.log(this.cons);
+          this.http.get(this.url_api+"c_contact/getData/" + this.cons + "/" + this.email + "/" + this.userid, {headers:this.hd} )
+          .subscribe(
+            (x:any) => {
+              if(x.Error == true) {
+                if(x.Status == 401){
+                  // alert('401:'+x.Pesan);
+                  // this.showAlert("Warning!", x.Pesan,'');
+                  this.logoutAPi();
+                  this.loading.dismiss();
+                }
+                else {
+                  this.showAlert("Warning!", x.Pesan,'');
+                  this.loading.dismiss();
+                }
               }
               else {
-                this.showAlert("Warning!", x.Pesan,'');
+                x = x.Data;
+              //   console.log(x);
+                var data = x;
+                // var tlp ='';
+                this.contactForm.get('Email').setValue(data[0].email);
+                // this.contactForm.get('Name').setValue(data[0].name);
+                // this.contactForm.get('Handphone').setValue(data[0].Handphone);
+                this.anu.nama = data[0].name;
+                this.anu.telp = data[0].Handphone?data[0].Handphone:'';
+                this.anu.mail = data[0].email;
+                console.log(this.anu);
+                this.descrip = this.desc+"Nama : "+this.anu.nama+"\nHandphone : "+this.anu.telp+"\nEmail : "+this.anu.mail+"\nHubungi saya untuk info detail.\n";
+                this.contactForm.get('Desc').setValue(this.descrip);
+                console.log(data);
                 this.loading.dismiss();
               }
-            }
-            else {
-              x = x.Data;
-            //   console.log(x);
-              var data = x;
-              var tlp ='';
-              this.contactForm.get('Email').setValue(data[0].email);
-              // this.contactForm.get('Name').setValue(data[0].name);
-              // this.contactForm.get('Handphone').setValue(data[0].Handphone);
-              this.anu.nama = data[0].name;
-              this.anu.telp = data[0].Handphone;
-              if (this.anu.telp == 'null'){
-                tlp = '';
+            },
+            (err)=>{
+
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
+
+              var errS;
+              //filter klo error'a tidak ada di array error
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
               }
-              this.anu.mail = data[0].email;
-              console.log(this.anu);
-              this.descrip = this.desc+"Nama : "+this.anu.nama+"\nHandphone : "+tlp+"\nEmail : "+this.anu.mail+"\nHubungi saya untuk info detail.\n";
-              this.contactForm.get('Desc').setValue(this.descrip);
-              console.log(data);
-              this.loading.dismiss();
-            }
-          },
-          (err)=>{
-            this.loading.dismiss();
-            //filter error array
-            this.ErrorList = this.ErrorList.filter(function(er){
-                return er.Code == err.status;
-            });
+                // alert(errS);
+                // let toast = this.toastCtrl.create({
+                //   message: errS,
+                //   duration: 3000,
+                //   position: 'top'
+                // });
 
-            var errS;
-            //filter klo error'a tidak ada di array error
-            if(this.ErrorList.length == 1 ){
-              errS = this.ErrorList[0].Description;
-            }else{
-              errS = err;
+                // toast.onDidDismiss(() => {
+                //   console.log('Dismissed toast');
+                // });
+                // toast.present();
+                this.showAlert("Error!", errS,'');
+                // this.nav.pop();
             }
-              // alert(errS);
-              // let toast = this.toastCtrl.create({
-              //   message: errS,
-              //   duration: 3000,
-              //   position: 'top'
-              // });
-
-              // toast.onDidDismiss(() => {
-              //   console.log('Dismissed toast');
-              // });
-              // toast.present();
-              this.showAlert("Error!", errS,'');
-              // this.nav.pop();
-          }
-        );
+          );
     }
 
     klik(){

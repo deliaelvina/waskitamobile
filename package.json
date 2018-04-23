@@ -59,6 +59,7 @@
     "com-sarriaroman-photoviewer": "^1.1.16",
     "com.synconset.imagepicker": "^2.1.10",
     "cordova-admob-sdk": "^0.7.0",
+    "cordova-android": "~6.3.0",
     "cordova-browser": "~5.0.3",
     "cordova-ios": "~4.5.4",
     "cordova-plugin-add-swift-support": "^1.7.2",
@@ -75,7 +76,7 @@
     "cordova-plugin-facebook4": "^1.10.1",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-file-opener2": "^2.0.19",
-    "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-file-transfer": "~1.7.1",
     "cordova-plugin-geolocation": "^2.4.3",
     "cordova-plugin-globalization": "^1.11.0",
     "cordova-plugin-googleplus": "^5.3.0",
@@ -92,7 +93,7 @@
     "es6-promise-plugin": "^4.2.2",
     "firebase": "^4.10.0",
     "google-libphonenumber": "^3.0.9",
-    "ionic-angular": "^3.9.2",
+    "ionic-angular": "^3.6.1",
     "ionic-img-viewer": "^2.9.0",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
@@ -102,11 +103,10 @@
     "text-mask-addons": "^3.5.1",
     "twitter-connect-plugin": "git+https://github.com/chroa/twitter-connect-plugin.git",
     "videogular2": "^6.0.1",
-    "zone.js": "0.8.18",
-    "cordova-android": "~6.3.0"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.1.8",
+    "@ionic/app-scripts": "^2.1.4",
     "typescript": "2.4.2"
   },
   "cordovaPlugins": [
@@ -164,8 +164,8 @@
         "REVERSED_CLIENT_ID": "590834895101-isos0smj21n32ui5dpqni3d5oev32mo1.apps.googleusercontent.com"
       },
       "cordova-plugin-ionic": {
-        "APP_ID": "066dd7ce",
-        "CHANNEL_NAME": "Production",
+        "APP_ID": "aca79ad1",
+        "CHANNEL_NAME": "Master",
         "UPDATE_METHOD": "background",
         "UPDATE_API": "https://api.ionicjs.com",
         "MAX_STORE": "2"
@@ -176,7 +176,6 @@
       "mx.ferreyra.callnumber": {},
       "call-number": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-file-transfer": {},
       "cordova-plugin-facebook4": {
         "APP_ID": "1737645236299589",
         "APP_NAME": "waskitaApp"
@@ -187,7 +186,8 @@
       "cordova-plugin-camera": {
         "CAMERA_USAGE_DESCRIPTION": "your usage message",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": "your usage message"
-      }
+      },
+      "cordova-plugin-file-transfer": {}
     }
   }
 }

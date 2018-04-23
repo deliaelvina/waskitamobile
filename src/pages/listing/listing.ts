@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController,Platform } from 'ionic-angular';
+import { NavController, LoadingController, AlertController,Platform ,MenuController,App} from 'ionic-angular';
 
 import { FeedPage } from '../feed/feed';
 import { ProjectPage } from '../projectInfo/project';
@@ -23,7 +23,8 @@ import { environment } from '../../environment/environment';
 import { BookingPage } from '../booking/project';
 import { MyUnitPage } from '../MyUnit/myUnit';
 import { SimulasiPage } from '../simulasi/simulasi';
-
+import { MyApp } from '../../app/app.component';
+import { AuthService } from '../../auth/auth.service';
 @Component({
   selector: 'listing-page',
   templateUrl: 'listing.html',
@@ -57,7 +58,10 @@ export class ListingPage {
     public alertCtrl: AlertController,
     public platform: Platform,
     private _errorService: ErrorhandlerService,
-    private http: HttpClient
+    private http: HttpClient,
+    private menu: MenuController,
+    private _app: App,
+    private _authService: AuthService
   ) {
     platform.ready().then((source) => {
       if (this.platform.is('android')) {
@@ -135,53 +139,44 @@ export class ListingPage {
     alertA.present();
   }
 
+  //copy utk logout
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
-
-    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
-      .subscribe(
-        (x:any) => {
-          if(x.Error == true) {
-            if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan);
-              this.loading.dismiss();
-            }
-            else {
-              this.showAlert("Warning!", x.Pesan);
-              this.loading.dismiss();
-              // this.nav.pop();
-            }
-          }
-          else {
-            localStorage.clear();
-            // alert('ok');
-              if(this.device=='iOS'){
-                  this.platform.exitApp();
-              }else if(this.device=='android'){
-                  navigator['app'].exitApp();
-              }else{
-                this.platform.exitApp();
+    this._authService.logout().subscribe(
+      (x:any) => {
+        console.log(x);
+              if(x.Error == true) {
+                  this.showAlert("Warning!", x.Pesan);
+                  this.loading.dismiss();                
               }
-
-          }
-        },
-        (err)=>{
-          this.loading.dismiss();
-          //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
-          });
-
-          var errS;
-          //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;
-          }else{
-            errS = err;
-          }
-            this.showAlert("Error!", errS);
-        }
-      );
+              else {
+                this.loading.dismiss();
+                localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp); 
+                  }    
+              }
+            },
+            (err)=>{
+              this.loading.dismiss();
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
+    
+              var errS;
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
+              }
+                this.showAlert("Error!", errS);
+            }
+    );
+   
   }
 
   goToFeed(category: any) {
