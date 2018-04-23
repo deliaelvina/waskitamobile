@@ -58,7 +58,7 @@ export class PaymentSchedulePage {
     this.loading = this.loadingCtrl.create();
     this.cons = this.navParams.get('cons');
     this.data = this.navParams.get('datas');
-    console.log(this.data);
+    // console.log(this.data);
     this._errorService.getData()
     .then(data=>{
       this.ErrorList = data.Error_Status;
@@ -182,7 +182,7 @@ export class PaymentSchedulePage {
             });
           });
           this.loading.dismiss();
-          console.log(this.plans);
+          // console.log(this.plans);
         }
       },
       (err)=>{
