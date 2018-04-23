@@ -2,14 +2,17 @@ import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import { environment } from "../environment/environment";
 import "rxjs/add/operator/map";
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class AuthService{
     urlAPI = environment.Url_API; 
      
-    constructor(private http:Http){
-        console.log(this.urlAPI);
-        console.log(environment.Url_API);
+    constructor(
+        private http:Http,
+        private httpc:HttpClient
+        )
+    {
+        
     }
     // Login(email:string,password:string){
     Login(value:any[]){
@@ -38,22 +41,6 @@ export class AuthService{
         return this.http.post(this.urlAPI+"c_auth/LoginWithSosmed",JSON.stringify({ Email: email, Medsos: medsos, LoginId : userId}))
         // return this.http.post(this.urlAPI+"c_auth/LoginGuest",value)
         .map(res=>res.json());
-        // .map((response:Response)=>{
-        //     const Res = response.json();
-        //     if(Res){
-        //         localStorage.setItem('currentUser', JSON.stringify(Res));
-        //         if(!Res.Error){
-        //             localStorage.setItem('MenuDash', JSON.stringify(Res.Data.DashMenu));
-        //             localStorage.setItem('Group', Res.Data.Group);
-        //             localStorage.setItem('UserId', Res.Data.UserId);
-        //             localStorage.setItem('Token', Res.Data.Token);
-        //             localStorage.setItem('User', Res.Data.user);
-        //             localStorage.setItem("isLogin","true");
-        //             localStorage.setItem("isReset",Res.Data.isResetPass);
-        //         }
-        //     }
-        //     // console.log(Res);
-        // });
     }
     ResetPassword(value:any[]){        
         return this.http.post(this.urlAPI+"c_auth/Resetpass",value).map((response:Response)=>{
@@ -73,5 +60,13 @@ export class AuthService{
     }
     cekSignUp(email:string,userId:string){        
         return this.http.post(this.urlAPI+"c_auth/CheckEmail",JSON.stringify({ Email: email,LoginId:userId})).map(res=>res.json());
+    }
+
+    logout(){
+        let UserId = localStorage.getItem('UserId');
+        var hd = new HttpHeaders({
+            Token : localStorage.getItem("Token")
+          });
+        return this.httpc.get(this.urlAPI+"c_auth/Logout/" +UserId, {headers:hd});
     }
 }
