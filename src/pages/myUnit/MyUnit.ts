@@ -8,6 +8,7 @@ import { environment } from '../../environment/environment';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PaymentSchedulePage } from './payment';
+import { WalkthroughPage } from '../walkthrough/walkthrough';
 
 @Component({
   selector: 'MyUnit-page',
@@ -86,7 +87,7 @@ export class MyUnitPage {
           }else{
             errS = err;
           }
-            this.showAlert("Error!", errS,'');
+            this.showAlert("Error!", errS);
         }
       );
   }
