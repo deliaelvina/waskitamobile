@@ -189,7 +189,7 @@ export class MyUnitPage {
                       this.count = cnt;
                       this.available = true;
                       cnt += 1;
-                     console.log(cnt);
+                    //  console.log(cnt);
                       if(now == end){
                         // alert(now +'/'+end);
                         this.loading.dismiss();
@@ -227,7 +227,7 @@ export class MyUnitPage {
                     return;
                 }
               );
-              console.log(now);
+              // console.log(now);
             });
 
             // this.loading.dismiss();
@@ -263,7 +263,7 @@ export class MyUnitPage {
 
   goPayment(data:any) {
     // console.log(data);
-    console.log('edit');
+    // console.log('edit');
     var datas = {
       entity : data.entity_cd,
       project : data.project_no,
