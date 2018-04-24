@@ -5,15 +5,16 @@ import "rxjs/add/operator/map";
 
 @Injectable()
 export class FormService{
-    urlAPI = environment.Url_API; 
+    urlAPI = environment.Url_API;
     hd = new Headers({
-        Token : localStorage.getItem("Token")
-      }); 
+      Token : localStorage.getItem("Token")
+    });
+
     constructor(private http:Http){
         console.log(this.urlAPI);
         console.log(environment.Url_API);
     }
-    
+
     Form_Profil(value:any[]){
         console.log(value);
         return this.http.post(this.urlAPI+"c_profil/save",value, {headers:this.hd});
