@@ -291,7 +291,7 @@ export class LoginPage {
             this.LoginSosmed(ress['email'],'GMAIL',ress['userId']);
           },(errors) => {
             this.loading.dismiss();
-            // this.LoginSosmed('dedy9669@gmail.com','GMAIL');
+            // this.LoginSosmed('nuryantofattih@gmail.com','GMAIL','108339075516782956576');
             // alert('Failed2 => ' + JSON.stringify(errors));
           });
       // });
