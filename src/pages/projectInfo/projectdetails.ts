@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Platform, LoadingController, AlertController, App } from 'ionic-angular';
 // import { ImageViewerController } from 'ionic-img-viewer';
 import { ProfilePage } from '../profile/profile';
 import { DomSanitizer} from '@angular/platform-browser';
@@ -21,6 +21,8 @@ import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { empty } from 'rxjs/Observer';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
+import { AuthService } from '../../auth/auth.service';
+import { MyApp } from '../../app/app.component';
 
 
 declare var cordova: any;
@@ -61,7 +63,7 @@ export class ProjectDetailsPage {
   overview:any='-';
   feature:any='-';brochure:any;
   coords:any;ytb:any;ytb_url:any;
-  coords_name:any='-';
+  coords_name:any='-';device:string;
   coords_address:any='-';
   amenitiesO:string='-';
   amenitiesI:string='-';
@@ -83,6 +85,8 @@ export class ProjectDetailsPage {
     public platform: Platform,
     private transfer: FileTransfer, private file: File,
     private fileOpener: FileOpener,
+    private _app: App,
+    private _authService: AuthService,
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService
   ) {
@@ -94,6 +98,7 @@ export class ProjectDetailsPage {
     this.pro.cons = this.project.cons_project;
     this.display ="I";
     this.loading = this.loadingCtrl.create();
+    this.device = localStorage.getItem('Device');
     // this._imageViewerCtrl = imageViewerCtrl;
     // this.parm =  this.navParams.get('data');
     this.platform.ready().then(() => {
@@ -103,7 +108,7 @@ export class ProjectDetailsPage {
       }
 
       if (this.platform.is('ios')) {
-        this.storageDirectory = this.file.documentsDirectory;
+        this.storageDirectory = (this.file.documentsDirectory||this.file.dataDirectory)+"Path_Waskita";
       }
       else if(this.platform.is('android')) {
         this.storageDirectory = this.file.externalDataDirectory;
@@ -114,6 +119,7 @@ export class ProjectDetailsPage {
       }
     });
 
+
   }
 
   // goToSlide() {
@@ -121,7 +127,7 @@ export class ProjectDetailsPage {
   // }
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
-    console.log('Current index is', currentIndex);
+    // console.log('Current index is', currentIndex);
   }
   ionViewWillEnter(){
     this._errorService.getData()
@@ -137,9 +143,9 @@ export class ProjectDetailsPage {
   }
 
   presentImage(myImage,from:any) {
-    console.log(myImage);
+    // console.log(myImage);
     // const imageViewer = this._imageViewerCtrl.create(myImage);
-    // imageViewer.present(); 
+    // imageViewer.present();
     var judul = '';
     if(from=='project'){
       judul = this.pro.projectName;
@@ -148,29 +154,41 @@ export class ProjectDetailsPage {
     } else {
       judul = this.pro.projectName;
     }
+
     if(myImage.search('assets/images') == -1){
       //image from API
-      myImage = myImage.replace(' ', '%20');
+      myImage = myImage.replace(/ /gi, '%20');
     }
     else {
+      if (this.platform.is('ios')) {
+        myImage = (this.file.documentsDirectory||this.file.dataDirectory)+ 'www'+myImage.substring(1,myImage.length);
+      }
+      else if(this.platform.is('android')) {
+        myImage = this.file.applicationDirectory + 'www'+myImage.substring(1,myImage.length);
+      }
       //image from LOCAL
-      myImage = this.file.applicationDirectory + 'www'+myImage.substring(1,myImage.length);
     }
+
+    // console.log(myImage);
+    // return;
     this.photoViewer.show(
       myImage,
       judul,
       {share:false}
     );
   }
+
   downloadpdf() {
     this.loading = this.loadingCtrl.create();
     this.loading.present().then(() => {
       const fileTransfer: FileTransferObject = this.transfer.create();
       var url = encodeURI(this.brochure);
 
-      fileTransfer.download(url, this.storageDirectory + 'brochure.pdf').then((entry) => {
+      fileTransfer.download(url, this.storageDirectory + '/brochure.pdf').then((entry) => {
         let urlpdf = entry.toURL();
         // alert(urlpdf);
+
+        // alert(this.storageDirectory);
 
         // alert('hi');
         this.fileOpener.open(urlpdf, 'application/pdf').then(() => {
@@ -187,7 +205,7 @@ export class ProjectDetailsPage {
             // alert('a');
             errS = this.ErrorList[0].Description;
           }else{
-            alert('b');
+            // alert('b');
             errS = err;
           }
           this.showAlert("Download failed!", JSON.stringify(errS),'donothing');
@@ -248,7 +266,7 @@ export class ProjectDetailsPage {
               this.coords = data.project[0].coordinat_project;
               this.coords_name = data.project[0].coordinat_name;
               this.coords_address = data.project[0].coordinat_address;
-              console.log(this.coords);
+              // console.log(this.coords);
               this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.coords);
               // console.log(this.url);
             }
@@ -378,17 +396,9 @@ export class ProjectDetailsPage {
             errS = err;
           }
             // alert(errS);
-            // let toast = this.toastCtrl.create({
-            //   message: errS,
-            //   duration: 3000,
-            //   position: 'top'
-            // });
 
-            // toast.onDidDismiss(() => {
-            //   console.log('Dismissed toast');
-            // });
-            // toast.present();
-            console.log('apaluu');
+
+            // console.log('apaluu');
             this.showAlert("Error!", errS,'');
         }
       );//end of getgallery
@@ -416,62 +426,45 @@ export class ProjectDetailsPage {
     this.nav.push(ContactPage,{data:this.pro, desc:desc});
   }
 
-  // showAlert(title:any, subTitle:any) {
-  //   let warning = this.alertCtrl.create({
-  //     cssClass: 'alert',
-  //     title : title,
-  //     subTitle : subTitle,
-  //     buttons : [
-  //       {text : 'Ok', handler: () => {
-  //         this.nav.pop();
-  //       }}
-  //     ]
-  //   });
 
-  //   warning.present();
-  // }
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
-
-    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
-      .subscribe(
-        (x:any) => {
-          if(x.Error == true) {
-            if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan,'401');
+    this._authService.logout().subscribe(
+      (x:any) => {
+        console.log(x);
+              if(x.Error == true) {
+                  this.showAlert("Warning!", x.Pesan,'');
+                  this.loading.dismiss();
+              }
+              else {
+                this.loading.dismiss();
+                localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp);
+                  }
+              }
+            },
+            (err)=>{
               this.loading.dismiss();
-            }
-            else {
-              this.showAlert("Warning!", x.Pesan,'');
-              this.loading.dismiss();
-              // this.nav.pop();
-            }
-          }
-          else {
-            localStorage.clear();
-            // alert('ok');
-            this.nav.setRoot(WalkthroughPage);
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
 
-          }
-        },
-        (err)=>{
-          this.loading.dismiss();
-          //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
-          });
+              var errS;
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
+              }
+                this.showAlert("Error!", errS,'');
+            }
+    );
 
-          var errS;
-          //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;
-          }else{
-            errS = err;
-          }
-            this.showAlert("Error!", errS,'');
-        }
-      );
-  }
+    }
   showAlert(title:any, subTitle:any, act:any) {
     var cmd:any;
     if(act == 'donothing'){
