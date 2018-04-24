@@ -135,7 +135,7 @@ export class BookingReservePage {
       this.cons = this.navParams.get('cons');
       this.data = this.navParams.get('datas');
       this.edit = true;
-      console.log(this.data);
+      // console.log(this.data);
       this.loadData();
     }
     else if (this.act == 'view'){
@@ -205,18 +205,14 @@ export class BookingReservePage {
         Validators.minLength(10),
         Validators.pattern('^[0-9]+$')
       ])),
-      // number: new FormControl('', Validators.compose([
-      //   Validators.required,
-      //   PhoneValidator.validCountryPhone(phone)
-      // ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       idNo: new FormControl('', Validators.compose([
         // Validators.required,
-        Validators.minLength(16),
-        Validators.pattern('^[0-9]+$')
+        // Validators.minLength(16),
+        // Validators.pattern('^[0-9]+$')
       ])),
       national : new FormControl(''),
       // national_cd : new FormControl(''),
@@ -779,6 +775,7 @@ export class BookingReservePage {
     // let emailError = this.reserveForm.get('email').hasError('pattern');
     // let data = this.reserveForm.value();
     if(!this.reserveForm.valid){
+      this.loading.dismiss();
       let toast = this.toastCtrl.create({
         message: "Your Reservation Data Is Not Valid.",
         duration: 1000,
@@ -786,6 +783,7 @@ export class BookingReservePage {
       });
 
       toast.onDidDismiss(() => {
+        this.loading.dismiss();
         console.log('Dismissed toast');
       });
       toast.present();
