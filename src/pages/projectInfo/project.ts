@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController, Platform,App } from 'ionic-angular';
 
 import { ProfilePage } from '../profile/profile';
 import { ProjectDetailsPage } from '../projectInfo/projectdetails';
@@ -11,6 +11,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 //error handle
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
+import { MyApp } from '../../app/app.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'project-page',
@@ -19,7 +21,7 @@ import { WalkthroughPage } from '../walkthrough/walkthrough';
 export class ProjectPage {
   projects:any[] = [];
   loading:any;
-  user:any;
+  user:any; device:string;
   url_api = environment.Url_API;
   cons = environment.cons_pb;
   cons_mobile = environment.cons_mobile;
@@ -35,54 +37,54 @@ export class ProjectPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public socialSharing: SocialSharing,
+    private _app: App,
+    private _authService: AuthService,
+    public platform: Platform,
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService
   ) {
     this.user = navParams.get('user');
     this.loading = this.loadingCtrl.create();
+    this.device = localStorage.getItem('Device');
   } 
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
-
-    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
-      .subscribe(
-        (x:any) => {
-          if(x.Error == true) {
-            if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan);
+    this._authService.logout().subscribe(
+      (x:any) => {
+        console.log(x);
+              if(x.Error == true) {
+                  this.showAlert("Warning!", x.Pesan);
+                  this.loading.dismiss();                
+              }
+              else {
+                this.loading.dismiss();
+                localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp); 
+                  }    
+              }
+            },
+            (err)=>{
               this.loading.dismiss();
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
+    
+              var errS;
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
+              }
+                this.showAlert("Error!", errS);
             }
-            else {
-              this.showAlert("Warning!", x.Pesan);
-              this.loading.dismiss();
-              // this.nav.pop();
-            }
-          }
-          else {
-            localStorage.clear();
-            // alert('ok');
-            this.nav.setRoot(WalkthroughPage);
-
-          }
-        },
-        (err)=>{
-          this.loading.dismiss();
-          //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
-          });
-
-          var errS;
-          //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;
-          }else{
-            errS = err;
-          }
-            this.showAlert("Error!", errS);
-        }
-      );
-  }
+    );
+   
+    }
 
   ionViewDidLoad() {
     this._errorService.getData()
@@ -140,16 +142,7 @@ export class ProjectPage {
             errS = err;
           }
             // alert(errS);
-            // let toast = this.toastCtrl.create({
-            //   message: errS,
-            //   duration: 3000,
-            //   position: 'top'
-            // });
           
-            // toast.onDidDismiss(() => {
-            //   console.log('Dismissed toast');
-            // });
-            // toast.present();
             this.showAlert("Error!", errS);
             // this.nav.pop();
         }

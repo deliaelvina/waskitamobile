@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController, ToastController,App } from 'ionic-angular';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,6 +9,8 @@ import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.s
 import { DomSanitizer } from '@angular/platform-browser';
 import { PaymentSchedulePage } from './payment';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
+import { AuthService } from '../../auth/auth.service';
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'MyUnit-page',
@@ -23,7 +25,7 @@ export class MyUnitPage {
   cons = environment.cons_pb;
   cons_mobile = environment.cons_mobile;
   available: boolean = true;
-  ErrorList:any;
+  ErrorList:any;device:string;
 
   hd = new HttpHeaders({
     Token : localStorage.getItem("Token")
@@ -37,10 +39,13 @@ export class MyUnitPage {
     public alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
-    private sanitizer: DomSanitizer,
+    private _app: App,
+    private _authService: AuthService,
+    private sanitizer: DomSanitizer
   ) {
     this.user = navParams.get('user');
     this.loading = this.loadingCtrl.create();
+    this.device = localStorage.getItem('Device');
 
     this._errorService.getData()
     .then(data=>{
@@ -50,47 +55,43 @@ export class MyUnitPage {
     this.loading.present();
   }
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
-
-    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
-      .subscribe(
-        (x:any) => {
-          if(x.Error == true) {
-            if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan);
+    this._authService.logout().subscribe(
+      (x:any) => {
+        console.log(x);
+              if(x.Error == true) {
+                  this.showAlert("Warning!", x.Pesan);
+                  this.loading.dismiss();                
+              }
+              else {
+                this.loading.dismiss();
+                localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp); 
+                  }    
+              }
+            },
+            (err)=>{
               this.loading.dismiss();
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
+    
+              var errS;
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
+              }
+                this.showAlert("Error!", errS);
             }
-            else {
-              this.showAlert("Warning!", x.Pesan);
-              this.loading.dismiss();
-              // this.nav.pop();
-            }
-          }
-          else {
-            localStorage.clear();
-            // alert('ok');
-            this.nav.setRoot(WalkthroughPage);
-
-          }
-        },
-        (err)=>{
-          this.loading.dismiss();
-          //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
-          });
-
-          var errS;
-          //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;
-          }else{
-            errS = err;
-          }
-            this.showAlert("Error!", errS);
-        }
-      );
-  }
+    );
+   
+    }
   ionViewWillEnter(){
     // this.loading.present();
     // alert('tes');
@@ -146,7 +147,7 @@ export class MyUnitPage {
                         // alert(now +'/'+end);
                         this.loading.dismiss();
                       }
-               
+
                     }
                   }
                   else {
@@ -189,14 +190,14 @@ export class MyUnitPage {
                       this.count = cnt;
                       this.available = true;
                       cnt += 1;
-                    //  console.log(cnt);
+                     console.log(cnt);
                       if(now == end){
                         // alert(now +'/'+end);
                         this.loading.dismiss();
                       }
                     });
                     this.myRes = ress;
-                 
+
 
                     // console.log(a);
 
@@ -227,7 +228,7 @@ export class MyUnitPage {
                     return;
                 }
               );
-              // console.log(now);
+              console.log(now);
             });
 
             // this.loading.dismiss();
@@ -247,7 +248,7 @@ export class MyUnitPage {
           }else{
             errS = err;
           }
- 
+
             this.showAlert("Error!", errS);
         }
     );
@@ -258,12 +259,12 @@ export class MyUnitPage {
   }
 
   getUnit(cons:any) {
-    return this.http.get(this.url_api+"c_myunits/myUnit/" + cons + "/" + localStorage.getItem('UserId') + "/" + '', {headers:this.hd}  );
+    return this.http.get(this.url_api+"c_myunits/myUnit/" + cons + "/" + localStorage.getItem('User') , {headers:this.hd}  );
   }
 
   goPayment(data:any) {
     // console.log(data);
-    // console.log('edit');
+    console.log('edit');
     var datas = {
       entity : data.entity_cd,
       project : data.project_no,
