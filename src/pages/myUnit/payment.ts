@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl, MinLengthValidator } from '@angular/forms';
-import { NavController, NavParams, LoadingController, Platform, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, Platform, AlertController,App } from 'ionic-angular';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,7 +11,8 @@ import { ListingPage } from '../listing/listing';
 import { UploadBuktiPage } from './uploadbukti';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
-
+import { AuthService } from '../../auth/auth.service';
+import { MyApp } from '../../app/app.component';
 
 declare var cordova: any;
 
@@ -29,7 +30,7 @@ export class PaymentSchedulePage {
   plans:any=[];
   available:boolean;
   loading:any;
-  user:any;
+  user:any;device:string;
   url_api = environment.Url_API;
   cons: any;
 
@@ -52,12 +53,15 @@ export class PaymentSchedulePage {
     public formBuilder: FormBuilder,
     public imagePicker: ImagePicker,
     private _errorService: ErrorhandlerService,
-
+    private _app: App,
+    private _authService: AuthService,
   ) {
     this.main_page = { component: TabsNavigationPage };
     this.loading = this.loadingCtrl.create();
     this.cons = this.navParams.get('cons');
     this.data = this.navParams.get('datas');
+    this.device = localStorage.getItem('Device');
+    
     console.log(this.data);
     this._errorService.getData()
     .then(data=>{
@@ -67,47 +71,43 @@ export class PaymentSchedulePage {
     
   }
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
-
-    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
-      .subscribe(
-        (x:any) => {
-          if(x.Error == true) {
-            if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan,'401');
+    this._authService.logout().subscribe(
+      (x:any) => {
+        console.log(x);
+              if(x.Error == true) {
+                  this.showAlert("Warning!", x.Pesan,'');
+                  this.loading.dismiss();                
+              }
+              else {
+                this.loading.dismiss();
+                localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp); 
+                  }    
+              }
+            },
+            (err)=>{
               this.loading.dismiss();
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
+    
+              var errS;
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
+              }
+                this.showAlert("Error!", errS,'');
             }
-            else {
-              this.showAlert("Warning!", x.Pesan,'');
-              this.loading.dismiss();
-              // this.nav.pop();
-            }
-          }
-          else {
-            localStorage.clear();
-            // alert('ok');
-            this.nav.setRoot(WalkthroughPage);
-
-          }
-        },
-        (err)=>{
-          this.loading.dismiss();
-          //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
-          });
-
-          var errS;
-          //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;
-          }else{
-            errS = err;
-          }
-            this.showAlert("Error!", errS,'');
-        }
-      );
-  }
+    );
+   
+    }
   ionViewDidLoad() {
     this.loading.present();
     this.loadData();
@@ -135,7 +135,7 @@ export class PaymentSchedulePage {
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var d = new Date(date);
   
-    return d.getDate().toString()+' '+months[d.getMonth().toString()]+' '+d.getFullYear().toString();
+    return d.getDate().toString()+' '+months[d.getMonth()]+' '+d.getFullYear().toString();
   }
   loadData(){ 
     
@@ -156,7 +156,7 @@ export class PaymentSchedulePage {
         }
         else {
           var data = x.Data;
-          
+          // alert(JSON.stringify(data));
           this.available = true;
           data.forEach(val => {
             var font_color = '';
@@ -166,7 +166,16 @@ export class PaymentSchedulePage {
                       }else{
                         font_color = ' red';
                       }
-            var d = new Date(val.due_date);
+            if(localStorage.getItem('Device')=='android'||localStorage.getItem('Device')=='web'){
+              var d = new Date(val.due_date);
+            }else{
+              // var d = new Date(val.due_date.replace(' ','T'));
+              var t = val.due_date.split(/[- :]/);
+              var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+            }
+            
+            // alert(val.due_date);
+            // alert(d);
             var fulldates = d.getDate().toString()+' '+this.months[d.getMonth().toString()]+' '+d.getFullYear().toString()+' '+this.addZero(d.getHours())+':'+this.addZero(d.getMinutes());
             var dates = this.convertDate(d);
             // console.log(dates);
