@@ -59,7 +59,7 @@ export class MyUnitPage {
     let UserId = localStorage.getItem('UserId');
     this._authService.logout().subscribe(
       (x:any) => {
-        console.log(x);
+        // console.log(x);
               if(x.Error == true) {
                   this.showAlert("Warning!", x.Pesan);
                   this.loading.dismiss();                
@@ -190,7 +190,7 @@ export class MyUnitPage {
                       this.count = cnt;
                       this.available = true;
                       cnt += 1;
-                     console.log(cnt);
+                    //  console.log(cnt);
                       if(now == end){
                         // alert(now +'/'+end);
                         this.loading.dismiss();
@@ -228,7 +228,7 @@ export class MyUnitPage {
                     return;
                 }
               );
-              console.log(now);
+              // console.log(now);
             });
 
             // this.loading.dismiss();
@@ -264,7 +264,7 @@ export class MyUnitPage {
 
   goPayment(data:any) {
     // console.log(data);
-    console.log('edit');
+    // console.log('edit');
     var datas = {
       entity : data.entity_cd,
       project : data.project_no,
