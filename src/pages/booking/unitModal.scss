@@ -14,8 +14,9 @@ payment-method{
     }
     .grid-example {
         // padding: 10px 5px 0px 5px;
-        padding-left: 0px;
-        padding-right: 0px;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-bottom: 3px;
         flex-wrap: wrap;
         .grid-item {
             // padding: 0px 5px 10px;
@@ -36,7 +37,8 @@ payment-method{
                 position: relative;
                 padding-bottom: 100%;
                 height: 40px;
-                background-color: $white-c;
+                // background-color: $white-c;
+                
                 .grid-item-inner {
                     background-color: #fff;
                     border: 10px;
@@ -50,6 +52,7 @@ payment-method{
                     padding-left: 15px;
                     padding-right: 15px;
                     box-shadow: 0 1px 5px -3px #333 !important;
+                    border-radius: 5px;
                     .item-title {
                         margin: 0px;
                         color: $black-c;
