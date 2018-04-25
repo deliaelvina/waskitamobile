@@ -49,30 +49,20 @@ export class WalkthroughPage {
   }
 
   loadPict(){
-    this.http.get(this.url_api + "c_iFrame/getPict") 
+    this.http.get(this.url_api + "c_iFrame/getPict")
     .subscribe((data) => {
       var x = data.json();
-      console.log(data);
-      console.log(x);
-      // this.pict = data;
-      var i = 0;
-      x.forEach(val => {
-        // console.log(val);
-        // this.pict.push({
-        //   'background-image':"'url("+this._sanitize.bypassSecurityTrustResourceUrl(val)+"'"
-        // });
-        console.log(val);
-        // this.pict.push(this._sanitize.bypassSecurityTrustResourceUrl(val));
-        this.pict.push(this._sanitize.bypassSecurityTrustResourceUrl(val));
-      
-  
-        i++;
-        // this.pict[] = this._sanitize.bypassSecurityTrustResourceUrl(val);
-      });
-    //   x.forEach(data, function(val){
-    //     this.pict.push(this._sanitize.bypassSecurityTrustResourceUrl(val));
-    // });
-      console.log(this.pict);
-    }); 
+      if(x.length > 0){
+        var i = 0;
+        x.forEach(val => {
+          this.pict.push(this._sanitize.bypassSecurityTrustResourceUrl(val));
+          i++;
+        });
+      }
+      else {
+        // this._app.getRootNav().setRoot(LoginPage);
+        this.nav.setRoot(LoginPage);
+      }
+    });
   }
 }
