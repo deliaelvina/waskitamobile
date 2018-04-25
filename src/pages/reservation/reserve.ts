@@ -766,7 +766,7 @@ export class ReservationReservePage {
     // let fullNameError = this.reserveForm.get('fullName').hasError('required');
     // let emailError = this.reserveForm.get('email').hasError('pattern');
     // let data = this.reserveForm.value();
-    if(!this.reserveForm.valid){\
+    if(!this.reserveForm.valid){
       this.loading.dismiss();
       let toast = this.toastCtrl.create({
         message: "Your Reservation Data Is Not Valid.",
@@ -870,7 +870,8 @@ export class ReservationReservePage {
             this.loading.dismiss();
           }
           else {
-            alert(x.Pesan);
+            // alert(x.Pesan);
+            this.showAlert("Warning!", x.Pesan,'');
             this.loading.dismiss();
           }
         }

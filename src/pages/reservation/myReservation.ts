@@ -290,7 +290,7 @@ export class MyReservationProjectPage {
   }
 
   getReservation(cons:any) {
-    return this.http.get(this.url_api+"c_reservate/myReservation/" + cons + "/" + localStorage.getItem('UserId') + "/" + '', {headers:this.hd}  );
+    return this.http.get(this.url_api+"c_reservate/myReservation/" + cons + "/" + localStorage.getItem('Name') + "/" + '', {headers:this.hd}  );
   }
 
   goReserve(data:any) {

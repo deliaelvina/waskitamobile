@@ -51,7 +51,7 @@
                         <font color="red">*</font>
                     </ion-label>
                     <!-- <ion-input type="text" formControlName="idNo"></ion-input> -->
-                    <ion-input [readonly]="view" type="text" formControlName="fullName" name="fullName" required></ion-input>
+                    <ion-input [readonly]="view" type="text" formControlName="fullName" name="fullName" required maxlength="60"></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.fullName">
@@ -64,7 +64,7 @@
                 <ion-item>
                     <ion-label floating class="labelnya">{{'MOBILE NUMBER' | translate}}</ion-label>
                     <!-- <ion-input type="text" formControlName="mobile"></ion-input> -->
-                    <ion-input [readonly]="view" type="tel" formControlName="number" name="number" required></ion-input>
+                    <ion-input [readonly]="view" type="tel" formControlName="number" name="number" required maxlength="15"></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.number">

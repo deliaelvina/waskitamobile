@@ -878,7 +878,8 @@ export class BookingReservePage {
             this.loading.dismiss();
           }
           else {
-            alert(x.Pesan);
+            // alert(x.Pesan);
+            this.showAlert("Warning!", x.Pesan,'');
             this.loading.dismiss();
           }
         }
