@@ -525,6 +525,8 @@ export class ReservationReservePage {
           this.pictPost.imgNPWP = data.link_npwp?data.link_npwp:'';
           this.pictPost.imgTF = data.link_bukti_transfer?data.link_bukti_transfer:'';
           this.amt = data.amount;
+          this.data.payment_desc = data.payment_desc;
+          this.data.price = data.price;
           this.loadNats(data.nationality);
           this.loadNupType(data.nup_type);
           this.loading.dismiss();

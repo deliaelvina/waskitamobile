@@ -20,6 +20,7 @@
             </ion-card-title>
             <h2>{{data.projectName}}</h2>
             <h2>{{data.towerName}} | {{data.level_descs}} | {{data.lot}}</h2>
+            <span *ngIf="data.payment_desc && data.price!=0"><h2>{{data.payment_desc}} | {{data.price}}</h2></span>
         </ion-card-content>
 
     </ion-card>
