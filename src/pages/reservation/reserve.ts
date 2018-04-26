@@ -477,7 +477,7 @@ export class ReservationReservePage {
   }
 
   loadData(){
-    this.http.get(this.url_api+"c_reservate/myReservation/" + this.cons + "/" + localStorage.getItem('UserId') + "/" + this.rowID, {headers:this.hd} )
+    this.http.get(this.url_api+"c_reservate/myReservation/" + this.cons + "/" + localStorage.getItem('Name') + "/" + this.rowID, {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
