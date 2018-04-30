@@ -39,7 +39,8 @@ listing-page {
         // margin-top: -10px;
         // margin-bottom: 41px;
         // background-color: #f3f3f3 !important;
-        background-image: url('../assets/images/dashbg.jpg');
+        // background-image: url('../assets/images/dashbg.jpg');
+        background-color: $background-header-dalem;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -107,7 +108,8 @@ listing-page {
             }
         }
         .grid-categories {
-            padding: 0px ($categories-grid-padding/2);
+            // padding: 0px ($categories-grid-padding/2);
+            padding-top: 30px;
             flex-wrap: wrap;
             .category-item {
                 padding: 0px ($categories-grid-padding/2) $categories-grid-padding;
@@ -157,7 +159,7 @@ listing-page {
     width: 30%;
     padding-bottom: 10%;
     margin: 1.66%;
-    background-color: rgba(136, 135, 135, 0.27);
+    background-color: #fff;
     font-size: 1rem;
     line-height: 1.25;
     // background: #212121;
@@ -188,8 +190,10 @@ listing-page {
 
 .textt {
     display: block;
-    margin-bottom: -88%;
-    margin-top: 75%;
+    // margin-bottom: -88%;
+    margin-bottom: -140%;
+    margin-top: 95%;
+    // margin-top: 75%;
     margin-left: auto;
     margin-right: auto;
     vertical-align: bottom;
@@ -199,7 +203,7 @@ listing-page {
     font-size: 8px;
     width: 100%;
     font-size: 3.5vw;
-    color: white;
+    color: black; font-weight: 600
 }
 
 //  ------------- END BASE SQUARE ------------------- //
@@ -208,29 +212,38 @@ listing-page {
     .square {
         float: left;
         width: 30%;
-        padding-bottom: 10%;
+        // padding-bottom: 15%;
+        padding-bottom: 11%;
         margin: 1.66%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
         background: nb-theme(color-bg);
         color: #ffffff;
         color: nb-theme(color-fg-heading);
-        margin-bottom: 1.5rem;
+        margin-bottom: 3rem;
         border-radius: 0.5rem;
         box-shadow: 0 3px 5px -3px #333;
         font-weight: 400;
         cursor: pointer;
         border: 2px solid#c1c1c0;
-        border-radius: 5px;
+        border-radius: 20px;
     }
     .contentss {
-        height: 80%;
+        // height: 80%;
+        // width: auto;
+        // display: block;
+        // margin-bottom: -60%;
+        // margin-top: 10%;
+        height: 100%;
         width: auto;
         display: block;
-        margin-bottom: -60%;
-        margin-top: 10%;
+        // margin-bottom: -60%;
+        // margin-top: 10%;
+        margin-bottom: -70%;
+        margin-top: 20%;
+
         margin-left: auto;
         margin-right: auto;
         border-top-left-radius: nb-theme(card-border-radius);
@@ -238,8 +251,11 @@ listing-page {
     }
     .textt {
         display: block;
-        margin-bottom: -120%;
-        margin-top: 75%;
+        // margin-bottom: -120%;
+        // margin-top: 75%;
+    //    
+    margin-bottom: -150%;
+    margin-top: 95%;
         margin-left: auto;
         margin-right: auto;
         vertical-align: bottom;
@@ -250,7 +266,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: white;
+        color: white; font-weight: 600
     }
 }
 
@@ -260,27 +276,30 @@ listing-page {
         width: 30%;
         padding-bottom: 15%;
         margin: 1.66%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
         background: nb-theme(color-bg);
         color: #ffffff;
         color: nb-theme(color-fg-heading);
-        margin-bottom: 1.5rem;
+        margin-bottom: 3rem;
         border-radius: 0.5rem;
         box-shadow: 0 3px 5px -3px #333;
         font-weight: 400;
         cursor: pointer;
         border: 2px solid#c1c1c0;
-        border-radius: 5px;
+        // border-radius: 5px;
+        border-radius: 20px;
     }
     .contentss {
         height: 120%;
         width: auto;
         display: block;
+        // margin-bottom: -60%;
+        // margin-top: 10%;
         margin-bottom: -60%;
-        margin-top: 10%;
+        margin-top: 20%;
         margin-left: auto;
         margin-right: auto;
         border-top-left-radius: nb-theme(card-border-radius);
@@ -289,20 +308,23 @@ listing-page {
     .textt {
         display: block;
         // margin-bottom: -88%;
-        margin-bottom: -120%;
-        margin-top: 75%;
+        // margin-bottom: -120%;
+        // margin-top: 75%;
+        margin-bottom: -140%;
+    // margin-top: 93%;
+    margin-top: 90%;
         margin-left: auto;
         margin-right: auto;
         vertical-align: bottom;
         text-align: center;
         // font-family: 'Exo-Regular' !important;
-        font-family: 'Exo-SemiBold' !important;
+        // // font-family: 'Exo-SemiBold' !important;
         // font-weight: nb-theme(font-weight-bold);
         font-size: 8px;
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: white;
+        color: white; font-weight: 600
     }
 }
 
@@ -311,29 +333,30 @@ listing-page {
         float: left;
         width: 30%;
         // width: 21%;
-        padding-bottom: 18%;
+        // padding-bottom: 18%;
+        padding-bottom: 50px;
         margin: 1.66%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
         background: nb-theme(color-bg);
         color: #ffffff;
         color: nb-theme(color-fg-heading);
-        margin-bottom: 1.5rem;
+        margin-bottom: 3rem;
         border-radius: 0.5rem;
         box-shadow: 0 3px 5px -3px #333;
         font-weight: 400;
         cursor: pointer;
         border: 2px solid#c1c1c0;
-        border-radius: 5px;
+        border-radius: 20px;
     }
     .contentss {
-        height: 160%;
+        height: 100%;
         width: auto;
         display: block;
         margin-bottom: -60%;
-        margin-top: 10%;
+        // margin-top: 10%;
         margin-left: auto;
         margin-right: auto;
         border-top-left-radius: nb-theme(card-border-radius);
@@ -342,8 +365,10 @@ listing-page {
     .textt {
         display: block;
         // margin-bottom: -88%;
+        // margin-top: 90%;
+        margin-top: 85%;
         margin-bottom: -120%;
-        margin-top: 75%;
+        // margin-top: 75%;
         margin-left: auto;
         margin-right: auto;
         vertical-align: bottom;
@@ -354,7 +379,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: white;
+        color: white; font-weight: 600
     }
 }
 
@@ -366,7 +391,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 10%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -379,7 +404,7 @@ listing-page {
         font-weight: 400;
         cursor: pointer;
         border: 2px solid#c1c1c0;
-        border-radius: 5px;
+        border-radius: 20px;
     }
     .contentss {
         height: 160%;
@@ -407,7 +432,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -419,7 +444,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 13%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -460,7 +485,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -474,7 +499,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 8%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -515,7 +540,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -527,7 +552,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 8%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -568,7 +593,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -580,7 +605,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 12%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -621,7 +646,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -633,7 +658,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 6%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -674,7 +699,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -686,7 +711,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 8%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -727,7 +752,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -739,7 +764,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 10%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -780,7 +805,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -792,7 +817,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 13%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -833,7 +858,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -845,7 +870,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 13%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -886,7 +911,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
@@ -898,7 +923,7 @@ listing-page {
         // padding-bottom: 18%;
         padding-bottom: 10%;
         margin: 1.3%;
-        background-color: rgba(136, 135, 135, 0.27);
+        background-color: #fff;
         font-size: 1rem;
         line-height: 1.25;
         // background: #212121;
@@ -939,7 +964,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.5vw;
-        color: white;
+        color: black; font-weight: 600
     }
 }
 
