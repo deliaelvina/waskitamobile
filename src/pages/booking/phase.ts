@@ -69,7 +69,15 @@ export class BookingPhasePage {
     }
     else {
       this.agent_cd = localStorage.getItem('AgentCd');
-      this.getAgent();
+      // console.log(this.agent_cd);
+
+      if(this.agent_cd != null && this.agent_cd != '' && this.agent_cd != 'null'){
+        this.getAgent();
+      }
+      else {
+        this.data.agentGroupCd = '';
+        this.data.agentTypeCd = '';
+      }
     }
 
     this.loading = this.loadingCtrl.create();

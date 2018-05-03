@@ -67,14 +67,22 @@ export class ReservationPhasePage {
     // console.log(projeknama);
 
     this.group = localStorage.getItem('Group');
-    console.log(this.group);
+    // console.log(this.group);
     if(this.group == 'Guest'){
       this.data.agentGroupCd = '';
       this.data.agentTypeCd = '';
     }
     else {
       this.agent_cd = localStorage.getItem('AgentCd');
-      this.getAgent();
+      // console.log(this.agent_cd);
+
+      if(this.agent_cd != null && this.agent_cd != '' && this.agent_cd != 'null'){
+        this.getAgent();
+      }
+      else {
+        this.data.agentGroupCd = '';
+        this.data.agentTypeCd = '';
+      }
     }
 
     this.loading = this.loadingCtrl.create();
