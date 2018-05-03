@@ -20,7 +20,6 @@
             </ion-card-title>
             <h2>{{data.projectName}}</h2>
             <h2>{{data.towerName}} | {{data.level_descs}} | {{data.lot}}</h2>
-            <span *ngIf="data.payment_desc && data.price!=0"><h2>{{data.payment_desc}} | {{data.price}}</h2></span>
         </ion-card-content>
 
     </ion-card>
@@ -36,7 +35,7 @@
                     <!-- <ion-input type="hidden" formControlName="lotNo" name="lotNo" readonly></ion-input> -->
                 </ion-item>
                 <div *ngIf="edit && dates" class="validation-errors" style="margin-left:17px;position: relative;top: -21px;margin-bottom: -19px;">
-                  <font color="red">{{dates}}</font>
+                    <font color="red">{{dates}}</font>
                 </div>
                 <!-- <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.username">
@@ -51,7 +50,7 @@
                         <font color="red">*</font>
                     </ion-label>
                     <!-- <ion-input type="text" formControlName="idNo"></ion-input> -->
-                    <ion-input [readonly]="view" type="text" formControlName="fullName" name="fullName" required maxlength="60"></ion-input>
+                    <ion-input [readonly]="view" type="text" formControlName="fullName" name="fullName" required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.fullName">
@@ -64,7 +63,7 @@
                 <ion-item>
                     <ion-label floating class="labelnya">{{'MOBILE NUMBER' | translate}}</ion-label>
                     <!-- <ion-input type="text" formControlName="mobile"></ion-input> -->
-                    <ion-input [readonly]="view" type="tel" formControlName="number" name="number" required maxlength="15"></ion-input>
+                    <ion-input [readonly]="view" type="tel" formControlName="number" name="number" required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.number">
@@ -92,18 +91,18 @@
                     <!-- <ion-input type="text" formControlName="idNo"></ion-input> -->
                     <ion-input [readonly]="view" type="text" formControlName="idNo" name="idNo"></ion-input>
                 </ion-item>
-                <div class="validation-errors">
+                <!-- <div class="validation-errors">
                     <ng-container *ngFor="let validation of validation_messages.idNo">
                         <div class="error-message" *ngIf="reserveForm.get('idNo').hasError(validation.type)">
                             {{ validation.message }}
                         </div>
                     </ng-container>
-                </div>
+                </div> -->
 
                 <ion-item>
                     <ion-label floating class="labelnya">{{'NATIONALITY' | translate}}</ion-label>
                     <!-- <ion-select formControlName="nationality" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}"> -->
-                    <ion-select [disable]="view" (ionChange)="optionSelected('national');" formControlName="national" name="national" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                    <ion-select [disabled]="view" (ionChange)="optionSelected('national');" formControlName="national" name="national" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
                         <ion-option *ngFor="let nat of nats" [value]="nat">{{ nat.descs }}</ion-option>
                     </ion-select>
                 </ion-item>
@@ -174,7 +173,7 @@
                 <ion-item>
                     <ion-label floating class="labelnya">{{'RESERVATION TYPE' | translate}}</ion-label>
                     <!-- <ion-select formControlName="country" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}"> -->
-                    <ion-select [disable]="view" (ionChange)="optionSelected();" formControlName="reserveType" name="reserveType" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}" required>
+                    <ion-select [disabled]="view" (ionChange)="optionSelected();" formControlName="reserveType" name="reserveType" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}" required>
                         <ion-option *ngFor="let nup of NUP_Type" [value]="nup">{{nup.prefix}} - {{ nup.descs }}</ion-option>
                     </ion-select>
                 </ion-item>
@@ -240,7 +239,7 @@
             </section>
 
             <section class="form-section" *ngIf="!view">
-                <button ion-button block class="form-action-button" type="submit" style="background-color: #1f3e80">Confirm</button>
+                <button ion-button block class="form-action-button" type="submit" style="background-color: #ff720d">Confirm</button>
             </section>
         </form>
         <br><br>

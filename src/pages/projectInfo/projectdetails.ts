@@ -71,6 +71,8 @@ export class ProjectDetailsPage {
   amenitiesH:string='-';
   url:any;
   storageDirectory: string = '';
+  frontData:any;
+  where:any;
 
   constructor(
     public nav: NavController,
@@ -90,12 +92,27 @@ export class ProjectDetailsPage {
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService
   ) {
-    this.project = navParams.get('project');
-    // console.log(this.project);
-    this.pro.projectName = this.project.descs;
-    this.pro.entity = this.project.entity;
-    this.pro.projectNo = this.project.project;
-    this.pro.cons = this.project.cons_project;
+    this.frontData = JSON.parse(localStorage.getItem('menus'));
+    if(this.frontData){
+      // alert('a');
+      this.where = this.cons + "/" + this.frontData.entity+ "/" + this.frontData.projectNo;
+      // this.project = this.frontData;
+      this.pro.projectName = this.frontData.projectName;
+      this.pro.entity = this.frontData.entity;
+      this.pro.projectNo = this.frontData.projectNo;
+      this.pro.cons = this.frontData.cons;
+    }
+    else {
+      // alert('b');
+      this.project = navParams.get('project');
+      // console.log(this.project);
+      this.where = this.cons + "/" + this.project.entity+ "/" + this.project.project;
+      this.pro.projectName = this.project.descs;
+      this.pro.entity = this.project.entity;
+      this.pro.projectNo = this.project.project;
+      this.pro.cons = this.project.cons_project;
+    }
+
     this.display ="I";
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
@@ -138,8 +155,12 @@ export class ProjectDetailsPage {
 
   }
 
-  ionViewDidLoad(){
+  ionViewWillLeave(){
+    localStorage.removeItem('cons_project');
+  }
 
+  ionViewDidLeave(){
+    localStorage.removeItem('cons_project');
   }
 
   presentImage(myImage,from:any) {
@@ -241,7 +262,7 @@ export class ProjectDetailsPage {
   loadData(){
     // console.log(this.project);
     this.loading.present().then(() => {
-      this.http.get(this.url_api+"c_reservation/getDataDetails/" + this.cons + "/" + this.project.entity+ "/" + this.project.project, {headers:this.hd} )
+      this.http.get(this.url_api+"c_reservation/getDataDetails/" + this.where , {headers:this.hd} )
       .subscribe(
         (x:any) => {
           if(x.Error == true) {
@@ -339,7 +360,7 @@ export class ProjectDetailsPage {
         }
       );//end of getdata
 
-      this.http.get(this.url_api+"c_reservation/getGallery/" + this.cons + "/" + this.project.entity+ "/" + this.project.project, {headers:this.hd} )
+      this.http.get(this.url_api+"c_reservation/getGallery/" + this.where, {headers:this.hd} )
       .subscribe(
         (x:any) => {
           if(x.Error == true) {

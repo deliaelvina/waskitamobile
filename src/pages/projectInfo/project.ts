@@ -119,6 +119,7 @@ export class ProjectPage {
                 entity: val.entity_cd,
                 project: val.project_no,
                 descs: val.project_descs,
+                caption:val.caption_address,
                 pic_path: val.picture_path ,
                 url_path: val.http_add,
                 cons_project:val.db_profile
@@ -147,6 +148,7 @@ export class ProjectPage {
             // this.nav.pop();
         }
       );
+      console.log(this.projects);
   }
 
   goToProfile(event, item) {

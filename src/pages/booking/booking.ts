@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl, MinLengthValidator } from '@angular/forms';
-import { NavController, NavParams, LoadingController, Platform, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, Platform, ToastController, AlertController, App } from 'ionic-angular';
 import { UsernameValidator } from '../../components/validators/username.validator';
 
 import 'rxjs/Rx';
@@ -17,6 +17,8 @@ import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { CameraPage } from '../camera/camera';
 import { FileUploadOptions, FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
+import { AuthService } from '../../auth/auth.service';
+import { MyApp } from '../../app/app.component';
 
 declare var cordova: any;
 
@@ -83,6 +85,7 @@ export class BookingReservePage {
     payment_cd:null,
     amt:null
   };
+  device:string;
 
   constructor(
     public nav: NavController,
@@ -98,7 +101,11 @@ export class BookingReservePage {
     private _errorService: ErrorhandlerService,
     public camera: Camera,
     private fileTf:FileTransfer,
+    private _app: App,
+    private _authService: AuthService,
   ) {
+    this.device = localStorage.getItem('Device');
+
     this.main_page = { component: ListingPage };
     // this.main_page = { component: TabsNavigationPage };
     this.loading = this.loadingCtrl.create();
@@ -135,7 +142,7 @@ export class BookingReservePage {
       this.cons = this.navParams.get('cons');
       this.data = this.navParams.get('datas');
       this.edit = true;
-      // console.log(this.data);
+      console.log(this.data);
       this.loadData();
     }
     else if (this.act == 'view'){
@@ -172,9 +179,9 @@ export class BookingReservePage {
     }
 
     this.pict = [
-      {for:'id', img:'', name:''},
-      {for:'npwp', img:'', name:''},
-      {for:'tf', img:'', name:''},
+      {for:'id', img:'', name:'', img64:''},
+      {for:'npwp', img:'', name:'', img64:''},
+      {for:'tf', img:'', name:'', img64:''},
     ];
 
     this.pictPost = {
@@ -259,46 +266,44 @@ export class BookingReservePage {
   }
 
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
-
-    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
-      .subscribe(
-        (x:any) => {
-          if(x.Error == true) {
-            if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan,'');
+    this._authService.logout().subscribe(
+      (x:any) => {
+        console.log(x);
+              if(x.Error == true) {
+                  this.showAlert("Warning!", x.Pesan,'');
+                  this.loading.dismiss();
+              }
+              else {
+                this.loading.dismiss();
+                localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp);
+                  }
+              }
+            },
+            (err)=>{
               this.loading.dismiss();
-            }
-            else {
-              this.showAlert("Warning!", x.Pesan,'');
-              this.loading.dismiss();
-              // this.nav.pop();
-            }
-          }
-          else {
-            localStorage.clear();
-            // alert('ok');
-            this.nav.setRoot(WalkthroughPage);
-          }
-        },
-        (err)=>{
-          this.loading.dismiss();
-          //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
-          });
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
 
-          var errS;
-          //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;
-          }else{
-            errS = err;
-          }
-            this.showAlert("Error!", errS,'');
-        }
-      );
+              var errS;
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
+              }
+                this.showAlert("Error!", errS,'');
+            }
+    );
+
   }
+
 
   loadNats(parm:any) {
     this.http.get(this.url_api+"c_booking/getNationality/" + this.cons , {headers:this.hd} )
@@ -454,6 +459,9 @@ export class BookingReservePage {
       if(z == 'id'){
         this.imgID = images.imgHere;
         this.pict[0].img = images.imgHere;
+        if(this.platform.is('ios')){
+          this.pict[0].img64 = images.base64img;
+        }
         this.pict[0].name = 'reservation_ID_'+rand+'.jpg';
         this.pictPost.imgID = this.url_api+'images/reservation/reservation_ID_'+rand+'.jpg';
         // this.pict[0].img64 = images.base64img;
@@ -461,6 +469,9 @@ export class BookingReservePage {
       else if(z == 'npwp'){
         this.imgNPWP = images.imgHere;
         this.pict[1].img = images.imgHere;
+        if(this.platform.is('ios')){
+          this.pict[1].img64 = images.base64img;
+        }
         this.pict[1].name = 'reservation_NPWP_'+rand+'.jpg';
         this.pictPost.imgNPWP = this.url_api+'images/reservation/reservation_NPWP_'+rand+'.jpg';
         // this.pict[1].img64 = images.base64img;
@@ -468,6 +479,9 @@ export class BookingReservePage {
       else if(z == 'tf'){
         this.imgTF = images.imgHere;
         this.pict[2].img = images.imgHere;
+        if(this.platform.is('ios')){
+          this.pict[2].img64 = images.base64img;
+        }
         this.pict[2].name = 'reservation_TF_'+rand+'.jpg';
         this.pictPost.imgTF = this.url_api+'images/reservation/reservation_TF_'+rand+'.jpg';
         // this.pict[2].img64 = images.base64img;
@@ -485,7 +499,7 @@ export class BookingReservePage {
   }
 
   loadData(){
-    this.http.get(this.url_api+"c_booking/myReservation/" + this.cons + "/" + localStorage.getItem('UserId') + "/" + this.rowID, {headers:this.hd} )
+    this.http.get(this.url_api+"c_booking/myReservation/" + this.cons + "/" + localStorage.getItem('Name') + "/" + this.rowID, {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
@@ -731,7 +745,7 @@ export class BookingReservePage {
     else if(types){
       this.loading.dismiss();
       let toast = this.toastCtrl.create({
-        message: "Reservation Type is Required",
+        message: "Booking Type is Required",
         duration: 3000,
         position: 'top'
       });
@@ -777,7 +791,7 @@ export class BookingReservePage {
     if(!this.reserveForm.valid){
       this.loading.dismiss();
       let toast = this.toastCtrl.create({
-        message: "Your Reservation Data Is Not Valid.",
+        message: "Your Booking Data Is Not Valid.",
         duration: 1000,
         position: 'top'
       });
@@ -796,47 +810,52 @@ export class BookingReservePage {
         this.pict.forEach(img => {
           cnt ++;
           // if(img.img && img.img != ''){
-            this.upload(img.for, img.img, img.name)
-            .then((datas) => {
-              var x = JSON.parse(datas.response);
-              if(x.Error == true) {
-                if(x.Status == 401){
-                  // this.showAlert("Warning!", x.Pesan,'');
-                  this.logoutAPi();
-                  this.loading.dismiss();
+            if(this.platform.is('ios')){
+              this.upload(img.for, img.img64, img.name)
+              .then((datas) => {
+                var x = JSON.parse(datas.response);
+                if(x.Error == true) {
+                  if(x.Status == 401){
+                    // this.showAlert("Warning!", x.Pesan,'');
+                    this.logoutAPi();
+                    this.loading.dismiss();
+                  }
+                  else {
+                    // alert(x.Pesan);
+                    this.showAlert("Warning!", x.Pesan,'');
+                    this.loading.dismiss();
+                  }
                 }
                 else {
-                  // alert(x.Pesan);
-                  this.showAlert("Warning!", x.Pesan,'');
-                  this.loading.dismiss();
-                }
-              }
-              else {
-                //Success
-                // if(img.for == 'id'){
-                //   // alert('id => '+JSON.stringify(x));
-                //   this.pictPost.imgID = x.Data;
-                // }
-                // else if(img.for == 'npwp'){
-                //   // alert('npwp => '+JSON.stringify(x));
-                //   this.pictPost.imgNPWP = x.Data;
-                // }
-                // else if(img.for == 'tf'){
-                //   // alert('tf => '+JSON.stringify(x));
-                //   this.pictPost.imgTF = x.Data;
-                // }
 
-              }
-              }, (err) => {
-                // this.loading.dismiss();
-                // this.showAlert('Failed!', JSON.stringify(err),'');
-                // alert('e => '+JSON.stringify(err));
-                // this.showAlert('Warning!', 'Upload '+img.for.toUpperCase()+' Failed','');
-                // return true;
-              }
-            )
-          // }
-          // cnt += 1;
+                }
+                }, (err) => {
+                }
+              )
+            }
+            else {
+              this.upload(img.for, img.img, img.name)
+              .then((datas) => {
+                var x = JSON.parse(datas.response);
+                if(x.Error == true) {
+                  if(x.Status == 401){
+                    // this.showAlert("Warning!", x.Pesan,'');
+                    this.logoutAPi();
+                    this.loading.dismiss();
+                  }
+                  else {
+                    // alert(x.Pesan);
+                    this.showAlert("Warning!", x.Pesan,'');
+                    this.loading.dismiss();
+                  }
+                }
+                else {
+
+                }
+                }, (err) => {
+                }
+              )
+            }
         });
       }
 

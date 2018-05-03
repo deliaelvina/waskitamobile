@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ViewController, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ViewController, ToastController, AlertController, Platform, App } from 'ionic-angular';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,6 +12,8 @@ import { BookingReservePage } from './booking';
 import { File } from '@ionic-native/file';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
+import { AuthService } from '../../auth/auth.service';
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'paymentDtl-page',
@@ -44,6 +46,7 @@ export class BookingPaymentDetailPage {
 
   av:boolean = true;
   plans:any[] = [];
+  device:string;
 
   constructor(
     public nav: NavController,
@@ -58,8 +61,13 @@ export class BookingPaymentDetailPage {
     private _errorService: ErrorhandlerService,
     public imgVw: ImageViewerController,
     private file: File,
-    private photoViewer: PhotoViewer
+    private photoViewer: PhotoViewer,
+    private _app: App,
+    private _authService: AuthService,
+    public platform: Platform,
   ) {
+    this.device = localStorage.getItem('Device');
+
     this.cons = this.data.cons;
     this.viewImg = imgVw;
     this.loading = this.loadingCtrl.create();
@@ -83,45 +91,42 @@ export class BookingPaymentDetailPage {
   }
 
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
-
-    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
-      .subscribe(
-        (x:any) => {
-          if(x.Error == true) {
-            if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan);
+    this._authService.logout().subscribe(
+      (x:any) => {
+        // console.log(x);
+              if(x.Error == true) {
+                  this.showAlert("Warning!", x.Pesan);
+                  this.loading.dismiss();
+              }
+              else {
+                this.loading.dismiss();
+                localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp);
+                  }
+              }
+            },
+            (err)=>{
               this.loading.dismiss();
-            }
-            else {
-              this.showAlert("Warning!", x.Pesan);
-              this.loading.dismiss();
-              // this.nav.pop();
-            }
-          }
-          else {
-            localStorage.clear();
-            // alert('ok');
-            this.nav.setRoot(WalkthroughPage);
-          }
-        },
-        (err)=>{
-          this.loading.dismiss();
-          //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
-          });
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
 
-          var errS;
-          //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;
-          }else{
-            errS = err;
-          }
-            this.showAlert("Error!", errS);
-        }
-      );
+              var errS;
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
+              }
+                this.showAlert("Error!", errS);
+            }
+    );
+
   }
 
   ionViewDidLoad() {
@@ -132,14 +137,14 @@ export class BookingPaymentDetailPage {
 
     this.loading.present();
     this.loadData();
-    console.log(this.details);
+    // console.log(this.details);
   }
 
   presentImage(floorImg) {
     // alert(floorImg);
     if(floorImg.search('assets/images') == -1){
       //image from API
-      floorImg = floorImg.replace(' ', '%20');
+      floorImg = floorImg.replace(/ /gi, '%20');
     }
     else {
       //image from LOCAL
@@ -263,7 +268,7 @@ export class BookingPaymentDetailPage {
 
           var datas = x.Data;
 
-          console.log(datas);
+          // console.log(datas);
           datas.forEach(val => {
             var x = val.descs.substring(val.descs.length,val.descs.length-1);
             var at = '';
@@ -301,7 +306,7 @@ export class BookingPaymentDetailPage {
           // });
 
           // toast.onDidDismiss(() => {
-          //   console.log('Dismissed toast');
+            // console.log('Dismissed toast');
           // });
           // toast.present();
           this.showAlert("Error!", errS);

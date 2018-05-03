@@ -1,11 +1,14 @@
 <ion-header>
     <ion-navbar>
-        <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-        <ion-title>
-            <span>Choose Unit</span>
-        </ion-title>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+          <span>Choose Unit</span>
+      </ion-title>
+      <button class="checkmark" (click)="home()">
+        <span style="font-size:1.5rem;vertical-align: middle;color:#fff">Home</span>
+      </button>
     </ion-navbar>
 </ion-header>
 
@@ -39,24 +42,6 @@
                 </ion-col>
             </ion-row>
         </ng-template>
-
-        <!-- <ion-row class="grid-example" *ngIf="av; else na">
-            <ion-col width-30 class="grid-item" *ngFor="let item of units" (click)="goToUnitInfo(item)">
-                <div class="grid-item-wrapper">
-                    <div class="grid-item-inner multi-line" [ngStyle]="item.style">
-                        <h2 class="item-title"> {{item.lot}} </h2>
-                        <br>
-                        <p *ngIf="item.studios;then s;else b"></p>
-                        <ng-template #s>
-                            <h4 class="item-title">STUDIO</h4>
-                        </ng-template>
-                        <ng-template #b>
-                            <h4 class="item-title"><img src="./assets/images/bed.png">: {{item.bed}} | <img src="./assets/images/bathtub.png"> : {{item.bath}}</h4>
-                        </ng-template>
-                    </div>
-                </div>
-            </ion-col>
-        </ion-row> -->
         <div class="row-kotak" *ngIf="av; else na">
             <div class="square" *ngFor="let item of units" (click)="goToUnitInfo(item)" [ngStyle]="item.style">
                 <img class="contentss">
