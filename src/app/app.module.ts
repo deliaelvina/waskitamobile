@@ -22,8 +22,8 @@ import { ProjectPage } from '../pages/projectInfo/project';
 import { ProjectDetailsPage } from '../pages/projectInfo/projectdetails';
 
 //download
-import { ProjectDownloadPage } from "../pages/download/project";
-import { DownloadPage } from "../pages/download/download";
+// import { ProjectDownloadPage } from "../pages/download/project";
+// import { DownloadPage } from "../pages/download/download";
 
 import { NewsPage } from '../pages/NewsAndPromo/news';
 import { PromoPage } from '../pages/NewsAndPromo/promo';
@@ -54,7 +54,7 @@ import { PaymentSchedulePage } from '../pages/MyUnit/payment';
 import { UploadBuktiPage } from '../pages/MyUnit/uploadbukti';
 import { SimulasiPage } from '../pages/simulasi/simulasi';
 //unit enquiry
-import { UnitEnquiryPage } from '../pages/unit-enquiry/unit-enquiry';
+// import { UnitEnquiryPage } from '../pages/unit-enquiry/unit-enquiry';
 //Product Info
 // import { ProductInfoPage } from '../pages/productInfo/productInfo';
 import { UnitTypePage } from '../pages/productInfo/unitType';
@@ -181,7 +181,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import { importExpr } from '@angular/compiler/src/output/output_ast';
-import { PipeModule } from '../tools/pipe.module';
+// import { PipeModule } from '../tools/pipe.module';
 
 
 //unit filter
@@ -203,8 +203,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProjectPage,
     ProjectDetailsPage,
     CameraPage,
-    ProjectDownloadPage,
-    DownloadPage,
+    // ProjectDownloadPage,
+    // DownloadPage,
 
     //reservation
     ReservationProjectPage,
@@ -230,7 +230,7 @@ export function createTranslateLoader(http: HttpClient) {
     UploadBuktiPage,
     SimulasiPage,
     //unit enquiry
-    UnitEnquiryPage,
+    // UnitEnquiryPage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -343,7 +343,7 @@ export function createTranslateLoader(http: HttpClient) {
     AngularFireAuthModule,
 		VideoPlayerModule,
     ValidatorsModule,
-    PipeModule
+    // PipeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -355,8 +355,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProjectPage,
     ProjectDetailsPage,
     CameraPage,
-    ProjectDownloadPage,
-    DownloadPage,
+    // ProjectDownloadPage,
+    // DownloadPage,
 
     //Reservation
     ReservationProjectPage,
@@ -382,7 +382,7 @@ export function createTranslateLoader(http: HttpClient) {
     PaymentSchedulePage,
     UploadBuktiPage,
     //unit enquiry
-    UnitEnquiryPage,
+    // UnitEnquiryPage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
