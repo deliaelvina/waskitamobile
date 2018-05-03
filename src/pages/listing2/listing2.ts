@@ -9,8 +9,8 @@ import { PromoPage } from '../NewsAndPromo/promo';
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { ListingModel } from './listing.model';
-import { ListingService } from './listing.service';
+import { Listing2Model } from './listing2.model';
+import { Listing2Service } from './listing2.service';
 import { LoginPage } from '../login/login';
 import { ProductProjectPage } from '../productInfo/project';
 import { ContactPage } from '../productInfo/contact/contact';
@@ -25,14 +25,15 @@ import { MyUnitPage } from '../MyUnit/myUnit';
 import { SimulasiPage } from '../simulasi/simulasi';
 import { MyApp } from '../../app/app.component';
 import { AuthService } from '../../auth/auth.service';
-import { ListingProjectPage } from './project';
-// import { ProjectDownloadPage } from '../download/project';
+import { ProjectDetailsPage } from '../projectInfo/projectdetails';
+import { ProductPhasePage } from '../productInfo/phase';
+import { BookingPhasePage } from '../booking/phase';
 
 @Component({
-  selector: 'listing-page',
-  templateUrl: 'listing.html',
+  selector: 'newlisting2-pages',
+  templateUrl: 'listing2.html',
 })
-export class ListingPage {
+export class Listing2Page {
   // listing: ListingModel = new ListingModel();
   loading: any;
   picturee = {
@@ -54,9 +55,11 @@ export class ListingPage {
   ErrorList:any;
   url_api = environment.Url_API;
 
+  frontData : any;
+
   constructor(
     public nav: NavController,
-    public listingService: ListingService,
+    public listingService: Listing2Service,
     public loadingCtrl: LoadingController,
     public camera: Camera,
     public alertCtrl: AlertController,
@@ -67,6 +70,41 @@ export class ListingPage {
     private _app: App,
     private _authService: AuthService,
   ) {
+    this.frontData = JSON.parse(localStorage.getItem('menus'));
+    this.dashMenu = [
+      {
+        image : "./assets/images/dashPict/projectinfo.png",
+        title : "Product Info",
+        link : "ProjectDetailsPage"
+      },
+      {
+        image : "./assets/images/dashPict/search.png",
+        title : "Find Unit & Price",
+        link : "ProductPhasePage"
+      },
+      
+      {
+        image : "./assets/images/dashPict/download.png",
+        title : "Download",
+        link : ""
+      },
+      {
+        image : "./assets/images/dashPict/promo.png",
+        title : "Promo",
+        link : "PromoPage"
+      },
+      {
+        image : "./assets/images/dashPict/news.png",
+        title : "News",
+        link : "NewsPage"
+      },
+      {
+        image : "./assets/images/dashPict/calculator.png",
+        title : "Calculator KPA/R",
+        link : "SimulasiPage"
+      }
+    ];
+
     platform.ready().then((source) => {
       if (this.platform.is('android')) {
         localStorage.setItem('Device', 'android');
@@ -84,60 +122,47 @@ export class ListingPage {
       // alert(source);
     });
     // this.initDash();
-    this.link['MyUnitPage'] = MyUnitPage;
+    // this.link['MyUnitPage'] = MyUnitPage;
     this.link['SimulasiPage'] = SimulasiPage;
-    this.link['ProjectPage'] = ProjectPage;
-    this.link['ReservationProjectPage'] = ReservationProjectPage;
+    this.link['ProjectDetailsPage'] = ProjectDetailsPage; //kirim localstorage cons
+    // this.link['ReservationProjectPage'] = ReservationProjectPage;
     this.link['NewsPage'] = NewsPage;
     this.link['PromoPage'] = PromoPage;
-    this.link['ProductProjectPage'] = ProductProjectPage;
-    this.link['MyReservationProjectPage'] = MyReservationProjectPage;
-    this.link['BookingPage'] = BookingPage;
+    this.link['ProductPhasePage'] = ProductPhasePage; //kirim param menus
+    // this.link['MyReservationProjectPage'] = MyReservationProjectPage;
+    this.link['BookingPhasePage'] = BookingPhasePage; //kirim locastorage banyak
     this.loading = this.loadingCtrl.create();
   }
 
   // initDash() {
   ionViewDidLoad() {
-    this.loading.present();
-    var pict = '';
-    var menu = JSON.parse(localStorage.getItem("MenuDash"));
-    // this.banner_title = localStorage.getItem("UserId");
-    this.banner_title = localStorage.getItem("Name");
-    menu.forEach(data => {
-      pict = 'default.png';
-      if(data.picture != '' && data.picture != null) {
-        pict = data.picture;
-      }
-      this.dashMenu.push({
-        image : "./assets/images/dashPict/"+pict,
-        title : data.Title,
-        link : data.URL_angular,
-      });
-    });
-
+    // localStorage.removeItem('menus');
+    // var group = localStorage.getItem('Group');
+    // this.loading.present();
+    // if(group != 'Guest' && group != 'INHOUSE'){
+    //   this.dashMenu.push({
+    //     image : "./assets/images/dashPict/default.png",
+    //     title : "Booking",
+    //     link : "BookingPhasePage"
+    //   });
+    // }
     // console.log(this.dashMenu);
-    this.loading.dismiss();
-  }
-
-  ionViewDidEnter(){
-    localStorage.removeItem('menus');
-    localStorage.removeItem('data');
+    // this.loading.dismiss();
   }
 
   ionViewWillEnter(){
-    localStorage.removeItem('menus');
-    localStorage.removeItem('data');
+    // localStorage.removeItem('menus');
     this.banner_title = localStorage.getItem("Name");
   }
 
   ionViewWillLeave(){
-    localStorage.removeItem('menus');
-    localStorage.removeItem('data');
+    // localStorage.removeItem('menus');
+    localStorage.removeItem('cons_project');
   }
 
   ionViewDidLeave(){
-    localStorage.removeItem('menus');
-    localStorage.removeItem('data');
+    // localStorage.removeItem('menus');
+    localStorage.removeItem('cons_project');
   }
 
   logout() {
@@ -203,22 +228,60 @@ export class ListingPage {
     );
   }
 
-  goToFeed(category: any) {
-    // console.log(category);
-    let a = this.link[category.link];
-
-    this.nav.push(a, { category: category, user: localStorage.getItem("UserId") });
+  goToFeed(link: any) {
+    if(link == "ProjectDetailsPage") {
+      this.goProjectInfo();
+    }
+    else if(link == "ProductPhasePage") {
+      this.goProduct();
+    }
+    else if(link == "BookingPhasePage") {
+      this.goBooking();
+    }
+    else {
+      this.nav.push(this.link[link], { user: localStorage.getItem("UserId") });
+    }
   }
 
-  goToTest(){
-    // alert('a');
-    this.nav.push(ListingProjectPage, { user: localStorage.getItem("UserId") });
+  goProjectInfo(){
+    localStorage.setItem('cons_project',this.frontData.cons);
+    this.nav.push(ProjectDetailsPage,{user: localStorage.getItem("UserId")});
   }
 
-  goToDownload(){
-    // this.nav.push(ProjectDownloadPage, { user: localStorage.getItem("UserId") });
+  goBooking(){
+    var data = {
+      cons : this.frontData.cons,
+      project : this.frontData.projectNo,
+      entity : this.frontData.entity,
+      projectName : this.frontData.projectName,
+      towerCd : '',
+      towerName : '',
+      level : '',
+      level_descs : '',
+      lot : '',
+      bed : 0,
+      bath : 0,
+      studio : '',
+      currency : '',
+      price : '',
+      area : 0,
+      uom : '',
+      direct : ''
+    };
+    // console.log(data);
+    localStorage.removeItem("data");
+    localStorage.setItem("data", JSON.stringify(data));
+    this.nav.push(BookingPhasePage, {user: localStorage.getItem("UserId")});
   }
 
+  goProduct(){
+    this.nav.push(ProductPhasePage, {data:this.frontData, user: localStorage.getItem("UserId")});
+  }
+
+  // goToTest(){
+  //   // alert('a');
+  //   this.nav.push(MyReservationProjectPage, { user: localStorage.getItem("UserId") });
+  // }
   showAlert(title:any, subTitle:any) {
 
     let warning = this.alertCtrl.create({

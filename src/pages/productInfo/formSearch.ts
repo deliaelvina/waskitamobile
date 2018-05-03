@@ -11,7 +11,7 @@ import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { MyApp } from '../../app/app.component';
 import { AuthService } from '../../auth/auth.service';
 import { Listing2Page } from '../listing2/listing2';
-import { UnitEnquiryPage } from '../unit-enquiry/unit-enquiry';
+// import { UnitEnquiryPage } from '../unit-enquiry/unit-enquiry';
 @Component({
   selector: 'formSearch-page',
   templateUrl: 'formSearch.html'
@@ -293,7 +293,7 @@ export class FormSearchPage {
   }
   gotoUnitEnquiry(){
     // this.parm.blocks = this.blocks;
-    this.nav.push(UnitEnquiryPage,{data:this.parm});
+    // this.nav.push(UnitEnquiryPage,{data:this.parm});
   }
 
   home(){
