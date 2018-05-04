@@ -173,8 +173,14 @@ export class ListingPage {
       (x:any) => {
         // console.log(x);
               if(x.Error == true) {
-                  this.showAlert("Warning!", x.Pesan);
+                  // this.showAlert("Warning!", x.Pesan);
                   this.loading.dismiss();
+                  localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp);
+                  }
               }
               else {
                 this.loading.dismiss();
