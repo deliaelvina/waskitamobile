@@ -1,160 +1,160 @@
 @font-face {
-  font-family: 'Exo-Regular';
-  font-style: normal;
-  font-weight: 400;
-  src: url("../assets/fonts/Exo-Medium.ttf") format("truetype");
+    font-family: 'Exo-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/fonts/Exo-Medium.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Exo-SemiBold';
-  font-style: normal;
-  font-weight: 400;
-  src: url("../assets/fonts/Exo-SemiBold.ttf") format("truetype");
+    font-family: 'Exo-SemiBold';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/fonts/Exo-SemiBold.ttf") format("truetype");
 }
 
 @mixin categories-title-style($color) {
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-  font-size: 8vw;
-  font-weight: 900;
-  letter-spacing: 0.4px;
-  color: $color;
-  margin: 0px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 8vw;
+    font-weight: 900;
+    letter-spacing: 0.4px;
+    color: $color;
+    margin: 0px;
 }
 
-download-page {
-  $categories-heading-image-height: 150px;
-  $categories-grid-padding: 10px;
-  $categories-horizontal-list-padding: 10px;
-  .listing-header {
-      // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      box-shadow: 0 3px 5px -5px #333 !important;
-      .header-logo {
-          width: 34vw;
-          font-family: 'Exo-Regular' !important;
-      }
-  }
-  .listing-content {
-      // margin-top: -10px;
-      // margin-bottom: 41px;
-      // background-color: #f3f3f3 !important;
-      // background-image: url('../assets/images/dashbg.jpg');
-      background-color: #f3f3f3;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      .image-heading {
-          height: $categories-heading-image-height;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          .bg-overlay {
-              z-index: 1;
-              background-color: rgba($black-c, .6);
-          }
-          ion-spinner {
-              z-index: 2;
-          }
-          @include spinner-color($white);
-          .heading-row {
-              // height: 100%; biar gak responsive tulisannya gak gerak2
-              width: 100%;
-              z-index: 3;
-              position: absolute;
-              align-items: center;
-              .main-title {
-                  @include categories-title-style($white);
-                  font-size: 10vw;
-              }
-          }
-      }
-      @media only screen and (min-width: 768px) {
-          .image-heading {
-              height: 35%;
-          }
-      }
-      .categories-title {
-          font-size: 1.4rem !important;
-          font-weight: 400;
-          letter-spacing: 0.7px;
-          // color: $white-d;
-          margin: 8px 16px 16px;
-          font-family: 'Exo-Regular' !important;
-          color: #6a6d6d !important;
-      }
-      .horizontal-categories {
-          border-bottom: 10px solid $white-a;
-          @include element-shadow();
-          padding-bottom: 16px;
-          .scroll-content {
-              position: relative;
-              contain: style layout;
-          }
-          preload-image {
-              border-radius: 50%;
-              img {
-                  border-radius: 50%;
-              }
-          }
-          .categories-row {
-              flex-wrap: nowrap;
-              &::after {
-                  content: '';
-                  flex: 0 0 $categories-horizontal-list-padding;
-                  max-width: $categories-horizontal-list-padding;
-              }
-          }
-          .horizontal-item {
-              padding: 0px 0px 0px $categories-horizontal-list-padding;
-          }
-      }
-      .grid-categories {
-          // padding: 0px ($categories-grid-padding/2);
-          padding-top: 30px;
-          flex-wrap: wrap;
-          .category-item {
-              padding: 0px ($categories-grid-padding/2) $categories-grid-padding;
-              .category-heading {
-                  padding-bottom: 100%;
-                  border-radius: 20px;
-                  .bg-overlay {
-                      z-index: 1;
-                      background-color: rgba($black-c, .6);
-                  }
-                  ion-spinner {
-                      z-index: 2;
-                  }
-                  @include spinner-color($white);
-                  .heading-row {
-                      height: 100%;
-                      width: 100%;
-                      z-index: 3;
-                      position: absolute;
-                      align-items: center;
-                      .category-title {
-                          @include categories-title-style($white);
-                      }
-                  }
-              }
-          }
-      }
-  }
-  // title hitam
-  ion-header .toolbar-title {
-      // color: #222;
-      color: $title-header;
-  }
-  // taro dalem
+listing-gakdipake-page {
+    $categories-heading-image-height: 150px;
+    $categories-grid-padding: 10px;
+    $categories-horizontal-list-padding: 10px;
+    .listing-header {
+        // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 3px 5px -5px #333 !important;
+        .header-logo {
+            width: 34vw;
+            font-family: 'Exo-Regular' !important;
+        }
+    }
+    .listing-content {
+        // margin-top: -10px;
+        // margin-bottom: 41px;
+        // background-color: #f3f3f3 !important;
+        // background-image: url('../assets/images/dashbg.jpg');
+        background-color: $background-header-dalem;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        .image-heading {
+            height: $categories-heading-image-height;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            .bg-overlay {
+                z-index: 1;
+                background-color: rgba($black-c, .6);
+            }
+            ion-spinner {
+                z-index: 2;
+            }
+            @include spinner-color($white);
+            .heading-row {
+                // height: 100%; biar gak responsive tulisannya gak gerak2
+                width: 100%;
+                z-index: 3;
+                position: absolute;
+                align-items: center;
+                .main-title {
+                    @include categories-title-style($white);
+                    font-size: 10vw;
+                }
+            }
+        }
+        @media only screen and (min-width: 768px) {
+            .image-heading {
+                height: 35%;
+            }
+        }
+        .categories-title {
+            font-size: 1.4rem !important;
+            font-weight: 400;
+            letter-spacing: 0.7px;
+            // color: $white-d;
+            margin: 8px 16px 16px;
+            font-family: 'Exo-Regular' !important;
+            color: #6a6d6d !important;
+        }
+        .horizontal-categories {
+            border-bottom: 10px solid $white-a;
+            @include element-shadow();
+            padding-bottom: 16px;
+            .scroll-content {
+                position: relative;
+                contain: style layout;
+            }
+            preload-image {
+                border-radius: 50%;
+                img {
+                    border-radius: 50%;
+                }
+            }
+            .categories-row {
+                flex-wrap: nowrap;
+                &::after {
+                    content: '';
+                    flex: 0 0 $categories-horizontal-list-padding;
+                    max-width: $categories-horizontal-list-padding;
+                }
+            }
+            .horizontal-item {
+                padding: 0px 0px 0px $categories-horizontal-list-padding;
+            }
+        }
+        .grid-categories {
+            // padding: 0px ($categories-grid-padding/2);
+            padding-top: 30px;
+            flex-wrap: wrap;
+            .category-item {
+                padding: 0px ($categories-grid-padding/2) $categories-grid-padding;
+                .category-heading {
+                    padding-bottom: 100%;
+                    border-radius: 20px;
+                    .bg-overlay {
+                        z-index: 1;
+                        background-color: rgba($black-c, .6);
+                    }
+                    ion-spinner {
+                        z-index: 2;
+                    }
+                    @include spinner-color($white);
+                    .heading-row {
+                        height: 100%;
+                        width: 100%;
+                        z-index: 3;
+                        position: absolute;
+                        align-items: center;
+                        .category-title {
+                            @include categories-title-style($white);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // title hitam
+    ion-header .toolbar-title {
+        // color: #222;
+        color: $title-header;
+    }
+    // taro dalem
+}
 
-
-  .button-logout {
+.button-logout {
     font-size: 22px;
     float: right;
     background-color: transparent;
     color: $button-logout;
-  }
-  
-  //  ------------- BASE SQUARE ------------------- //
-  .square {
+}
+
+//  ------------- BASE newsquare ------------------- //
+.newsquare {
     float: left;
     width: 30%;
     padding-bottom: 10%;
@@ -174,9 +174,9 @@ download-page {
     cursor: pointer;
     border: 2px solid#c1c1c0;
     border-radius: 5px;
-  }
-  
-  .contentss {
+}
+
+.newcontentss {
     height: 80%;
     width: auto;
     display: block;
@@ -186,9 +186,9 @@ download-page {
     margin-right: auto;
     border-top-left-radius: nb-theme(card-border-radius);
     border-top-right-radius: nb-theme(card-border-radius);
-  }
-  
-  .textt {
+}
+
+.newtextt {
     display: block;
     // margin-bottom: -88%;
     margin-bottom: -140%;
@@ -203,22 +203,22 @@ download-page {
     font-size: 8px;
     width: 100%;
     font-size: 3.5vw;
-    color: #000; font-weight: 600
-  }
-  
-  .apasi{
-    background-color: transparent;
+    color: white; font-weight: 600
+}
+
+.header-dalem{
+    background-color: transparent; 
     height: 150px;
     margin-left: 10px;
     margin-right: 10px;
     margin-top:65px;
     margin-bottom:15px
-  }
-  
-  //  ------------- END BASE SQUARE ------------------- //
-  //  ------------- POTRAIT SQUARE ------------------- //
-  @media only screen and (min-width: 360px) and (min-height: 640px) {
-    .square {
+}
+
+//  ------------- END BASE newsquare ------------------- //
+//  ------------- POTRAIT newsquare ------------------- //
+@media only screen and (min-width: 360px) and (min-height: 640px) {
+    .newsquare {
         float: left;
         width: 30%;
         padding-bottom: 16%;
@@ -239,7 +239,7 @@ download-page {
         // border-radius: 5px;
         border-radius: 20px;
     }
-    .contentss {
+    .newcontentss {
         height: 145%;
         width: auto;
         display: block;
@@ -252,7 +252,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         // margin-bottom: -120%;
@@ -271,11 +271,11 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  @media only screen and (max-width: 320px) {
-    .square {
+}
+@media only screen and (max-width: 320px) {
+    .newsquare {
         float: left;
         width: 30%;
         // padding-bottom: 15%;
@@ -296,7 +296,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 20px;
     }
-    .contentss {
+    .newcontentss {
         // height: 80%;
         // width: auto;
         // display: block;
@@ -309,17 +309,17 @@ download-page {
         // margin-top: 10%;
         margin-bottom: -70%;
         margin-top: 20%;
-  
+
         margin-left: auto;
         margin-right: auto;
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -120%;
         // margin-top: 75%;
-    //
+    //    
     margin-bottom: -150%;
     margin-top: 95%;
         margin-left: auto;
@@ -332,12 +332,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 375px) {
-    .square {
+}
+
+@media only screen and (min-width: 375px) {
+    .newsquare {
         float: left;
         width: 30%;
         padding-bottom: 15%;
@@ -358,7 +358,7 @@ download-page {
         // border-radius: 5px;
         border-radius: 20px;
     }
-    .contentss {
+    .newcontentss {
         height: 120%;
         width: auto;
         display: block;
@@ -371,7 +371,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         // margin-bottom: -120%;
@@ -390,12 +390,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 414px) {
-    .square {
+}
+
+@media only screen and (min-width: 414px) {
+    .newsquare {
         float: left;
         width: 30%;
         // width: 21%;
@@ -417,7 +417,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 20px;
     }
-    .contentss {
+    .newcontentss {
         height: 100%;
         width: auto;
         display: block;
@@ -428,7 +428,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         // margin-top: 90%;
@@ -445,12 +445,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 768px) {
-    .square {
+}
+
+@media only screen and (min-width: 768px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -472,7 +472,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 20px !important;
     }
-    .contentss {
+    .newcontentss {
         height: 150% !important;
         width: auto;
         display: block;
@@ -483,10 +483,10 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         margin-bottom: -170% !important;
-        margin-top: 120% !important;
+        margin-top: 115% !important;
         margin-left: auto;
         margin-right: auto;
         vertical-align: bottom;
@@ -497,23 +497,20 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  
-    .apasi{
-        background-color: transparent;
+
+    .header-dalem{
+        background-color: transparent; 
         height: 400px;
         margin-left: 10px;
         margin-right: 10px;
         margin-top:65px;
-        margin-bottom:15px;
-        width: -webkit-fill-available;
-  
-    }
-  }
-  //fix
-  @media only screen and (min-width: 1024px) {
-    .square {
+        margin-bottom:15px}
+}
+//fix
+@media only screen and (min-width: 1024px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -536,7 +533,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 200% !important;
         width: auto;
         display: block;
@@ -549,7 +546,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         // margin-bottom: -130%;
@@ -566,23 +563,21 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-    .dalemheader{
-        background-color: transparent;
+    .header-dalem{
+        background-color: transparent; 
         height: 400px;
         margin-left: 10px;
         margin-right: 10px;
         margin-top:65px;
-        margin-bottom:15px;
-        width: -webkit-fill-available;
-    }
-  }
-  
-  //  -------------END POTRAIT SQUARE ------------------- //
-  //  ------------- LANDSCAPE SQUARE ------------------- //
-  @media only screen and (min-width: 640px) {
-    .square {
+        margin-bottom:15px}
+}
+
+//  -------------END POTRAIT newsquare ------------------- //
+//  ------------- LANDSCAPE newsquare ------------------- //
+@media only screen and (min-width: 640px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -604,7 +599,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 130%;
         width: auto;
         display: block;
@@ -615,7 +610,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -630,12 +625,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 731px) {
-    .square {
+}
+
+@media only screen and (min-width: 731px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -657,7 +652,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 170%;
         width: auto;
         display: block;
@@ -668,7 +663,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -683,12 +678,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 823px) {
-    .square {
+}
+
+@media only screen and (min-width: 823px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -710,7 +705,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 650%;
         width: auto;
         display: block;
@@ -721,7 +716,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -736,12 +731,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 568px) {
-    .square {
+}
+
+@media only screen and (min-width: 568px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -763,7 +758,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 100%;
         width: auto;
         display: block;
@@ -774,7 +769,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -789,12 +784,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 667px) {
-    .square {
+}
+
+@media only screen and (min-width: 667px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -816,7 +811,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 140%;
         width: auto;
         display: block;
@@ -827,7 +822,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -842,12 +837,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 736px) {
-    .square {
+}
+
+@media only screen and (min-width: 736px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -869,7 +864,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 230%;
         width: auto;
         display: block;
@@ -880,7 +875,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -895,12 +890,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 812px) {
-    .square {
+}
+
+@media only screen and (min-width: 812px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -922,7 +917,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 630%;
         width: auto;
         display: block;
@@ -933,7 +928,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -948,12 +943,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 1024px) {
-    .square {
+}
+
+@media only screen and (min-width: 1024px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 14%;
@@ -975,7 +970,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 550%;
         width: auto;
         display: block;
@@ -986,7 +981,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -125%;
@@ -1001,12 +996,12 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  @media only screen and (min-width: 1366px) {
-    .square {
+}
+
+@media only screen and (min-width: 1366px) {
+    .newsquare {
         float: left;
         // width: 30%;
         width: 12%;
@@ -1028,7 +1023,7 @@ download-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .contentss {
+    .newcontentss {
         height: 240%;
         width: auto;
         display: block;
@@ -1039,7 +1034,7 @@ download-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -125%;
@@ -1054,11 +1049,11 @@ download-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.5vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
-  }
-  
-  .div-welcome {
+}
+
+.div-welcome {
     height: 40px;
     // background-color: #ffffff36;
     // background-color: #ffffff87;
@@ -1066,9 +1061,9 @@ download-page {
     margin-top: 0px;
     // margin-bottom: 1rem;
     margin-left: 0px;
-  }
-  
-  .div-welcome-title {
+}
+
+.div-welcome-title {
     text-align: left;
     font-size: 1.5rem !important;
     color: #222;
@@ -1079,56 +1074,5 @@ download-page {
     padding-top: 10px;
     padding-left: 5px;
     font-weight: 600;
-  }
-  
-  .grid-example {
-    padding: 10px 5px 0px 5px;
-    flex-wrap: wrap;
-    .grid-item {
-        padding: 0px 5px 10px;
-        &>.double-item {
-            &>.grid-item {
-                padding: 5px 0px;
-                &:first-child {
-                    padding-top: 0px;
-                }
-                &:last-child {
-                    padding-bottom: 0px;
-                }
-            }
-        }
-        .grid-item-wrapper {
-            position: relative;
-            padding-bottom: 100%;
-            height: 40px;
-            background-color: $white-c;
-            .grid-item-inner {
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .item-title {
-                    margin: 0px;
-                    color: $black-c;
-                    text-align: center;
-                }
-                &.multi-line {
-                    flex-wrap: wrap;
-                    .item-title {
-                        flex: 0 0 100%;
-                        max-width: 100%;
-                        margin: 5px 0px;
-                    }
-                }
-            }
-        }
-    }
-  }
-  .grid-example .grid-item {
-    padding-bottom: 2px !important;
-  }
 }
-
 
