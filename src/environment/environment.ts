@@ -19,11 +19,11 @@ export const environment = {
   wordpress_url: 'http://wordpress.startapplabs.com/blog/',
   wordpress_rest_api_url: 'http://wordpress.startapplabs.com/blog/wp-json/wp/v2/',
   // Url_API:'http://localhost:2121/WaskitaAPI/',
-  Url_API:'http://localhost:2121/WaskitaAPI2/',
+  // Url_API:'http://localhost:2121/WaskitaAPI2/',
   // Url_API:'http://35.197.137.111/WaskitaAPI/',
   // Url_API:'http://192.168.1.69:2121/WaskitaAPI/',
   // Url_API:'http://35.197.137.111/WaskitaAPI/',
-  // Url_API:'http://35.197.137.111/WaskitaAPI2/',
+  Url_API:'http://35.197.137.111/WaskitaAPI2/',
   cons_pb:'IFCAPB',
   cons_mobile:'IFCAMOBILE'
 };
