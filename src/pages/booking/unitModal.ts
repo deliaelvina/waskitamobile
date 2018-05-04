@@ -24,7 +24,7 @@ export class BookingUnitModalPage {
 
   loading:any;
   user:any;
-
+  sell_price:any ='-';
   url_api = environment.Url_API;
   // url_api = "http://localhost:2121/WaskitaAPI/";
   cons:any;
@@ -409,6 +409,7 @@ export class BookingUnitModalPage {
         }
         else {
           var data = x.Data;
+          this.sell_price = x.DataHC;
           data.forEach(val => {
             this.plans.push({
               payment_cd:val.payment_cd,

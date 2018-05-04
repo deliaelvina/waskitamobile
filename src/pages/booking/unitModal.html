@@ -41,7 +41,8 @@
                         <br> {{details.area}} {{details.uom}} <br>
                         <span *ngIf="details.studios">{{details.typeDesc}}</span>
                         <span *ngIf="!details.studios">{{details.bed}} | {{details.bath}}</span>
-                        <br> {{details.direct}}
+                        <br> {{details.direct}}<br>
+                        <span style="float:left !important;">Selling Price : IDR.</span><span style="text-align:right;color:#06b139">{{sell_price}}</span>
                     </p>
                     <!-- <iframe [src]="link_iframe" frameborder="0"></iframe> -->
                     <!-- <iframe src="http://localhost:2121/WaskitaAPI/c_iFrame/getReservation/IFCAPB/2101/210101/11/01/IFCA001"></iframe> -->
@@ -66,7 +67,7 @@
                             <table width="100%">
                               <tr>
                                   <td width="60%" style="font-size: 14px;font-weight: 600">{{item.plans}}</td>
-                                  <td valign="middle" align="right" style="font-size: 14px;font-weight: 600"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                                  <td valign="middle" align="right" style="font-size: 14px;font-weight: 600"><span style="float:left !important;"  hidden="true">IDR.</span><span style="text-align:right;color:#06b139"  hidden="true">{{item.amt}}</span></td>
                               </tr>
                             </table>
                           </div>
