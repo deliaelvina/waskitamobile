@@ -12,12 +12,18 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 //pages
 import { ListingPage } from '../pages/listing/listing';
+import { Listing2Page } from '../pages/listing2/listing2';
+import { ListingProjectPage } from '../pages/listing/project';
 import { FeedPage } from '../pages/feed/feed';
 import { CameraPage } from "../pages/camera/camera";
 
 //Project Info
 import { ProjectPage } from '../pages/projectInfo/project';
 import { ProjectDetailsPage } from '../pages/projectInfo/projectdetails';
+
+//download
+// import { ProjectDownloadPage } from "../pages/download/project";
+// import { DownloadPage } from "../pages/download/download";
 
 import { NewsPage } from '../pages/NewsAndPromo/news';
 import { PromoPage } from '../pages/NewsAndPromo/promo';
@@ -47,7 +53,8 @@ import { MyUnitPage } from '../pages/MyUnit/myUnit';
 import { PaymentSchedulePage } from '../pages/MyUnit/payment';
 import { UploadBuktiPage } from '../pages/MyUnit/uploadbukti';
 import { SimulasiPage } from '../pages/simulasi/simulasi';
-
+//unit enquiry
+// import { UnitEnquiryPage } from '../pages/unit-enquiry/unit-enquiry';
 //Product Info
 // import { ProductInfoPage } from '../pages/productInfo/productInfo';
 import { UnitTypePage } from '../pages/productInfo/unitType';
@@ -126,6 +133,7 @@ import { ValidatorsModule } from '../components/validators/validators.module';
 //services
 import { FeedService } from '../pages/feed/feed.service';
 import { ListingService } from '../pages/listing/listing.service';
+import { Listing2Service } from '../pages/listing2/listing2.service';
 import { ProfileService } from '../pages/profile/profile.service';
 import { NotificationsService } from '../pages/notifications/notifications.service';
 import { List1Service } from '../pages/list-1/list-1.service';
@@ -172,7 +180,14 @@ import { MyReservationProjectPage } from '../pages/reservation/myReservation';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
+import { importExpr } from '@angular/compiler/src/output/output_ast';
+// import { PipeModule } from '../tools/pipe.module';
 
+
+//unit filter
+// import { UnitFilterPipe } from '../pages/unit-enquiry/unit-filter.pipe';
+// import { UnitFilterModule } from '../tools/pipe.module';
+// PipeModule
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -182,10 +197,14 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     MyApp,
     ListingPage,
+    Listing2Page,
+    ListingProjectPage,
     FeedPage,
     ProjectPage,
     ProjectDetailsPage,
     CameraPage,
+    // ProjectDownloadPage,
+    // DownloadPage,
 
     //reservation
     ReservationProjectPage,
@@ -210,7 +229,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyUnitPage,
     UploadBuktiPage,
     SimulasiPage,
-
+    //unit enquiry
+    // UnitEnquiryPage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -294,8 +314,10 @@ export function createTranslateLoader(http: HttpClient) {
     CounterInput,
     Rating,
     GoogleMap
+    // ,UnitFilterPipe
   ],
   imports: [
+    // PipeModule.forRoot(),
     BrowserModule,
     HttpModule,
     HttpClientModule,
@@ -320,16 +342,21 @@ export function createTranslateLoader(http: HttpClient) {
     AngularFirestoreModule,
     AngularFireAuthModule,
 		VideoPlayerModule,
-		ValidatorsModule
+    ValidatorsModule,
+    // PipeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     ListingPage,
+    Listing2Page,
+    ListingProjectPage,
     FeedPage,
     ProjectPage,
     ProjectDetailsPage,
     CameraPage,
+    // ProjectDownloadPage,
+    // DownloadPage,
 
     //Reservation
     ReservationProjectPage,
@@ -354,6 +381,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyUnitPage,
     PaymentSchedulePage,
     UploadBuktiPage,
+    //unit enquiry
+    // UnitEnquiryPage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -423,6 +452,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     FeedService,
     ListingService,
+    Listing2Service,
     ProfileService,
     ErrorhandlerService,
     NotificationsService,

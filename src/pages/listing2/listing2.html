@@ -4,27 +4,26 @@
           <ion-icon name="menu"></ion-icon>
         </button> -->
         <ion-title>
-            <div class="header-logo" style="text-align:center;">
-                Waskita Realty
+            <div class="header-logo-1" style="text-align:center;vertical-align: middle">
+                Project
                 <!-- <preload-image [ratio]="{w:583, h:100}" src="./assets/images/header_logo_white.png"></preload-image> -->
             </div>
         </ion-title>
-        <button class="button-logout" (click)="logout()">
+        <!-- <button class="button-logout" (click)="logout()">
                     <ion-icon name="log-out" > </ion-icon>
-                </button>
+                </button> -->
     </ion-navbar>
 </ion-header>
 
 <ion-content class="listing-content">
-    <!-- <div class="div-welcome" style="width:100%;"> -->
     <div class="div-welcome" ion-fixed style="width:100%;">
-        <h5 class="div-welcome-title">Welcome {{banner_title}}</h5>
+        <h5 class="div-welcome-title">{{frontData.projectName}}</h5>
     </div>
-    <!-- <div style="background-color: transparent; height: 150px;margin-left: 10px;margin-right: 10px;margin-top:20px;margin-bottom:15px;"> -->
-            <div class="header-dalem">
-        <img src="./assets/images/listing/dashfront.jpg" style="width: 100%;height: 100%;border-radius: 10px;">
-
-    </div>
+    <div class="apasi">
+           
+            <img src="{{frontData.projectPict}}" style="width: 100%;height: 100%;border-radius: 10px;"> 
+    
+        </div>
     <!-- <background-image class="image-heading" [src]="banner_image"> -->
         <!-- <ion-row class="heading-row"> -->
         <!-- <ion-col no-padding offset-100> -->
@@ -43,8 +42,6 @@
       </ion-scroll> -->
     <!-- <h4 style="color: transparent">{{'Menu' | translate}}</h4> -->
     <!-- <div style="padding-top:5px;"></div> -->
-    <div style="padding-top:5px;"></div>
-
     <ion-row class="grid-categories">
         <!-- <ion-col width-50 class="category-item" *ngFor="let category of dashMenu">
             <background-image tappable class="category-heading" [src]="category.image" (click)="goToFeed(category)">
@@ -64,24 +61,10 @@
                 </ion-row>
             </background-image>
         </ion-col> -->
-        <!-- <div class="newsquare" (click)="goToTest()">
-            <img class="newcontentss" src="">
-            <div class="newtextt">
-                All Project
-            </div>
-        </div>
-
-        <div class="newsquare" (click)="goToDownload()">
-            <img class="newcontentss" src="./assets/images/dashPict/download.png">
-            <div class="newtextt">
-                Download
-            </div>
-        </div> -->
-
-        <div class="newsquare" *ngFor="let category of dashMenu" (click)="goToFeed(category)">
-            <img class="newcontentss" src="{{category.image}}">
-            <div class="newtextt">
-                {{category.title}}
+        <div class="square" *ngFor="let menu of dashMenu" (click)="goToFeed(menu.link)">
+            <img class="contentss" src="{{menu.image}}">
+            <div class="textt">
+                {{menu.title}}
             </div>
         </div>
 

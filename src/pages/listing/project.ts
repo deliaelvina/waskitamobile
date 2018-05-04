@@ -1,38 +1,33 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController, ToastController, Platform, App } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController, App, Platform } from 'ionic-angular';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environment/environment';
-import { BookingUnitPage } from './unit';
+
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { MyApp } from '../../app/app.component';
 import { AuthService } from '../../auth/auth.service';
+import { Listing2Page } from '../listing2/listing2';
 
 @Component({
-  selector: 'bookingBlock-page',
-  templateUrl: 'block.html'
+  selector: 'listingProject-page',
+  templateUrl: 'project.html'
 })
-export class BookingBlockPage {
-  blocks:any[] = [];
-
+export class ListingProjectPage {
+  projects:any[] = [];
   loading:any;
   user:any;
   url_api = environment.Url_API;
-  cons:any;
-
-  project_name: any;
-  phase_desc:any;
-
-  project_no:any;
-  entity:any;
-  propertyCd: any;
+  cons = environment.cons_pb;
+  cons_mobile = environment.cons_mobile;
   available: boolean = true;
 
   hd = new HttpHeaders({
     Token : localStorage.getItem("Token")
   });
+
   ErrorList:any;
   device:string;
 
@@ -42,22 +37,14 @@ export class BookingBlockPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private toastCtrl: ToastController,
+    // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
     private _app: App,
     private _authService: AuthService,
     public platform: Platform,
   ) {
     this.device = localStorage.getItem('Device');
-
-    var data= JSON.parse(localStorage.getItem('data'));
-    this.project_name = data.projectName;
-    this.phase_desc= data.towerName;
-    this.project_no = data.project;
-    this.entity = data.entity;
-    this.propertyCd = data.towerCd;
-    this.cons = data.cons;
-
+    this.user = localStorage.getItem("UserId");
     this.loading = this.loadingCtrl.create();
   }
 
@@ -101,15 +88,14 @@ export class BookingBlockPage {
   }
 
   ionViewDidLoad() {
-    // alert("hee");
+
     this._errorService.getData()
     .then(data=>{
       this.ErrorList = data.Error_Status;
     });
-
     this.loading.present();
 
-    this.http.get(this.url_api+"c_booking/getBlock/" + this.cons + "/" + this.entity + "/" + this.project_no + "/" + this.propertyCd, {headers:this.hd} )
+    this.http.get(this.url_api+"c_product_info/getData/" + this.cons_mobile + "/" + this.user, {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
@@ -125,20 +111,26 @@ export class BookingBlockPage {
           }
         }
         else {
-          // console.log(x);
+
           var data = x.Data;
+          // console.log(data);
           data.forEach(val => {
 
-            this.blocks.push({
-              level_no: val.level_no,
-              descs: val.descs,
-              pict: val.picture_url
+            this.projects.push({
+              entity: val.entity_cd,
+              project: val.project_no,
+              descs: val.project_descs,
+              caption:val.caption_address,
+              pic_path: val.picture_path ,
+              url_path: val.http_add,
+              db : val.db_profile
             });
           });
           this.loading.dismiss();
         }
       },
       (err)=>{
+        // console.log(this.ErrorList);
         this.loading.dismiss();
         //filter error array
         this.ErrorList = this.ErrorList.filter(function(er){
@@ -168,18 +160,27 @@ export class BookingBlockPage {
     );
   }
 
-  goToUnit(blc:any) {
-    // console.log(blc);
+  ionViewWillEnter(){
+    localStorage.removeItem('menus');
+  }
 
-    // if(blc.level_no == '01') { //nanti dimatiin ya
-      var data = JSON.parse(localStorage.getItem("data"));
-      data.level = blc.level_no;
-      data.level_descs = blc.descs;
-      data.level_pict = blc.pict;
-      // console.log(data);
-      localStorage.setItem("data", JSON.stringify(data));
-      this.nav.push(BookingUnitPage);
-    // }
+  // ionViewWillLeave(){
+  //   localStorage.removeItem('menus');
+  // }
+
+  goToPhase(pro:any) {
+    // console.log(pro);
+    var data = {
+      cons : pro.db,
+      entity : pro.entity,
+      projectNo : pro.project,
+      projectName : pro.descs,
+      projectPict : pro.pic_path,
+      isFrom : 1
+    };
+    // console.log(data);
+    localStorage.setItem('menus', JSON.stringify(data));
+    this.nav.push(Listing2Page);
   }
 
   showAlert(title:any, subTitle:any) {

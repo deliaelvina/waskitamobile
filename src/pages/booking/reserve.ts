@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl, MinLengthValidator } from '@angular/forms';
-import { NavController, NavParams, LoadingController, Platform, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, Platform, ToastController, AlertController, App } from 'ionic-angular';
 import { UsernameValidator } from '../../components/validators/username.validator';
 
 import 'rxjs/Rx';
@@ -16,15 +16,16 @@ import { ListingPage } from '../listing/listing';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { CameraPage } from '../camera/camera';
 import { FileUploadOptions, FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-import { WalkthroughPage } from '../walkthrough/walkthrough';
+import { MyApp } from '../../app/app.component';
+import { AuthService } from '../../auth/auth.service';
 
 declare var cordova: any;
 
 @Component({
-  selector: 'reserve-page',
+  selector: 'bookingReserve-page',
   templateUrl: 'reserve.html'
 })
-export class ReservationReservePage {
+export class BookingReservePage {
   reserveForm: FormGroup;
 
   countries: Array<Country>;
@@ -54,7 +55,7 @@ export class ReservationReservePage {
   imgNPWP:any = null;
   imgTF:any = null;
   // photos:any[] = [];
-  edit:any;
+  edit:boolean = false;
   data:any;
   validation_messages:any;
   natSelect:any;
@@ -79,6 +80,11 @@ export class ReservationReservePage {
   pictPost:any;
   storageDirectory: string = '';
   avPict:boolean = false;
+  payment = {
+    payment_cd:null,
+    amt:null
+  };
+  device:string;
 
   constructor(
     public nav: NavController,
@@ -94,16 +100,17 @@ export class ReservationReservePage {
     private _errorService: ErrorhandlerService,
     public camera: Camera,
     private fileTf:FileTransfer,
+    private _app: App,
+    private _authService: AuthService,
   ) {
+    this.device = localStorage.getItem('Device');
+
     this.main_page = { component: ListingPage };
+    // this.main_page = { component: TabsNavigationPage };
     this.loading = this.loadingCtrl.create();
     this.act = this.navParams.get('act');
     this.rowID = this.navParams.get('id');
     this.group = localStorage.getItem('Group');
-
-    this.imgID = null;
-    this.imgNPWP = null;
-    this.imgTF = null;
 
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
@@ -145,8 +152,13 @@ export class ReservationReservePage {
     }
     else {
       this.data = JSON.parse(localStorage.getItem('data'));
+      if(this.act == 'book'){
+        this.payment.payment_cd = this.data.payment_cd;
+        this.payment.amt = this.data.payment_amt2;
+      }
+      // this.data = JSON.parse(localStorage.getItem('data'));
       this.cons = this.data.cons;
-      // alert(JSON.stringify(this.data));
+
       this.agent = {
         'Agent_cd' : this.cd?this.cd:'',
         'Group_cd' : this.data.agentGroupCd?this.data.agentGroupCd:'',
@@ -166,9 +178,9 @@ export class ReservationReservePage {
     }
 
     this.pict = [
-      {for:'id', img:'', name:'', img64:''},
-      {for:'npwp', img:'', name:'', img64:''},
-      {for:'tf', img:'', name:'', img64:''},
+      {for:'id', img:'', name:''},
+      {for:'npwp', img:'', name:''},
+      {for:'tf', img:'', name:''},
     ];
 
     this.pictPost = {
@@ -176,6 +188,10 @@ export class ReservationReservePage {
       imgNPWP : '',
       imgTF : ''
     };
+
+    this.imgID = null;
+    this.imgNPWP = null;
+    this.imgTF = null;
 
     this._errorService.getData()
     .then(data=>{
@@ -195,24 +211,32 @@ export class ReservationReservePage {
         Validators.minLength(10),
         Validators.pattern('^[0-9]+$')
       ])),
+      // number: new FormControl('', Validators.compose([
+      //   Validators.required,
+      //   PhoneValidator.validCountryPhone(phone)
+      // ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       idNo: new FormControl('', Validators.compose([
         // Validators.required,
-        // Validators.minLength(16),
-        // Validators.pattern('^[0-9]+$')
+        Validators.minLength(16),
+        Validators.pattern('^[0-9]+$')
       ])),
       national : new FormControl(''),
+      // national_cd : new FormControl(''),
+      // national_descs : new FormControl(''),
       address: new FormControl(''),
       reserveType: new FormControl('',Validators.required),
+      // reservePrefix: new FormControl(''),
       amount: new FormControl(''),
       // reserveExp: new FormControl(''),
       remarks: new FormControl(''),
       lot: new FormControl(this.dataLot),
       pict: new FormControl(this.pictPost),
       agent: new FormControl(this.agent),
+      payment: new FormControl(this.payment),
       // terms: new FormControl(true, Validators.pattern('true'))
     });
 
@@ -233,11 +257,11 @@ export class ReservationReservePage {
         { type: 'pattern', message: 'Enter a valid Phone Number.' },
         { type: 'minLength', message: 'Phone Number must be at least 10 numbers long.' },
       ],
-      // 'idNo': [
-      //   // { type: 'required', message: 'ID Number is required.' },
-      //   { type: 'pattern', message: 'Enter a valid ID Number.' },
-      //   { type: 'minLength', message: 'ID Number must be at least 16 numbers long.' },
-      // ],
+      'idNo': [
+        // { type: 'required', message: 'ID Number is required.' },
+        { type: 'pattern', message: 'Enter a valid ID Number.' },
+        { type: 'minLength', message: 'ID Number must be at least 16 numbers long.' },
+      ],
       'reserveType' : [
         { type: 'required', message: 'Reservation Type is required.' },
       ],
@@ -245,56 +269,53 @@ export class ReservationReservePage {
   }
 
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
-
-    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
-      .subscribe(
-        (x:any) => {
-          if(x.Error == true) {
-            if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan,'');
+    this._authService.logout().subscribe(
+      (x:any) => {
+        // console.log(x);
+              if(x.Error == true) {
+                  this.showAlert("Warning!", x.Pesan,'');
+                  this.loading.dismiss();
+              }
+              else {
+                this.loading.dismiss();
+                localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp);
+                  }
+              }
+            },
+            (err)=>{
               this.loading.dismiss();
-            }
-            else {
-              this.showAlert("Warning!", x.Pesan,'');
-              this.loading.dismiss();
-              // this.nav.pop();
-            }
-          }
-          else {
-            localStorage.clear();
-            // alert('ok');
-            this.nav.setRoot(WalkthroughPage);
-          }
-        },
-        (err)=>{
-          this.loading.dismiss();
-          //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
-          });
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
 
-          var errS;
-          //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;
-          }else{
-            errS = err;
-          }
-            this.showAlert("Error!", errS,'');
-        }
-      );
+              var errS;
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
+              }
+                this.showAlert("Error!", errS,'');
+            }
+    );
+
   }
 
   loadNats(parm:any) {
-    this.http.get(this.url_api+"c_reservate/getNationality/" + this.cons , {headers:this.hd} )
+    this.http.get(this.url_api+"c_booking/getNationality/" + this.cons , {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
             // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
             this.loading.dismiss();
+            this.logoutAPi();
           }
           else {
             // alert(x.Pesan);
@@ -354,14 +375,14 @@ export class ReservationReservePage {
   }
 
   loadNupType(parm:any) {
-    this.http.get(this.url_api+"c_reservate/getNupType/" + this.cons + "/" + this.data.entity + "/" + this.data.project , {headers:this.hd} )
+    this.http.get(this.url_api+"c_booking/getNupType/" + this.cons + "/" + this.data.entity + "/" + this.data.project , {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
             // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
             this.loading.dismiss();
+            this.logoutAPi();
           }
           else {
             // alert(x.Pesan);
@@ -432,6 +453,7 @@ export class ReservationReservePage {
     // console.log('enter');
     let images = JSON.parse(localStorage.getItem('image'));
     var rand = Math.floor(Math.random() * 100);
+    localStorage.removeItem('image');
 
     if(images){
       this.avPict = true;
@@ -439,9 +461,6 @@ export class ReservationReservePage {
       if(z == 'id'){
         this.imgID = images.imgHere;
         this.pict[0].img = images.imgHere;
-        if(this.platform.is('ios')){
-          this.pict[0].img64 = images.base64img;
-        }
         this.pict[0].name = 'reservation_ID_'+rand+'.jpg';
         this.pictPost.imgID = this.url_api+'images/reservation/reservation_ID_'+rand+'.jpg';
         // this.pict[0].img64 = images.base64img;
@@ -449,9 +468,6 @@ export class ReservationReservePage {
       else if(z == 'npwp'){
         this.imgNPWP = images.imgHere;
         this.pict[1].img = images.imgHere;
-        if(this.platform.is('ios')){
-          this.pict[1].img64 = images.base64img;
-        }
         this.pict[1].name = 'reservation_NPWP_'+rand+'.jpg';
         this.pictPost.imgNPWP = this.url_api+'images/reservation/reservation_NPWP_'+rand+'.jpg';
         // this.pict[1].img64 = images.base64img;
@@ -459,15 +475,41 @@ export class ReservationReservePage {
       else if(z == 'tf'){
         this.imgTF = images.imgHere;
         this.pict[2].img = images.imgHere;
-        if(this.platform.is('ios')){
-          this.pict[2].img64 = images.base64img;
-        }
         this.pict[2].name = 'reservation_TF_'+rand+'.jpg';
         this.pictPost.imgTF = this.url_api+'images/reservation/reservation_TF_'+rand+'.jpg';
         // this.pict[2].img64 = images.base64img;
       }
       // console.log(this.images);
     }
+  }
+
+  openImagePicker(){
+    // this.imagePicker.hasReadPermission().then(
+    //   (result) => {
+    //     if(result == false){
+    //       // no callbacks required as this opens a popup which returns async
+    //       this.imagePicker.requestReadPermission();
+    //     }
+    //     else if(result == true){
+    //       this.imagePicker.getPictures({ maximumImagesCount: 1 }).then(
+    //         (results) => {
+    //           for (var i = 0; i < results.length; i++) {
+    //             this.cropService.crop(results[i], {quality: 75}).then(
+    //               newImage => {
+    //                 let image = newImage;
+    //                 if (this.platform.is('ios')) {
+    //                     image = image.replace(/^file:\/\//, '');
+    //                 }
+    //                 this.selected_image = image;
+    //               },
+    //               error => console.error("Error cropping image", error)
+    //             );
+    //           }
+    //         }, (err) => console.log(err)
+    //       );
+    //     }
+    //   }
+    // )
   }
 
   addZero(i:any){
@@ -479,14 +521,14 @@ export class ReservationReservePage {
   }
 
   loadData(){
-    this.http.get(this.url_api+"c_reservate/myReservation/" + this.cons + "/" + localStorage.getItem('Name') + "/" + this.rowID, {headers:this.hd} )
+    this.http.get(this.url_api+"c_booking/myReservation/" + this.cons + "/" + localStorage.getItem('UserId') + "/" + this.rowID, {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
             // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
             this.loading.dismiss();
+            this.logoutAPi();
           }
           else {
             // alert(x.Pesan);
@@ -497,7 +539,6 @@ export class ReservationReservePage {
           // console.log(x);
           var data = x.Data[0];
           // console.log(data);
-          // alert(JSON.stringify(data));
           // this.data = [];
           // this.data.push({
           //   projectName : data.ProjectName,
@@ -510,15 +551,7 @@ export class ReservationReservePage {
           // this.data.level_descs = data.Level;
           // this.data.lot = data.LotNo;
 
-
-          if(localStorage.getItem('Device')=='android'||localStorage.getItem('Device')=='web'){
-            var d = new Date(data.expired_time);
-          }else{
-            var t = data.expired_time.split(/[- :]/);
-            var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-
-          }
-
+          var d = new Date(data.expired_time);
           this.dates = 'Expired Time : '+d.getDate().toString()+' '+this.months[d.getMonth().toString()]+' '+d.getFullYear().toString()+' '+this.addZero(d.getHours())+':'+this.addZero(d.getMinutes());
           this.reserveForm.get('rowID').setValue(this.rowID);
           this.reserveForm.get('businessID').setValue(data.business_id);
@@ -536,8 +569,6 @@ export class ReservationReservePage {
           this.pictPost.imgNPWP = data.link_npwp?data.link_npwp:'';
           this.pictPost.imgTF = data.link_bukti_transfer?data.link_bukti_transfer:'';
           this.amt = data.amount;
-          this.data.payment_desc = data.payment_desc;
-          this.data.price = data.price;
           this.loadNats(data.nationality);
           this.loadNupType(data.nup_type);
           this.loading.dismiss();
@@ -608,8 +639,8 @@ export class ReservationReservePage {
         if(x.Error == true) {
           if(x.Status == 401){
             // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
             this.loading.dismiss();
+            this.logoutAPi();
           }
           else {
             // alert(x.Pesan);
@@ -720,19 +751,19 @@ export class ReservationReservePage {
       });
       toast.present();
     }
-    // else if(idLen < 16){
-    //   this.loading.dismiss();
-    //   let toast = this.toastCtrl.create({
-    //     message: "ID Number must be 16 numbers long.",
-    //     duration: 3000,
-    //     position: 'top'
-    //   });
+    else if(idLen < 16){
+      this.loading.dismiss();
+      let toast = this.toastCtrl.create({
+        message: "ID Number must be 16 numbers long.",
+        duration: 3000,
+        position: 'top'
+      });
 
-    //   toast.onDidDismiss(() => {
-    //     console.log('Dismissed toast');
-    //   });
-    //   toast.present();
-    // }
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+      toast.present();
+    }
     else if(types){
       this.loading.dismiss();
       let toast = this.toastCtrl.create({
@@ -800,56 +831,48 @@ export class ReservationReservePage {
       if(this.avPict){
         this.pict.forEach(img => {
           cnt ++;
-            if(this.platform.is('ios')) {
-              this.upload(img.for, img.img64, img.name)
-              .then((datas) => {
-                var x = JSON.parse(datas.response);
-                if(x.Error == true) {
-                  if(x.Status == 401){
-                    // this.showAlert("Warning!", x.Pesan,'');
-                    this.logoutAPi();
-                    this.loading.dismiss();
-                  }
-                  else {
-                    // alert(x.Pesan);
-                    this.showAlert("Warning!", x.Pesan,'');
-                    this.loading.dismiss();
-                  }
+          // if(img.img && img.img != ''){
+            this.upload(img.for, img.img, img.name)
+            .then((datas) => {
+              var x = JSON.parse(datas.response);
+              if(x.Error == true) {
+                if(x.Status == 401){
+                  // this.showAlert("Warning!", x.Pesan,'');
+                  this.loading.dismiss();
+                  this.logoutAPi();
                 }
                 else {
-                  //ERROR FALSE
-                }
-                }, (err) => {
-                  //ERROR
+                  // alert(x.Pesan);
+                  this.showAlert("Warning!", x.Pesan,'');
                   this.loading.dismiss();
                 }
-              )
-            }
-            else {
-              this.upload(img.for, img.img, img.name)
-              .then((datas) => {
-                var x = JSON.parse(datas.response);
-                if(x.Error == true) {
-                  if(x.Status == 401){
-                    // this.showAlert("Warning!", x.Pesan,'');
-                    this.logoutAPi();
-                    this.loading.dismiss();
-                  }
-                  else {
-                    // alert(x.Pesan);
-                    this.showAlert("Warning!", x.Pesan,'');
-                    this.loading.dismiss();
-                  }
-                }
-                else {
-                  //ERROR FALSE
-                }
-                }, (err) => {
-                  //ERROR
-                  this.loading.dismiss();
-                }
-              )
-            }
+              }
+              else {
+                //Success
+                // if(img.for == 'id'){
+                //   // alert('id => '+JSON.stringify(x));
+                //   this.pictPost.imgID = x.Data;
+                // }
+                // else if(img.for == 'npwp'){
+                //   // alert('npwp => '+JSON.stringify(x));
+                //   this.pictPost.imgNPWP = x.Data;
+                // }
+                // else if(img.for == 'tf'){
+                //   // alert('tf => '+JSON.stringify(x));
+                //   this.pictPost.imgTF = x.Data;
+                // }
+
+              }
+              }, (err) => {
+                // this.loading.dismiss();
+                // this.showAlert('Failed!', JSON.stringify(err),'');
+                // alert('e => '+JSON.stringify(err));
+                // this.showAlert('Warning!', 'Upload '+img.for.toUpperCase()+' Failed','');
+                // return true;
+              }
+            )
+          // }
+          // cnt += 1;
         });
       }
 
@@ -869,7 +892,7 @@ export class ReservationReservePage {
         headers: {'Token':localStorage.getItem("Token")}
       };
 
-      return transfer.upload(pict, this.url_api+'c_reservate/upload/', option);
+      return transfer.upload(pict, this.url_api+'c_booking/upload/', option);
       // .then((x) => {
       //   console.log(x);
       //   // this.actSave();
@@ -881,14 +904,14 @@ export class ReservationReservePage {
   }
 
   actSave(data:any){
-    this.http.post(this.url_api+"c_reservate/saveNup/" , data, {headers:this.hd})
+    this.http.post(this.url_api+"c_booking/saveNup/" , data, {headers:this.hd})
     .subscribe(
       (x:any) => {
         if(x.Error == true) {
           if(x.Status == 401){
             // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
             this.loading.dismiss();
+            this.logoutAPi();
           }
           else {
             // alert(x.Pesan);

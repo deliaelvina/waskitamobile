@@ -1,11 +1,14 @@
 <ion-header>
     <ion-navbar>
-        <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-        <ion-title>
-            <span>Choose Block</span>
-        </ion-title>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+          <span>Choose Block</span>
+      </ion-title>
+      <button class="checkmark" (click)="home()">
+        <span style="font-size:1.5rem;vertical-align: middle;color:#fff">Home</span>
+      </button>
     </ion-navbar>
 </ion-header>
 
@@ -23,6 +26,11 @@
         {{parm.towerName}}
     </div> -->
     <div>
+        <!-- <ion-item>
+            <button style="z-index: 2;" item-right type="button" (click)="gotoUnitEnquiry()" class="btn-orens">
+                 Unit Enquiry
+            </button>
+        </ion-item> -->
         <ion-item>
             <ion-label floating>Unit Type</ion-label>
             <!-- Unit Type -->

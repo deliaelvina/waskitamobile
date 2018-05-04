@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController, ModalController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController, ModalController, App, Platform, ViewController } from 'ionic-angular';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -8,7 +8,10 @@ import { PilihUnitPage } from './pilihUnit';
 import { SearchBlok } from './search-page/s_blok';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
-
+import { MyApp } from '../../app/app.component';
+import { AuthService } from '../../auth/auth.service';
+import { Listing2Page } from '../listing2/listing2';
+// import { UnitEnquiryPage } from '../unit-enquiry/unit-enquiry';
 @Component({
   selector: 'formSearch-page',
   templateUrl: 'formSearch.html'
@@ -31,6 +34,8 @@ export class FormSearchPage {
 
   blocks:any[] = [];
   ErrorList:any;
+  device:string;
+  frontData : any;
 
   constructor(
     public nav: NavController,
@@ -41,53 +46,57 @@ export class FormSearchPage {
     public modal: ModalController,
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
+    private _app: App,
+    private _authService: AuthService,
+    public platform: Platform,
+    private viewCtrl: ViewController
   ) {
+    this.frontData = JSON.parse(localStorage.getItem('menus'));
+    this.device = localStorage.getItem('Device');
     this.loading = this.loadingCtrl.create();
     this.parm = this.navParams.get('data');
+    console.log(this.parm);
     this.cons = this.parm.cons;
     // console.log(this.parm);
   }
 
   logoutAPi(){
+    this.loading.present();
     let UserId = localStorage.getItem('UserId');
-
-    this.http.get(this.url_api+"c_auth/Logout/" +UserId, {headers:this.hd} )
-      .subscribe(
-        (x:any) => {
-          if(x.Error == true) {
-            if(x.Status == 401){
-              this.showAlert("Warning!", x.Pesan);
+    this._authService.logout().subscribe(
+      (x:any) => {
+        // console.log(x);
+              if(x.Error == true) {
+                  this.showAlert("Warning!", x.Pesan);
+                  this.loading.dismiss();
+              }
+              else {
+                this.loading.dismiss();
+                localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp);
+                  }
+              }
+            },
+            (err)=>{
               this.loading.dismiss();
-            }
-            else {
-              this.showAlert("Warning!", x.Pesan);
-              this.loading.dismiss();
-              // this.nav.pop();
-            }
-          }
-          else {
-            localStorage.clear();
-            // alert('ok');
-            this.nav.setRoot(WalkthroughPage);
-          }
-        },
-        (err)=>{
-          this.loading.dismiss();
-          //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
-          });
+              //filter error array
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
 
-          var errS;
-          //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
-            errS = this.ErrorList[0].Description;
-          }else{
-            errS = err;
-          }
-            this.showAlert("Error!", errS);
-        }
-      );
+              var errS;
+              if(this.ErrorList.length == 1 ){
+                errS = this.ErrorList[0].Description;
+              }else{
+                errS = err;
+              }
+                this.showAlert("Error!", errS);
+            }
+    );
+
   }
 
   ionViewDidLoad() {
@@ -279,8 +288,33 @@ export class FormSearchPage {
     this.parm.level = i.level_no;
     this.parm.levelDesc = i.descs;
     this.parm.levelPict = i.pict;
-    console.log(this.parm);
+    // console.log(this.parm);
     this.nav.push(PilihUnitPage, {data : this.parm});
+  }
+  gotoUnitEnquiry(){
+    // this.parm.blocks = this.blocks;
+    // this.nav.push(UnitEnquiryPage,{data:this.parm});
+  }
+
+  home(){
+    if(this.frontData){
+      // alert('ada');
+      this.nav
+      .push(Listing2Page, {}, { animate: true, direction: 'back' })
+      .then(() => {
+
+          const index = this.viewCtrl.index;
+
+          for(let i = index; i > 1; i--){
+              this.nav.remove(i);
+          }
+
+      });
+    }
+    else {
+      // alert('gaada');
+      this.nav.popToRoot();
+    }
   }
 
 }

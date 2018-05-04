@@ -23,7 +23,7 @@
     margin: 0px;
 }
 
-listing-page {
+newlisting2-pages {
     $categories-heading-image-height: 150px;
     $categories-grid-padding: 10px;
     $categories-horizontal-list-padding: 10px;
@@ -40,7 +40,7 @@ listing-page {
         // margin-bottom: 41px;
         // background-color: #f3f3f3 !important;
         // background-image: url('../assets/images/dashbg.jpg');
-        background-color: $background-header-dalem;
+        background-color: #f3f3f3;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -153,8 +153,8 @@ listing-page {
     color: $button-logout;
 }
 
-//  ------------- BASE newsquare ------------------- //
-.newsquare {
+//  ------------- BASE SQUARE ------------------- //
+.square {
     float: left;
     width: 30%;
     padding-bottom: 10%;
@@ -176,7 +176,7 @@ listing-page {
     border-radius: 5px;
 }
 
-.newcontentss {
+.contentss {
     height: 80%;
     width: auto;
     display: block;
@@ -188,7 +188,7 @@ listing-page {
     border-top-right-radius: nb-theme(card-border-radius);
 }
 
-.newtextt {
+.textt {
     display: block;
     // margin-bottom: -88%;
     margin-bottom: -140%;
@@ -203,10 +203,10 @@ listing-page {
     font-size: 8px;
     width: 100%;
     font-size: 3.5vw;
-    color: white; font-weight: 600
+    color: #000; font-weight: 600
 }
 
-.header-dalem{
+.apasi{
     background-color: transparent; 
     height: 150px;
     margin-left: 10px;
@@ -215,10 +215,10 @@ listing-page {
     margin-bottom:15px
 }
 
-//  ------------- END BASE newsquare ------------------- //
-//  ------------- POTRAIT newsquare ------------------- //
+//  ------------- END BASE SQUARE ------------------- //
+//  ------------- POTRAIT SQUARE ------------------- //
 @media only screen and (min-width: 360px) and (min-height: 640px) {
-    .newsquare {
+    .square {
         float: left;
         width: 30%;
         padding-bottom: 16%;
@@ -239,7 +239,7 @@ listing-page {
         // border-radius: 5px;
         border-radius: 20px;
     }
-    .newcontentss {
+    .contentss {
         height: 145%;
         width: auto;
         display: block;
@@ -252,7 +252,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         // margin-bottom: -120%;
@@ -271,11 +271,11 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 @media only screen and (max-width: 320px) {
-    .newsquare {
+    .square {
         float: left;
         width: 30%;
         // padding-bottom: 15%;
@@ -296,7 +296,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 20px;
     }
-    .newcontentss {
+    .contentss {
         // height: 80%;
         // width: auto;
         // display: block;
@@ -315,7 +315,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -120%;
         // margin-top: 75%;
@@ -332,12 +332,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 375px) {
-    .newsquare {
+    .square {
         float: left;
         width: 30%;
         padding-bottom: 15%;
@@ -358,7 +358,7 @@ listing-page {
         // border-radius: 5px;
         border-radius: 20px;
     }
-    .newcontentss {
+    .contentss {
         height: 120%;
         width: auto;
         display: block;
@@ -371,7 +371,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         // margin-bottom: -120%;
@@ -390,12 +390,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 414px) {
-    .newsquare {
+    .square {
         float: left;
         width: 30%;
         // width: 21%;
@@ -417,7 +417,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 20px;
     }
-    .newcontentss {
+    .contentss {
         height: 100%;
         width: auto;
         display: block;
@@ -428,7 +428,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         // margin-top: 90%;
@@ -445,12 +445,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 768px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -472,7 +472,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 20px !important;
     }
-    .newcontentss {
+    .contentss {
         height: 150% !important;
         width: auto;
         display: block;
@@ -483,10 +483,10 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         margin-bottom: -170% !important;
-        margin-top: 115% !important;
+        margin-top: 120% !important;
         margin-left: auto;
         margin-right: auto;
         vertical-align: bottom;
@@ -497,20 +497,23 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 
-    .header-dalem{
+    .apasi{
         background-color: transparent; 
         height: 400px;
         margin-left: 10px;
         margin-right: 10px;
         margin-top:65px;
-        margin-bottom:15px}
+        margin-bottom:15px;
+        width: -webkit-fill-available;
+        
+    }
 }
 //fix
 @media only screen and (min-width: 1024px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -533,7 +536,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 200% !important;
         width: auto;
         display: block;
@@ -546,7 +549,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         // margin-bottom: -130%;
@@ -563,21 +566,23 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
-    .header-dalem{
+    .dalemheader{
         background-color: transparent; 
         height: 400px;
         margin-left: 10px;
         margin-right: 10px;
         margin-top:65px;
-        margin-bottom:15px}
+        margin-bottom:15px;
+        width: -webkit-fill-available;
+    }
 }
 
-//  -------------END POTRAIT newsquare ------------------- //
-//  ------------- LANDSCAPE newsquare ------------------- //
+//  -------------END POTRAIT SQUARE ------------------- //
+//  ------------- LANDSCAPE SQUARE ------------------- //
 @media only screen and (min-width: 640px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -599,7 +604,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 130%;
         width: auto;
         display: block;
@@ -610,7 +615,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -625,12 +630,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 731px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -652,7 +657,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 170%;
         width: auto;
         display: block;
@@ -663,7 +668,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -678,12 +683,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 823px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -705,7 +710,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 650%;
         width: auto;
         display: block;
@@ -716,7 +721,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -731,12 +736,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 568px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -758,7 +763,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 100%;
         width: auto;
         display: block;
@@ -769,7 +774,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -784,12 +789,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 2vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 667px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -811,7 +816,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 140%;
         width: auto;
         display: block;
@@ -822,7 +827,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -837,12 +842,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 736px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -864,7 +869,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 230%;
         width: auto;
         display: block;
@@ -875,7 +880,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -890,12 +895,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 812px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -917,7 +922,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 630%;
         width: auto;
         display: block;
@@ -928,7 +933,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -150%;
@@ -943,12 +948,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 1024px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 14%;
@@ -970,7 +975,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 550%;
         width: auto;
         display: block;
@@ -981,7 +986,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -125%;
@@ -996,12 +1001,12 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.8vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
 @media only screen and (min-width: 1366px) {
-    .newsquare {
+    .square {
         float: left;
         // width: 30%;
         width: 12%;
@@ -1023,7 +1028,7 @@ listing-page {
         border: 2px solid#c1c1c0;
         border-radius: 5px;
     }
-    .newcontentss {
+    .contentss {
         height: 240%;
         width: auto;
         display: block;
@@ -1034,7 +1039,7 @@ listing-page {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .newtextt {
+    .textt {
         display: block;
         // margin-bottom: -88%;
         margin-bottom: -125%;
@@ -1049,7 +1054,7 @@ listing-page {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 1.5vw;
-        color: white; font-weight: 600
+        color: #000; font-weight: 600
     }
 }
 
