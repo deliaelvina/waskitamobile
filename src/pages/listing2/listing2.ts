@@ -243,7 +243,7 @@ export class Listing2Page {
       this.goDownload();
     }
     else {
-      this.nav.push(this.link[link], { user: localStorage.getItem("UserId") });
+      this.nav.push(this.link[link], { user: localStorage.getItem("UserId"), data:this.frontData });
     }
   }
 

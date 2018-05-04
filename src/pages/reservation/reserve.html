@@ -4,8 +4,9 @@
         <ion-icon name="menu"></ion-icon>
       </button>
         <ion-title>
-            <span *ngIf="!edit">Reservation Page</span>
+            <span *ngIf="!edit && !view">Reservation Page</span>
             <span *ngIf="edit">Edit Reservation</span>
+            <span *ngIf="view">View Reservation</span>
         </ion-title>
     </ion-navbar>
 </ion-header>

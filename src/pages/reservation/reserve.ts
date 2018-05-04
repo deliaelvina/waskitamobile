@@ -54,7 +54,7 @@ export class ReservationReservePage {
   imgNPWP:any = null;
   imgTF:any = null;
   // photos:any[] = [];
-  edit:any;
+  edit:boolean = false;
   data:any;
   validation_messages:any;
   natSelect:any;

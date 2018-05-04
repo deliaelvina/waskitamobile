@@ -24,7 +24,7 @@ export class NewsPage {
   loading:any;
   user:any;device:string;
   url_api = environment.Url_API;
-  cons = environment.cons_pb;
+  cons = environment.cons_mobile;
   link_iframe:any ;
   ErrorList:any;
   available: boolean = true;
@@ -32,6 +32,10 @@ export class NewsPage {
   hd = new HttpHeaders({
     Token : localStorage.getItem("Token")
   });
+
+  frontData:any;
+  forWhere:any;
+
   constructor(
     public sanitizer:DomSanitizer,
     public nav: NavController,
@@ -48,6 +52,14 @@ export class NewsPage {
     this.user = navParams.get('user');
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
+    this.frontData = this.navParams.get('data');
+    if(this.frontData){
+      // console.log(this.frontData);
+      this.forWhere = this.cons + "/" + this.frontData.entity + "/" + this.frontData.projectNo;
+    }
+    else {
+      this.forWhere = this.cons;
+    }
   }
 
   logoutAPi(){
@@ -58,7 +70,7 @@ export class NewsPage {
         console.log(x);
               if(x.Error == true) {
                   this.showAlert("Warning!", x.Pesan);
-                  this.loading.dismiss();                
+                  this.loading.dismiss();
               }
               else {
                 this.loading.dismiss();
@@ -66,8 +78,8 @@ export class NewsPage {
                   if(this.device=='android'){
                       navigator['app'].exitApp();
                   }else{//ios and web
-                      this._app.getRootNav().setRoot(MyApp); 
-                  }    
+                      this._app.getRootNav().setRoot(MyApp);
+                  }
               }
             },
             (err)=>{
@@ -76,7 +88,7 @@ export class NewsPage {
               this.ErrorList = this.ErrorList.filter(function(er){
                   return er.Code == err.status;
               });
-    
+
               var errS;
               if(this.ErrorList.length == 1 ){
                 errS = this.ErrorList[0].Description;
@@ -86,14 +98,14 @@ export class NewsPage {
                 this.showAlert("Error!", errS);
             }
     );
-   
-    }
+
+  }
 
   ionViewDidLoad() {
     this.loading.present();
     // localStorage.removeItem('cons_project');
     // console.log(this.cons);
-      this.http.get(this.url_api+"c_newsandpromo/getDatanews/" + this.cons, {headers:this.hd} )
+      this.http.get(this.url_api+"c_newsandpromo/getDatanews2/" + this.forWhere, {headers:this.hd} )
       .subscribe(
         (x:any) => {
           console.log(x);
