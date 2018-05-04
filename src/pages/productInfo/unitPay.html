@@ -53,6 +53,7 @@
                     <!-- <span *ngIf="parm.studios">STUDIO</span> -->
                     <!-- <span *ngIf="!parm.studios">{{parm.bd}} | {{parm.bh}} </span> <br> {{parm.direct}} |  -->
                     <span *ngIf="!parm.studios">{{parm.bd}} </span>
+                    <span style="float:left !important;">Selling Price : IDR.</span><span style="text-align:right;color:#06b139">{{sell_price}}</span>
                 </div>
 
             </ion-card-content>
@@ -68,8 +69,8 @@
                 <div *ngIf="av; else a">
                     <table width="100%">
                         <tr *ngFor="let item of plans">
-                            <td width="60%">{{item.plans}}</td>
-                            <td valign="middle" align="right"><span style="float:left !important;">IDR.</span><span style="text-align:right;color:#06b139">{{item.amt}}</span></td>
+                            <td width="100%">{{item.plans}}</td>
+                            <td valign="middle" align="right"><span style="float:left !important;" hidden="true">IDR.</span><span  hidden="true" style="text-align:right;color:#06b139">{{item.amt}}</span></td>
                         </tr>
                     </table>
                 </div>
