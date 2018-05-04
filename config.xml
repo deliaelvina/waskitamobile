@@ -117,7 +117,6 @@
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Select a picture" />
     </plugin>
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
-    <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.1" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
     <plugin name="call-number" spec="~0.0.2" />
     <plugin name="twitter-connect-plugin">
@@ -140,4 +139,5 @@
     <engine name="browser" spec="~5.0.3" />
     <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="~6.3.0" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.2" />
 </widget>

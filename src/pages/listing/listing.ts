@@ -26,6 +26,7 @@ import { SimulasiPage } from '../simulasi/simulasi';
 import { MyApp } from '../../app/app.component';
 import { AuthService } from '../../auth/auth.service';
 import { ListingProjectPage } from './project';
+import { ProjectDownloadPage } from '../download/project';
 // import { ProjectDownloadPage } from '../download/project';
 
 @Component({
@@ -216,7 +217,7 @@ export class ListingPage {
   }
 
   goToDownload(){
-    // this.nav.push(ProjectDownloadPage, { user: localStorage.getItem("UserId") });
+    this.nav.push(ProjectDownloadPage, { user: localStorage.getItem("UserId") });
   }
 
   showAlert(title:any, subTitle:any) {

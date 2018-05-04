@@ -28,6 +28,7 @@ import { AuthService } from '../../auth/auth.service';
 import { ProjectDetailsPage } from '../projectInfo/projectdetails';
 import { ProductPhasePage } from '../productInfo/phase';
 import { BookingPhasePage } from '../booking/phase';
+import { DownloadPage } from '../download/download';
 
 @Component({
   selector: 'newlisting2-pages',
@@ -82,11 +83,11 @@ export class Listing2Page {
         title : "Find Unit & Price",
         link : "ProductPhasePage"
       },
-      
+
       {
         image : "./assets/images/dashPict/download.png",
         title : "Download",
-        link : ""
+        link : "DownloadPage"
       },
       {
         image : "./assets/images/dashPict/promo.png",
@@ -129,7 +130,7 @@ export class Listing2Page {
     this.link['NewsPage'] = NewsPage;
     this.link['PromoPage'] = PromoPage;
     this.link['ProductPhasePage'] = ProductPhasePage; //kirim param menus
-    // this.link['MyReservationProjectPage'] = MyReservationProjectPage;
+    this.link['DownloadPage'] = DownloadPage; //kirim param menus
     this.link['BookingPhasePage'] = BookingPhasePage; //kirim locastorage banyak
     this.loading = this.loadingCtrl.create();
   }
@@ -238,6 +239,9 @@ export class Listing2Page {
     else if(link == "BookingPhasePage") {
       this.goBooking();
     }
+    else if(link == "DownloadPage") {
+      this.goDownload();
+    }
     else {
       this.nav.push(this.link[link], { user: localStorage.getItem("UserId") });
     }
@@ -272,6 +276,18 @@ export class Listing2Page {
     localStorage.removeItem("data");
     localStorage.setItem("data", JSON.stringify(data));
     this.nav.push(BookingPhasePage, {user: localStorage.getItem("UserId")});
+  }
+
+  goDownload(){
+    var data = {
+      cons : this.frontData.cons,
+      entity : this.frontData.entity,
+      projectNo : this.frontData.projectNo,
+      projectName : this.frontData.projectName,
+      projectPict : this.frontData.projectPict
+    };
+
+    this.nav.push(DownloadPage, {data:data});
   }
 
   goProduct(){

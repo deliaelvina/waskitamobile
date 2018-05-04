@@ -22,8 +22,8 @@ import { ProjectPage } from '../pages/projectInfo/project';
 import { ProjectDetailsPage } from '../pages/projectInfo/projectdetails';
 
 //download
-// import { ProjectDownloadPage } from "../pages/download/project";
-// import { DownloadPage } from "../pages/download/download";
+import { ProjectDownloadPage } from "../pages/download/project";
+import { DownloadPage } from "../pages/download/download";
 
 import { NewsPage } from '../pages/NewsAndPromo/news';
 import { PromoPage } from '../pages/NewsAndPromo/promo';
@@ -203,8 +203,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProjectPage,
     ProjectDetailsPage,
     CameraPage,
-    // ProjectDownloadPage,
-    // DownloadPage,
+    ProjectDownloadPage,
+    DownloadPage,
 
     //reservation
     ReservationProjectPage,
@@ -355,8 +355,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProjectPage,
     ProjectDetailsPage,
     CameraPage,
-    // ProjectDownloadPage,
-    // DownloadPage,
+    ProjectDownloadPage,
+    DownloadPage,
 
     //Reservation
     ReservationProjectPage,
