@@ -153,6 +153,7 @@ export class DownloadPage {
             this.download.push({
               id : val.rowID,
               desc : val.descs,
+              path: val.url,
               url : this.url_api+"pdf/"+val.url
             });
 
@@ -181,31 +182,27 @@ export class DownloadPage {
   }
 
   share(file:any){
-    console.log('file => '+JSON.stringify(file));
-
-    this.socialSharing.share(file.desc, '', file.url, '')
-    .then(() => {
-      //success
-    }).catch(() => {
-      //error
-    })
+    // console.log('file => '+JSON.stringify(file));
+    this.loading = this.loadingCtrl.create();
+    this.loading.present().then(() => {
+      this.socialSharing.share(file.desc, file.desc, file.url, '')
+      .then(() => {
+        //success
+        this.loading.dismiss();
+      }).catch(() => {
+        //error
+        this.loading.dismiss();
+      })
+    });
   }
 
   dw(file:any){
-    console.log('download => '+JSON.stringify(file));
-
     this.loading = this.loadingCtrl.create();
     this.loading.present().then(() => {
       const fileTransfer: FileTransferObject = this.transfer.create();
       var url = encodeURI(file.url);
-
-      fileTransfer.download(url, this.storageDirectory + '/'+file.desc+'.pdf').then((entry) => {
+      fileTransfer.download(url, this.storageDirectory + '/'+file.path).then((entry) => {
         let urlpdf = entry.toURL();
-        // alert(urlpdf);
-
-        // alert(this.storageDirectory);
-
-        // alert('hi');
         this.fileOpener.open(urlpdf, 'application/pdf').then(() => {
           this.loading.dismiss();
         }, (err) => {
