@@ -122,7 +122,8 @@ export class BookingPage {
                 caption:val.caption_address,
                 pic_path:val.picture_path ,
                 url_path: val.http_add,
-                cons_project:val.db_profile
+                cons_project:val.db_profile,
+                header_pict : "./assets/images/projects/"+val.picture_url,
               });
             });
             this.loading.dismiss();
@@ -170,6 +171,7 @@ export class BookingPage {
       entity : pro.entity,
       projectName : pro.descs,
       towerCd : '',
+      header_pict : pro.header_pict,
       towerName : '',
       level : '',
       level_descs : '',

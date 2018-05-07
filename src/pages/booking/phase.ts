@@ -9,6 +9,8 @@ import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.s
 import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { MyApp } from '../../app/app.component';
 import { AuthService } from '../../auth/auth.service';
+import { File } from '@ionic-native/file';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @Component({
   selector: 'bookingPhase-page',
@@ -37,6 +39,7 @@ export class BookingPhasePage {
 
   ErrorList:any;
   device:string;
+  header_pict:string;
 
   constructor(
     public nav: NavController,
@@ -49,6 +52,8 @@ export class BookingPhasePage {
     private _app: App,
     private _authService: AuthService,
     public platform: Platform,
+    private file: File,
+    private photoViewer: PhotoViewer,
   ) {
     this.device = localStorage.getItem('Device');
 
@@ -58,6 +63,7 @@ export class BookingPhasePage {
     this.entity = data.entity;
     this.project_name = data.projectName;
     this.cons = data.cons;
+    this.header_pict = data.header_pict;
     // var phasedeskripsi = JSON.parse(localStorage.getItem('data'));
     // console.log(projeknama);
 
@@ -264,6 +270,27 @@ export class BookingPhasePage {
     });
 
     warning.present();
+  }
+
+  presentImage(floorImg) {
+    // alert(floorImg);
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(/ /gi, '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
+    // alert(floorImg);
+    // console.log(floorImg);
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    this.photoViewer.show(
+      floorImg,
+      this.project_name,
+      {share:false}
+    );
   }
 
 }

@@ -9,6 +9,8 @@ import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.s
 import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { AuthService } from '../../auth/auth.service';
 import { MyApp } from '../../app/app.component';
+import { File } from '@ionic-native/file';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @Component({
   selector: 'phase-page',
@@ -34,6 +36,7 @@ export class ReservationPhasePage {
   data:any;
   agent_cd:any;
   group:any;
+  header_pict:string;
 
   pict:any[] = [
     "http://localhost:2121/waskitaAPI/images/reservation/phase1.png",
@@ -55,6 +58,8 @@ export class ReservationPhasePage {
     private _authService: AuthService,
     private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
+    private file: File,
+    private photoViewer: PhotoViewer,
   ) {
     var data= JSON.parse(localStorage.getItem('data'));
     this.data = data;
@@ -62,6 +67,7 @@ export class ReservationPhasePage {
     this.entity = data.entity;
     this.project_name = data.projectName;
     this.cons = data.cons;
+    this.header_pict = data.header_pict;
     this.device = localStorage.getItem('Device');
     // var phasedeskripsi = JSON.parse(localStorage.getItem('data'));
     // console.log(projeknama);
@@ -93,7 +99,7 @@ export class ReservationPhasePage {
         console.log(x);
               if(x.Error == true) {
                   this.showAlert("Warning!", x.Pesan);
-                  this.loading.dismiss();                
+                  this.loading.dismiss();
               }
               else {
                 this.loading.dismiss();
@@ -101,8 +107,8 @@ export class ReservationPhasePage {
                   if(this.device=='android'){
                       navigator['app'].exitApp();
                   }else{//ios and web
-                      this._app.getRootNav().setRoot(MyApp); 
-                  }    
+                      this._app.getRootNav().setRoot(MyApp);
+                  }
               }
             },
             (err)=>{
@@ -111,7 +117,7 @@ export class ReservationPhasePage {
               this.ErrorList = this.ErrorList.filter(function(er){
                   return er.Code == err.status;
               });
-    
+
               var errS;
               if(this.ErrorList.length == 1 ){
                 errS = this.ErrorList[0].Description;
@@ -121,8 +127,8 @@ export class ReservationPhasePage {
                 this.showAlert("Error!", errS);
             }
     );
-   
-    }
+
+  }
 
   ionViewDidLoad() {
     this.loading.present();
@@ -268,6 +274,27 @@ export class ReservationPhasePage {
     });
 
     warning.present();
+  }
+
+  presentImage(floorImg) {
+    // alert(floorImg);
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(/ /gi, '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
+    // alert(floorImg);
+    // console.log(floorImg);
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    this.photoViewer.show(
+      floorImg,
+      this.project_name,
+      {share:false}
+    );
   }
 
 }

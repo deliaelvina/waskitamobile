@@ -9,6 +9,8 @@ import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.s
 import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { MyApp } from '../../app/app.component';
 import { AuthService } from '../../auth/auth.service';
+import { File } from '@ionic-native/file';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @Component({
   selector: 'productPhase-page',
@@ -40,6 +42,7 @@ export class ProductPhasePage {
     towerName : ''
   };
   device:string;
+  header_pict:string;
 
   // pict:any[] = [
   //   "./assets/images/reservation/phase1.png",
@@ -61,12 +64,15 @@ export class ProductPhasePage {
     private _app: App,
     private _authService: AuthService,
     public platform: Platform,
+    private file: File,
+    private photoViewer: PhotoViewer,
   ) {
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
     this.parm = this.navParams.get('data');
     this.project_name = this.parm.projectName;
     this.cons = this.parm.cons;
+    this.header_pict = this.parm.header_pict;
   }
 
   logoutAPi(){
@@ -197,6 +203,27 @@ export class ProductPhasePage {
     });
 
     warning.present();
+  }
+
+  presentImage(floorImg) {
+    // alert(floorImg);
+    if(floorImg.search('assets/images') == -1){
+      //image from API
+      floorImg = floorImg.replace(/ /gi, '%20');
+    }
+    else {
+      //image from LOCAL
+      floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
+    }
+    // alert(floorImg);
+    // console.log(floorImg);
+    // const imageViewer = this.viewImg.create(floorImg);
+    // imageViewer.present();
+    this.photoViewer.show(
+      floorImg,
+      this.project_name,
+      {share:false}
+    );
   }
 
 }
