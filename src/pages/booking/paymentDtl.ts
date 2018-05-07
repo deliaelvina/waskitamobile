@@ -169,7 +169,7 @@ export class BookingPaymentDetailPage {
     this.loading.dismiss();
   }
 
-  cekUnitStatus(){
+  cekUnitStatus(plan:any){
     var x = {
       entity:this.data.entity,
       project:this.data.project,
@@ -191,7 +191,8 @@ export class BookingPaymentDetailPage {
             // alert(x.Pesan);
             // this.available = false;
             this.showAlert("Warning!", "No Info Available");
-            this.viewCtrl.dismiss();
+            // this.viewCtrl.dismiss();
+            this.nav.push(BookingReservePage,{act:'book'});
             // alert(1);
             this.loading.dismiss();
           }
@@ -331,7 +332,8 @@ export class BookingPaymentDetailPage {
   }
 
   onBooking(plan:any){
-    this.nav.push(BookingReservePage,{act:'book'});
+    // this.nav.push(BookingReservePage,{act:'book'});
+    this.cekUnitStatus(plan);
   }
 
 }

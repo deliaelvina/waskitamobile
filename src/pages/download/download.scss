@@ -152,7 +152,7 @@ download-page {
     background-color: transparent;
     color: $button-logout;
   }
-  
+
   //  ------------- BASE SQUARE ------------------- //
   .square {
     float: left;
@@ -175,7 +175,7 @@ download-page {
     border: 2px solid#c1c1c0;
     border-radius: 5px;
   }
-  
+
   .contentss {
     height: 80%;
     width: auto;
@@ -187,7 +187,7 @@ download-page {
     border-top-left-radius: nb-theme(card-border-radius);
     border-top-right-radius: nb-theme(card-border-radius);
   }
-  
+
   .textt {
     display: block;
     // margin-bottom: -88%;
@@ -205,7 +205,7 @@ download-page {
     font-size: 3.5vw;
     color: #000; font-weight: 600
   }
-  
+
   .apasi{
     background-color: transparent;
     height: 150px;
@@ -214,7 +214,7 @@ download-page {
     margin-top:65px;
     margin-bottom:15px
   }
-  
+
   //  ------------- END BASE SQUARE ------------------- //
   //  ------------- POTRAIT SQUARE ------------------- //
   @media only screen and (min-width: 360px) and (min-height: 640px) {
@@ -309,7 +309,7 @@ download-page {
         // margin-top: 10%;
         margin-bottom: -70%;
         margin-top: 20%;
-  
+
         margin-left: auto;
         margin-right: auto;
         border-top-left-radius: nb-theme(card-border-radius);
@@ -335,7 +335,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 375px) {
     .square {
         float: left;
@@ -393,7 +393,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 414px) {
     .square {
         float: left;
@@ -448,7 +448,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 768px) {
     .square {
         float: left;
@@ -499,7 +499,7 @@ download-page {
         font-size: 2vw;
         color: #000; font-weight: 600
     }
-  
+
     .apasi{
         background-color: transparent;
         height: 400px;
@@ -508,7 +508,7 @@ download-page {
         margin-top:65px;
         margin-bottom:15px;
         width: -webkit-fill-available;
-  
+
     }
   }
   //fix
@@ -578,7 +578,7 @@ download-page {
         width: -webkit-fill-available;
     }
   }
-  
+
   //  -------------END POTRAIT SQUARE ------------------- //
   //  ------------- LANDSCAPE SQUARE ------------------- //
   @media only screen and (min-width: 640px) {
@@ -633,7 +633,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 731px) {
     .square {
         float: left;
@@ -686,7 +686,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 823px) {
     .square {
         float: left;
@@ -739,7 +739,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 568px) {
     .square {
         float: left;
@@ -792,7 +792,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 667px) {
     .square {
         float: left;
@@ -845,7 +845,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 736px) {
     .square {
         float: left;
@@ -898,7 +898,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 812px) {
     .square {
         float: left;
@@ -951,7 +951,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 1024px) {
     .square {
         float: left;
@@ -1004,7 +1004,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   @media only screen and (min-width: 1366px) {
     .square {
         float: left;
@@ -1057,7 +1057,7 @@ download-page {
         color: #000; font-weight: 600
     }
   }
-  
+
   .div-welcome {
     height: 40px;
     // background-color: #ffffff36;
@@ -1067,7 +1067,7 @@ download-page {
     // margin-bottom: 1rem;
     margin-left: 0px;
   }
-  
+
   .div-welcome-title {
     text-align: left;
     font-size: 1.5rem !important;
@@ -1080,7 +1080,7 @@ download-page {
     padding-left: 5px;
     font-weight: 600;
   }
-  
+
   .grid-example {
     padding: 10px 5px 0px 5px;
     flex-wrap: wrap;
@@ -1102,17 +1102,29 @@ download-page {
             padding-bottom: 100%;
             height: 40px;
             background-color: $white-c;
+            .pdfIco {
+              position: relative;
+              float: left;
+              z-index: 2;
+              width: 38px;
+              padding-top: 1%;
+              padding-left: 5px;
+            }
             .grid-item-inner {
                 height: 100%;
                 width: 100%;
                 position: absolute;
                 display: flex;
-                justify-content: center;
+                justify-content: left;
+                // justify-content: center;
                 align-items: center;
+                background-color: #ff720d;
                 .item-title {
                     margin: 0px;
-                    color: $black-c;
+                    // color: $black-c;
+                    color: #fff;
                     text-align: center;
+                    margin-left: 55px;
                 }
                 &.multi-line {
                     flex-wrap: wrap;

@@ -471,7 +471,22 @@ export class BookingUnitModalPage {
     // console.log(this.gallery);
     // console.log(this.details);
 
-    this.cekUnitStatus(plan);
+    // this.cekUnitStatus(plan);
+    this.data.payment_cd = plan.payment_cd;
+    this.data.payment_descs = plan.plans;
+    this.data.payment_amt = plan.amt;
+    this.data.payment_amt2 = plan.amt2;
+
+    this.data.gallery = this.gallery;
+
+    this.data.bath = this.details.bath;
+    this.data.bed = this.details.bed;
+    this.data.direct = this.details.direct;
+    this.data.area = this.details.area;
+    this.data.uom = this.details.uom;
+
+    localStorage.setItem('data', JSON.stringify(this.data));
+    this.nav.push(BookingPaymentDetailPage);
 
   }
 
