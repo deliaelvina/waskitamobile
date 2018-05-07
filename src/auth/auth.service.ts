@@ -16,6 +16,7 @@ export class AuthService{
     }
     // Login(email:string,password:string){
     Login(value:any[]){
+        console.log(value);
         // return this.http.post(this.urlAPI+"c_auth/Login",JSON.stringify({ email: email, password: password }))
         return this.http.post(this.urlAPI+"c_auth/Login",value)
         .map((response:Response)=>{
@@ -37,8 +38,10 @@ export class AuthService{
             // console.log(Res);
         });
     }
-    LoginSosmed(email:string,medsos:string,userId:string){
-        return this.http.post(this.urlAPI+"c_auth/LoginWithSosmed",JSON.stringify({ Email: email, Medsos: medsos, LoginId : userId}))
+    LoginSosmed(email:string,medsos:string,userId:string,Device:string){
+        var token = sessionStorage.getItem("Token");
+        
+        return this.http.post(this.urlAPI+"c_auth/LoginWithSosmed",JSON.stringify({ Email: email, Medsos: medsos, LoginId : userId,device:Device,Token:token}))
         // return this.http.post(this.urlAPI+"c_auth/LoginGuest",value)
         .map(res=>res.json());
     }

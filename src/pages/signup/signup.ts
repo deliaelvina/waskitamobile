@@ -1,5 +1,5 @@
 import { Component,Input,ViewChild } from '@angular/core';
-import { NavController, ModalController, LoadingController, ToastController,AlertController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, ToastController,AlertController,Platform } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
@@ -28,7 +28,7 @@ export class SignupPage {
   public AgentClick: boolean = false;
 
   signup: FormGroup;
-
+  device:string;
 
   main_page: { component: any };
   loading: any;
@@ -50,7 +50,25 @@ export class SignupPage {
     ,private _errorService: ErrorhandlerService,
     public googlePlus: GooglePlus
     ,public alertCtrl: AlertController,
+    public platform:Platform
   ) {
+    platform.ready().then((source) => {
+      if (this.platform.is('android')) {
+        localStorage.setItem('Device', 'android');
+        this.device = 'android';
+        // alert("running on Android device!");
+      }
+      if (this.platform.is('ios')) {
+        this.device = 'iOS';
+        localStorage.setItem('Device', 'iOS');
+      }
+      if (this.platform.is('mobileweb')) {
+        this.device = 'web';
+        localStorage.setItem('Device', 'web');
+      }
+      // alert(source);
+    });
+
     this.main_page = { component: TabsNavigationPage };
 
     this.signup = new FormGroup({
@@ -133,7 +151,7 @@ export class SignupPage {
                   (dataSignUp)=>{
                     if(!dataSignUp.Error){
                       //Berhasil simpan then login
-                      this._authService.LoginSosmed(this.signup.value.Email,this.signup.value.Medsos,this.signup.value.Id)
+                      this._authService.LoginSosmed(this.signup.value.Email,this.signup.value.Medsos,this.signup.value.Id,this.device)
                       .subscribe(
                         
                         (Res)=>{

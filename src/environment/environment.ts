@@ -22,6 +22,7 @@ export const environment = {
   // Url_API:'http://localhost:2121/WaskitaAPI2/',
   // Url_API:'http://35.197.137.111/WaskitaAPI/',
   // Url_API:'http://192.168.1.69:2121/WaskitaAPI/',
+  // Url_API:'http://192.168.1.69:2121/WaskitaAPI2/',
   // Url_API:'http://35.197.137.111/WaskitaAPI/',
   Url_API:'http://35.197.137.111/WaskitaAPI2/',
   cons_pb:'IFCAPB',

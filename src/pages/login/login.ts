@@ -66,7 +66,9 @@ export class LoginPage {
     this.loading = this.loadingCtrl.create();
     this.login = new FormGroup({
       email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', Validators.required),
+      device: new FormControl(''),
+      token: new FormControl('')
     });
 
 
@@ -88,7 +90,8 @@ export class LoginPage {
     // console.log(this.login.value);
     // console.log(this.ErrorList);
     // console.log(this.ErrorList.Error_Status[0]);
-
+    this.login.value.device = this.device;
+    this.login.value.token = sessionStorage.getItem("Token");
     this.loading.present();
     this._authService.Login(this.login.value).subscribe(
       result=>{
@@ -174,7 +177,7 @@ export class LoginPage {
     }else{
       this.facebook.logout();
     }
-    this._authService.LoginSosmed(email,Fr,usId)
+    this._authService.LoginSosmed(email,Fr,usId,this.device)
     .subscribe(
 
       (Res)=>{

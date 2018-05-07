@@ -156,7 +156,7 @@ export class ListingPage {
         {
           text: 'Yes',
           handler: () => {
-
+            sessionStorage.setItem("Token", localStorage.getItem('Token'));
             this.logoutAPi();
           }
         }
@@ -206,7 +206,16 @@ export class ListingPage {
                 errS = err;
               }
                 this.showAlert("Error!", errS);
+
+                this.loading.dismiss();
+                  localStorage.clear();
+                  if(this.device=='android'){
+                      navigator['app'].exitApp();
+                  }else{//ios and web
+                      this._app.getRootNav().setRoot(MyApp);
+                  }
             }
+            
     );
   }
 
