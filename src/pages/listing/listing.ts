@@ -159,7 +159,10 @@ export class ListingPage {
           text: 'Yes',
           handler: () => {
             sessionStorage.setItem("Token", localStorage.getItem('Token'));
-            this.logoutAPi();
+            this.loading = this.loadingCtrl.create();
+            this.loading.present().then(() => {
+              this.logoutAPi();
+            });
           }
         }
       ]
