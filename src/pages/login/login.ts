@@ -27,7 +27,7 @@ export class LoginPage {
   login: FormGroup;
   main_page: { component: any };
   loading: any;
-  device:string;
+  devices:string;
   //error handle
   // ErrorList: ErrorStatusModel = new ErrorStatusModel();
   ErrorList:any;
@@ -49,15 +49,15 @@ export class LoginPage {
     platform.ready().then((source) => {
       if (this.platform.is('android')) {
         localStorage.setItem('Device', 'android');
-        this.device = 'android';
+        this.devices = 'android';
         // alert("running on Android device!");
       }
       if (this.platform.is('ios')) {
-        this.device = 'iOS';
+        this.devices = 'iOS';
         localStorage.setItem('Device', 'iOS');
       }
       if (this.platform.is('mobileweb')) {
-        this.device = 'web';
+        this.devices = 'web';
         localStorage.setItem('Device', 'web');
       }
       // alert(source);
@@ -90,7 +90,7 @@ export class LoginPage {
     // console.log(this.login.value);
     // console.log(this.ErrorList);
     // console.log(this.ErrorList.Error_Status[0]);
-    this.login.value.device = this.device;
+    this.login.value.device = this.devices;
     this.login.value.token = sessionStorage.getItem("Token");
     this.loading.present();
     this._authService.Login(this.login.value).subscribe(
@@ -177,7 +177,7 @@ export class LoginPage {
     }else{
       this.facebook.logout();
     }
-    this._authService.LoginSosmed(email,Fr,usId,this.device)
+    this._authService.LoginSosmed(email,Fr,usId,this.devices)
     .subscribe(
 
       (Res)=>{
@@ -248,7 +248,7 @@ export class LoginPage {
     this.loading.present();
 
     let env = this;
-    if(this.device=='iOS'){//ios
+    if(this.devices=='iOS'){//ios
       //Check Is Login Or Not
       this.googlePlus.trySilentLogin({
 
