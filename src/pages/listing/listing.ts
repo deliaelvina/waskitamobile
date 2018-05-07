@@ -93,6 +93,8 @@ export class ListingPage {
     this.link['PromoPage'] = PromoPage;
     this.link['ProductProjectPage'] = ProductProjectPage;
     this.link['MyReservationProjectPage'] = MyReservationProjectPage;
+    this.link['ListingProjectPage'] = ListingProjectPage;
+    this.link['ProjectDownloadPage'] = ProjectDownloadPage;
     this.link['BookingPage'] = BookingPage;
     this.loading = this.loadingCtrl.create();
   }
@@ -217,14 +219,14 @@ export class ListingPage {
     this.nav.push(a, { category: category, user: localStorage.getItem("UserId") });
   }
 
-  goToTest(){
-    // alert('a');
-    this.nav.push(ListingProjectPage, { user: localStorage.getItem("UserId") });
-  }
+  // goToTest(){
+  //   // alert('a');
+  //   this.nav.push(ListingProjectPage, { user: localStorage.getItem("UserId") });
+  // }
 
-  goToDownload(){
-    this.nav.push(ProjectDownloadPage, { user: localStorage.getItem("UserId") });
-  }
+  // goToDownload(){
+  //   this.nav.push(ProjectDownloadPage, { user: localStorage.getItem("UserId") });
+  // }
 
   showAlert(title:any, subTitle:any) {
 

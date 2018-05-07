@@ -64,7 +64,7 @@
                 </ion-row>
             </background-image>
         </ion-col> -->
-        <div class="newsquare" (click)="goToTest()">
+        <!-- <div class="newsquare" (click)="goToTest()">
             <img class="newcontentss" src="./assets/images/dashPict/buildings.png">
             <div class="newtextt">
                 All Project
@@ -76,7 +76,7 @@
             <div class="newtextt">
                 Download
             </div>
-        </div>
+        </div> -->
 
         <div class="newsquare" *ngFor="let category of dashMenu" (click)="goToFeed(category)">
             <img class="newcontentss" src="{{category.image}}">
