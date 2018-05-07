@@ -123,7 +123,8 @@ export class ProductProjectPage {
               caption:val.caption_address,
               pic_path: val.picture_path ,
               url_path: val.http_add,
-              db : val.db_profile
+              db : val.db_profile,
+              header_pict : "./assets/images/projects/"+val.picture_url,
             });
           });
           this.loading.dismiss();
@@ -167,7 +168,8 @@ export class ProductProjectPage {
       entity : pro.entity,
       projectNo : pro.project,
       projectName : pro.descs,
-      projectPict : pro.pic_path
+      projectPict : pro.pic_path,
+      header_pict : pro.header_pict,
     };
     // console.log(data);
     this.nav.push(ProductPhasePage, {data:data});

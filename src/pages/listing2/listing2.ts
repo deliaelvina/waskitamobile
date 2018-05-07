@@ -258,6 +258,7 @@ export class Listing2Page {
       project : this.frontData.projectNo,
       entity : this.frontData.entity,
       projectName : this.frontData.projectName,
+      header_pict : this.frontData.header_pict,
       towerCd : '',
       towerName : '',
       level : '',

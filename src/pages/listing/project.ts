@@ -123,7 +123,8 @@ export class ListingProjectPage {
               caption:val.caption_address,
               pic_path: val.picture_path ,
               url_path: val.http_add,
-              db : val.db_profile
+              db : val.db_profile,
+              header_pict : "./assets/images/projects/"+val.picture_url,
             });
           });
           this.loading.dismiss();
@@ -176,6 +177,7 @@ export class ListingProjectPage {
       projectNo : pro.project,
       projectName : pro.descs,
       projectPict : pro.pic_path,
+      header_pict : pro.header_pict,
       isFrom : 1
     };
     // console.log(data);
