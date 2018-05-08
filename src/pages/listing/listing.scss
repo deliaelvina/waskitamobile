@@ -152,6 +152,76 @@ listing-page {
         color: $button-logout;
     }
 
+    @media only screen and (max-width: 320px) {
+        .newsquare {
+            float: left;
+            width: 30%;
+            // padding-bottom: 15%;
+            padding-bottom: 11%;
+            margin: 1.66%;
+            background-color: #fff;
+            font-size: 1rem;
+            line-height: 1.25;
+            // background: #212121;
+            background: nb-theme(color-bg);
+            color: #ffffff;
+            color: nb-theme(color-fg-heading);
+            margin-bottom: 3rem;
+            border-radius: 0.5rem;
+            // box-shadow: 0 3px 5px -3px #333;
+            font-weight: 400;
+            cursor: pointer;
+            border: 2px solid#c1c1c0;
+            border-radius: 20px;
+        }
+        .newcontentss {
+            // height: 80%;
+            // width: auto;
+            // display: block;
+            // margin-bottom: -60%;
+            // margin-top: 10%;
+            height: 100%;
+            width: auto;
+            display: block;
+            // margin-bottom: -60%;
+            // margin-top: 10%;
+            margin-bottom: -70%;
+            margin-top: 20%;
+    
+            margin-left: auto;
+            margin-right: auto;
+            border-top-left-radius: nb-theme(card-border-radius);
+            border-top-right-radius: nb-theme(card-border-radius);
+        }
+        .newtextt {
+            display: block;
+            // margin-bottom: -120%;
+            // margin-top: 75%;
+        //    
+        margin-bottom: -150%;
+        margin-top: 95%;
+            margin-left: auto;
+            margin-right: auto;
+            vertical-align: bottom;
+            text-align: center;
+            font-family: 'Exo-Regular' !important;
+            font-weight: nb-theme(font-weight-bold);
+            font-size: 8px;
+            width: 100%;
+            // font-size: 2.4vw;
+            font-size: 3.5vw;
+            color: #fff; font-weight: 600
+        }
+
+        .header-dalem{
+            background-color: transparent; 
+            height: 150px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top:65px;
+            margin-bottom:15px
+        }
+    }
     @media only screen and (min-width: 360px){
            //  ------------- BASE newsquare ------------------- //
            .newsquare {
@@ -264,7 +334,7 @@ listing-page {
          // margin-top: 75%;
          margin-bottom: -150%;
      // margin-top: 93%;
-     margin-top: 93%;
+     margin-top: 95%;
          margin-left: auto;
          margin-right: auto;
          vertical-align: bottom;

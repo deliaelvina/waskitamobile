@@ -276,7 +276,7 @@ export class FormSearchPage {
         }
         this.parm.lot_type = data.type;
         this.parm.lot_type_desc = data.typeDesc;
-        this.parm.lot_spec = data.typeSpec
+        this.parm.lot_spec = data.typeSpec;
         // console.log(this.parm);
         // loading.dismiss();
       }
@@ -285,16 +285,19 @@ export class FormSearchPage {
   }
 
   selectBlock(i:any){
+    console.log(i);
+
     this.parm.level = i.level_no;
     this.parm.levelDesc = i.descs;
     this.parm.levelPict = i.pict;
     // console.log(this.parm);
     this.nav.push(PilihUnitPage, {data : this.parm});
   }
-  gotoUnitEnquiry(){
-    // this.parm.blocks = this.blocks;
-    // this.nav.push(UnitEnquiryPage,{data:this.parm});
-  }
+
+  // gotoUnitEnquiry(){
+  //   // this.parm.blocks = this.blocks;
+  //   this.nav.push(UnitEnquiryPage,{data:this.parm});
+  // }
 
   home(){
     if(this.frontData){

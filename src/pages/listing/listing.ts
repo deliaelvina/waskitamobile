@@ -101,7 +101,7 @@ export class ListingPage {
 
   // initDash() {
   ionViewDidLoad() {
-    this.loading.present();
+    // this.loading.present();
     var pict = '';
     var menu = JSON.parse(localStorage.getItem("MenuDash"));
     // this.banner_title = localStorage.getItem("UserId");
@@ -119,7 +119,7 @@ export class ListingPage {
     });
 
     // console.log(this.dashMenu);
-    this.loading.dismiss();
+    // this.loading.dismiss();
   }
 
   ionViewDidEnter(){

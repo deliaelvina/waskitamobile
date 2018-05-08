@@ -22,7 +22,7 @@ export class UnitPayPage {
   loading:any;
   url_api = environment.Url_API;
   cons:any;
-
+  sell_price:any='-';
   parm:any;
   ErrorList:any;
 
@@ -33,7 +33,7 @@ export class UnitPayPage {
   plans:any[] = [];
 
   av:boolean = true;
-  sell_price:any='-';
+
   picts:any[] = [];
   viewImg:ImageViewerController;
   device:string;
@@ -169,6 +169,7 @@ export class UnitPayPage {
         else {
           var data = x.Data;
           this.sell_price = x.DataHC;
+          // console.log(x);
           data.forEach(val => {
             this.plans.push({
               plans: val.descs,
@@ -221,7 +222,7 @@ export class UnitPayPage {
           }
           else {
             // alert(x.Pesan);
-            this.av = false;
+            // this.av = false;
             this.loading.dismiss();
           }
         }

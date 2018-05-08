@@ -144,16 +144,8 @@ newlisting2-gakdipake-pages {
         color: $title-header;
     }
     // taro dalem
-}
 
-.button-logout {
-    font-size: 22px;
-    float: right;
-    background-color: transparent;
-    color: $button-logout;
-}
-
-//  ------------- BASE SQUARE ------------------- //
+    //  ------------- BASE SQUARE ------------------- //
 .square {
     float: left;
     width: 30%;
@@ -1057,6 +1049,16 @@ newlisting2-gakdipake-pages {
         color: #000; font-weight: 600
     }
 }
+}
+
+.button-logout {
+    font-size: 22px;
+    float: right;
+    background-color: transparent;
+    color: $button-logout;
+}
+
+
 
 .div-welcome {
     height: 40px;
