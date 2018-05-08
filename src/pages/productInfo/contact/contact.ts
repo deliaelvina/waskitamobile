@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 // import { ErrorhandlerService } from '../../../providers/errorhandler/errorhandler.service';
 import { WalkthroughPage } from '../../walkthrough/walkthrough';
+import { SocialSharing } from '@ionic-native/social-sharing';
 // import { FormService } from '../../../auth/form.service';
 import { ListingPage } from '../../listing/listing';
 import { TabsNavigationPage } from '../../tabs-navigation/tabs-navigation';
@@ -34,7 +35,7 @@ import { Listing2Page } from '../../listing2/listing2';
     desc:any;
     descrip:any;
     parm:any;
-    loading:any;
+    loading:any;tlp:any;
     user:any;
     url_api = environment.Url_API;
     cons = environment.cons_mobile;
@@ -62,6 +63,7 @@ import { Listing2Page } from '../../listing2/listing2';
       public formBuilder: FormBuilder,
       private http: HttpClient,
       private formservice: FormService,
+      private socialSharing: SocialSharing,
       public platform: Platform,
       private toastCtrl: ToastController,
       private _errorService: ErrorhandlerService,
@@ -386,7 +388,31 @@ import { Listing2Page } from '../../listing2/listing2';
         );
 
   }
+  kirimwa(){
+      this.loading = this.loadingCtrl.create();
+      
+      // this.tlp="6289503034984";
+      this.tlp = this.parm.handphone;
+        var datas = this.contactForm.value;
+        datas.Desc= this.descrip;
+        datas.cons = this.parm.cons;
+        this.descrip = decodeURIComponent(this.descrip);
+        // console.log(decodeURI(this.descrip));
+        datas.Uid = localStorage.getItem('UserId');
+        this.loading = this.loadingCtrl.create();
+        // window.open("https://api.whatsapp.com/send?phone=6281&text=Hello","_system","location=yes");
+        this.loading.present().then(() => {
+          this.socialSharing.shareViaWhatsAppToReceiver(this.tlp, this.descrip, '','')
+          .then(() => {
+            //success
+            this.loading.dismiss();
+          }).catch(() => {
+            //error
+            this.loading.dismiss();
+          })
+        });
 
+  }
   onSubmit(data: any) {
     // console.log(data);
   }

@@ -120,6 +120,7 @@ export class ProductProjectPage {
               entity: val.entity_cd,
               project: val.project_no,
               descs: val.project_descs,
+              handphone:val.handphone,
               caption:val.caption_address,
               pic_path: val.picture_path ,
               url_path: val.http_add,
@@ -168,6 +169,7 @@ export class ProductProjectPage {
       entity : pro.entity,
       projectNo : pro.project,
       projectName : pro.descs,
+      handphone : pro.handphone,
       projectPict : pro.pic_path,
       header_pict : pro.header_pict,
     };

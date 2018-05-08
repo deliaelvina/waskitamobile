@@ -69,7 +69,7 @@ export class ProductPhasePage {
   ) {
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
-    this.parm = this.navParams.get('data');
+    this.parm = this.navParams.get('data');console.log(this.parm);
     this.project_name = this.parm.projectName;
     this.cons = this.parm.cons;
     this.header_pict = this.parm.header_pict;
@@ -186,7 +186,6 @@ export class ProductPhasePage {
   goToBlock(phase:any){
     this.parm.tower = phase.property_cd;
     this.parm.towerName = phase.descs;
-
     this.nav.push(UnitTypePage, {data:this.parm});
   }
 
