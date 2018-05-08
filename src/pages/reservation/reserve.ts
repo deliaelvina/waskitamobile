@@ -355,7 +355,15 @@ export class ReservationReservePage {
   }
 
   loadNupType(parm:any) {
-    this.http.get(this.url_api+"c_reservate/getNupType/" + this.cons + "/" + this.data.entity + "/" + this.data.project , {headers:this.hd} )
+    var url = '';
+    if(this.re == "Reservation"){
+      url = this.url_api+"c_reservate/getNupType/" + this.cons + "/" + this.data.entity + "/" + this.data.project;
+    }
+    else {
+      url = this.url_api+"c_booking/getNupType/" + this.cons + "/" + this.data.entity + "/" + this.data.project;
+    }
+
+    this.http.get(url , {headers:this.hd} )
     .subscribe(
       (x:any) => {
         if(x.Error == true) {

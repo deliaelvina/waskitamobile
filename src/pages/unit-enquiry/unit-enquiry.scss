@@ -1,0 +1,217 @@
+unit-enquiry-page{
+    .text-blok-unit{
+        color: #222;font-weight: 600;font-size: 1.3rem;margin-left: 10px;margin-bottom: 5px;
+    }
+    .project_des {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        color: #555;
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+    .phase_des {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        color: #222;
+        font-weight: 400;
+        font-size: 1.6rem;
+    }
+    .col-atas{
+        background-color:lightgrey;
+         //    display: block;
+         position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+    }
+    .col-atas2{
+        background-color:lightgrey;
+         //    display: block;
+         position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+    }
+    
+        .header .col {
+            background-color:lightgrey;
+         //    display: block;
+         position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+          }
+          .col-diem {
+            background-color:#ff720d;
+            // display: block;
+         position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        border: solid 1px grey;
+        border-right-style: solid;
+        border-left-style:none;
+        border-top-style:none;
+        width:90%; 
+        left:0;
+        font-weight: 600;
+        color: white;
+        // padding-top:16%;
+        // padding-bottom:16%;
+        text-align: center;
+        white-space: normal;
+    //     padding-top: 15%;
+    // padding-bottom: 8%;
+          }
+        
+          #tanpagarisbawah{
+            border-right-style: none;
+            border-left-style: none;
+            border-top-style: none;
+            border-bottom-style: none;
+
+            display: block;
+         position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+          }
+          .header .col2 {
+            background-color:lightgrey;
+         //    display: block;
+         position: -webkit-sticky;
+         top: 0;
+         left: 0;
+         right: 0;
+         z-index: 2;
+          }
+          .col {
+             border: solid 1px grey;
+             // border-bottom-style: none;
+             border-right-style: none;
+             border-left-style: none;
+             border-top-style: none;
+           }
+        //    #col-kotak{
+        //     border-right-style: none;
+        //     border-left-style: none;
+        //     border-top-style: none;
+        //     border-bottom-style: none;
+        //    }
+          .col2 {
+            border: solid 1px grey;
+            // border-bottom-style: none;
+            border-right-style: none;
+            border-left-style: none;
+            border-top-style: none;
+            border-bottom-style: none;
+          }
+          
+          .col:last-child {
+            border-right: solid 1px grey;
+          }
+          
+          .row:last-child .col {
+            border-bottom: solid 1px grey;
+          }
+          ion-scroll {
+            white-space: nowrap;
+            // height: 250px;
+            height: 100%;
+        }
+        .froze-panes {
+            // width: 300px;
+            width:100%;
+            overflow-x:scroll;
+            // margin-left:50px;
+            // margin-left: 75px;
+            float: right;
+            overflow-y:visible;
+            padding-bottom:1px;
+            height: 100%;
+            // padding-left: 10%;
+            // background-color: #e8e8e8;
+        }
+        td {
+            padding: 0 30px;
+        }
+        .fixed-header{
+            margin-top:43px;
+            /* 
+             The ionic header bar is 43px in height,
+             put your content below the header bar.
+            */
+          }
+        .row-kotak {
+            margin-left: 4%;
+        }
+        .square {
+            float: left;
+            width: 100%;
+            padding-bottom: 28%;
+                margin: 2%;
+                // left: 10% !important;
+                left: 10px;
+            // background-color: #fff;
+            font-size: 1rem;
+            line-height: 1.25;
+            // background: #212121;
+            // background: nb-theme(color-bg);
+            // color: #ffffff;
+            // color: nb-theme(color-fg-heading);
+            // margin-bottom: 3rem;
+            // border-radius: 0.5rem;
+            box-shadow: 0 3px 5px -3px #333;
+            font-weight: 400;
+            cursor: pointer;
+            border: 2px solid#c1c1c0;
+            // border-radius: 5px;
+            // border-radius: 20px;
+            padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+        }
+        
+        .textt {
+            display: block;
+            // margin-bottom: -88%;
+            // margin-bottom: -120%;
+            // margin-top: 75%;
+            margin-bottom: -150%;
+        // margin-top: 93%;
+        margin-top: 95%;
+            margin-left: auto;
+            margin-right: auto;
+            vertical-align: bottom;
+            text-align: center;
+            // font-family: 'Exo-Regular' !important;
+            // // font-family: 'Exo-SemiBold' !important;
+            // font-weight: nb-theme(font-weight-bold);
+            font-size: 8px;
+            width: 100%;
+            // font-size: 2.4vw;
+            // font-size: 3.5vw;
+            // color: #000; 
+            font-weight: 600
+        }
+        .row-kotak {
+            margin-left: 3%;
+        }
+        .item-title {
+            font-size: 12px !important;
+            margin-top: 0px;
+             margin-bottom: 1px;
+        }
+    
+ }
+
+ 
+
