@@ -79,6 +79,7 @@ export class ReservationReservePage {
   pictPost:any;
   storageDirectory: string = '';
   avPict:boolean = false;
+  re:string="Reservation";
 
   constructor(
     public nav: NavController,
@@ -538,6 +539,9 @@ export class ReservationReservePage {
           this.amt = data.amount;
           this.data.payment_desc = data.payment_desc;
           this.data.price = data.price;
+          if(data.price != "0"){
+            this.re = "Booking";
+          }
           this.loadNats(data.nationality);
           this.loadNupType(data.nup_type);
           this.loading.dismiss();

@@ -58,10 +58,15 @@ export class CariUnitPage {
     this.device = localStorage.getItem('Device');
     this.loading = this.loadingCtrl.create();
     this.parm = this.navParams.get('data');
+    this.parm.lot_type1 = this.parm.lot_type;
+    this.parm.lot_type_desc1 = this.parm.lot_type_desc;
+    this.parm.lot_spec1 = this.parm.lot_spec;
     this.types = this.navParams.get('type');
     this.cons = this.parm.cons;
     this.viewImg = imgVw;
     // console.log(this.types);
+    // console.log(this.parm);
+
   }
 
   logoutAPi(){
@@ -113,6 +118,10 @@ export class CariUnitPage {
     this.loadGallery();
   }
 
+  ionViewWillEnter(){
+    // console.log(this.parm);
+  }
+
   showAlert(title:any, subTitle:any) {
     let warning = this.alertCtrl.create({
       cssClass: 'alert',
@@ -153,6 +162,9 @@ export class CariUnitPage {
   cariUnit() {
     this.parm.lot_type_pict = this.pict;
     // console.log(this.parm);
+    this.parm.lot_type = this.parm.lot_type1;
+    this.parm.lot_type_desc = this.parm.lot_type_desc1;
+    this.parm.lot_spec = this.parm.lot_spec1;
     this.nav.push(FormSearchPage, {data:this.parm});
   }
 

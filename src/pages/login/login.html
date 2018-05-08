@@ -26,6 +26,7 @@
             <ion-item>
                 <ion-label floating>{{'Password' | translate}}</ion-label>
                 <ion-input type="password" formControlName="password" show-hide-input></ion-input>
+                <ion-input type="hidden" formControlName="device"></ion-input>
             </ion-item>
         </show-hide-container>
         <button ion-button block class="auth-action-button login-button" type="submit" [disabled]="!login.valid" style="background-color:#1f3e80">{{'LOG_IN' | translate}}</button>

@@ -197,57 +197,69 @@ export class DownloadPage {
   }
 
   dw(file:any){
-    this.loading = this.loadingCtrl.create();
-    this.loading.present().then(() => {
-      const fileTransfer: FileTransferObject = this.transfer.create();
-      var url = encodeURI(file.url);
-      fileTransfer.download(url, this.storageDirectory + '/'+file.path).then((entry) => {
-        let urlpdf = entry.toURL();
-        this.fileOpener.open(urlpdf, 'application/pdf').then(() => {
-          this.loading.dismiss();
-        }, (err) => {
-          // handle error
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
+    let warning = this.alertCtrl.create({
+      cssClass: 'alert',
+      title : "Download PDF",
+      subTitle : "Do You Want To Download It?",
+      buttons : [
+        {text : 'No'},
+        {text : 'Yes', handler: () => {
+          this.loading = this.loadingCtrl.create();
+          this.loading.present().then(() => {
+            const fileTransfer: FileTransferObject = this.transfer.create();
+            var url = encodeURI(file.url);
+            fileTransfer.download(url, this.storageDirectory + '/'+file.path).then((entry) => {
+              let urlpdf = entry.toURL();
+              this.fileOpener.open(urlpdf, 'application/pdf').then(() => {
+                this.loading.dismiss();
+              }, (err) => {
+                // handle error
+                this.ErrorList = this.ErrorList.filter(function(er){
+                    return er.Code == err.status;
+                });
+
+                var errS;
+
+                if(this.ErrorList.length == 1 ){
+                  // alert('a');
+                  errS = this.ErrorList[0].Description;
+                }else{
+                  // alert('b');
+                  errS = err;
+                }
+                this.showAlert("Download failed!", JSON.stringify(errS));
+                this.loading.dismiss();
+                })
+                .catch(e => {
+                  // alert('eror bray:'+JSON.stringify(e))
+                  this.showAlert("Error!", JSON.stringify(e));
+                });
+            //end of file opener
+
+            }, (err) => {
+              // handle error
+              this.ErrorList = this.ErrorList.filter(function(er){
+                  return er.Code == err.status;
+              });
+
+              var errS;
+
+              if(this.ErrorList.length == 1 ){
+                // alert('a');
+                errS = this.ErrorList[0].Description;
+              }else{
+                // alert('b');
+                errS = err;
+              }
+              this.showAlert("Download failed!", JSON.stringify(errS));
+              this.loading.dismiss();
+              });
           });
-
-          var errS;
-
-          if(this.ErrorList.length == 1 ){
-            // alert('a');
-            errS = this.ErrorList[0].Description;
-          }else{
-            // alert('b');
-            errS = err;
-          }
-          this.showAlert("Download failed!", JSON.stringify(errS));
-          this.loading.dismiss();
-          })
-          .catch(e => {
-            // alert('eror bray:'+JSON.stringify(e))
-            this.showAlert("Error!", JSON.stringify(e));
-          });
-       //end of file opener
-
-      }, (err) => {
-        // handle error
-        this.ErrorList = this.ErrorList.filter(function(er){
-            return er.Code == err.status;
-        });
-
-        var errS;
-
-        if(this.ErrorList.length == 1 ){
-          // alert('a');
-          errS = this.ErrorList[0].Description;
-        }else{
-          // alert('b');
-          errS = err;
-        }
-        this.showAlert("Download failed!", JSON.stringify(errS));
-        this.loading.dismiss();
-        });
+        }}
+      ]
     });
+
+    warning.present();
   }
 
   showAlert(title:any, subTitle:any) {
