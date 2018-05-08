@@ -52,6 +52,7 @@ export class ProjectDetailsPage {
     projectName:'',
     entity:'',
     projectNo:'',
+    handphone:'',
     cons:''};
   plans = [
     this.url_api+'images/noimage.png'
@@ -101,6 +102,7 @@ export class ProjectDetailsPage {
       this.pro.entity = this.frontData.entity;
       this.pro.projectNo = this.frontData.projectNo;
       this.pro.cons = this.frontData.cons;
+      this.pro.handphone = this.frontData.handphone;
     }
     else {
       // alert('b');
@@ -111,6 +113,7 @@ export class ProjectDetailsPage {
       this.pro.entity = this.project.entity;
       this.pro.projectNo = this.project.project;
       this.pro.cons = this.project.cons_project;
+      this.pro.handphone = this.project.handphone;
     }
 
     this.display ="I";

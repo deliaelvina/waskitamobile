@@ -118,6 +118,7 @@ export class ProjectPage {
               this.projects.push({
                 entity: val.entity_cd,
                 project: val.project_no,
+                handphone:val.handphone,
                 descs: val.project_descs,
                 caption:val.caption_address,
                 pic_path: val.picture_path ,

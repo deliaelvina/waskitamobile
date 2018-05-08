@@ -5,8 +5,16 @@ contact-page {
         background-color: transparent;
         color: #ff720d;
     }
-    button.btn-contact {
+    button.btn-contactmail {
         background-color: #ff720d;
+        border-radius: 8px;
+        color: #fff;
+        height: 45px;
+        width: 100%;
+        font-size: 15px;
+    }
+    button.btn-contactwa {
+        background-color: #0ad647;
         border-radius: 8px;
         color: #fff;
         height: 45px;

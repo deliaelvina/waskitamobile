@@ -79,8 +79,14 @@ export class SimulasiPage {
           return val.replace(/\./g, '');
       }
   }
-
+  formatdec(num){
+    console.log(num);
+    num = num.replace(/\D/g, '');
+    return (num / 100).toFixed(2);
+    // return Number.parseFloat(num).toFixed(2);
+  }
   hitungKPR(){
+    console.log(this.bunga);
     this.bunga1 = this.bunga;
     this.waktu1 = this.waktu;
     this.bunga1/=1200;
