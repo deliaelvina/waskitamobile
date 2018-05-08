@@ -196,6 +196,8 @@ export class PilihUnitPage {
           // console.log(x);
           var data = x.Data;
           // this.blocks = [];
+          console.log(data);
+
           data.forEach(val => {
             let studio:boolean = false;
             var st = {'background-color' : '#2ec95c','border-radius': '10px'};
