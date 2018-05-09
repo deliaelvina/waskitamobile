@@ -4,7 +4,13 @@
     font-weight: 400;
     src: url("../assets/fonts/Exo-Medium.ttf") format("truetype");
 }
-project-page {
+promo-page {
+	.card-ios {
+        // border-bottom-color: #ff720d !important;
+        border-bottom-color: $list-bawah-ion-card !important;
+        border-bottom-width: 5px !important;
+        margin-top: 50px;
+    }
     // cssnya buat disini
     .grid-example
 	{

@@ -35,9 +35,8 @@ export class PromoPage {
     Token : localStorage.getItem("Token")
   });
 
-  frontData:any;
-  forWhere:any;
-
+  menus : any;
+  where:any;
   constructor(
     public sanitizer:DomSanitizer,
     public nav: NavController,
@@ -50,16 +49,21 @@ export class PromoPage {
     private toastCtrl: ToastController,
     public alertCtrl: AlertController,
   ) {
+    this.menus = JSON.parse(localStorage.getItem('menus'));
     this.user = navParams.get('user');
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
-    this.frontData = this.navParams.get('data');
-    if(this.frontData){
-      // console.log(this.frontData);
-      this.forWhere = this.cons + "/" + this.frontData.entity + "/" + this.frontData.projectNo;
+    // console.log(this.menus);
+    if(this.menus){
+      if(this.menus.isFrom){
+        this.where = this.cons+"/"+this.menus.entity+"/"+this.menus.projectNo;
+      }
+      else {
+        this.where = this.cons;
+      }
     }
     else {
-      this.forWhere = this.cons;
+      this.where = this.cons;
     }
   }
 
@@ -100,13 +104,13 @@ export class PromoPage {
             }
     );
 
-  }
+    }
 
   ionViewDidLoad() {
     this.loading.present();
     // localStorage.removeItem('cons_project');
     // console.log(this.cons);
-      this.http.get(this.url_api+"c_newsandpromo/getDatapromo2/" + this.forWhere, {headers:this.hd} )
+      this.http.get(this.url_api+"c_newsandpromo/getDatapromo2/" + this.where, {headers:this.hd} )
       .subscribe(
         (x:any) => {
           console.log(x);
@@ -118,9 +122,9 @@ export class PromoPage {
               // this.nav.pop();
             }
             else {
-              // this.available = false;
+              this.available = false;
               // alert("No Data");
-              this.showAlert("Warning!", "No Data");
+              // this.showAlert("Warning!", "No Data");
               this.loading.dismiss();
               // this.nav.pop();
             }
