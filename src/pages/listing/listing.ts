@@ -27,6 +27,7 @@ import { MyApp } from '../../app/app.component';
 import { AuthService } from '../../auth/auth.service';
 import { ListingProjectPage } from './project';
 import { ProjectDownloadPage } from '../download/project';
+import { UnitEnquiryProjectPage } from '../unitEnquiryMenu/project';
 // import { ProjectDownloadPage } from '../download/project';
 
 @Component({
@@ -85,6 +86,7 @@ export class ListingPage {
       // alert(source);
     });
     // this.initDash();
+    this.link['UnitEnquiryProjectPage'] = UnitEnquiryProjectPage;
     this.link['MyUnitPage'] = MyUnitPage;
     this.link['SimulasiPage'] = SimulasiPage;
     this.link['ProjectPage'] = ProjectPage;

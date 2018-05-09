@@ -186,6 +186,8 @@ import { importExpr } from '@angular/compiler/src/output/output_ast';
 
 //unit filter
 import { UnitFilterPipe } from '../pages/unit-enquiry/unit-filter.pipe';
+import { UnitEnquiryProjectPage } from '../pages/unitEnquiryMenu/project';
+import { UnitEnquiryPhasePage } from '../pages/unitEnquiryMenu/phase';
 // import { UnitFilterModule } from '../tools/pipe.module';
 // PipeModule
 export function createTranslateLoader(http: HttpClient) {
@@ -231,6 +233,8 @@ export function createTranslateLoader(http: HttpClient) {
     SimulasiPage,
     //unit enquiry
     UnitEnquiryPage,
+    UnitEnquiryProjectPage,
+    UnitEnquiryPhasePage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -383,6 +387,8 @@ export function createTranslateLoader(http: HttpClient) {
     UploadBuktiPage,
     //unit enquiry
     UnitEnquiryPage,
+    UnitEnquiryProjectPage,
+    UnitEnquiryPhasePage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
