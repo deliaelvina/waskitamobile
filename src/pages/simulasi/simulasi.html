@@ -1,62 +1,61 @@
 <ion-header>
-        <ion-navbar>
-            <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-          </button>
-            <ion-title>
-                <span>Simulasi KPR</span>
-            </ion-title>
-        </ion-navbar>
-    </ion-header>
-    
-    <ion-content>
-        <!-- <div> -->
-        <ion-card>
-            <!-- <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs"></preload-image> -->
-            <ion-card-content>
-                <ion-card-title class="item-title">
-                    <strong>Simulasi Perhitungan KPR</strong>
-                </ion-card-title>
-              
-            </ion-card-content>
-    
-        </ion-card>
-        <ion-card-content padding class="">
-            <form class="validations-form" >
-                <section class="form-section">
-        
-                    <ion-item>
-                        <ion-label floating class="labelnya">{{'JUMLAH KREDIT (Rp)' | translate}} <font color="red">*</font></ion-label>
-                        <ion-input  type="tel" name="kredit" [(ngModel)]="kredit" (input)="kredit = format(kredit)" required></ion-input>
-                    </ion-item>
-                   
-                    <ion-item>
-                            <ion-label floating class="labelnya">{{'BUNGA (%)' | translate}} <font color="red">*</font></ion-label>
-                            <ion-input  type="tel" name="bunga" [(ngModel)]="bunga" (input)="bunga = formatdec(bunga)" required></ion-input>
-                    </ion-item>
-                   
-                    <ion-item>
-                            <ion-label floating class="labelnya">{{'WAKTU (pertahun)' | translate}} <font color="red">*</font></ion-label>
-                            <ion-input  type="tel" name="waktu" [(ngModel)]="waktu" required></ion-input>
-                    </ion-item>
-                 
-                </section>
-                <br><br>
-                <section class="form-section" >
-                    <button ion-button block class="form-action-button" (click)="hitungKPR()" style="background-color: #1f3e80">Hitung</button>
-                </section>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span>Simulasi KPA/R</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
 
-            </form>
-            <br>
-            <ion-card>
-                    <ion-card-content *ngIf="hitung">
-                        <ion-item>
-                                <ion-label floating class="labelnya">{{'JUMLAH ANGSURAN (perbulan)' | translate}}</ion-label>
-                                <ion-input  type="tel" name="angsuran" [(ngModel)]="angsuran" disabled="true" style="color:black;font-weight:bold"></ion-input>
-                        </ion-item>
-                    </ion-card-content>
-            
-            </ion-card>
+<ion-content>
+    <!-- <div> -->
+    <ion-card>
+        <!-- <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs"></preload-image> -->
+        <ion-card-content>
+            <ion-card-title class="item-title">
+                <strong>Simulasi Perhitungan KPA/R</strong>
+            </ion-card-title>
+          
         </ion-card-content>
-    </ion-content>
+
+    </ion-card>
+    <ion-card-content padding class="">
+        <form class="validations-form" >
+            <section class="form-section">
     
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'JUMLAH KREDIT (Rp)' | translate}} <font color="red">*</font></ion-label>
+                    <ion-input  type="tel" name="kredit" [(ngModel)]="kredit" (input)="kredit = format(kredit)" required></ion-input>
+                </ion-item>
+               
+                <ion-item>
+                        <ion-label floating class="labelnya">{{'BUNGA (%)' | translate}} <font color="red">*</font></ion-label>
+                        <ion-input  type="tel" name="bunga" [(ngModel)]="bunga" (input)="bunga = formatdec(bunga)" required maxlength="5"></ion-input>
+                </ion-item>
+               
+                <ion-item>
+                        <ion-label floating class="labelnya">{{'WAKTU (pertahun)' | translate}} <font color="red">*</font></ion-label>
+                        <ion-input  type="tel" name="waktu" [(ngModel)]="waktu" required></ion-input>
+                </ion-item>
+             
+            </section>
+            <br><br>
+            <section class="form-section" >
+                <button ion-button block class="form-action-button" (click)="hitungKPR()" style="background-color: #1f3e80">Hitung</button>
+            </section>
+
+        </form>
+        <br>
+        <ion-card>
+                <ion-card-content *ngIf="hitung">
+                    <ion-item>
+                            <ion-label floating class="labelnya">{{'JUMLAH ANGSURAN (perbulan)' | translate}}</ion-label>
+                            <ion-input  type="tel" name="angsuran" [(ngModel)]="angsuran" disabled="true" style="color:black;font-weight:bold"></ion-input>
+                    </ion-item>
+                </ion-card-content>
+        
+        </ion-card>
+    </ion-card-content>
+</ion-content>

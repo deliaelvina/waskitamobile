@@ -86,6 +86,8 @@ export class BookingReservePage {
     amt:null
   };
   device:string;
+  fName:string = localStorage.getItem('Name').replace(/ /gi,'');
+  dt = new Date().toLocaleDateString().replace(/\//gi,'');
 
   constructor(
     public nav: NavController,
@@ -462,8 +464,8 @@ export class BookingReservePage {
         if(this.platform.is('ios')){
           this.pict[0].img64 = images.base64img;
         }
-        this.pict[0].name = 'reservation_ID_'+rand+'.jpg';
-        this.pictPost.imgID = this.url_api+'images/reservation/reservation_ID_'+rand+'.jpg';
+        this.pict[0].name = this.fName+'_'+this.dt+'_bookingID_'+rand+'.jpg';
+        this.pictPost.imgID = this.url_api+'images/booking/'+this.fName+'_'+this.dt+'_bookingID_'+rand+'.jpg';
         // this.pict[0].img64 = images.base64img;
       }
       else if(z == 'npwp'){
@@ -472,8 +474,8 @@ export class BookingReservePage {
         if(this.platform.is('ios')){
           this.pict[1].img64 = images.base64img;
         }
-        this.pict[1].name = 'reservation_NPWP_'+rand+'.jpg';
-        this.pictPost.imgNPWP = this.url_api+'images/reservation/reservation_NPWP_'+rand+'.jpg';
+        this.pict[1].name = this.fName+'_'+this.dt+'_bookingNPWP_'+rand+'.jpg';
+        this.pictPost.imgNPWP = this.url_api+'images/booking/'+this.fName+'_'+this.dt+'_bookingNPWP_'+rand+'.jpg';
         // this.pict[1].img64 = images.base64img;
       }
       else if(z == 'tf'){
@@ -482,8 +484,8 @@ export class BookingReservePage {
         if(this.platform.is('ios')){
           this.pict[2].img64 = images.base64img;
         }
-        this.pict[2].name = 'reservation_TF_'+rand+'.jpg';
-        this.pictPost.imgTF = this.url_api+'images/reservation/reservation_TF_'+rand+'.jpg';
+        this.pict[2].name = this.fName+'_'+this.dt+'_bookingTF_'+rand+'.jpg';
+        this.pictPost.imgTF = this.url_api+'images/booking/'+this.fName+'_'+this.dt+'_bookingTF_'+rand+'.jpg';
         // this.pict[2].img64 = images.base64img;
       }
       // console.log(this.images);
