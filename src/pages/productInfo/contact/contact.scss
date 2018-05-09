@@ -38,6 +38,34 @@ contact-page {
         height: 350px;
     }
 
+    .icon-wa{
+        position: relative; z-index: 3; float: right;padding-right: 10px;padding-top: 10px;width: 40px;margin-right: 50px;
+    }
+
+    @media only screen and (min-width: 360px) and (min-height: 640px){
+        .icon-wa{
+            margin-right: 40px;
+        }
+    }
+
+    @media only screen and (min-width: 360px){
+        .icon-wa{
+            margin-right: 30px;
+        }
+    }
+
+    @media only screen and (min-width: 412px){
+        .icon-wa{
+            margin-right: 60px;
+        }
+    }
+
+    @media only screen and (max-width: 320px){
+        .icon-wa{
+            margin-right: 10px;
+        }
+    }
+
     .grid-example {
         padding: 0px 5px 0px 5px;
         flex-wrap: wrap;
