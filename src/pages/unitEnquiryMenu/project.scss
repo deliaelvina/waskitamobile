@@ -1,0 +1,11 @@
+unitEnquiryProject-page {
+    // line bottom oren
+    .card-ios {
+        border-bottom-color: $list-bawah-ion-card !important;
+        border-bottom-width: 5px !important;
+    }
+    // title header black
+    ion-header .toolbar-title {
+        color: $title-header;
+    }
+}

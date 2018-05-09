@@ -1,0 +1,77 @@
+<ion-header>
+        <ion-navbar>
+            <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+            <ion-title>
+                <span>Unit Enquiry</span>
+            </ion-title>
+        </ion-navbar>
+    </ion-header>
+    <ion-content>
+        <ion-scroll scrollX="true" scrollY="true">
+                <div class="froze-panes">
+                        <table class="table">
+                                <thead>
+                                  <tr class="header">
+                                    <th class="col" style="position:absolute;width:50px ; left:0;">Type</th>
+                                    <th class="col" colspan="28">Unit</th>
+                                    <!-- <th class="col">c</th> -->
+                                    <!-- <th></th> -->
+                                  </tr>
+                                </thead>
+                                <tbody>                                
+                                      <tr *ngFor="let level of blocks; let i=index">
+                                        <td class="col" style="position:absolute;width:50px; left:0;">{{ level.descs }}</td>
+                                        <!-- <td class="col">{{ level.descs }}</td> -->
+                                        <!-- <td class="col">{{ level.pict }}</td>
+                                        <td class="col">{{ level.pict }}</td> -->
+                                        <td class="col" *ngFor="let item of units  | unitfilter:level.level_no" >
+                                            <div (click)="goToUnitInfo(item)">
+                                                    <!-- {{item.lot}} -->
+                                                    <h2 class="item-title"> {{item.lot}} </h2>
+                                                    <h4 class="item-title">{{item.descs}}</h4>
+                                            </div>
+                                            
+                                        </td>
+                                        <!-- <ng-container *ngFor="let item of units | unitfilter:level.level_no" >
+                                                <td class="col">{{ item.lot }}</td> -->
+                                                <!-- <td class="col"> -->
+                                                    <!-- {{ item.lot }} -->
+                                                    <!-- <div class="square"  (click)="goToUnitInfo(item)" [ngStyle]="item.style">
+                                                            <img class="contentss">
+                                                            <div class="textt">
+                                                                <h2 class="item-title"> {{item.lot}} </h2>
+                                                                <br>
+                                                                <p *ngIf="item.studios;then s;else b"></p>
+                                                                <ng-template #s>
+                                                                    <h4 class="item-title">{{item.descs}}</h4>
+                                                                </ng-template>
+                                                                <ng-template #b>
+                                                                    <h4 class="item-title"><img style="width:20px !important;" src="./assets/images/bed.png">&nbsp;: {{item.bed}} | <img style="width:20px !important;" src="./assets/images/bathtub.png">&nbsp;: {{item.bath}}</h4>
+                                                                </ng-template>
+                                                            </div>
+                                                        </div>
+                                                </td> -->
+                                        <!-- </ng-container> -->
+                                      </tr>
+                                </tbody>
+                        </table>
+                    </div>
+        
+        <!-- <div class="row header">
+            <div class="col">Utility Company Name</div>
+            <div class="col">Service Code</div>
+            <div class="col">Pay Limit</div>
+            <div class="col">Account Number to Use</div>   
+        </div>
+          <div class="row" *ngFor="let data of blocks">
+            <div class="col">{{data.level_no}}</div>
+            <div class="col">{{data.descs}}</div>
+            <div class="col">LK {{data.pict}}</div>
+            <div class="col">{{data.account}}</div>
+            
+          </div> -->
+        </ion-scroll>
+    </ion-content>
+    

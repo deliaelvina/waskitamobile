@@ -1,23 +1,21 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController, ModalController, App, Platform, ViewController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController, ModalController, App, Platform } from 'ionic-angular';
 
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environment/environment';
-import { PilihUnitPage } from './pilihUnit';
-import { SearchBlok } from './search-page/s_blok';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { MyApp } from '../../app/app.component';
 import { AuthService } from '../../auth/auth.service';
-import { Listing2Page } from '../listing2/listing2';
-import { UnitEnquiryPage } from '../unit-enquiry/unit-enquiry';
+import { Unit } from './unit';
+import { UnitPayPage } from '../productInfo/unitPay';
 
 @Component({
-  selector: 'formSearch-page',
-  templateUrl: 'formSearch.html'
+  selector: 'unit-enquiry-page',
+  templateUrl: 'unit-enquiry.html'
 })
-export class FormSearchPage {
+export class UnitEnquiryPage {
   loading:any;
   loading2:any;
   url_api = environment.Url_API;
@@ -26,7 +24,7 @@ export class FormSearchPage {
   parm: any;
 
   data: any;
-
+  clspn:any;
   hd = new HttpHeaders({
     Token : localStorage.getItem("Token")
   });
@@ -36,8 +34,8 @@ export class FormSearchPage {
   blocks:any[] = [];
   ErrorList:any;
   device:string;
-  frontData : any;
-
+  // units:any[] = [];
+  units:Unit[];
   constructor(
     public nav: NavController,
     private http: HttpClient,
@@ -50,15 +48,15 @@ export class FormSearchPage {
     private _app: App,
     private _authService: AuthService,
     public platform: Platform,
-    private viewCtrl: ViewController
   ) {
-    this.frontData = JSON.parse(localStorage.getItem('menus'));
     this.device = localStorage.getItem('Device');
     this.loading = this.loadingCtrl.create();
     this.parm = this.navParams.get('data');
-    // console.log(this.parm);
     this.cons = this.parm.cons;
-    // console.log(this.parm);
+    this.GetDataUnit();
+    this.GetDataLevel();
+
+
   }
 
   logoutAPi(){
@@ -107,13 +105,110 @@ export class FormSearchPage {
       this.ErrorList = data.Error_Status;
     });
     this.loading.present();
-    this.loadData2(this.parm.lot_type);
+    // this.GetDataLevel();
+    // this.GetDataUnit();
     // this.loadData();
   }
 
-  loadData() {
+  GetDataUnit() {
     var item = [];
-    var url = this.url_api+"c_product_info/getBlok/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.tower;
+    var  url = this.url_api+"c_product_info/getAllUnit/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.tower;
+
+
+    this.http.get(url, {headers:this.hd} )
+    .subscribe(
+      (x:any) => {
+        if(x.Error == true) {
+          if(x.Status == 401){
+            // this.showAlert("Warning!", x.Pesan);
+            this.logoutAPi();
+            this.loading.dismiss();
+          }
+          else {
+            // alert(x.Pesan);
+            this.av = false;
+            this.loading.dismiss();
+          }
+        }
+        else {
+          // console.log(x);
+          var group = localStorage.getItem('Group')
+          // var st = '';
+
+          // console.log(st);
+          var data = x.Data;
+          // this.blocks = [];
+          data.forEach(val => {
+            let studio:boolean = false;
+            if(group.toUpperCase()=='GUEST'||group.toUpperCase()=='DEBTOR'){
+              var st = {'background-color' : 'transparent','border-radius': '10px','color':'black'};
+            }else{
+              var st = {'background-color' : '#2ec95c','border-radius': '10px','color':'white'};
+            }
+            var bd = val.room_qty+" Bedroom";
+            var bh = val.bath_qty+" Bathroom";
+
+            if(val.room_qty > 1) {
+              bd += 's';
+            }
+            if(val.bath_qty > 1) {
+              bh += 's';
+            }
+
+            if(val.room_qty == 0 && val.bath_qty == 0){
+              studio = true;
+            }
+
+            if(group.toUpperCase()!='GUEST' && group.toUpperCase()!='DEBTOR'){
+
+              if(val.status != 'A'){
+                st = {'background-color' : '#ff3333','border-radius': '10px','color':'#fff'};
+              }
+            }
+
+
+            item.push({
+              lot: val.lot_no,
+              descs: val.descs,
+              bed : val.room_qty,
+              bd : bd,
+              bath : val.bath_qty,
+              bh : bh,
+              status : val.status,
+              studios : studio,
+              style : st,
+              level_no:val.level_no
+            });
+          });
+
+          this.units = item;
+          // console.log(this.units);
+          this.loading.dismiss();
+        }
+      },
+      (err)=>{
+        this.loading.dismiss();
+        //filter error array
+        this.ErrorList = this.ErrorList.filter(function(er){
+            return er.Code == err.status;
+        });
+
+        var errS;
+        //filter klo error'a tidak ada di array error
+        if(this.ErrorList.length == 1 ){
+          errS = this.ErrorList[0].Description;
+        }else{
+          errS = err;
+        }
+          this.showAlert("Error!", errS);
+      }
+    );
+  }
+
+  GetDataLevel() {
+    // alert("Hai");
+    var item = [];
+    var url = this.url_api+"c_product_info/getLevelEnquiry/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.tower ;
 
     this.http.get(url, {headers:this.hd} )
     .subscribe(
@@ -141,9 +236,12 @@ export class FormSearchPage {
               descs: val.descs,
               pict: val.picture_url
             });
+            this.clspn = val.LengthColumn;
           });
 
           this.blocks = item;
+          console.log('getLevel');
+          console.log(this.clspn);
           this.loading.dismiss();
         }
       },
@@ -177,71 +275,8 @@ export class FormSearchPage {
     );
   }
 
-  loadData2(type:any) {
-    // alert("Hai");
-    var item = [];
-    var url = this.url_api+"c_product_info/getBlok/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.tower + "/" + type;
-
-    this.http.get(url, {headers:this.hd} )
-    .subscribe(
-      (x:any) => {
-        if(x.Error == true) {
-          if(x.Status == 401){
-            // this.showAlert("Warning!", x.Pesan);
-            this.logoutAPi();
-            this.loading.dismiss();
-          }
-          else {
-            // alert(x.Pesan);
-            this.av = false;
-            this.loading.dismiss();
-          }
-        }
-        else {
-          this.av = true;
-          // console.log(x);
-          var data = x.Data;
-          // this.blocks = [];
-          data.forEach(val => {
-            item.push({
-              level_no: val.level_no,
-              descs: val.descs,
-              pict: val.picture_url
-            });
-          });
-
-          this.blocks = item;
-          this.loading.dismiss();
-        }
-      },
-      (err)=>{
-        this.loading.dismiss();
-        //filter error array
-        this.ErrorList = this.ErrorList.filter(function(er){
-            return er.Code == err.status;
-        });
-
-        var errS;
-        //filter klo error'a tidak ada di array error
-        if(this.ErrorList.length == 1 ){
-          errS = this.ErrorList[0].Description;
-        }else{
-          errS = err;
-        }
-          // alert(errS);
-          // let toast = this.toastCtrl.create({
-          //   message: errS,
-          //   duration: 3000,
-          //   position: 'top'
-          // });
-
-          // toast.onDidDismiss(() => {
-          //   console.log('Dismissed toast');
-          // });
-          // toast.present();
-          this.showAlert("Error!", errS);
-      }
-    );
+  GetLengtColumn(){
+    //a
   }
 
   showAlert(title:any, subTitle:any) {
@@ -251,7 +286,7 @@ export class FormSearchPage {
       subTitle : subTitle,
       buttons : [
         {text : 'Ok', handler: () => {
-          this.nav.pop();
+          // this.nav.pop();
         }}
       ]
     });
@@ -259,66 +294,28 @@ export class FormSearchPage {
     warning.present();
   }
 
-  showSearchType() {
-    // alert('test');
-    let modal = this.modal.create(SearchBlok, {data:this.parm});
-    modal.onDidDismiss(data=>{
-      this.loading = this.loadingCtrl.create();
-      // console.log(data.type + " : " + this.parm.lot_type);
-      if(data){
-        if(data.type != this.parm.lot_type){
-          this.loading.present();
-          if(data.type == '*'){
-            this.loadData();
-          }
-          else {
-            this.loadData2(data.type);
-          }
-        }
-        this.parm.lot_type = data.type;
-        this.parm.lot_type_desc = data.typeDesc;
-        this.parm.lot_spec = data.typeSpec;
-        // console.log(this.parm);
-        // loading.dismiss();
-      }
-    });
-    modal.present();
-  }
+  goToUnitInfo(i:any,level:any){
+    // alert('asdf');
+    // console.log(i);
+    // console.log(level);
 
-  selectBlock(i:any){
-    console.log(i);
-
-    this.parm.level = i.level_no;
-    this.parm.levelDesc = i.descs;
-    this.parm.levelPict = i.pict;
-    // console.log(this.parm);
-    this.nav.push(PilihUnitPage, {data : this.parm});
-  }
-
-  gotoUnitEnquiry(){
-    // this.parm.blocks = this.blocks;
-    this.nav.push(UnitEnquiryPage,{data:this.parm});
-  }
-
-  home(){
-    if(this.frontData){
-      // alert('ada');
-      this.nav
-      .push(Listing2Page, {}, { animate: true, direction: 'back' })
-      .then(() => {
-
-          const index = this.viewCtrl.index;
-
-          for(let i = index; i > 1; i--){
-              this.nav.remove(i);
-          }
-
-      });
+    if(i.status == 'A'){
+      this.parm.lot_no = i.lot;
+      this.parm.lot_descs = i.descs;
+      this.parm.bed = i.bed;
+      this.parm.bd = i.bd;
+      this.parm.bath = i.bath;
+      this.parm.bh = i.bh;
+      this.parm.studios = i.studios;
+      this.parm.levelDesc = level;
+      // console.log(this.parm);
+      this.nav.push(UnitPayPage, {data:this.parm});
     }
     else {
-      // alert('gaada');
-      this.nav.popToRoot();
+      this.showAlert("Warning!", "This Unit Is Not Available");
+      // console.log(i);
     }
   }
+
 
 }

@@ -54,7 +54,7 @@ import { PaymentSchedulePage } from '../pages/MyUnit/payment';
 import { UploadBuktiPage } from '../pages/MyUnit/uploadbukti';
 import { SimulasiPage } from '../pages/simulasi/simulasi';
 //unit enquiry
-// import { UnitEnquiryPage } from '../pages/unit-enquiry/unit-enquiry';
+import { UnitEnquiryPage } from '../pages/unit-enquiry/unit-enquiry';
 //Product Info
 // import { ProductInfoPage } from '../pages/productInfo/productInfo';
 import { UnitTypePage } from '../pages/productInfo/unitType';
@@ -185,7 +185,9 @@ import { importExpr } from '@angular/compiler/src/output/output_ast';
 
 
 //unit filter
-// import { UnitFilterPipe } from '../pages/unit-enquiry/unit-filter.pipe';
+import { UnitFilterPipe } from '../pages/unit-enquiry/unit-filter.pipe';
+import { UnitEnquiryProjectPage } from '../pages/unitEnquiryMenu/project';
+import { UnitEnquiryPhasePage } from '../pages/unitEnquiryMenu/phase';
 // import { UnitFilterModule } from '../tools/pipe.module';
 // PipeModule
 export function createTranslateLoader(http: HttpClient) {
@@ -230,7 +232,9 @@ export function createTranslateLoader(http: HttpClient) {
     UploadBuktiPage,
     SimulasiPage,
     //unit enquiry
-    // UnitEnquiryPage,
+    UnitEnquiryPage,
+    UnitEnquiryProjectPage,
+    UnitEnquiryPhasePage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,
@@ -314,7 +318,7 @@ export function createTranslateLoader(http: HttpClient) {
     CounterInput,
     Rating,
     GoogleMap
-    // ,UnitFilterPipe
+    ,UnitFilterPipe
   ],
   imports: [
     // PipeModule.forRoot(),
@@ -382,7 +386,9 @@ export function createTranslateLoader(http: HttpClient) {
     PaymentSchedulePage,
     UploadBuktiPage,
     //unit enquiry
-    // UnitEnquiryPage,
+    UnitEnquiryPage,
+    UnitEnquiryProjectPage,
+    UnitEnquiryPhasePage,
     //Product Info
     // ProductInfoPage,
     UnitTypePage,

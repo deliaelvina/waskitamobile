@@ -1,0 +1,126 @@
+<ion-header>
+        <ion-navbar>
+            <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+            <ion-title>
+                <span>Unit Enquiry</span>
+            </ion-title>
+        </ion-navbar>
+    </ion-header>
+    <ion-content no-bounce>
+            <ion-scroll scrollX="true" scrollY="true" no-bounce>
+                    <div class="froze-panes" no-bounce>
+                        <table class="table" no-bounce>
+                                <thead>
+                                    <tr class="header">
+                                    <!-- <th class="col" style="position:fixed;width:100%; left:0;text-align:left;padding-top:10px;z-index:1;">Type</th>
+                                    <th class="col2" style="position:fixed;text-align: left;padding-top:10px;z-index: 1;"[attr.colspan]="clspn">Unit</th> -->
+                                    
+                                    <th class="col" style="text-align: left;padding-top:10px;padding-bottom:0px !important;" id="tanpagarisbawah" ion-fixed>Type</th>
+                                    <th class="col2" style="padding-top:10px;" [attr.colspan]="clspn" ion-fixed>Unit</th>
+                                    
+                                    </tr>
+                                </thead>
+                                
+                                <!-- <br><br><br> -->
+                                <tbody >                                
+                                        <tr *ngFor="let level of blocks; let i=index">
+                                            <!-- <td style="position: -webkit-sticky;top: 0;left: 0;right: 0;border: solid 1px grey;border-right-style: solid;border-left-style:none;border-top-style:none;">{{ level.descs }} &nbsp;&nbsp;</td> -->
+                                        <!-- <td class="col" style="position:absolute;width:100%; left:0;z-index:-10;font-weight: 600;padding-top:42px;">{{ level.descs }} &nbsp;&nbsp;</td> -->
+                                        <td class="col-diem" style="position: -webkit-sticky;top: 0;left: 0;right: 0;border: solid 1px grey;border-right-style: solid;border-left-style:none;border-top-style:none;">{{ level.descs }} &nbsp;&nbsp;</td>
+                                        <!-- <td class="col-diem" ion-fixed style="position: -webkit-sticky;top: 0;left: 0;right: 0;">{{ level.descs }} &nbsp;&nbsp;</td> bener nih-->
+                                        <!-- <td class="col-diem" ion-fixed>PENTHOUSE LANTAI ATAS &nbsp;&nbsp;</td> -->
+                                        <!-- <td style="position: -webkit-sticky;top: 0;left: 0;right: 0;border: solid 1px grey;border-right-style: solid;border-left-style:none;border-top-style:none;">{{ level.descs }} &nbsp;&nbsp;</td> -->
+                                        <!-- <td class="col">{{level.LengthColumn}}</td> -->
+                                        <!-- <td class="col">{{clspn}}</td> -->
+                                        <!-- <ng-container *ngFor="let item of units | unitfilter:level.level_no" > -->
+                                                <!-- <td class="col">{{units.length}}</td> -->
+                                        <!-- <td style="position: -webkit-sticky;top: 0;left: 0;right: 0;z-index: 9999;border: solid 1px grey;border-right-style: solid;border-left-style:none;border-top-style:none;"></td> -->
+                                        <td class="col" id="col-kotak" *ngFor="let item of units | unitfilter:level.level_no">
+                                                <!-- <h2 class="item-title"> {{item.lot}} </h2>
+                                                <p *ngIf="item.studios;then s;else b"></p>
+                                                <ng-template #s>
+                                                    <h2 class="item-title">{{item.descs}}</h2>
+                                                </ng-template>
+                                                <ng-template #b>
+                                                    <h4 class="item-title"><img style="width:20px !important;" src="./assets/images/bed.png">&nbsp;: {{item.bed}} | <img style="width:20px !important;" src="./assets/images/bathtub.png">&nbsp;: {{item.bath}}</h4>
+                                                </ng-template> -->
+                                            <div class="square"  (click)="goToUnitInfo(item)" [ngStyle]="item.style">
+                                                    
+                                                    <div class="textt2">
+                                                        <h2 class="item-title"> {{item.lot}} </h2>
+                                                        
+                                                        <p *ngIf="item.studios;then s;else b"></p>
+                                                        <ng-template #s>
+                                                            <h2 class="item-title">{{item.descs}}</h2>
+                                                        </ng-template>
+                                                        <ng-template #b>
+                                                            <h4 class="item-title"><img style="width:20px !important;" src="./assets/images/bed.png">&nbsp;: {{item.bed}} | <img style="width:20px !important;" src="./assets/images/bathtub.png">&nbsp;: {{item.bath}}</h4>
+                                                        </ng-template>
+                                                    </div>
+                                                </div>
+                                        </td>
+                                                
+                                        <!-- </ng-container> -->
+                                        </tr>
+                                </tbody>
+
+                                
+                        </table>
+                        
+                    </div>
+                                        
+        <!-- <div class="row header">
+            <div class="col">Utility Company Name</div>
+            <div class="col">Service Code</div>
+            <div class="col">Pay Limit</div>
+            <div class="col">Account Number to Use</div>   
+        </div>
+          <div class="row" *ngFor="let data of blocks">
+            <div class="col">{{data.level_no}}</div>
+            <div class="col">{{data.descs}}</div>
+            <div class="col">LK {{data.pict}}</div>
+            <div class="col">{{data.account}}</div>
+            
+          </div> -->
+        </ion-scroll>
+
+        <div class="container">
+    
+                <div class="fixed-th-table-wrapper">
+                <!-- fixed-th-table -->
+                <table>
+                    <tr>
+                         <th>aaaaaaa</th>
+                         <td>ccccccccccc asdsad asd as</td>
+                         <td>ccccccccccc asdsad asd as</td>
+                    </tr>
+                    <tr>
+                         <th>cccccccc</th>
+                         <td>xxxxxxxxxxxxxxxxxxxx yyyyyyyyyyyyyy zzzzzzzzzzzzz</td>
+                         <td>xxxxxxxxxxxxxxxxxxxx yyyyyyyyyyyyyy zzzzzzzzzzzzz</td>
+                    </tr>
+                </table>
+                </div>
+                    
+                <div class="scrolled-td-table-wrapper">
+                <!-- scrolled-td-table
+                     - same as fixed-th-table -->
+                <table>
+                    <tr>
+                         <th>aaaaaaa</th>
+                         <td>ccccccccccc asdsad asd as</td>
+                         <td>ccccccccccc asdsad asd as</td>
+                    </tr>
+                    <tr>
+                         <th>cccccccc</th>
+                         <td>xxxxxxxxxxxxxxxxxxxx yyyyyyyyyyyyyy zzzzzzzzzzzzz</td>
+                         <td>xxxxxxxxxxxxxxxxxxxx yyyyyyyyyyyyyy zzzzzzzzzzzzz</td>
+                    </tr>
+                </table>
+                </div>
+                    
+                </div>
+    </ion-content>
+    
