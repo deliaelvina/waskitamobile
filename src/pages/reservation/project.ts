@@ -119,7 +119,7 @@ export class ReservationProjectPage {
                 pic_path:val.picture_path ,
                 url_path: val.http_add,
                 cons_project:val.db_profile,
-                header_pict : "./assets/images/projects/"+val.picture_url,
+                header_pict : val.picture_url,
               });
             });
             this.loading.dismiss();

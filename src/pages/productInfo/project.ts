@@ -125,7 +125,7 @@ export class ProductProjectPage {
               pic_path: val.picture_path ,
               url_path: val.http_add,
               db : val.db_profile,
-              header_pict : "./assets/images/projects/"+val.picture_url,
+              header_pict : val.picture_url,
             });
           });
           this.loading.dismiss();
