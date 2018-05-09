@@ -79,7 +79,7 @@
         </div> -->
 
         <div class="newsquare" *ngFor="let category of dashMenu" (click)="goToFeed(category)">
-            <img class="newcontentss" src="{{category.image}}">
+            <img class="newcontentss" src="{{category.image}}" onerror="this.src='./assets/images/dashPict/default.png'">
             <div class="newtextt">
                 {{category.title}}
             </div>
