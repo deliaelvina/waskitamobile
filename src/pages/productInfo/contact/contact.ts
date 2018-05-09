@@ -397,6 +397,7 @@ import { Listing2Page } from '../../listing2/listing2';
         datas.Desc= this.descrip;
         datas.cons = this.parm.cons;
         this.descrip = decodeURIComponent(this.descrip);
+        this.descrip = this.descrip.replace(/ /gi, '&nbsp;');
         // console.log(decodeURI(this.descrip));
         datas.Uid = localStorage.getItem('UserId');
         this.loading = this.loadingCtrl.create();
