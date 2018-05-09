@@ -20,7 +20,7 @@ export class UnitEnquiryPage {
   loading2:any;
   url_api = environment.Url_API;
   cons:any;
-
+  pict:any=[];
   parm: any;
 
   data: any;
@@ -137,6 +137,7 @@ export class UnitEnquiryPage {
 
           // console.log(st);
           var data = x.Data;
+          // console.log(x);
           // this.blocks = [];
           data.forEach(val => {
             let studio:boolean = false;
@@ -165,7 +166,7 @@ export class UnitEnquiryPage {
                 st = {'background-color' : '#ff3333','border-radius': '10px','color':'#fff'};
               }
             }
-
+            
 
             item.push({
               lot: val.lot_no,
@@ -176,6 +177,8 @@ export class UnitEnquiryPage {
               bh : bh,
               status : val.status,
               studios : studio,
+              url : val.gallery_url,
+              title : val.gallery_title,
               style : st,
               level_no:val.level_no
             });
@@ -300,6 +303,10 @@ export class UnitEnquiryPage {
     // console.log(level);
 
     if(i.status == 'A'){
+      this.pict.push({
+        url : i.url,
+        title : i.title
+      });
       this.parm.lot_no = i.lot;
       this.parm.lot_descs = i.descs;
       this.parm.bed = i.bed;
@@ -308,6 +315,7 @@ export class UnitEnquiryPage {
       this.parm.bh = i.bh;
       this.parm.studios = i.studios;
       this.parm.levelDesc = level;
+      this.parm.lot_type_pict = this.pict;
       // console.log(this.parm);
       this.nav.push(UnitPayPage, {data:this.parm});
     }
