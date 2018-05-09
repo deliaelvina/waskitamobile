@@ -86,8 +86,8 @@ export class BookingReservePage {
     amt:null
   };
   device:string;
-  fName:string = localStorage.getItem('Name').replace(/ /gi,'-');
-  dt = new Date().toLocaleDateString();
+  fName:string = localStorage.getItem('Name').replace(/ /gi,'');
+  dt = new Date().toLocaleDateString().replace(/\//gi,'');
 
   constructor(
     public nav: NavController,
