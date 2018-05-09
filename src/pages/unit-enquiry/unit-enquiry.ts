@@ -55,7 +55,7 @@ export class UnitEnquiryPage {
     this.cons = this.parm.cons;
     this.GetDataUnit();
     this.GetDataLevel();
-
+    // console.log(this.parm);
 
   }
 
@@ -112,6 +112,7 @@ export class UnitEnquiryPage {
 
   GetDataUnit() {
     var item = [];
+    
     var  url = this.url_api+"c_product_info/getAllUnit/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.tower;
 
 
@@ -186,7 +187,10 @@ export class UnitEnquiryPage {
 
           this.units = item;
           // console.log(this.units);
-          this.loading.dismiss();
+          // this.loading.dismiss();
+          setTimeout(() => {
+            this.loading.dismiss();
+          }, 2000);
         }
       },
       (err)=>{
@@ -210,7 +214,7 @@ export class UnitEnquiryPage {
 
   GetDataLevel() {
     // alert("Hai");
-    var item = [];
+    var item2 = [];
     var url = this.url_api+"c_product_info/getLevelEnquiry/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.tower ;
 
     this.http.get(url, {headers:this.hd} )
@@ -234,7 +238,7 @@ export class UnitEnquiryPage {
           var data = x.Data;
           // this.blocks = [];
           data.forEach(val => {
-            item.push({
+            item2.push({
               level_no: val.level_no,
               descs: val.descs,
               pict: val.picture_url
@@ -242,7 +246,7 @@ export class UnitEnquiryPage {
             this.clspn = val.LengthColumn;
           });
 
-          this.blocks = item;
+          this.blocks = item2;
           console.log('getLevel');
           console.log(this.clspn);
           this.loading.dismiss();
@@ -315,6 +319,7 @@ export class UnitEnquiryPage {
       this.parm.bh = i.bh;
       this.parm.studios = i.studios;
       this.parm.levelDesc = level;
+      this.parm.lot_type_desc = i.descs;
       this.parm.lot_type_pict = this.pict;
       // console.log(this.parm);
       this.nav.push(UnitPayPage, {data:this.parm});
