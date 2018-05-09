@@ -396,22 +396,25 @@ import { Listing2Page } from '../../listing2/listing2';
         var datas = this.contactForm.value;
         datas.Desc= this.descrip;
         datas.cons = this.parm.cons;
-        this.descrip = decodeURIComponent(this.descrip);
-        this.descrip = this.descrip.replace(/ /gi, '&nbsp;');
+        // this.descrip = encodeURIComponent(this.descrip);
+        // alert(this.descrip);
+        datas.Desc = datas.Desc.replace(/ /gi, '%20');
+        datas.Desc = datas.Desc.replace(/\n/gi, '%0A');
+        // alert(this.descrip);
         // console.log(decodeURI(this.descrip));
         datas.Uid = localStorage.getItem('UserId');
         this.loading = this.loadingCtrl.create();
-        // window.open("https://api.whatsapp.com/send?phone=6281&text=Hello","_system","location=yes");
-        this.loading.present().then(() => {
-          this.socialSharing.shareViaWhatsAppToReceiver(this.tlp, this.descrip, '','')
-          .then(() => {
-            //success
-            this.loading.dismiss();
-          }).catch(() => {
-            //error
-            this.loading.dismiss();
-          })
-        });
+        window.open("https://api.whatsapp.com/send?phone="+this.tlp+"&text="+datas.Desc,"_system","location=yes");
+        // this.loading.present().then(() => {
+        //   this.socialSharing.shareViaWhatsAppToReceiver(this.tlp, this.descrip, '','')
+        //   .then(() => {
+        //     //success
+        //     this.loading.dismiss();
+        //   }).catch(() => {
+        //     //error
+        //     this.loading.dismiss();
+        //   })
+        // });
 
   }
   onSubmit(data: any) {
