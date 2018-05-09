@@ -405,16 +405,18 @@ import { Listing2Page } from '../../listing2/listing2';
         datas.Uid = localStorage.getItem('UserId');
         this.loading = this.loadingCtrl.create();
         window.open("https://api.whatsapp.com/send?phone="+this.tlp+"&text="+datas.Desc,"_system","location=yes");
-        // this.loading.present().then(() => {
+        this.loading.present().then(() => {
+          window.open("https://api.whatsapp.com/send?phone="+this.tlp+"&text="+datas.Desc,"_system","location=yes");
         //   this.socialSharing.shareViaWhatsAppToReceiver(this.tlp, this.descrip, '','')
         //   .then(() => {
         //     //success
         //     this.loading.dismiss();
         //   }).catch(() => {
         //     //error
-        //     this.loading.dismiss();
+            this.loading.dismiss();
         //   })
-        // });
+        
+        });
 
   }
   onSubmit(data: any) {

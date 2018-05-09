@@ -273,7 +273,7 @@ export class BookingPhasePage {
   }
 
   presentImage(floorImg) {
-    alert(floorImg);
+    // alert(floorImg);
     if(floorImg.search('assets/images') == -1){
       //image from API
       floorImg = floorImg.replace(/ /gi, '%20');
@@ -281,7 +281,7 @@ export class BookingPhasePage {
     else {
       //image from LOCAL
       floorImg = this.file.applicationDirectory + 'www'+floorImg.substring(1,floorImg.length);
-      alert(floorImg);
+      // alert(floorImg);
     }
     // alert(floorImg);
     // console.log(floorImg);
