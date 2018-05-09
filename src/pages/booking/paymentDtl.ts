@@ -191,8 +191,8 @@ export class BookingPaymentDetailPage {
             // alert(x.Pesan);
             // this.available = false;
             this.showAlert("Warning!", "No Info Available");
-            // this.viewCtrl.dismiss();
-            this.nav.push(BookingReservePage,{act:'book'});
+            this.viewCtrl.dismiss();
+            // this.nav.push(BookingReservePage,{act:'book'});
             // alert(1);
             this.loading.dismiss();
           }
@@ -204,7 +204,9 @@ export class BookingPaymentDetailPage {
 
           // console.log(datas);
           if(datas.status == 'A'){
-            this.viewCtrl.dismiss({parm:'parm'});
+            this.loading.dismiss();
+            // this.viewCtrl.dismiss({parm:'parm'});
+            this.nav.push(BookingReservePage,{act:'book'});
             // this.nav.push(ReservationReservePage, {act:'no'});
           }
           else {
@@ -332,6 +334,8 @@ export class BookingPaymentDetailPage {
   }
 
   onBooking(plan:any){
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
     // this.nav.push(BookingReservePage,{act:'book'});
     this.cekUnitStatus(plan);
   }
