@@ -66,10 +66,26 @@
                 <!-- <button class="btn-contact" (click)="kirim()" [disabled]="!contactForm.valid">Send Now</button> -->
                 <button class="btn-contactmail" (click)="kirim()">Send E-mail</button>
             </div>
-            <div class="button-contact">
-                <!-- <button class="btn-contact" (click)="kirim()" [disabled]="!contactForm.valid">Send Now</button> -->
+            <!-- <div class="button-contact">
+                
                 <button class="btn-contactwa" (click)="kirimwa()">Send via WhatsApp</button>
-            </div>
+            </div> -->
+            <ion-row class="grid-example" (click)="kirimwa()">
+                <ion-col width-100 class="grid-item">
+                    <div class="grid-item-wrapper" style="padding-bottom:10%;" (click)="kirimwa()">
+                       
+                        <div (click)="kirimwa()">
+                                <img style="position: relative; z-index: 3; float: right;padding-right: 10px;padding-top: 10px;width: 40px;margin-right: 50px;" src="./assets/images/wa.png" />
+                                <!-- <ion-icon name="logo-whatsapp" ></ion-icon> -->
+                        </div>
+                        <div class="grid-item-inner" style="font-size:1.2rem;" (click)="kirimwa()">
+                            <h5 class="item-title">
+                              Send via WhatsApp
+                            </h5>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
             <!-- <body> ' + -->
             <!-- <div>
                 <div>
