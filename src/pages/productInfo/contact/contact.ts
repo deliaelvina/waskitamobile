@@ -404,18 +404,24 @@ import { Listing2Page } from '../../listing2/listing2';
         // console.log(decodeURI(this.descrip));
         datas.Uid = localStorage.getItem('UserId');
         this.loading = this.loadingCtrl.create();
-        window.open("https://api.whatsapp.com/send?phone="+this.tlp+"&text="+datas.Desc,"_system","location=yes");
+        // alert('wa');
+        // window.open("https://api.whatsapp.com/send?phone="+this.tlp+"&text="+datas.Desc,"_system","location=yes");
         // this.loading.present().then(() => {
+          // alert('waaa');
+          window.open("https://api.whatsapp.com/send?phone="+this.tlp+"&text="+datas.Desc,"_system","location=yes");
         //   this.socialSharing.shareViaWhatsAppToReceiver(this.tlp, this.descrip, '','')
         //   .then(() => {
-        //     //success
+        // //     //success
         //     this.loading.dismiss();
         //   }).catch(() => {
         //     //error
         //     this.loading.dismiss();
-        //   })
+        //   // })
+        
         // });
-
+        // setTimeout(() => {
+        //   this.loading.dismiss();
+        // }, 2000);
   }
   onSubmit(data: any) {
     // console.log(data);
