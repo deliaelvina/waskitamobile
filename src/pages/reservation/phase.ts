@@ -11,6 +11,7 @@ import { AuthService } from '../../auth/auth.service';
 import { MyApp } from '../../app/app.component';
 import { File } from '@ionic-native/file';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { ReservationReservePage } from './reserve';
 
 @Component({
   selector: 'phase-page',
@@ -258,7 +259,8 @@ export class ReservationPhasePage {
     this.data.towerName = phase.descs;
     // console.log(data);
     localStorage.setItem("data", JSON.stringify(this.data));
-    this.nav.push(ReservationBlockPage);
+    // this.nav.push(ReservationBlockPage);
+    this.nav.push(ReservationReservePage);
   }
 
   showAlert(title:any, subTitle:any) {
