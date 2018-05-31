@@ -253,11 +253,10 @@ export class ReportPage {
 
   goReportNUP(){
     const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(localStorage.getItem("Token"));
-    console.log(token);
-    console.log(localStorage.getItem("Token"));
-    const url = this.url_api+'dash_nup/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
-    console.log(url);
+    var token = base64Encode(project.cons+'/'+project.entity+'/'+project.projectNo+'/'+localStorage.getItem("Token"));
+    
+    const url = this.url_api+'dash_nup/index/'+token;
+  
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
 
     browser.show();
@@ -265,11 +264,10 @@ export class ReportPage {
 
   goReportSales(){
     const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(localStorage.getItem("Token"));
-    console.log(token);
-    console.log(localStorage.getItem("Token"));
-    const url = this.url_api+'dash_sales/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
-    console.log(url);
+    var token = base64Encode(project.cons+'/'+project.entity+'/'+project.projectNo+'/'+localStorage.getItem("Token"));
+    
+    const url = this.url_api+'dash_sales/index/'+token;
+    
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
 
     browser.show();
@@ -277,11 +275,10 @@ export class ReportPage {
 
   goReportFinance(){
     const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(localStorage.getItem("Token"));
-    console.log(token);
-    console.log(localStorage.getItem("Token"));
-    const url = this.url_api+'dash_finance/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
-    console.log(url);
+    var token = base64Encode(project.cons+'/'+project.entity+'/'+project.projectNo+'/'+localStorage.getItem("Token"));
+
+    const url = this.url_api+'dash_finance/index/'+token;
+
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
 
     browser.show();
