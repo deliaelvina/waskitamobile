@@ -33,6 +33,12 @@ import { AuthService } from '../../auth/auth.service';
 import { ReportNUP } from '../reportNUP/reportNUP';
 import { ReportSales } from '../reportSales/reportSales';
 import { ReportFinance } from '../reportFinance/reportFinance';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { base64, base64Encode } from '@firebase/util';
+import { Token } from '@angular/compiler';
+
+
+
 @Component({
   selector: 'report-page',
   templateUrl: 'report.html',
@@ -73,8 +79,10 @@ export class ReportPage {
     private menu: MenuController,
     private _app: App,
     private _authService: AuthService,
+    private iab :InAppBrowser,
+    
   ) {
-    this.frontData = JSON.parse(localStorage.getItem('menus'));
+    this.frontData = JSON.parse(localStorage.getItem('Project'));
     // console.log(this.frontData);
     this.dashMenu = [
       {
@@ -144,18 +152,7 @@ export class ReportPage {
 
   // initDash() {
   ionViewDidLoad() {
-    // localStorage.removeItem('menus');
-    // var group = localStorage.getItem('Group');
-    // this.loading.present();
-    // if(group != 'Guest' && group != 'INHOUSE'){
-    //   this.dashMenu.push({
-    //     image : "./assets/images/dashPict/default.png",
-    //     title : "Booking",
-    //     link : "BookingPhasePage"
-    //   });
-    // }
-    // console.log(this.dashMenu);
-    // this.loading.dismiss();
+    
   }
 
   ionViewWillEnter(){
@@ -255,21 +252,39 @@ export class ReportPage {
   }
 
   goReportNUP(){
-    // localStorage.setItem('cons_project',this.frontData.cons);
-    // this.nav.push(ReportNUP,{user: localStorage.getItem("UserId")});
-    this.nav.push(ReportNUP, {data:this.frontData, user: localStorage.getItem("UserId")});
+    const project = JSON.parse(localStorage.getItem("Project"));
+    var token = base64Encode(localStorage.getItem("Token"));
+    console.log(token);
+    console.log(localStorage.getItem("Token"));
+    const url = this.url_api+'dash_nup/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
+    console.log(url);
+    const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
+
+    browser.show();
   }
 
   goReportSales(){
-    // localStorage.setItem('cons_project',this.frontData.cons);
-    // this.nav.push(ReportSales,{user: localStorage.getItem("UserId")});
-    this.nav.push(ReportSales, {data:this.frontData, user: localStorage.getItem("UserId")});
+    const project = JSON.parse(localStorage.getItem("Project"));
+    var token = base64Encode(localStorage.getItem("Token"));
+    console.log(token);
+    console.log(localStorage.getItem("Token"));
+    const url = this.url_api+'dash_sales/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
+    console.log(url);
+    const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
+
+    browser.show();
   }
 
   goReportFinance(){
-    // localStorage.setItem('cons_project',this.frontData.cons);
-    // this.nav.push(ReportFinance,{user: localStorage.getItem("UserId")});
-    this.nav.push(ReportFinance, {data:this.frontData, user: localStorage.getItem("UserId")});
+    const project = JSON.parse(localStorage.getItem("Project"));
+    var token = base64Encode(localStorage.getItem("Token"));
+    console.log(token);
+    console.log(localStorage.getItem("Token"));
+    const url = this.url_api+'dash_finance/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
+    console.log(url);
+    const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
+
+    browser.show();
   }
 
 //   goDownload(){
