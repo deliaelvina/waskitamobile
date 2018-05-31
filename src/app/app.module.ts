@@ -16,6 +16,12 @@ import { Listing2Page } from '../pages/listing2/listing2';
 import { ListingProjectPage } from '../pages/listing/project';
 import { FeedPage } from '../pages/feed/feed';
 import { CameraPage } from "../pages/camera/camera";
+import { ReportPage } from '../pages/report/report';
+import { ReportProject } from '../pages/report/project';
+import { ReportNUP } from '../pages/reportNUP/reportNUP';
+import { ReportSales } from '../pages/reportSales/reportSales';
+import { ReportFinance } from '../pages/reportFinance/reportFinance'; 
+import { ReportService } from '../pages/report/report.service';
 
 //Project Info
 import { ProjectPage } from '../pages/projectInfo/project';
@@ -318,7 +324,14 @@ export function createTranslateLoader(http: HttpClient) {
     CounterInput,
     Rating,
     GoogleMap
-    ,UnitFilterPipe
+    ,UnitFilterPipe,
+
+    //report
+    ReportPage,
+    ReportProject,
+    ReportNUP,
+    ReportFinance,
+    ReportSales,
   ],
   imports: [
     // PipeModule.forRoot(),
@@ -361,6 +374,11 @@ export function createTranslateLoader(http: HttpClient) {
     CameraPage,
     ProjectDownloadPage,
     DownloadPage,
+    ReportPage,
+    ReportProject,
+    ReportNUP,
+    ReportFinance,
+    ReportSales,
 
     //Reservation
     ReservationProjectPage,
@@ -465,6 +483,7 @@ export function createTranslateLoader(http: HttpClient) {
     List1Service,
     List2Service,
     ScheduleService,
+    ReportService,
     // GoogleMaps,
     //functionalities
     FacebookLoginService,

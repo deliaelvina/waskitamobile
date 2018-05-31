@@ -32,7 +32,7 @@ export class AuthService{
                     localStorage.setItem('User', Res.Data.user);
                     localStorage.setItem("isLogin","true");
                     localStorage.setItem("isReset",Res.Data.isResetPass);
-                    localStorage.setItem("AgentCd",Res.Data.AgentCd);
+                    localStorage.setItem("AgentCd",Res.Data.AgentCd?Res.Data.AgentCd:'');
                 }
             }
             // console.log(Res);

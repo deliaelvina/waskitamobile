@@ -29,6 +29,7 @@ import { ListingProjectPage } from './project';
 import { ProjectDownloadPage } from '../download/project';
 import { UnitEnquiryProjectPage } from '../unitEnquiryMenu/project';
 // import { ProjectDownloadPage } from '../download/project';
+import { ReportProject } from '../report/project';
 
 @Component({
   selector: 'listing-page',
@@ -98,6 +99,7 @@ export class ListingPage {
     this.link['ListingProjectPage'] = ListingProjectPage;
     this.link['ProjectDownloadPage'] = ProjectDownloadPage;
     this.link['BookingPage'] = BookingPage;
+    this.link['ReportProject'] = ReportProject;
     this.loading = this.loadingCtrl.create();
   }
 
@@ -232,7 +234,10 @@ export class ListingPage {
 
     this.nav.push(a, { category: category, user: localStorage.getItem("UserId") });
   }
-
+  goToTest(){
+    // alert('a');
+    this.nav.push(ReportProject, { user: localStorage.getItem("UserId") });
+  }
   // goToTest(){
   //   // alert('a');
   //   this.nav.push(ListingProjectPage, { user: localStorage.getItem("UserId") });

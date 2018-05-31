@@ -784,7 +784,8 @@ export class ReservationReservePage {
         this.save(data);
       }
       else {
-        this.cekUnitStatus(data);
+        // this.cekUnitStatus(data);
+        this.save(data);
       }
     }
   }

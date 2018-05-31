@@ -158,7 +158,7 @@ export class MyUnitPage {
                     datas.forEach(es => {
                       var font_color = 'green';
 
-                      if(es.Status == 'X' && es.Status == 'C'){
+                      if(es.Status.trim() == 'X' || es.Status == 'C'){
                       font_color = ' red';
                       }else if(es.Status == 'S'){
                         font_color = '#007eca'; //biru

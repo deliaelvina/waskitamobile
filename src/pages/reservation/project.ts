@@ -162,25 +162,46 @@ export class ReservationProjectPage {
   goToPhase(pro:any) {
     // console.log(pro);
     var data = {
-      cons : pro.cons_project,
-      project : pro.project,
-      entity : pro.entity,
-      projectName : pro.descs,
-      header_pict : pro.header_pict,
-      towerCd : '',
-      towerName : '',
-      level : '',
-      level_descs : '',
-      lot : '',
-      bed : 0,
-      bath : 0,
-      studio : '',
-      currency : '',
-      price : '',
-      area : 0,
-      uom : '',
-      direct : ''
+      agentGroupCd : "",
+      agentTypeCd:"",
+      bath:"0",
+      bed:"0",
+      cons:pro.cons_project,
+      entity:pro.entity,
+      header_pict:pro.header_pict,
+      level:"",
+      level_descs:"",
+      level_pict:"",
+      lot:"",
+      lot_type:"",
+      lot_type_desc:"",
+      phase_pict:"",
+      project:pro.project,
+      projectName:pro.descs,
+      studio:false,
+      towerCd:"",
+      towerName:""
     };
+    // var data = {
+    //   cons : pro.cons_project,
+    //   project : pro.project,
+    //   entity : pro.entity,
+    //   projectName : pro.descs,
+    //   header_pict : pro.header_pict,
+    //   towerCd : '',
+    //   towerName : '',
+    //   level : '',
+    //   level_descs : '',
+    //   lot : '',
+    //   bed : 0,
+    //   bath : 0,
+    //   studio : '',
+    //   currency : '',
+    //   price : '',
+    //   area : 0,
+    //   uom : '',
+    //   direct : ''
+    // };
     // console.log(data);
     localStorage.removeItem("data");
     localStorage.setItem("data", JSON.stringify(data));
