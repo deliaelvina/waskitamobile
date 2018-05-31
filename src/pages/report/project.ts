@@ -163,11 +163,11 @@ export class ReportProject {
   }
 
   ionViewWillEnter(){
-    localStorage.removeItem('menus');
+    localStorage.removeItem('Project');
   }
 
   // ionViewWillLeave(){
-  //   localStorage.removeItem('menus');
+  //   localStorage.removeItem('Project');
   // }
 
   goToPhase(pro:any) {
@@ -183,7 +183,7 @@ export class ReportProject {
       isFrom : 1
     };
     // console.log(data);
-    localStorage.setItem('menus', JSON.stringify(data));
+    localStorage.setItem('Project', JSON.stringify(data));
     this.nav.push(ReportPage);
   }
 
