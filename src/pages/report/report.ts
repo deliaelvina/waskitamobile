@@ -253,10 +253,12 @@ export class ReportPage {
 
   goReportNUP(){
     const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(localStorage.getItem("Token"));
-    console.log(token);
-    console.log(localStorage.getItem("Token"));
-    const url = this.url_api+'dash_nup/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
+    var token = project.cons+'-$-'+project.entity+'-$-'+project.projectNo+'-$-'+localStorage.getItem("Token");
+    var param =  base64Encode(token);
+    // console.log(token);
+    // console.log(localStorage.getItem("Token"));
+    const url = this.url_api+'dash_nup/index/'+param;
+    // const url = this.url_api+'dash_nup/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
     console.log(url);
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
 
@@ -265,10 +267,12 @@ export class ReportPage {
 
   goReportSales(){
     const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(localStorage.getItem("Token"));
-    console.log(token);
-    console.log(localStorage.getItem("Token"));
-    const url = this.url_api+'dash_sales/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
+    var token = project.cons+'-$-'+project.entity+'-$-'+project.projectNo+'-$-'+localStorage.getItem("Token");
+    var param =  base64Encode(token);
+    // console.log(token);
+    // console.log(localStorage.getItem("Token"));
+    const url = this.url_api+'dash_sales/index/'+param;
+    // const url = this.url_api+'dash_sales/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
     console.log(url);
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
 
@@ -277,10 +281,12 @@ export class ReportPage {
 
   goReportFinance(){
     const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(localStorage.getItem("Token"));
-    console.log(token);
-    console.log(localStorage.getItem("Token"));
-    const url = this.url_api+'dash_finance/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
+    var token = project.cons+'-$-'+project.entity+'-$-'+project.projectNo+'-$-'+localStorage.getItem("Token");
+    var param =  base64Encode(token);
+    // console.log(token);
+    // console.log(localStorage.getItem("Token"));
+    const url = this.url_api+'dash_finance/index/'+param;
+    // const url = this.url_api+'dash_finance/index/'+project.cons+'/'+project.entity+'/'+project.projectNo+'/'+token;
     console.log(url);
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
 
