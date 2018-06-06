@@ -253,7 +253,7 @@ export class ReportPage {
 
   goReportNUP(){
     const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(project.cons+'/'+project.entity+'/'+project.projectNo+'/'+localStorage.getItem("Token"));
+    var token = base64Encode(project.cons+'-$-'+project.entity+'-$-'+project.projectNo+'-$-'+localStorage.getItem("Token"));
     
     const url = this.url_api+'dash_nup/index/'+token;
   
@@ -264,7 +264,7 @@ export class ReportPage {
 
   goReportSales(){
     const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(project.cons+'/'+project.entity+'/'+project.projectNo+'/'+localStorage.getItem("Token"));
+    var token = base64Encode(project.cons+'-$-'+project.entity+'-$-'+project.projectNo+'-$-'+localStorage.getItem("Token"));
     
     const url = this.url_api+'dash_sales/index/'+token;
     
@@ -275,7 +275,7 @@ export class ReportPage {
 
   goReportFinance(){
     const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(project.cons+'/'+project.entity+'/'+project.projectNo+'/'+localStorage.getItem("Token"));
+    var token = base64Encode(project.cons+'-$-'+project.entity+'-$-'+project.projectNo+'-$-'+localStorage.getItem("Token"));
 
     const url = this.url_api+'dash_finance/index/'+token;
 
