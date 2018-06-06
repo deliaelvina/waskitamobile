@@ -258,7 +258,11 @@ export class ReportPage {
     const url = this.url_api+'dash_nup/index/'+token;
   
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
-
+    browser.on('loadstop').subscribe(event=>{
+      if (event.url.match("mobile/close")) {
+        browser.close();
+    }
+    });
     browser.show();
   }
 
@@ -269,7 +273,11 @@ export class ReportPage {
     const url = this.url_api+'dash_sales/index/'+token;
     
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
-
+    browser.on('loadstop').subscribe(event=>{
+      if (event.url.match("mobile/close")) {
+        browser.close();
+    }
+    });
     browser.show();
   }
 
@@ -280,7 +288,12 @@ export class ReportPage {
     const url = this.url_api+'dash_finance/index/'+token;
 
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
-
+    browser.on('loadstop').subscribe(event=>{
+      // alert(JSON.stringify(event));
+      if (event.url.match("mobile/close")) {
+        browser.close();
+    }
+    });
     browser.show();
   }
 
