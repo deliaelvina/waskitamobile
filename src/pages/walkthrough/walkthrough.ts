@@ -23,7 +23,7 @@ export class WalkthroughPage {
   }
   pict:any[]=[];
   logo:any[]=[
-    "http://35.197.137.111/waskitaAPI/images/logo.png"
+    this.url_api+"images/logo.png"
   ]
 
   skipIntro() {

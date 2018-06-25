@@ -24,10 +24,10 @@ export class SearchBlok {
   device:string;
 
   url_api = environment.Url_API;
-  cons = environment.cons_pb;
+  // cons = environment.cons_pb;
   cons_mobile = environment.cons_mobile;
   user = localStorage.getItem('UserId');
-
+  cons:any;
   av:boolean = true;
 
   hd = new HttpHeaders({
@@ -53,6 +53,7 @@ export class SearchBlok {
 
     this.loading = this.loadingCtrl.create();
     this.parm = this.navParams.get('data');
+    this.cons = this.parm.cons;
   }
 
   logoutAPi(){
