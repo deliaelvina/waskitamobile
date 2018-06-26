@@ -38,6 +38,14 @@ simulasi-page {
     .labelnya {
         color: grey;
     }
+    .label-angsuran {
+        color: grey;
+        // word-wrap: break-word;
+        font-size: 14px;
+        font-weight: none !important;
+        padding-left: 10px !important;
+        padding-right: 0px !important;
+    }
     .labelkamera {
         color: #a5a5a5;
         margin-left: 5%;

@@ -50,10 +50,16 @@
         <br>
         <ion-card>
                 <ion-card-content *ngIf="hitung">
-                    <ion-item>
+                        <ion-card-title class="label-angsuran">
+                                JUMLAH ANGSURAN (perbulan)
+                                <ion-input  type="tel" name="angsuran" [(ngModel)]="angsuran" disabled="true" style="color:black;font-weight:bold"></ion-input>
+                            <!-- <strong>Simulasi Perhitungan KPA/R</strong> -->
+                            <!-- <ion-label floating class="labelnya">{{'JUMLAH ANGSURAN (perbulan)' | translate}}</ion-label> -->
+                        </ion-card-title>
+                    <!-- <ion-item>
                             <ion-label floating class="labelnya">{{'JUMLAH ANGSURAN (perbulan)' | translate}}</ion-label>
                             <ion-input  type="tel" name="angsuran" [(ngModel)]="angsuran" disabled="true" style="color:black;font-weight:bold"></ion-input>
-                    </ion-item>
+                    </ion-item> -->
                 </ion-card-content>
         
         </ion-card>
