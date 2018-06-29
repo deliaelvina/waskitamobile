@@ -27,7 +27,8 @@
                 <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
                     <ion-slide class="contact-slide" *ngFor="let img of gallery">
                         <!-- <h2>{{ img.title }}</h2> -->
-                        <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(img.url)">
+                        <!-- <img [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(img.url)"> -->
+                        <img style="margin-left: auto;margin-right: auto;" [src]="img.url" onerror="this.src='./assets/images/noimage.png';" #floorImg (click)="presentImage(img.url)">
                         <!-- <preload-image [ratio]="{w:3, h:2}" [src]="img"></preload-image> -->
                     </ion-slide>
                 </ion-slides>
@@ -108,10 +109,23 @@
 
         </ion-card-content>
       </ion-card> -->
-      <ng-template #a>
+      <!-- <ng-template #a>
             <div>
                 <span>No Payment Plans</span>
             </div>
+        </ng-template> -->
+        <ng-template #a>
+            <ion-row class="grid-example">
+                <ion-col width-100 class="grid-item">
+                    <div class="grid-item-wrapper" style="padding-bottom:10%;">
+                        <div class="grid-item-inner2" style="font-size:1.2rem;">
+                            <h4 class="item-title2">
+                                No Payment Plans
+                            </h4>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
         </ng-template>
     </div>
 </ion-content>

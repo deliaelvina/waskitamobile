@@ -66,6 +66,36 @@ payment-method{
                         }
                     }
                 }
+                .grid-item-inner2 {
+                    background-color: #ff720d;
+                    border: 10px;
+                    // border-color: red;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    box-shadow: 0 1px 5px -3px #333 !important;
+                    border-radius: 5px;
+                    .item-title2 {
+                        margin: 0px;
+                        // color: $black-c;
+                        color: #fff;
+                        text-align: center;
+                        font-size: 18px;
+                    }
+                    &.multi-line2 {
+                        flex-wrap: wrap;
+                        .item-title2 {
+                            flex: 0 0 100%;
+                            max-width: 100%;
+                            margin: 5px 0px;
+                        }
+                    }
+                }
             }
         }
     }
