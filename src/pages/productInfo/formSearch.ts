@@ -260,7 +260,6 @@ export class FormSearchPage {
   }
 
   showSearchType() {
-    // alert('test');
     let modal = this.modal.create(SearchBlok, {data:this.parm});
     modal.onDidDismiss(data=>{
       this.loading = this.loadingCtrl.create();

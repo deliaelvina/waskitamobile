@@ -295,10 +295,6 @@ export class Listing2Page {
     this.nav.push(ProductPhasePage, {data:this.frontData, user: localStorage.getItem("UserId")});
   }
 
-  // goToTest(){
-  //   // alert('a');
-  //   this.nav.push(MyReservationProjectPage, { user: localStorage.getItem("UserId") });
-  // }
   showAlert(title:any, subTitle:any) {
 
     let warning = this.alertCtrl.create({

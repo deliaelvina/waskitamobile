@@ -117,11 +117,7 @@ export class ProfilePage {
     this.display = "list";
 
     this.loading = this.loadingCtrl.create();
-    // this.main_page = { component: TabsNavigationPage };
-    // this.form_profil = new FormGroup({
-    //   email: new FormControl('', Validators.required),
-    //   password: new FormControl('test', Validators.required)
-    // });
+    
     this.form_profil = new FormGroup({
       UserName:new FormControl('',Validators.required),
       Name:new FormControl(''),

@@ -53,6 +53,8 @@ import { BookingPage } from '../pages/booking/project';
 import { BookingUnitModalPage } from "../pages/booking/unitModal";
 import { BookingPaymentDetailPage } from "../pages/booking/paymentDtl";
 import { BookingReservePage } from '../pages/booking/booking';
+//no user
+import { BookingReserve2Page } from '../pages/booking/reserve';
 
 //myUnit
 import { MyUnitPage } from '../pages/MyUnit/myUnit';
@@ -194,6 +196,13 @@ import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { UnitFilterPipe } from '../pages/unit-enquiry/unit-filter.pipe';
 import { UnitEnquiryProjectPage } from '../pages/unitEnquiryMenu/project';
 import { UnitEnquiryPhasePage } from '../pages/unitEnquiryMenu/phase';
+
+//Ticket
+import { TicketFilter } from '../pages/ticket/ticketFilter';
+import { TicketHis } from '../pages/ticket/ticketHis';
+import { TicketEntry } from '../pages/ticket/ticketEntry';
+import { TicketProjectPage } from '../pages/ticket/project';
+import { TicketPhasePage } from '../pages/ticket/phase';
 // import { UnitFilterModule } from '../tools/pipe.module';
 // PipeModule
 export function createTranslateLoader(http: HttpClient) {
@@ -214,6 +223,13 @@ export function createTranslateLoader(http: HttpClient) {
     ProjectDownloadPage,
     DownloadPage,
 
+    //Ticket
+    TicketProjectPage,
+    TicketPhasePage,
+    TicketFilter,
+    TicketHis,
+    TicketEntry,
+
     //reservation
     ReservationProjectPage,
     ReservationPhasePage,
@@ -231,6 +247,7 @@ export function createTranslateLoader(http: HttpClient) {
     BookingUnitModalPage,
     BookingPaymentDetailPage,
     BookingReservePage,
+    BookingReserve2Page,
 
     //myunit
     PaymentSchedulePage,
@@ -380,6 +397,13 @@ export function createTranslateLoader(http: HttpClient) {
     ReportFinance,
     ReportSales,
 
+    //Ticket
+    TicketProjectPage,
+    TicketPhasePage,
+    TicketFilter,
+    TicketHis,
+    TicketEntry,
+
     //Reservation
     ReservationProjectPage,
     ReservationPhasePage,
@@ -397,6 +421,7 @@ export function createTranslateLoader(http: HttpClient) {
     BookingUnitModalPage,
     BookingPaymentDetailPage,
     BookingReservePage,
+    BookingReserve2Page,
 
     //myunit
     SimulasiPage,

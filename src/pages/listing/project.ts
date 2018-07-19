@@ -44,7 +44,8 @@ export class ListingProjectPage {
     public platform: Platform,
   ) {
     this.device = localStorage.getItem('Device');
-    this.user = localStorage.getItem("UserId");
+    // this.user = localStorage.getItem("UserId");
+    this.user = localStorage.getItem('User');
     this.loading = this.loadingCtrl.create();
   }
 

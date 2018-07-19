@@ -102,7 +102,6 @@ export class MyApp {
   pushPage(page) {
     // close the menu when clicking a link from the menu
     this.menu.close();
-    // rootNav is now deprecated (since beta 11) (https://forum.ionicframework.com/t/cant-access-rootnav-after-upgrade-to-beta-11/59889)
     this.app.getRootNav().push(page.component);
   }
 

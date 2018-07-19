@@ -44,7 +44,8 @@ export class UnitEnquiryProjectPage {
     public platform: Platform,
   ) {
     this.device = localStorage.getItem('Device');
-    this.user = localStorage.getItem("UserId");
+    this.user = localStorage.getItem("User");
+    // this.user = localStorage.getItem("UserId");
     this.loading = this.loadingCtrl.create();
   }
 

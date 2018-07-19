@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span>Simulasi KPA/R</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- <div> -->
+    <ion-card>
+        <!-- <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs"></preload-image> -->
+        <ion-card-content>
+            <ion-card-title class="item-title">
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'PEDIODE' | translate}}</ion-label>
+                    
+                </ion-item>
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'DEBTOR' | translate}}</ion-label>
+                    <ion-select (ionChange)="optionSelected('debtor');" name="debtor" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                        <!-- <ion-option *ngFor="let nat of nats" [value]="nat">{{ nat.descs }}</ion-option> -->
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label floating class="labelnya">{{'CATEGORY' | translate}}</ion-label>
+                    <ion-select (ionChange)="optionSelected('cat');" name="cat" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}">
+                        <!-- <ion-option *ngFor="let nat of nats" [value]="nat">{{ nat.descs }}</ion-option> -->
+                    </ion-select>
+                </ion-item>
+            </ion-card-title>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

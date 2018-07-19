@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "590834895101",
+    "firebase_url": "https://fir-waskita.firebaseio.com",
+    "project_id": "firebase-waskita",
+    "storage_bucket": "firebase-waskita.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590834895101:android:277b94375e28131c",
+        "android_client_info": {
+          "package_name": "com.ifcap365.waskita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590834895101-pp8ah3urrbeons8e7c2h01pfa1feog9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ifcap365.waskita",
+            "certificate_hash": "ff848f92c0ec51c463a413523900cc6534c1ea4d"
+          }
+        },
+        {
+          "client_id": "590834895101-4c77te1dgclgdroop0q55rd2ck5adcb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQDRvoDUGvCHMEIyIUepJH7EF4qu1Rqyg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

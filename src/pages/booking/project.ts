@@ -44,7 +44,8 @@ export class BookingPage {
   ) {
     this.device = localStorage.getItem('Device');
 
-    this.user = navParams.get('user');
+    // this.user = navParams.get('user');
+    this.user = localStorage.getItem('User');
     this.loading = this.loadingCtrl.create();
   }
 

@@ -181,13 +181,13 @@ export class LoginPage {
     .subscribe(
 
       (Res)=>{
-        // this.showAlert("INFO",JSON.stringify(Res));
+        this.showAlert("INFO",JSON.stringify(Res));
         // alert('result =>'+JSON.stringify(Res));
         // this.showAlert("Error!", '12345');
         this.loading.dismiss();
         if(Res.Error==true){
           // alert(Res.Pesan);
-          this.showAlert("Error!", Res.Pesan);
+          // this.showAlert("Error!", Res.Pesan);
         }else{
           localStorage.setItem('MenuDash', JSON.stringify(Res.Data.DashMenu));
               localStorage.setItem('Group', Res.Data.Group);
@@ -253,7 +253,7 @@ export class LoginPage {
       this.googlePlus.trySilentLogin({
 
       }).then((res) => {
-        alert('cek login');
+        // alert('cek login');
         this.LoginSosmed(res['email'],'GMAIL',res['userId']);
       },(error) => {
         this.googlePlus.login({
@@ -262,11 +262,11 @@ export class LoginPage {
           // 'scopes':'profile email'
         }).then((ress) => {
           this.loading.dismiss();
-          alert('berhasil login');
+          // alert('berhasil login');
             this.LoginSosmed(ress['email'],'GMAIL',ress['userId']);
           },(errors) => {
             this.loading.dismiss();
-            alert('Failed2 => ' + JSON.stringify(errors));
+            // alert('Failed2 => ' + JSON.stringify(errors));
           });
       });
     }else{//android
@@ -283,13 +283,13 @@ export class LoginPage {
     //   // )
     //   },(error) => {
         this.googlePlus.login({
-          // 'webClientId': environment.google_android_client_id,
+          // 'webClientId': environment.google_web_client_id,
           // 'offline': true,
           // 'scopes':'profile email'
         }).then((ress) => {
           this.loading.dismiss();
           // alert('berhasil login');
-            // alert('sukses2 => ' + JSON.stringify(ress));
+            alert('sukses2 => ' + JSON.stringify(ress));
             // this.googlePlus.logout();
             this.LoginSosmed(ress['email'],'GMAIL',ress['userId']);
           },(errors) => {

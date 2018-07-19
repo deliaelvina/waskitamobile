@@ -43,7 +43,8 @@ export class MyUnitPage {
     private _authService: AuthService,
     private sanitizer: DomSanitizer
   ) {
-    this.user = navParams.get('user');
+    // this.user = navParams.get('user');
+    this.user = localStorage.getItem('User');
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
 

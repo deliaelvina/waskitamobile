@@ -40,7 +40,8 @@ export class ReservationProjectPage {
     private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
   ) {
-    this.user = navParams.get('user');
+    this.user = localStorage.getItem('User');
+    // this.user = navParams.get('user');
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
   }

@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span>Choose Project</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content" *ngIf="available; else na" style="background-color: #f3f3f3 !important">
+    <div class="feed-item" *ngFor="let pro of projects">
+        <ion-card (click)="goToPhase(pro)">
+            <img [src]="pro.pic_path" onerror="this.src='./assets/images/noimage.png';" title="pro.descs">
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    <span style="color:black!important;font-weight:bold">{{pro.descs}}</span><br>
+                    {{pro.caption}}
+                </ion-card-title>
+
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+</ion-content>
+
+<ng-template #na>
+    <ion-content class="feed-content">
+        <div class="feed-item">
+            <ion-card>
+                <!-- <preload-image [ratio]="{w:3, h:2}" [src]="pro.pic_path" title="pro.descs" style="padding-bottom: 10% !important;"></preload-image> -->
+                <ion-card-content>
+                    <ion-card-title class="item-title">
+                        No Project Available
+                    </ion-card-title>
+
+                </ion-card-content>
+
+            </ion-card>
+        </div>
+    </ion-content>
+</ng-template>

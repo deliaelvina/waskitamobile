@@ -43,7 +43,8 @@ export class ProjectPage {
     // private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService
   ) {
-    this.user = navParams.get('user');
+    // this.user = navParams.get('user');
+    this.user = localStorage.getItem('User');
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
   } 

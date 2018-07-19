@@ -67,7 +67,6 @@ export class SettingsPage {
       this.profile.user = data.user;
       // setValue: With setValue, you assign every form control value at once by passing in a data object whose properties exactly match the form model behind the FormGroup.
       // patchValue: With patchValue, you can assign values to specific controls in a FormGroup by supplying an object of key/value pairs for just the controls of interest.
-      // More info: https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#populate-the-form-model-with-_setvalue_-and-_patchvalue_
 
       let currentLang = this.translate.currentLang;
 
@@ -126,7 +125,6 @@ export class SettingsPage {
       this.appRate.promptForRating(true);
     }
     else{
-      console.log("You are not in a cordova environment. You should test this feature in a real device or an emulator");
     }
   }
 

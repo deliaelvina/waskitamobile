@@ -25,7 +25,7 @@ declare var cordova: any;
   selector: 'bookingReserve-page',
   templateUrl: 'reserve.html'
 })
-export class BookingReservePage {
+export class BookingReserve2Page {
   reserveForm: FormGroup;
 
   countries: Array<Country>;

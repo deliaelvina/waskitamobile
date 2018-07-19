@@ -10,7 +10,6 @@ export class AdsPage {
 
   bannerConfig: AdMobFreeBannerConfig = {
     // add your banner config here
-    // for the sake of this example we will just use the test config
     isTesting: true,
     autoShow: true,
     // id: 'ca-app-pub-xxx/xxx',
@@ -19,7 +18,6 @@ export class AdsPage {
 
   interstitialConfig: AdMobFreeInterstitialConfig = {
     // add your config here
-    // for the sake of this example we will just use the test config
     isTesting: true,
     autoShow: true,
     // id: 'ca-app-pub-xxx/xxx'

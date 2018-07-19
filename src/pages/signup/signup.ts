@@ -77,9 +77,6 @@ export class SignupPage {
       Handphone: new FormControl('',Validators.compose([Validators.minLength(10),Validators.required])),
       Medsos: new FormControl(''),
       Id:new FormControl('')
-
-      // password: new FormControl('test')
-      // confirm_password: new FormControl('test')
     });
   }
   ionViewDidLoad() {
@@ -124,11 +121,11 @@ export class SignupPage {
         // 'offline': true
       }).then((ress) => {
           //Login Google True
-          // alert('Success2 => ' + JSON.stringify(ress));
+          alert('Success2 => ' + JSON.stringify(ress));
           this.chekEmailSetData(ress,'GMAIL');
         },(errors) => {
           //Login Google False
-          // alert('Failed2 a=> ' + JSON.stringify(errors));
+          // alert('Failed2 => ' + JSON.stringify(errors));
         });
     // });
   }
@@ -155,7 +152,7 @@ export class SignupPage {
                       .subscribe(
                         
                         (Res)=>{
-                          // alert("Login sosmed OK=>" +JSON.stringify(Res));
+                          alert("Login sosmed OK=>" +JSON.stringify(Res));
                           if(!Res.Error){
                             // alert("Login sosmed OK=>" +JSON.stringify(Res));
                             // alert(Res.Data.name);
@@ -233,6 +230,7 @@ export class SignupPage {
     this._authService.cekSignUp(profile['email'],usId)
     .subscribe(
       (data)=>{
+        alert(JSON.stringify(data));
         this.loading.dismiss();
           if(data.Error){
             this.showAlert("WARNING!",data.Pesan);

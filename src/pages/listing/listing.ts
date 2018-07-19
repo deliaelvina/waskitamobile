@@ -30,6 +30,8 @@ import { ProjectDownloadPage } from '../download/project';
 import { UnitEnquiryProjectPage } from '../unitEnquiryMenu/project';
 // import { ProjectDownloadPage } from '../download/project';
 import { ReportProject } from '../report/project';
+import { TicketEntry } from '../ticket/ticketEntry';
+import { TicketProjectPage } from '../ticket/project';
 
 @Component({
   selector: 'listing-page',
@@ -181,17 +183,17 @@ export class ListingPage {
     this._authService.logout().subscribe(
       (x:any) => {
         // console.log(x);
-              if(x.Error == true) {
-                  // this.showAlert("Warning!", x.Pesan);
-                  this.loading.dismiss();
-                  localStorage.clear();
-                  if(this.device=='android'){
-                      navigator['app'].exitApp();
-                  }else{//ios and web
-                      this._app.getRootNav().setRoot(MyApp);
-                  }
-              }
-              else {
+              // if(x.Error == true) {
+              //     // this.showAlert("Warning!", x.Pesan);
+              //     this.loading.dismiss();
+              //     localStorage.clear();
+              //     if(this.device=='android'){
+              //         navigator['app'].exitApp();
+              //     }else{//ios and web
+              //         this._app.getRootNav().setRoot(MyApp);
+              //     }
+              // }
+              // else {
                 this.loading.dismiss();
                 localStorage.clear();
                   if(this.device=='android'){
@@ -199,24 +201,24 @@ export class ListingPage {
                   }else{//ios and web
                       this._app.getRootNav().setRoot(MyApp);
                   }
-              }
+              // }
             },
             (err)=>{
               this.loading.dismiss();
               //filter error array
-              this.ErrorList = this.ErrorList.filter(function(er){
-                  return er.Code == err.status;
-              });
+              // this.ErrorList = this.ErrorList.filter(function(er){
+              //     return er.Code == err.status;
+              // });
 
-              var errS;
-              if(this.ErrorList.length == 1 ){
-                errS = this.ErrorList[0].Description;
-              }else{
-                errS = err;
-              }
-                this.showAlert("Error!", errS);
+              // var errS;
+              // if(this.ErrorList.length == 1 ){
+              //   errS = this.ErrorList[0].Description;
+              // }else{
+              //   errS = err;
+              // }
+                // this.showAlert("Error!", errS);
 
-                this.loading.dismiss();
+                // this.loading.dismiss();
                   localStorage.clear();
                   if(this.device=='android'){
                       navigator['app'].exitApp();
@@ -234,14 +236,12 @@ export class ListingPage {
 
     this.nav.push(a, { category: category, user: localStorage.getItem("UserId") });
   }
-  goToTest(){
-    // alert('a');
-    this.nav.push(ReportProject, { user: localStorage.getItem("UserId") });
+  TicketHis(){
+    this.nav.push(TicketProjectPage, { user: localStorage.getItem("UserId") });
   }
-  // goToTest(){
-  //   // alert('a');
-  //   this.nav.push(ListingProjectPage, { user: localStorage.getItem("UserId") });
-  // }
+  TicketEntry(){
+    this.nav.push(TicketEntry, { user: localStorage.getItem("UserId") });
+  }
 
   // goToDownload(){
   //   this.nav.push(ProjectDownloadPage, { user: localStorage.getItem("UserId") });

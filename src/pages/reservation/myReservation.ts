@@ -44,7 +44,8 @@ export class MyReservationProjectPage {
     private _errorService: ErrorhandlerService,
     private sanitizer: DomSanitizer,
   ) {
-    this.user = navParams.get('user');
+    this.user = localStorage.getItem('User');
+    // this.user = navParams.get('user');
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
     this._errorService.getData()
