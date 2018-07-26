@@ -181,7 +181,7 @@ export class LoginPage {
     .subscribe(
 
       (Res)=>{
-        this.showAlert("INFO",JSON.stringify(Res));
+        // this.showAlert("INFO",JSON.stringify(Res));
         // alert('result =>'+JSON.stringify(Res));
         // this.showAlert("Error!", '12345');
         this.loading.dismiss();
@@ -289,7 +289,7 @@ export class LoginPage {
         }).then((ress) => {
           this.loading.dismiss();
           // alert('berhasil login');
-            alert('sukses2 => ' + JSON.stringify(ress));
+            // alert('sukses2 => ' + JSON.stringify(ress));
             // this.googlePlus.logout();
             this.LoginSosmed(ress['email'],'GMAIL',ress['userId']);
           },(errors) => {
