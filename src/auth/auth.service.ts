@@ -16,7 +16,7 @@ export class AuthService{
     }
     // Login(email:string,password:string){
     Login(value:any[]){
-        console.log(value);
+        // console.log(value);
         // return this.http.post(this.urlAPI+"c_auth/Login",JSON.stringify({ email: email, password: password }))
         return this.http.post(this.urlAPI+"c_auth/Login",value)
         .map((response:Response)=>{

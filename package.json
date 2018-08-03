@@ -35,7 +35,7 @@
     "@ionic-native/file-transfer": "^4.7.0",
     "@ionic-native/geolocation": "^4.5.2",
     "@ionic-native/google-maps": "^4.5.3",
-    "@ionic-native/google-plus": "^4.10.0",
+    "@ionic-native/google-plus": "^4.11.0",
     "@ionic-native/image-picker": "4.5.2",
     "@ionic-native/in-app-browser": "^4.5.2",
     "@ionic-native/keyboard": "4.5.2",
@@ -59,7 +59,7 @@
     "com-sarriaroman-photoviewer": "^1.1.18",
     "com.synconset.imagepicker": "^2.1.10",
     "cordova-admob-sdk": "^0.7.0",
-    "cordova-android": "~6.4.0",
+    "cordova-android": "^6.4.0",
     "cordova-browser": "~5.0.3",
     "cordova-ios": "~4.5.4",
     "cordova-plugin-add-swift-support": "^1.7.2",
@@ -183,13 +183,13 @@
         "PHOTOLIBRARY_USAGE_DESCRIPTION": "your usage message"
       },
       "cordova-plugin-file-transfer": {},
-      "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.590834895101-iag11jmi07jqpfgmutj0lt1jkl64kj63"
-      },
       "cordova-plugin-facebook4": {
         "APP_ID": "215720285802636",
         "APP_NAME": "Waskita Realty",
         "ANDROID_SDK_VERSION": "4.+"
+      },
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.590834895101-7q8gbkho29m46u0442rkn37ie82e0n65"
       }
     }
   }

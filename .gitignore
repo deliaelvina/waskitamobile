@@ -34,6 +34,8 @@ res/
 www/
 pwa/
 $RECYCLE.BIN/
+keystore/
+apk_prod/
 
 .DS_Store
 Thumbs.db
