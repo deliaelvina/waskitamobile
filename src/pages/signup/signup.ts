@@ -121,7 +121,7 @@ export class SignupPage {
         // 'offline': true
       }).then((ress) => {
           //Login Google True
-          alert('Success2 => ' + JSON.stringify(ress));
+          // alert('Success2 => ' + JSON.stringify(ress));
           this.chekEmailSetData(ress,'GMAIL');
         },(errors) => {
           //Login Google False
@@ -152,7 +152,7 @@ export class SignupPage {
                       .subscribe(
                         
                         (Res)=>{
-                          alert("Login sosmed OK=>" +JSON.stringify(Res));
+                          // alert("Login sosmed OK=>" +JSON.stringify(Res));
                           if(!Res.Error){
                             // alert("Login sosmed OK=>" +JSON.stringify(Res));
                             // alert(Res.Data.name);
@@ -180,7 +180,7 @@ export class SignupPage {
                           
                         },
                         (err)=>{
-                          alert("Login sosmed FAIL=>" +JSON.stringify(err));
+                          // alert("Login sosmed FAIL=>" +JSON.stringify(err));
                           this.loading.dismiss();
                           console.log(err);
                           this.showAlert("ERROR!",err);
@@ -230,7 +230,7 @@ export class SignupPage {
     this._authService.cekSignUp(profile['email'],usId)
     .subscribe(
       (data)=>{
-        alert(JSON.stringify(data));
+        // alert(JSON.stringify(data));
         this.loading.dismiss();
           if(data.Error){
             this.showAlert("WARNING!",data.Pesan);

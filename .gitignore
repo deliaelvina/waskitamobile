@@ -40,3 +40,5 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 .sourcemaps
+.keystore
+.apk
