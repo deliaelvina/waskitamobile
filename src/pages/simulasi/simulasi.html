@@ -17,34 +17,37 @@
             <ion-card-title class="item-title">
                 <strong>Simulasi Perhitungan KPA/R</strong>
             </ion-card-title>
-          
+
         </ion-card-content>
 
     </ion-card>
     <ion-card-content padding class="">
         <form class="validations-form" >
             <section class="form-section">
-    
+
                 <ion-item>
                     <ion-label floating class="labelnya">{{'JUMLAH KREDIT (Rp)' | translate}} <font color="red">*</font></ion-label>
                     <ion-input  type="tel" name="kredit" [(ngModel)]="kredit" (input)="kredit = format(kredit)" required></ion-input>
                 </ion-item>
-               
+
                 <ion-item>
                         <ion-label floating class="labelnya">{{'BUNGA (%)' | translate}} <font color="red">*</font></ion-label>
                         <ion-input  type="tel" name="bunga" [(ngModel)]="bunga" required maxlength="5"></ion-input>
                 </ion-item>
-               
+
                 <ion-item>
                         <ion-label floating class="labelnya">{{'WAKTU (pertahun)' | translate}} <font color="red">*</font></ion-label>
                         <ion-input  type="tel" name="waktu" [(ngModel)]="waktu" required></ion-input>
                 </ion-item>
-             
+
             </section>
-            <br><br>
+            <br>
+            <div style="font-size:12px; color: #777676;padding-left: 9px;"><i>* Angka di atas merupakan angka estimasi, untuk lebih akuratnya mohon hubungi bank terkait.</i></div>
+            <br>
             <section class="form-section" >
                 <button ion-button block class="form-action-button" (click)="hitungKPR()" style="background-color: #1f3e80">Hitung</button>
             </section>
+
 
         </form>
         <br>
@@ -61,7 +64,7 @@
                             <ion-input  type="tel" name="angsuran" [(ngModel)]="angsuran" disabled="true" style="color:black;font-weight:bold"></ion-input>
                     </ion-item> -->
                 </ion-card-content>
-        
+
         </ion-card>
     </ion-card-content>
 </ion-content>
