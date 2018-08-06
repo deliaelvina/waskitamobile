@@ -187,7 +187,7 @@ export class LoginPage {
         this.loading.dismiss();
         if(Res.Error==true){
           // alert(Res.Pesan);
-          // this.showAlert("Error!", Res.Pesan);
+          this.showAlert("Error!", Res.Pesan);
         }else{
           localStorage.setItem('MenuDash', JSON.stringify(Res.Data.DashMenu));
               localStorage.setItem('Group', Res.Data.Group);
