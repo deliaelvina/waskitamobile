@@ -19,12 +19,16 @@ export class WalkthroughPage {
   @ViewChild('slider') slider: Slides;
 
   constructor(public nav: NavController, private http:Http, private _sanitize:DomSanitizer) {
-    this.loadPict();
+    // this.loadPict();
   }
   pict:any[]=[];
   logo:any[]=[
     this.url_api+"images/logo.png"
   ]
+
+  ionViewDidLoad() {
+    this.loadPict();
+  }
 
   skipIntro() {
     // You can skip to main app

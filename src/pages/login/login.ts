@@ -31,6 +31,7 @@ export class LoginPage {
   //error handle
   // ErrorList: ErrorStatusModel = new ErrorStatusModel();
   ErrorList:any;
+  dataLog : any;
 
   constructor(
     public nav: NavController,
@@ -168,7 +169,7 @@ export class LoginPage {
 
     warning.present();
   }
-  LoginSosmed(email:string,Fr:string,usId:string){
+  LoginSosmed(email:string,Fr:string,usId:string,all:any){
     // this._authService.LoginSosmed(profile['email'],"FB")
     // alert(email);
     // this.showAlert("Error!", email);
@@ -187,7 +188,8 @@ export class LoginPage {
         this.loading.dismiss();
         if(Res.Error==true){
           // alert(Res.Pesan);
-          this.showAlert("Error!", Res.Pesan);
+          // this.showAlert("Error!", Res.Pesan);
+          this.nav.push(SignupPage, {dLog : all, from : Fr});
         }else{
           localStorage.setItem('MenuDash', JSON.stringify(Res.Data.DashMenu));
               localStorage.setItem('Group', Res.Data.Group);
@@ -217,8 +219,8 @@ export class LoginPage {
     this.facebook.login(['public_profile','email']).then((response: FacebookLoginResponse) => {
       this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', [])
       .then(profile => {
-        this.loading.dismiss();
-        this.LoginSosmed(profile['email'],'FB',profile['id']);
+        // this.loading.dismiss();
+        this.LoginSosmed(profile['email'],'FB',profile['id'],profile);
       });
     }).catch(err =>{
 
@@ -254,16 +256,16 @@ export class LoginPage {
 
       }).then((res) => {
         // alert('cek login');
-        this.LoginSosmed(res['email'],'GMAIL',res['userId']);
+        this.LoginSosmed(res['email'],'GMAIL',res['userId'],res);
       },(error) => {
         this.googlePlus.login({
           // 'webClientId': environment.google_web_client_id,
           // 'offline': true,
           // 'scopes':'profile email'
         }).then((ress) => {
-          this.loading.dismiss();
+          // this.loading.dismiss();
           // alert('berhasil login');
-            this.LoginSosmed(ress['email'],'GMAIL',ress['userId']);
+            this.LoginSosmed(ress['email'],'GMAIL',ress['userId'],ress);
           },(errors) => {
             this.loading.dismiss();
             // alert('Failed2 => ' + JSON.stringify(errors));
@@ -291,7 +293,7 @@ export class LoginPage {
           // alert('berhasil login');
             // alert('sukses2 => ' + JSON.stringify(ress));
             // this.googlePlus.logout();
-            this.LoginSosmed(ress['email'],'GMAIL',ress['userId']);
+            this.LoginSosmed(ress['email'],'GMAIL',ress['userId'],ress);
           },(errors) => {
             this.loading.dismiss();
             // this.LoginSosmed('nuryantofattih@gmail.com','GMAIL','108339075516782956576');

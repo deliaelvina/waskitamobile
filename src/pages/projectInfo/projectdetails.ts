@@ -203,20 +203,44 @@ export class ProjectDetailsPage {
   }
 
   downloadpdf() {
-    this.loading = this.loadingCtrl.create();
-    this.loading.present().then(() => {
-      const fileTransfer: FileTransferObject = this.transfer.create();
-      var url = encodeURI(this.brochure);
+    if(this.brochure && this.brochure != ''){
+      this.loading = this.loadingCtrl.create();
+      this.loading.present().then(() => {
+        const fileTransfer: FileTransferObject = this.transfer.create();
+        var url = encodeURI(this.brochure);
 
-      fileTransfer.download(url, this.storageDirectory + '/brochure.pdf').then((entry) => {
-        let urlpdf = entry.toURL();
-        // alert(urlpdf);
+        fileTransfer.download(url, this.storageDirectory + '/brochure.pdf').then((entry) => {
+          let urlpdf = entry.toURL();
+          // alert(urlpdf);
 
-        // alert(this.storageDirectory);
+          // alert(this.storageDirectory);
 
-        // alert('hi');
-        this.fileOpener.open(urlpdf, 'application/pdf').then(() => {
-          this.loading.dismiss();
+          // alert('hi');
+          this.fileOpener.open(urlpdf, 'application/pdf').then(() => {
+            this.loading.dismiss();
+          }, (err) => {
+            // handle error
+            this.ErrorList = this.ErrorList.filter(function(er){
+                return er.Code == err.status;
+            });
+
+            var errS;
+
+            if(this.ErrorList.length == 1 ){
+              // alert('a');
+              errS = this.ErrorList[0].Description;
+            }else{
+              // alert('b');
+              errS = err;
+            }
+            this.showAlert("Download failed!", JSON.stringify(errS),'donothing');
+            this.loading.dismiss();
+            })
+            .catch(e => {
+              // alert('eror bray:'+JSON.stringify(e))
+            });
+        //end of file opener
+
         }, (err) => {
           // handle error
           this.ErrorList = this.ErrorList.filter(function(er){
@@ -234,31 +258,12 @@ export class ProjectDetailsPage {
           }
           this.showAlert("Download failed!", JSON.stringify(errS),'donothing');
           this.loading.dismiss();
-          })
-          .catch(e => {
-            alert('eror bray:'+JSON.stringify(e))
           });
-       //end of file opener
-
-      }, (err) => {
-        // handle error
-        this.ErrorList = this.ErrorList.filter(function(er){
-            return er.Code == err.status;
-        });
-
-        var errS;
-
-        if(this.ErrorList.length == 1 ){
-          alert('a');
-          errS = this.ErrorList[0].Description;
-        }else{
-          alert('b');
-          errS = err;
-        }
-        this.showAlert("Download failed!", JSON.stringify(errS),'donothing');
-        this.loading.dismiss();
-        });
-    });
+      });
+    }
+    else {
+      this.showAlert("No PDF Exist!", "This Project Has No PDF Exist",'donothing');
+    }
 
   }
 

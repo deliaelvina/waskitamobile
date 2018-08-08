@@ -80,13 +80,13 @@ export class SimulasiPage {
       }
   }
   formatdec(num){
-    console.log(num);
+    // console.log(num);
     num = num.replace(/\D/g, '');
     return (num / 100).toFixed(2);
     // return Number.parseFloat(num).toFixed(2);
   }
   hitungKPR(){
-    console.log(this.bunga);
+    // console.log(this.bunga);
     this.bunga1 = this.bunga;
     this.waktu1 = this.waktu;
     this.bunga1/=1200;
@@ -97,7 +97,7 @@ export class SimulasiPage {
     // this.angsuran = Math.round(this.angsuran * 100) / 100;
     this.angsuran = Math.round(this.angsuran);
     // this.angsuran = M(this.angsuran).toFixed(2);
-    console.log(this.angsuran);
+    // console.log(this.angsuran);
     this.angsuran = this.format(this.angsuran);
 
     if(this.bunga==null || this.bunga==''){
@@ -111,7 +111,7 @@ export class SimulasiPage {
           });
     
           toast.onDidDismiss(() => {
-            console.log('Dismissed toast');
+            // console.log('Dismissed toast');
           });
           toast.present();
         }
@@ -122,7 +122,7 @@ export class SimulasiPage {
         });
   
         toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
+          // console.log('Dismissed toast');
         });
         toast.present();  
       }
@@ -133,7 +133,7 @@ export class SimulasiPage {
       });
 
       toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
+        // console.log('Dismissed toast');
       });
       toast.present();
     } else {

@@ -1,5 +1,5 @@
 import { Component,Input,ViewChild } from '@angular/core';
-import { NavController, ModalController, LoadingController, ToastController,AlertController,Platform } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, ToastController,AlertController,Platform,NavParams } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
@@ -33,7 +33,14 @@ export class SignupPage {
   main_page: { component: any };
   loading: any;
   Agent:any[]=[];
-  userData: any;
+  userData: any = {
+    id:null,
+    email:null,
+    first_name:null,
+    image:null,
+    username:null,
+    medsos:null
+  };
   temail:string ;
   dMedsos:boolean = true;
   ErrorList:any;
@@ -51,6 +58,7 @@ export class SignupPage {
     public googlePlus: GooglePlus
     ,public alertCtrl: AlertController,
     public platform:Platform
+    , public navParam : NavParams
   ) {
     platform.ready().then((source) => {
       if (this.platform.is('android')) {
@@ -78,6 +86,10 @@ export class SignupPage {
       Medsos: new FormControl(''),
       Id:new FormControl('')
     });
+    var dt = this.navParam.get('dLog');
+    var dtf = this.navParam.get('from');
+    
+    this.chekEmailSetData2(dt,dtf);
   }
   ionViewDidLoad() {
   //  alert(this.temail);
@@ -134,6 +146,7 @@ export class SignupPage {
     
     this.loading = this.loadingCtrl.create();
     this.signup.value.Id = this.userData.id;
+    this.loading.present();
     // alert(this.signup.value.Id);
     //cek email sudah ada blm
     this._authService.cekSignUp(this.signup.value.Email,this.signup.value.Id)
@@ -182,7 +195,7 @@ export class SignupPage {
                         (err)=>{
                           // alert("Login sosmed FAIL=>" +JSON.stringify(err));
                           this.loading.dismiss();
-                          console.log(err);
+                          // console.log(err);
                           this.showAlert("ERROR!",err);
                         }
                       );
@@ -217,6 +230,29 @@ export class SignupPage {
 
     
     // this.nav.setRoot(this.main_page.component);
+  }
+
+  chekEmailSetData2(profile:any,Fr:string){
+    // var usId =Fr=='FB'?profile['id']:profile['userId'];
+    // alert(usId);
+    this.dMedsos = false;
+    if(Fr=='FB'){
+      this.userData = {
+        id:profile['id'],
+        email: profile['email'], 
+        first_name: profile['first_name'], 
+        image: profile['picture_large']['data']['url'], 
+        username: profile['name'],
+        medsos:'FB'};
+    }else{
+      this.userData = {
+        id:profile['userId'],
+        email: profile['email'], 
+        first_name: profile['givenName'], 
+        image: profile['imageUrl'], 
+        username: profile['givenName'],
+        medsos:'GMAIL'};
+    }
   }
 
   chekEmailSetData(profile:any,Fr:string){

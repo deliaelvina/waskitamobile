@@ -5,12 +5,11 @@
 </ion-header>
 
 <ion-content class="signup-content auth-content">
-    <div *ngIf="dMedsos==true">
+    <!-- <div *ngIf="dMedsos==true">
             <button ion-button block class="facebook-auth-button" (click)="loginWithFB()">{{'SIGN_UP_WITH_FACEBOOK' | translate}}</button>
-            <!-- <button ion-button block class="facebook-auth-button" (click)="doFacebookSignup()">{{'SIGN_UP_WITH_FACEBOOK' | translate}}</button> -->
             <button ion-button block class="google-auth-button" (click)="googleSignUp()">{{'SIGN_UP_WITH_GOOGLE' | translate}}</button>
-    </div>        
-        <div *ngIf="userData">
+    </div>         -->
+        <div>
                 <form class="signup-form auth-form" [formGroup]="signup" (ngSubmit)="doSignup()">        
                         <ion-item>
                             <ion-label floating>{{'Email' | translate}}</ion-label>
