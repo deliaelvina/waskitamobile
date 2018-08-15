@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides } from 'ionic-angular';
+import { NavController, Slides, AlertController, LoadingController } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
 import { Http } from '@angular/http';
 import { environment } from '../../environment/environment';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'walkthrough-page',
@@ -15,11 +16,15 @@ export class WalkthroughPage {
 
   lastSlide = false;
   url_api = environment.Url_API;
+  loading:any;
 
   @ViewChild('slider') slider: Slides;
 
-  constructor(public nav: NavController, private http:Http, private _sanitize:DomSanitizer) {
+  constructor(public nav: NavController, private http:Http, private _sanitize:DomSanitizer, private hclient:HttpClient,public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
+  ) {
     // this.loadPict();
+    this.loading = loadingCtrl.create();
   }
   pict:any[]=[];
   logo:any[]=[
@@ -52,21 +57,48 @@ export class WalkthroughPage {
     this.nav.push(SignupPage);
   }
 
+  showAlert(title:any, subTitle:any) {
+
+    let warning = this.alertCtrl.create({
+      cssClass: 'alert',
+      title : title,
+      subTitle : subTitle,
+      buttons : [
+        {text : 'Try Again', handler: () => {
+          // this.nav.pop();
+          this.loading = this.loadingCtrl.create();
+          this.loading.present();
+          this.loadPict();
+        }}
+      ]
+    });
+
+    warning.present();
+  }
+
   loadPict(){
-    this.http.get(this.url_api + "c_iFrame/getPict")
+    this.hclient.get(this.url_api + "c_iFrame/getPict")
     .subscribe((data) => {
-      var x = data.json();
-      if(x.length > 0){
+      this.loading.dismiss();
+      var x = data;
+      // alert('S => '+JSON.stringify(x));
+      if(Object.keys(x).length > 0){
         var i = 0;
-        x.forEach(val => {
-          this.pict.push(this._sanitize.bypassSecurityTrustResourceUrl(val));
+        Object.keys(x).forEach(val => {
+          // this.pict.push(this._sanitize.bypassSecurityTrustResourceUrl(val));
+          this.pict.push(x[val]);
           i++;
         });
       }
       else {
+        // alert('ahelah');
         // this._app.getRootNav().setRoot(LoginPage);
         this.nav.setRoot(LoginPage);
       }
+    },(err) => {
+      this.loading.dismiss();
+      this.showAlert('Error!', 'Please Check Your Connection');
+      // alert('E => '+JSON.stringify(err));
     });
   }
 }
