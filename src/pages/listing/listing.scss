@@ -215,7 +215,7 @@ listing-page {
     }
 
     .header-dalem{
-        background-color: transparent; 
+        background-color: transparent;
         height: 150px;
         margin-left: 10px;
         margin-right: 10px;
@@ -226,7 +226,7 @@ listing-page {
         padding-left: 7px;
     }
 
-    
+
     @media only screen and (min-width: 360px) and (min-height: 640px) {
         .newsquare {
             float: left;
@@ -292,7 +292,7 @@ listing-page {
         }
 
         .header-dalem{
-            background-color: transparent; 
+            background-color: transparent;
             height: 150px;
             margin-left: 10px;
             margin-right: 10px;
@@ -345,7 +345,7 @@ listing-page {
             // margin-top: 10%;
             margin-bottom: -70%;
             margin-top: 20%;
-    
+
             margin-left: auto;
             margin-right: auto;
             border-top-left-radius: nb-theme(card-border-radius);
@@ -355,7 +355,7 @@ listing-page {
             display: block;
             // margin-bottom: -120%;
             // margin-top: 75%;
-        //    
+        //
         margin-bottom: -150%;
         margin-top: 95%;
             margin-left: auto;
@@ -372,7 +372,7 @@ listing-page {
         }
 
         .header-dalem{
-            background-color: transparent; 
+            background-color: transparent;
             height: 150px;
             margin-left: 10px;
             margin-right: 10px;
@@ -380,7 +380,7 @@ listing-page {
             margin-bottom:15px
         }
     }
-    
+
     @media only screen and (min-width: 412px) and (min-height: 732px){
         //  ------------- BASE newsquare ------------------- //
         .newsquare {
@@ -438,18 +438,18 @@ listing-page {
          font-size: 3.5vw;
          color: white; font-weight: 600
      }
- 
+
  .header-dalem{
-     background-color: transparent; 
+     background-color: transparent;
      height: 150px;
      margin-left: 10px;
      margin-right: 10px;
      margin-top:65px;
      margin-bottom:15px
  }
- 
+
     }
-   
+
     // @media only screen and (min-width: 375px) {
     //     .newsquare {
     //         float: left;
@@ -515,7 +515,7 @@ listing-page {
     //         color: white; font-weight: 600
     //     }
     //     .header-dalem{
-    //         background-color: transparent; 
+    //         background-color: transparent;
     //         height: 150px;
     //         margin-left: 10px;
     //         margin-right: 10px;
@@ -526,13 +526,13 @@ listing-page {
     //         padding-left: 8px;
     //     }
     // }
-    
+
     // for ip678----------------------------
-    @media only screen 
-    and (min-device-width: 375px) 
-    and (max-device-width: 667px) 
+    @media only screen
+    and (min-device-width: 375px)
+    and (max-device-width: 667px)
     and (-webkit-min-device-pixel-ratio: 2)
-    and (orientation: portrait) { 
+    and (orientation: portrait) {
         .newsquare {
             float: left;
             // width: 30%;
@@ -597,7 +597,7 @@ listing-page {
             color: white; font-weight: 600
         }
         .header-dalem{
-            background-color: transparent; 
+            background-color: transparent;
             height: 150px;
             margin-left: 10px;
             margin-right: 10px;
@@ -607,14 +607,14 @@ listing-page {
         .grid-categories{
             padding-left: 8px;
         }
-  
+
     }
     // for ip678plus
-    @media only screen 
-    and (min-device-width: 414px) 
-    and (max-device-width: 736px) 
+    @media only screen
+    and (min-device-width: 414px)
+    and (max-device-width: 736px)
     and (-webkit-min-device-pixel-ratio: 3)
-    and (orientation: portrait) { 
+    and (orientation: portrait) {
         .newsquare {
             float: left;
             // width: 30%;
@@ -679,7 +679,7 @@ listing-page {
             color: white; font-weight: 600
         }
         .header-dalem{
-            background-color: transparent; 
+            background-color: transparent;
             height: 150px;
             margin-left: 10px;
             margin-right: 10px;
@@ -758,9 +758,9 @@ listing-page {
             font-size: 3.5vw;
             color: white; font-weight: 600
         }
-    
+
         .header-dalem{
-            background-color: transparent; 
+            background-color: transparent;
             height: 150px;
             margin-left: 10px;
             margin-right: 10px;
@@ -839,9 +839,9 @@ listing-page {
             font-size: 3.5vw;
             color: white; font-weight: 600
         }
-    
+
         .header-dalem{
-            background-color: transparent; 
+            background-color: transparent;
             height: 150px;
             margin-left: 10px;
             margin-right: 10px;
@@ -920,9 +920,9 @@ listing-page {
             font-size: 3.5vw;
             color: white; font-weight: 600
         }
-    
+
         .header-dalem{
-            background-color: transparent; 
+            background-color: transparent;
             height: 150px;
             margin-left: 10px;
             margin-right: 10px;
@@ -1002,9 +1002,9 @@ listing-page {
             font-size: 3.5vw;
             color: white; font-weight: 600
         }
-    
+
         .header-dalem{
-            background-color: transparent; 
+            background-color: transparent;
             height: 150px;
             margin-left: 10px;
             margin-right: 10px;
@@ -1015,7 +1015,183 @@ listing-page {
             padding-left: 7px;
         }
     }
-    
+
+    // for ipad
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px)
+and (min-resolution: 192dpi)
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio: 1)
+{
+    .newsquare {
+        float: left;
+        // width: 30%;
+        width: 117px;
+        height: 117px;
+        padding-bottom: 15%;
+        // margin: 1.66%;
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-bottom : 3rem;
+        margin-top: 2%;
+        background-color: #fff;
+        font-size: 1rem;
+        line-height: 1.25;
+        // background: #212121;
+        background: nb-theme(color-bg);
+        color: #fff;
+        color: nb-theme(color-fg-heading);
+        margin-bottom: 3rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 3px 5px -3px #333;
+        font-weight: 400;
+        cursor: pointer;
+        border: 2px solid#c1c1c0;
+        // border-radius: 5px;
+        border-radius: 20px;
+    }
+    .newcontentss {
+        // height: 120%;
+        // height: 125%;
+        height: 70px;
+        width: auto;
+        display: block;
+        // margin-bottom: -60%;
+        // margin-top: 10%;
+        // margin-bottom: -60%;
+        // margin-top: 20%;
+        margin-bottom:25%;
+        margin-top:20%;
+        margin-left: auto;
+        margin-right: auto;
+        border-top-left-radius: nb-theme(card-border-radius);
+        border-top-right-radius: nb-theme(card-border-radius);
+    }
+    .newtextt {
+        display: block;
+        // margin-bottom: -88%;
+        // margin-bottom: -120%;
+        // margin-top: 75%;
+        // margin-bottom: -140%;
+        margin-bottom: -20%;
+    // margin-top: 93%;
+    // margin-top: 90%;
+        margin-top: 0%;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: bottom;
+        text-align: center;
+        // font-family: 'Exo-Regular' !important;
+        // // font-family: 'Exo-SemiBold' !important;
+        // font-weight: nb-theme(font-weight-bold);
+        font-size: 8px;
+        width: 100%;
+        // font-size: 2.4vw;
+        font-size: 2vw;
+        color: #fff; font-weight: 600
+    }
+    .header-dalem{
+        background-color: transparent;
+        // height: 150px;
+        height: 300px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top:65px;
+        margin-bottom:15px
+    }
+    .grid-categories{
+        padding-left: 17px;
+    }
+}
+
+@media only screen
+  and (min-device-width: 1024px)
+  and (max-device-width: 1366px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  {
+      .newsquare {
+          float: left;
+          // width: 30%;
+          width: 157px;
+          height: 117px;
+          padding-bottom: 15%;
+          // margin: 1.66%;
+          margin-left: 2%;
+          margin-right: 2%;
+          margin-bottom : 3rem;
+          // margin-top: 2%;
+          margin-top: 4%;
+          background-color: #fff;
+          font-size: 1rem;
+          line-height: 1.25;
+          // background: #212121;
+          background: nb-theme(color-bg);
+          color: #fa8080;
+          color: nb-theme(color-fg-heading);
+          margin-bottom: 3rem;
+          border-radius: 0.5rem;
+          box-shadow: 0 3px 5px -3px #333;
+          font-weight: 400;
+          cursor: pointer;
+          border: 2px solid#c1c1c0;
+          // border-radius: 5px;
+          border-radius: 20px;
+      }
+      .newcontentss {
+          // height: 120%;
+          // height: 125%;
+          height: 85px;
+          width: auto;
+          display: block;
+          // margin-bottom: -60%;
+          // margin-top: 10%;
+          // margin-bottom: -60%;
+          // margin-top: 20%;
+          margin-bottom:25%;
+          margin-top:20%;
+          margin-left: auto;
+          margin-right: auto;
+          border-top-left-radius: nb-theme(card-border-radius);
+          border-top-right-radius: nb-theme(card-border-radius);
+      }
+      .newtextt {
+          display: block;
+          // margin-bottom: -88%;
+          // margin-bottom: -120%;
+          // margin-top: 75%;
+          // margin-bottom: -140%;
+          margin-bottom: -20%;
+      // margin-top: 93%;
+      // margin-top: 90%;
+          margin-top: 0%;
+          margin-left: auto;
+          margin-right: auto;
+          vertical-align: bottom;
+          text-align: center;
+          // font-family: 'Exo-Regular' !important;
+          // // font-family: 'Exo-SemiBold' !important;
+          // font-weight: nb-theme(font-weight-bold);
+          font-size: 8px;
+          width: 100%;
+          // font-size: 2.4vw;
+          font-size: 2vw;
+          color: #fff; font-weight: 600
+      }
+      .header-dalem{
+          background-color: transparent;
+          // height: 150px;
+          height: 350px;
+          margin-left: 10px;
+          margin-right: 10px;
+          margin-top:65px;
+          margin-bottom:15px
+      }
+      .grid-categories{
+          padding-left: 17px;
+      }
+  }
+
 .div-welcome {
     height: 40px;
     // background-color: #ffffff36;
