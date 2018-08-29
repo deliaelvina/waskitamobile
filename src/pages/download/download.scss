@@ -4,14 +4,14 @@
     font-weight: 400;
     src: url("../assets/fonts/Exo-Medium.ttf") format("truetype");
   }
-  
+
   @font-face {
     font-family: 'Exo-SemiBold';
     font-style: normal;
     font-weight: 400;
     src: url("../assets/fonts/Exo-SemiBold.ttf") format("truetype");
   }
-  
+
   @mixin categories-title-style($color) {
     display: inline-block;
     width: 100%;
@@ -22,9 +22,9 @@
     color: $color;
     margin: 0px;
   }
-  
+
   download-page {
-  
+
     $categories-heading-image-height: 150px;
     $categories-grid-padding: 10px;
     $categories-horizontal-list-padding: 10px;
@@ -144,14 +144,14 @@
         // color: #222;
         color: $title-header;
     }
-  
+
     .button-logout {
       font-size: 22px;
       float: right;
       background-color: transparent;
       color: $button-logout;
     }
-  
+
     //  ------------- BASE SQUARE ------------------- //
     .square {
       float: left;
@@ -174,7 +174,7 @@
       border: 2px solid#c1c1c0;
       border-radius: 5px;
     }
-  
+
     .contentss {
       height: 80%;
       width: auto;
@@ -186,7 +186,7 @@
       border-top-left-radius: nb-theme(card-border-radius);
       border-top-right-radius: nb-theme(card-border-radius);
     }
-  
+
     .textt {
       display: block;
       // margin-bottom: -88%;
@@ -204,16 +204,16 @@
       font-size: 3.5vw;
       color: #000; font-weight: 600
     }
-  
+
     .apasi{
       background-color: transparent;
-      height: 150px;
+      // height: 150px;
       margin-left: 10px;
       margin-right: 10px;
       margin-top:65px;
       margin-bottom:15px
     }
-  
+
     //  ------------- END BASE SQUARE ------------------- //
     //  ------------- POTRAIT SQUARE ------------------- //
     @media only screen and (min-width: 360px) and (min-height: 640px) {
@@ -308,7 +308,7 @@
           // margin-top: 10%;
           margin-bottom: -70%;
           margin-top: 20%;
-  
+
           margin-left: auto;
           margin-right: auto;
           border-top-left-radius: nb-theme(card-border-radius);
@@ -334,7 +334,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 375px) {
       .square {
           float: left;
@@ -392,7 +392,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 414px) {
       .square {
           float: left;
@@ -447,7 +447,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 768px) {
       .square {
           float: left;
@@ -498,16 +498,16 @@
           font-size: 2vw;
           color: #000; font-weight: 600
       }
-  
+
       .apasi{
           background-color: transparent;
-          height: 400px;
+          // height: 400px;
           margin-left: 10px;
           margin-right: 10px;
           margin-top:65px;
           margin-bottom:15px;
           width: -webkit-fill-available;
-  
+
       }
     }
     //fix
@@ -577,7 +577,7 @@
           width: -webkit-fill-available;
       }
     }
-  
+
     //  -------------END POTRAIT SQUARE ------------------- //
     //  ------------- LANDSCAPE SQUARE ------------------- //
     @media only screen and (min-width: 640px) {
@@ -632,7 +632,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 731px) {
       .square {
           float: left;
@@ -685,7 +685,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 823px) {
       .square {
           float: left;
@@ -738,7 +738,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 568px) {
       .square {
           float: left;
@@ -791,7 +791,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 667px) {
       .square {
           float: left;
@@ -844,7 +844,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 736px) {
       .square {
           float: left;
@@ -897,7 +897,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 812px) {
       .square {
           float: left;
@@ -950,7 +950,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 1024px) {
       .square {
           float: left;
@@ -1003,7 +1003,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     @media only screen and (min-width: 1366px) {
       .square {
           float: left;
@@ -1056,7 +1056,7 @@
           color: #000; font-weight: 600
       }
     }
-  
+
     .div-welcome {
       height: 40px;
       // background-color: #ffffff36;
@@ -1066,7 +1066,7 @@
       // margin-bottom: 1rem;
       margin-left: 0px;
     }
-  
+
     .div-welcome-title {
       text-align: left;
       font-size: 1.5rem !important;
@@ -1079,7 +1079,7 @@
       padding-left: 5px;
       font-weight: 600;
     }
-  
+
     .grid-example {
       padding: 10px 5px 0px 5px;
       flex-wrap: wrap;
@@ -1144,6 +1144,5 @@
     }
     // taro dalem
   }
-  
-  
-  
+
+
