@@ -11,7 +11,7 @@
 
 <ion-content class="feed-content" style="background-color: #f3f3f3 !important">
     <div *ngIf="header_pict">
-        <img [src]="header_pict" onerror="this.src='./assets/images/noimage.png'; this.style='display:none';" #floorImg (click)="presentImage(header_pict)">
+        <img [src]="header_pict" onerror="this.src='./assets/images/noimage.png'; this.style='display:none';" style="width:100%;" #floorImg (click)="presentImage(header_pict)">
     </div>
     <div class="div-welcome">
         <div class="project_des">
