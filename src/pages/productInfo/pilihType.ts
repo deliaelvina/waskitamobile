@@ -11,12 +11,13 @@ import { MyApp } from '../../app/app.component';
 import { AuthService } from '../../auth/auth.service';
 import { ListingPage } from '../listing/listing';
 import { Listing2Page } from '../listing2/listing2';
+import { UnitTypePage } from './unitType';
 
 @Component({
-  selector: 'unitType-page',
-  templateUrl: 'unitType.html'
+  selector: 'pilihType-page',
+  templateUrl: 'pilihType.html'
 })
-export class UnitTypePage {
+export class PilihTypePage {
   loading:any;
   url_api = environment.Url_API;
   cons:any;
@@ -119,7 +120,8 @@ export class UnitTypePage {
   }
 
   loadData() {
-    this.http.get(this.url_api+"c_product_info/getLotType/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.tower + "/" + this.parm.zone_cd, {headers:this.hd})
+    // console.log(this.parm.entity);
+    this.http.get(this.url_api+"c_product_info/getUtype/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.tower, {headers:this.hd})
     .subscribe((x:any) => {
       if(x.Error == true) {
         if(x.Status == 401){
@@ -139,11 +141,10 @@ export class UnitTypePage {
 
         data.forEach(val => {
           this.types.push({
-            lot_type : val.lot_type,
+            zone_cd : val.zone_cd,
             descs : val.descs,
             remarks : val.remarks?val.remarks:'No Remarks',
             pict : val.picture_url,
-            spec : val.spec_info,
             bath: val.qty_bath,
             room: val.qty_room
           });
@@ -185,11 +186,11 @@ export class UnitTypePage {
 
   goToFindUnit(i:any){
     // console.log(i);
-    this.parm.lot_type = i.lot_type;
+    this.parm.zone_cd = i.zone_cd;
     this.parm.lot_type_desc = i.descs;
     this.parm.lot_spec = i.spec;
     // console.log(this.parm);
-    this.nav.push(CariUnitPage, {data:this.parm, type:i});
+    this.nav.push(UnitTypePage, {data:this.parm, type:i});
   }
 
   home(){

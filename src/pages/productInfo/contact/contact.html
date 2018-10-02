@@ -56,6 +56,11 @@
                         </div>
                     </ng-container>
                 </div> -->
+
+                <ion-item>
+                  <ion-label floating>{{'Reference Email' | translate}}</ion-label>
+                  <ion-input type="text" formControlName="Refemail" [(ngModel)]="anu.refemail" (keyup)="klik()" class="form-controll" name="Refemail"></ion-input>
+              </ion-item>
             </section>
 
             <!-- <button ion-button full type="submit">{{'SUBMIT' | translate}}</button> -->
@@ -67,13 +72,13 @@
                 <button class="btn-contactmail" (click)="kirim()">Send E-mail</button>
             </div>
             <!-- <div class="button-contact">
-                
+
                 <button class="btn-contactwa" (click)="kirimwa()">Send via WhatsApp</button>
             </div> -->
             <ion-row class="grid-example" (click)="kirimwa()">
                 <ion-col width-100 class="grid-item">
                     <div class="grid-item-wrapper" style="padding-bottom:10%;">
-                       
+
                         <div >
                                 <img class="icon-wa" src="./assets/images/wa.png" />
                                 <!-- <ion-icon name="logo-whatsapp" ></ion-icon> -->
