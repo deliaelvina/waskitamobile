@@ -20,7 +20,7 @@ import { ReportPage } from '../pages/report/report';
 import { ReportProject } from '../pages/report/project';
 import { ReportNUP } from '../pages/reportNUP/reportNUP';
 import { ReportSales } from '../pages/reportSales/reportSales';
-import { ReportFinance } from '../pages/reportFinance/reportFinance'; 
+import { ReportFinance } from '../pages/reportFinance/reportFinance';
 import { ReportService } from '../pages/report/report.service';
 
 //Project Info
@@ -203,6 +203,7 @@ import { TicketHis } from '../pages/ticket/ticketHis';
 import { TicketEntry } from '../pages/ticket/ticketEntry';
 import { TicketProjectPage } from '../pages/ticket/project';
 import { TicketPhasePage } from '../pages/ticket/phase';
+import { PilihTypePage } from '../pages/productInfo/pilihType';
 // import { UnitFilterModule } from '../tools/pipe.module';
 // PipeModule
 export function createTranslateLoader(http: HttpClient) {
@@ -222,6 +223,7 @@ export function createTranslateLoader(http: HttpClient) {
     CameraPage,
     ProjectDownloadPage,
     DownloadPage,
+    PilihTypePage,
 
     //Ticket
     TicketProjectPage,
@@ -396,6 +398,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReportNUP,
     ReportFinance,
     ReportSales,
+    PilihTypePage,
 
     //Ticket
     TicketProjectPage,
