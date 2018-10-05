@@ -92,7 +92,7 @@ import { Listing2Page } from '../../listing2/listing2';
         Entity: new FormControl(''),
         Project_no: new FormControl(''),
         Project: new FormControl(''),
-        Email:new FormControl('',Validators.required),
+        Email:new FormControl(localStorage.getItem('User')),
         Name:new FormControl('',Validators.required),
         Handphone: new FormControl('',Validators.required),
         Desc: new FormControl('',Validators.required),
