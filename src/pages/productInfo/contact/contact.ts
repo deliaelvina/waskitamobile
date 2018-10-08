@@ -48,7 +48,7 @@ import { Listing2Page } from '../../listing2/listing2';
     anu = {
       nama : '',
       telp : '',
-      mail : ''
+      refmail : ''
     };
     device:string;
 
@@ -92,10 +92,13 @@ import { Listing2Page } from '../../listing2/listing2';
         Entity: new FormControl(''),
         Project_no: new FormControl(''),
         Project: new FormControl(''),
-        Email:new FormControl('',Validators.required),
+        Email:new FormControl(localStorage.getItem('User')),
         Name:new FormControl('',Validators.required),
         Handphone: new FormControl('',Validators.required),
-        Desc: new FormControl('',Validators.required)
+        Desc: new FormControl('',Validators.required),
+        Refemail: new FormControl(''),
+        rowID : new FormControl(0),
+        audit_user : new FormControl(localStorage.getItem('Name')),
 
       });
       // this.contactForm.get('Desc').setValue('Saya tertarik dengan (NamaProject) ini. Hubungi Saya untuk info detail.');
@@ -244,12 +247,12 @@ import { Listing2Page } from '../../listing2/listing2';
             //   console.log(x);
               var data = x;
               // var tlp ='';
-              this.contactForm.get('Email').setValue(data[0].email);
+              this.contactForm.get('Refemail').setValue(data[0].ref_mail);
               // this.contactForm.get('Name').setValue(data[0].name);
               // this.contactForm.get('Handphone').setValue(data[0].Handphone);
               this.anu.nama = data[0].name;
               this.anu.telp = data[0].Handphone?data[0].Handphone:'';
-              this.anu.mail = data[0].email;
+              this.anu.refmail = data[0].ref_email;
               // console.log(this.anu);
               // this.descrip = this.desc+"Nama : "+this.anu.nama+"\nHandphone : "+this.anu.telp+"\nEmail : "+this.anu.mail+"\nHubungi saya untuk info detail.\n";
               this.descrip = this.desc+"\nHubungi saya untuk info detail.\n";
@@ -390,7 +393,7 @@ import { Listing2Page } from '../../listing2/listing2';
   }
   kirimwa(){
       this.loading = this.loadingCtrl.create();
-      
+
       // this.tlp="6289503034984";
       this.tlp = this.parm.handphone;
         var datas = this.contactForm.value;
@@ -417,7 +420,7 @@ import { Listing2Page } from '../../listing2/listing2';
         //     //error
         //     this.loading.dismiss();
         //   // })
-        
+
         // });
         // setTimeout(() => {
         //   this.loading.dismiss();

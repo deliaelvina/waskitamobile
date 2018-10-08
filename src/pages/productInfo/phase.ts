@@ -4,7 +4,8 @@ import { NavController, NavParams, LoadingController, AlertController, App, Plat
 import 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environment/environment';
-import { UnitTypePage } from './unitType';
+// import { UnitTypePage } from './unitType';
+import { PilihTypePage } from './pilihType';
 import { ErrorhandlerService } from '../../providers/errorhandler/errorhandler.service';
 import { WalkthroughPage } from '../walkthrough/walkthrough';
 import { MyApp } from '../../app/app.component';
@@ -184,9 +185,11 @@ export class ProductPhasePage {
   }
 
   goToBlock(phase:any){
+    // console.log(phase);
+    // alert('woy');
     this.parm.tower = phase.property_cd;
     this.parm.towerName = phase.descs;
-    this.nav.push(UnitTypePage, {data:this.parm});
+    this.nav.push(PilihTypePage, {data:this.parm});
   }
 
   showAlert(title:any, subTitle:any) {

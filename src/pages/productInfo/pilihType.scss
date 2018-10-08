@@ -1,0 +1,149 @@
+pilihType-page {
+    .icon-kecil-text {
+        font-size: 1.4rem !important;
+    }
+    .icon-kecil-pict {
+        width: 9% !important;
+        height: 9% !important;
+    }
+    .leftimage {
+        // width: 600px;
+        // height: 100px;
+        width: 90% !important;
+    }
+    .righttext {
+        float: none;
+        margin-left: 600px;
+    }
+    .div-welcome {
+        height: 40px;
+        background-color: white;
+        margin-top: 0px;
+        // margin-bottom: 1rem;
+        margin-left: 0px;
+    }
+    .project_des {
+        text-align: left;
+        // font-size: 1.5rem !important;
+        // color: #ff720d;
+        // font-size: 12px;
+        margin-top: 0px !important;
+        color: #555 !important;
+        // margin-left: 10px;
+        font-family: 'Exo-Regular' !important;
+        padding-top: 10px;
+        padding-left: 5px;
+        // color: #222 !important;
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+    .phase_des {
+        // color: #222 !important;
+        text-align: left;
+        // font-size: 1.5rem !important;
+        // color: #ff720d;
+        // font-size: 12px;
+        margin-top: 0px !important;
+        // margin-left: 10px;
+        font-family: 'Exo-Regular' !important;
+        padding-top: 10px;
+        padding-left: 5px;
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: #222 !important;
+    }
+    .grid-item col {
+        width: 100px;
+        height: 100px;
+    }
+    .card-ios {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        width: 100% !important;
+        border-left-style: none !important;
+        border-right-style: none !important;
+        border-top-style: none !important;
+        // border-top-width: 0px !important;
+        // border-top-color: #fff !important;
+        box-shadow: 0 1px 5px -3px #333 !important;
+    }
+    .card-content-ios {
+        padding: 3px !important;
+    }
+    // title header black
+    ion-header .toolbar-title {
+        color: $title-header;
+    }
+    @media only screen and (min-width: 320px) {
+        .kotak {
+            width: 100px;
+            height: 100px;
+            margin: 1%;
+            left: 10px;
+            margin-bottom: 5px;
+            border-radius: 0.5rem;
+            box-shadow: 0 3px 5px -3px #333;
+            cursor: pointer;
+            border: 0px;
+            border-radius: 8px;
+        }
+        .gambar {
+            width: 100px;
+            height: 100px;
+        }
+    }
+    @media only screen and (min-width: 375px) {
+        .kotak {
+            width: 110px;
+            height: 110px;
+            margin: 1%;
+            left: 10px;
+            margin-bottom: 5px;
+            border-radius: 0.5rem;
+            box-shadow: 0 3px 5px -3px #333;
+            cursor: pointer;
+            border: 0px;
+            border-radius: 8px;
+        }
+        .gambar {
+            width: 110px;
+            height: 110px;
+        }
+    }
+    @media only screen and (min-width: 414px) {
+        .kotak {
+            width: 130px;
+            height: 130px;
+            margin: 1%;
+            left: 10px;
+            margin-bottom: 5px;
+            border-radius: 0.5rem;
+            box-shadow: 0 3px 5px -3px #333;
+            cursor: pointer;
+            border: 0px;
+            border-radius: 8px;
+        }
+        .gambar {
+            width: 130px;
+            height: 130px;
+        }
+    }
+    @media only screen and (min-width: 1024px) {
+        .kotak {
+            width: 150px;
+            height: 150px;
+            margin: 1%;
+            left: 10px;
+            margin-bottom: 10px;
+            border-radius: 0.5rem;
+            box-shadow: 0 3px 5px -3px #333;
+            cursor: pointer;
+            border: 0px;
+            border-radius: 8px;
+        }
+        .gambar {
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
