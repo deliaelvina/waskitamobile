@@ -1214,7 +1214,87 @@ newlisting2-pages {
       }
   }
 
+  // mega
+  @media only screen
+  and (min-width: 480px)
+  // and (max-width: 4px)
+  and (min-height: 853px)
+  // and (max-height: 732px)
+  and (orientation:portrait) {
+      .square {
+          float: left;
+          // width: 30%;
+          width: 130px;
+          height: 130px;
+          padding-bottom: 21.5%;
+          // margin: 1.66%;
+          margin-left: 2.8%;
+          margin-right:2.8%;
+          margin-top: 2%;
+          margin-bottom: 3rem;
+          background-color: #fff;
+          font-size: 1rem;
+          line-height: 1.25;
+          // background: #212121;
+          background: nb-theme(color-bg);
+          color: #ffffff;
+          color: nb-theme(color-fg-heading);
+          margin-bottom: 4rem;
+          border-radius: 0.5rem;
+          box-shadow: 0 3px 5px -3px #333;
+          font-weight: 400;
+          cursor: pointer;
+          border: 2px solid#c1c1c0;
+          // border-radius: 5px;
+          border-radius: 20px;
+      }
+      .contentss {
+          height: 280%;
+          width: auto;
+          display: block;
+          // margin-bottom: -60%;
+          // margin-top: 10%;
+          margin-bottom: -70%;
+          margin-top: 20%;
+          margin-left: auto;
+          margin-right: auto;
+          border-top-left-radius: nb-theme(card-border-radius);
+          border-top-right-radius: nb-theme(card-border-radius);
+      }
+      .textt {
+          display: block;
+          // margin-bottom: -88%;
+          // margin-bottom: -120%;
+          // margin-top: 75%;
+          margin-bottom: -150%;
+      // margin-top: 93%;
+      margin-top: 97%;
+          margin-left: auto;
+          margin-right: auto;
+          vertical-align: bottom;
+          text-align: center;
+          // font-family: 'Exo-Regular' !important;
+          // // font-family: 'Exo-SemiBold' !important;
+          // font-weight: nb-theme(font-weight-bold);
+          font-size: 8px;
+          width: 100%;
+          // font-size: 2.4vw;
+          font-size: 3.5vw;
+          color: white; font-weight: 600
+      }
 
+      .apasi{
+          background-color: transparent;
+          height: 220px;
+          margin-left: 10px;
+          margin-right: 10px;
+          margin-top:65px;
+          margin-bottom:15px
+      }
+      .grid-categories{
+          padding-left: 7px;
+      }
+  }
 }
 .div-welcome {
     height: 40px;

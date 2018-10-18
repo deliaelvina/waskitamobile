@@ -143,7 +143,7 @@ export class PilihTypePage {
           this.types.push({
             zone_cd : val.zone_cd,
             descs : val.descs,
-            remarks : val.remarks?val.remarks:'No Remarks',
+            remarks : val.remarks?val.remarks:' ',
             pict : val.picture_url,
             bath: val.qty_bath,
             room: val.qty_room
