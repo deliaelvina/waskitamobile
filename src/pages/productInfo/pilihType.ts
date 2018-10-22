@@ -138,6 +138,7 @@ export class PilihTypePage {
       }
       else {
         var data = x.Data;
+        console.log(data);
 
         data.forEach(val => {
           this.types.push({
@@ -146,7 +147,8 @@ export class PilihTypePage {
             remarks : val.remarks?val.remarks:' ',
             pict : val.picture_url,
             bath: val.qty_bath,
-            room: val.qty_room
+            room: val.qty_room,
+            property_cd : val.property_cd
           });
         });
 
@@ -189,6 +191,7 @@ export class PilihTypePage {
     this.parm.zone_cd = i.zone_cd;
     this.parm.lot_type_desc = i.descs;
     this.parm.lot_spec = i.spec;
+    this.parm.property_cd = i.property_cd;
     // console.log(this.parm);
     this.nav.push(UnitTypePage, {data:this.parm, type:i});
   }
