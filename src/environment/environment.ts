@@ -21,8 +21,8 @@ export const environment = {
   facebook_app_id: 1737645236299589,
   wordpress_url: 'http://wordpress.startapplabs.com/blog/',
   wordpress_rest_api_url: 'http://wordpress.startapplabs.com/blog/wp-json/wp/v2/',
-  // Url_API:'http://35.197.137.111/WaskitaAPI2/',
-  // Url_API:'http://35.198.219.220:2121/WaskitaAPI3/',
+  // Url_API:'http://35.197.137.111/WaskitaAPI3/',
+//  Url_API:'http://35.198.219.220:2121/WaskitaAPI3/',
   Url_API:'http://139.255.61.85/WaskitaAPI2/',
   cons_pb:'IFCAPB',
   cons_mobile:'IFCAMOBILE'
