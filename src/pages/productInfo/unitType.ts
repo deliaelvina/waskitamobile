@@ -119,7 +119,7 @@ export class UnitTypePage {
   }
 
   loadData() {
-    this.http.get(this.url_api+"c_product_info/getLotType/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.tower + "/" + this.parm.zone_cd, {headers:this.hd})
+    this.http.get(this.url_api+"c_product_info/getLotType/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo + "/" + this.parm.property_cd + "/" + this.parm.zone_cd, {headers:this.hd})
     .subscribe((x:any) => {
       if(x.Error == true) {
         if(x.Status == 401){
@@ -145,7 +145,9 @@ export class UnitTypePage {
             pict : val.picture_url,
             spec : val.spec_info,
             bath: val.qty_bath,
-            room: val.qty_room
+            room: val.qty_room,
+            property_cd : val.property_cd,
+            zone_cd : val.zone_cd
           });
         });
 
@@ -184,8 +186,10 @@ export class UnitTypePage {
   }
 
   goToFindUnit(i:any){
-    // console.log(i);
+    console.log(i);
     this.parm.lot_type = i.lot_type;
+    this.parm.zone_cd = i.zone_cd;
+    this.parm.property_cd = i.property_cd;
     this.parm.lot_type_desc = i.descs;
     this.parm.lot_spec = i.spec;
     // console.log(this.parm);

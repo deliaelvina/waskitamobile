@@ -169,7 +169,7 @@ export class CariUnitPage {
   }
 
   loadGallery() {
-    this.http.get(this.url_api+"c_product_info/getGallery/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo  + "/" + this.parm.lot_type, {headers:this.hd} )
+    this.http.get(this.url_api+"c_product_info/getGallery/" + this.cons + "/" + this.parm.entity + "/" + this.parm.projectNo  + "/" + this.parm.lot_type + "/" + this.parm.property_cd + "/" + this.parm.zone_cd, {headers:this.hd} )
     .subscribe((x:any) => {
       if(x.Error == true) {
         if(x.Status == 401){
