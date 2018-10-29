@@ -56,7 +56,7 @@
                     <br>
                     <p *ngIf="item.studios;then s;else b"></p>
                     <ng-template #s>
-                        <h4 class="item-title">{{item.typeDesc}}</h4>
+                        <h4 class="item-title" style="margin-top: -1rem;">{{item.typeDesc}}</h4>
                     </ng-template>
                     <ng-template #b>
                         <h4 class="item-title"><img style="width:20px !important;" src="./assets/images/bed.png">&nbsp;: {{item.bed}} | <img style="width:20px !important;" src="./assets/images/bathtub.png">&nbsp;: {{item.bath}}</h4>
