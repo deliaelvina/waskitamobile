@@ -23,7 +23,7 @@
     margin: 0px;
 }
 
-newlisting2-pagessss {
+listing-pagebackupp {
     $categories-heading-image-height: 150px;
     $categories-grid-padding: 10px;
     $categories-horizontal-list-padding: 10px;
@@ -40,8 +40,7 @@ newlisting2-pagessss {
         // margin-bottom: 41px;
         // background-color: #f3f3f3 !important;
         // background-image: url('../assets/images/dashbg.jpg');
-        // background-color: $background-header-dalem;
-        background-color: #f3f3f3;
+        background-color: $background-header-dalem;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -152,7 +151,8 @@ newlisting2-pagessss {
         background-color: transparent;
         color: $button-logout;
     }
-    .square {
+
+    .newsquare {
         float: left;
         // width: 30%;
         height: 100px;
@@ -172,14 +172,14 @@ newlisting2-pagessss {
         color: nb-theme(color-fg-heading);
         margin-bottom: 3.3rem;
         border-radius: 0.5rem;
-        ////box-shadow: 0 3px 5px -3px #333;
+        box-shadow: 0 3px 5px -3px #333;
         font-weight: 400;
         cursor: pointer;
         border: 2px solid#c1c1c0;
         // border-radius: 5px;
         border-radius: 20px;
     }
-    .contentss {
+    .newcontentss {
         height: 145%;
         width: auto;
         display: block;
@@ -192,14 +192,14 @@ newlisting2-pagessss {
         border-top-left-radius: nb-theme(card-border-radius);
         border-top-right-radius: nb-theme(card-border-radius);
     }
-    .textt {
+    .newtextt {
         display: block;
         // margin-bottom: -88%;
         // margin-bottom: -120%;
         // margin-top: 75%;
         margin-bottom: -150%;
-    margin-top: 93%;
-    // margin-top: 95%;
+    // margin-top: 93%;
+    margin-top: 95%;
         margin-left: auto;
         margin-right: auto;
         vertical-align: bottom;
@@ -211,10 +211,10 @@ newlisting2-pagessss {
         width: 100%;
         // font-size: 2.4vw;
         font-size: 3.5vw;
-        color: #000; font-weight: 600
+        color: white; font-weight: 600
     }
 
-    .apasi{
+    .header-dalem{
         background-color: transparent;
         height: 150px;
         margin-left: 10px;
@@ -226,11 +226,15 @@ newlisting2-pagessss {
         padding-left: 7px;
     }
 
+    // mega
+
+
 
     @media only screen and (min-width: 360px) and (min-height: 640px) {
-        .square {
+        .newsquare {
             float: left;
             // width: 30%;
+            // width: 29%;
             width: 100px;
             height: 100px;
             padding-bottom: 16%;
@@ -248,14 +252,14 @@ newlisting2-pagessss {
             color: nb-theme(color-fg-heading);
             margin-bottom: 3.3rem;
             border-radius: 0.5rem;
-            ////box-shadow: 0 3px 5px -3px #333;
+            box-shadow: 0 3px 5px -3px #333;
             font-weight: 400;
             cursor: pointer;
             border: 2px solid#c1c1c0;
             // border-radius: 5px;
             border-radius: 20px;
         }
-        .contentss {
+        .newcontentss {
             height: 145%;
             width: auto;
             display: block;
@@ -268,14 +272,14 @@ newlisting2-pagessss {
             border-top-left-radius: nb-theme(card-border-radius);
             border-top-right-radius: nb-theme(card-border-radius);
         }
-        .textt {
+        .newtextt {
             display: block;
             // margin-bottom: -88%;
             // margin-bottom: -120%;
             // margin-top: 75%;
             margin-bottom: -150%;
-        margin-top: 93%;
-        // margin-top: 95%;
+        // margin-top: 93%;
+        margin-top: 95%;
             margin-left: auto;
             margin-right: auto;
             vertical-align: bottom;
@@ -287,10 +291,10 @@ newlisting2-pagessss {
             width: 100%;
             // font-size: 2.4vw;
             font-size: 3.5vw;
-            color: #000; font-weight: 600
+            color: white; font-weight: 600
         }
 
-        .apasi{
+        .header-dalem{
             background-color: transparent;
             height: 150px;
             margin-left: 10px;
@@ -304,7 +308,7 @@ newlisting2-pagessss {
     }
 
     @media only screen and (max-width: 320px) {
-        .square {
+        .newsquare {
             float: left;
             // width: 30%;
             height:90px;
@@ -325,13 +329,13 @@ newlisting2-pagessss {
             color: nb-theme(color-fg-heading);
             margin-bottom: 3rem;
             border-radius: 0.5rem;
-            // ////box-shadow: 0 3px 5px -3px #333;
+            // box-shadow: 0 3px 5px -3px #333;
             font-weight: 400;
             cursor: pointer;
             border: 2px solid#c1c1c0;
             border-radius: 20px;
         }
-        .contentss {
+        .newcontentss {
             // height: 80%;
             // width: auto;
             // display: block;
@@ -350,7 +354,7 @@ newlisting2-pagessss {
             border-top-left-radius: nb-theme(card-border-radius);
             border-top-right-radius: nb-theme(card-border-radius);
         }
-        .textt {
+        .newtextt {
             display: block;
             // margin-bottom: -120%;
             // margin-top: 75%;
@@ -367,10 +371,10 @@ newlisting2-pagessss {
             width: 100%;
             // font-size: 2.4vw;
             font-size: 3.5vw;
-            color: #000; font-weight: 600
+            color: #fff; font-weight: 600
         }
 
-        .apasi{
+        .header-dalem{
             background-color: transparent;
             height: 150px;
             margin-left: 10px;
@@ -380,9 +384,9 @@ newlisting2-pagessss {
         }
     }
 
-    @media only screen and (min-width: 412px)  and (min-height: 732px){
+    @media only screen and (min-width: 412px) and (min-height: 732px){
         //  ------------- BASE newsquare ------------------- //
-        .square {
+        .newsquare {
          float: left;
          width: 30%;
          padding-bottom: 21%;
@@ -396,14 +400,14 @@ newlisting2-pagessss {
          color: nb-theme(color-fg-heading);
          margin-bottom: 3rem;
          border-radius: 0.5rem;
-         ////box-shadow: 0 3px 5px -3px #333;
+         box-shadow: 0 3px 5px -3px #333;
          font-weight: 400;
          cursor: pointer;
          border: 2px solid#c1c1c0;
          // border-radius: 5px;
          border-radius: 20px;
      }
-     .contentss {
+     .newcontentss {
          height: 280%;
          width: auto;
          display: block;
@@ -416,7 +420,7 @@ newlisting2-pagessss {
          border-top-left-radius: nb-theme(card-border-radius);
          border-top-right-radius: nb-theme(card-border-radius);
      }
-     .textt {
+     .newtextt {
          display: block;
          // margin-bottom: -88%;
          // margin-bottom: -120%;
@@ -435,10 +439,10 @@ newlisting2-pagessss {
          width: 100%;
          // font-size: 2.4vw;
          font-size: 3.5vw;
-         color: #000; font-weight: 600
+         color: white; font-weight: 600
      }
 
- .apasi{
+ .header-dalem{
      background-color: transparent;
      height: 150px;
      margin-left: 10px;
@@ -450,11 +454,17 @@ newlisting2-pagessss {
     }
 
     // @media only screen and (min-width: 375px) {
-    //     .square {
+    //     .newsquare {
     //         float: left;
-    //         width: 30%;
+    //         // width: 30%;
+    //         width: 104px;
+    //         height: 104px;
     //         padding-bottom: 15%;
-    //         margin: 1.66%;
+    //         // margin: 1.66%;
+    //         margin-left: 2.5%;
+    //         margin-right: 2.5%;
+    //         margin-bottom : 3rem;
+    //         margin-top: 2%;
     //         background-color: #fff;
     //         font-size: 1rem;
     //         line-height: 1.25;
@@ -464,14 +474,14 @@ newlisting2-pagessss {
     //         color: nb-theme(color-fg-heading);
     //         margin-bottom: 3rem;
     //         border-radius: 0.5rem;
-    //         ////box-shadow: 0 3px 5px -3px #333;
+    //         box-shadow: 0 3px 5px -3px #333;
     //         font-weight: 400;
     //         cursor: pointer;
     //         border: 2px solid#c1c1c0;
     //         // border-radius: 5px;
     //         border-radius: 20px;
     //     }
-    //     .contentss {
+    //     .newcontentss {
     //         // height: 120%;
     //         height: 125%;
     //         width: auto;
@@ -485,7 +495,7 @@ newlisting2-pagessss {
     //         border-top-left-radius: nb-theme(card-border-radius);
     //         border-top-right-radius: nb-theme(card-border-radius);
     //     }
-    //     .textt {
+    //     .newtextt {
     //         display: block;
     //         // margin-bottom: -88%;
     //         // margin-bottom: -120%;
@@ -505,9 +515,9 @@ newlisting2-pagessss {
     //         width: 100%;
     //         // font-size: 2.4vw;
     //         font-size: 3.5vw;
-    //         color: #000; font-weight: 600
+    //         color: white; font-weight: 600
     //     }
-    //     .apasi{
+    //     .header-dalem{
     //         background-color: transparent;
     //         height: 150px;
     //         margin-left: 10px;
@@ -515,7 +525,12 @@ newlisting2-pagessss {
     //         margin-top:65px;
     //         margin-bottom:15px
     //     }
+    //     .grid-categories{
+    //         padding-left: 8px;
+    //     }
     // }
+
+
 
     // for ip678----------------------------
     @media only screen
@@ -523,7 +538,7 @@ newlisting2-pagessss {
     and (max-device-width: 667px)
     and (-webkit-min-device-pixel-ratio: 2)
     and (orientation: portrait) {
-        .square {
+        .newsquare {
             float: left;
             // width: 30%;
             width: 105px;
@@ -543,14 +558,14 @@ newlisting2-pagessss {
             color: nb-theme(color-fg-heading);
             margin-bottom: 3rem;
             border-radius: 0.5rem;
-            //box-shadow: 0 3px 5px -3px #333;
+            box-shadow: 0 3px 5px -3px #333;
             font-weight: 400;
             cursor: pointer;
             border: 2px solid#c1c1c0;
             // border-radius: 5px;
             border-radius: 20px;
         }
-        .contentss {
+        .newcontentss {
             // height: 120%;
             height: 125%;
             width: auto;
@@ -564,7 +579,7 @@ newlisting2-pagessss {
             border-top-left-radius: nb-theme(card-border-radius);
             border-top-right-radius: nb-theme(card-border-radius);
         }
-        .textt {
+        .newtextt {
             display: block;
             // margin-bottom: -88%;
             // margin-bottom: -120%;
@@ -584,9 +599,9 @@ newlisting2-pagessss {
             width: 100%;
             // font-size: 2.4vw;
             font-size: 3.5vw;
-            color: #000; font-weight: 600
+            color: white; font-weight: 600
         }
-        .apasi{
+        .header-dalem{
             background-color: transparent;
             height: 150px;
             margin-left: 10px;
@@ -605,7 +620,7 @@ newlisting2-pagessss {
     and (max-device-width: 736px)
     and (-webkit-min-device-pixel-ratio: 3)
     and (orientation: portrait) {
-        .square {
+        .newsquare {
             float: left;
             // width: 30%;
             width: 117px;
@@ -625,14 +640,14 @@ newlisting2-pagessss {
             color: nb-theme(color-fg-heading);
             margin-bottom: 3rem;
             border-radius: 0.5rem;
-            //box-shadow: 0 3px 5px -3px #333;
+            box-shadow: 0 3px 5px -3px #333;
             font-weight: 400;
             cursor: pointer;
             border: 2px solid#c1c1c0;
             // border-radius: 5px;
             border-radius: 20px;
         }
-        .contentss {
+        .newcontentss {
             // height: 120%;
             height: 125%;
             width: auto;
@@ -646,7 +661,7 @@ newlisting2-pagessss {
             border-top-left-radius: nb-theme(card-border-radius);
             border-top-right-radius: nb-theme(card-border-radius);
         }
-        .textt {
+        .newtextt {
             display: block;
             // margin-bottom: -88%;
             // margin-bottom: -120%;
@@ -666,9 +681,9 @@ newlisting2-pagessss {
             width: 100%;
             // font-size: 2.4vw;
             font-size: 3.5vw;
-            color: #000; font-weight: 600
+            color: white; font-weight: 600
         }
-        .apasi{
+        .header-dalem{
             background-color: transparent;
             height: 150px;
             margin-left: 10px;
@@ -687,7 +702,7 @@ newlisting2-pagessss {
     and (min-height: 641px)
     and (max-height: 732px)
     and (orientation:portrait) {
-        .square {
+        .newsquare {
             float: left;
             // width: 30%;
             width: 110px;
@@ -707,14 +722,14 @@ newlisting2-pagessss {
             color: nb-theme(color-fg-heading);
             margin-bottom: 3.3rem;
             border-radius: 0.5rem;
-            //box-shadow: 0 3px 5px -3px #333;
+            box-shadow: 0 3px 5px -3px #333;
             font-weight: 400;
             cursor: pointer;
             border: 2px solid#c1c1c0;
             // border-radius: 5px;
             border-radius: 20px;
         }
-        .contentss {
+        .newcontentss {
             height: 280%;
             width: auto;
             display: block;
@@ -727,7 +742,7 @@ newlisting2-pagessss {
             border-top-left-radius: nb-theme(card-border-radius);
             border-top-right-radius: nb-theme(card-border-radius);
         }
-        .textt {
+        .newtextt {
             display: block;
             // margin-bottom: -88%;
             // margin-bottom: -120%;
@@ -746,10 +761,10 @@ newlisting2-pagessss {
             width: 100%;
             // font-size: 2.4vw;
             font-size: 3.5vw;
-            color: #000; font-weight: 600
+            color: white; font-weight: 600
         }
 
-        .apasi{
+        .header-dalem{
             background-color: transparent;
             height: 150px;
             margin-left: 10px;
@@ -768,7 +783,7 @@ newlisting2-pagessss {
     and (min-height: 640px)
     and (max-height: 640px)
     and (orientation:portrait) {
-        .square {
+        .newsquare {
             float: left;
             // width: 30%;
             width: 104px;
@@ -788,14 +803,14 @@ newlisting2-pagessss {
             color: nb-theme(color-fg-heading);
             margin-bottom: 3.3rem;
             border-radius: 0.5rem;
-            //box-shadow: 0 3px 5px -3px #333;
+            box-shadow: 0 3px 5px -3px #333;
             font-weight: 400;
             cursor: pointer;
             border: 2px solid#c1c1c0;
             // border-radius: 5px;
             border-radius: 20px;
         }
-        .contentss {
+        .newcontentss {
             height: 280%;
             width: auto;
             display: block;
@@ -808,14 +823,14 @@ newlisting2-pagessss {
             border-top-left-radius: nb-theme(card-border-radius);
             border-top-right-radius: nb-theme(card-border-radius);
         }
-        .textt {
+        .newtextt {
             display: block;
             // margin-bottom: -88%;
             // margin-bottom: -120%;
             // margin-top: 75%;
             margin-bottom: -150%;
         // margin-top: 93%;
-        margin-top: 94%;
+        margin-top: 95%;
             margin-left: auto;
             margin-right: auto;
             vertical-align: bottom;
@@ -827,10 +842,10 @@ newlisting2-pagessss {
             width: 100%;
             // font-size: 2.4vw;
             font-size: 3.5vw;
-            color: #000; font-weight: 600
+            color: white; font-weight: 600
         }
 
-        .apasi{
+        .header-dalem{
             background-color: transparent;
             height: 150px;
             margin-left: 10px;
@@ -849,7 +864,7 @@ newlisting2-pagessss {
     and (min-height: 731px)
     and (max-height: 823px)
     and (orientation:portrait) {
-        .square {
+        .newsquare {
             float: left;
             // width: 30%;
             width: 110px;
@@ -867,16 +882,16 @@ newlisting2-pagessss {
             background: nb-theme(color-bg);
             color: #ffffff;
             color: nb-theme(color-fg-heading);
-            margin-bottom: 3.3rem;
+            margin-bottom: 3rem;
             border-radius: 0.5rem;
-            //box-shadow: 0 3px 5px -3px #333;
+            box-shadow: 0 3px 5px -3px #333;
             font-weight: 400;
             cursor: pointer;
             border: 2px solid#c1c1c0;
             // border-radius: 5px;
             border-radius: 20px;
         }
-        .contentss {
+        .newcontentss {
             height: 280%;
             width: auto;
             display: block;
@@ -889,7 +904,7 @@ newlisting2-pagessss {
             border-top-left-radius: nb-theme(card-border-radius);
             border-top-right-radius: nb-theme(card-border-radius);
         }
-        .textt {
+        .newtextt {
             display: block;
             // margin-bottom: -88%;
             // margin-bottom: -120%;
@@ -908,10 +923,10 @@ newlisting2-pagessss {
             width: 100%;
             // font-size: 2.4vw;
             font-size: 3.5vw;
-            color: #000; font-weight: 600
+            color: white; font-weight: 600
         }
 
-        .apasi{
+        .header-dalem{
             background-color: transparent;
             height: 150px;
             margin-left: 10px;
@@ -931,12 +946,12 @@ newlisting2-pagessss {
     and (min-height: 854px)
     and (max-height: 854px)
     and (orientation:portrait) {
-        .square {
+        .newsquare {
             float: left;
             // width: 30%;
-            width: 110px;
-            height: 110px;
-            padding-bottom: 21%;
+            width: 130px;
+            height: 130px;
+            padding-bottom: 21.5%;
             // margin: 1.66%;
             margin-left: 2.8%;
             margin-right:2.8%;
@@ -949,16 +964,16 @@ newlisting2-pagessss {
             background: nb-theme(color-bg);
             color: #ffffff;
             color: nb-theme(color-fg-heading);
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             border-radius: 0.5rem;
-            //box-shadow: 0 3px 5px -3px #333;
+            box-shadow: 0 3px 5px -3px #333;
             font-weight: 400;
             cursor: pointer;
             border: 2px solid#c1c1c0;
             // border-radius: 5px;
             border-radius: 20px;
         }
-        .contentss {
+        .newcontentss {
             height: 280%;
             width: auto;
             display: block;
@@ -971,7 +986,7 @@ newlisting2-pagessss {
             border-top-left-radius: nb-theme(card-border-radius);
             border-top-right-radius: nb-theme(card-border-radius);
         }
-        .textt {
+        .newtextt {
             display: block;
             // margin-bottom: -88%;
             // margin-bottom: -120%;
@@ -990,12 +1005,12 @@ newlisting2-pagessss {
             width: 100%;
             // font-size: 2.4vw;
             font-size: 3.5vw;
-            color: #000; font-weight: 600
+            color: white; font-weight: 600
         }
 
-        .apasi{
+        .header-dalem{
             background-color: transparent;
-            height: 150px;
+            height: 210px;
             margin-left: 10px;
             margin-right: 10px;
             margin-top:65px;
@@ -1006,30 +1021,440 @@ newlisting2-pagessss {
         }
     }
 
-    .div-welcome {
-        height: 40px;
-        // background-color: #ffffff36;
-        // background-color: #ffffff87;
-        background-color: #ffffff;
-        margin-top: 0px;
-        // margin-bottom: 1rem;
-        margin-left: 0px;
+    // for ipad
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px)
+and (min-resolution: 192dpi)
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio: 1)
+{
+    .newsquare {
+        float: left;
+        // width: 30%;
+        width: 117px;
+        height: 117px;
+        padding-bottom: 15%;
+        // margin: 1.66%;
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-bottom : 3rem;
+        margin-top: 2%;
+        background-color: #fff;
+        font-size: 1rem;
+        line-height: 1.25;
+        // background: #212121;
+        background: nb-theme(color-bg);
+        color: #fff;
+        color: nb-theme(color-fg-heading);
+        margin-bottom: 3rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 3px 5px -3px #333;
+        font-weight: 400;
+        cursor: pointer;
+        border: 2px solid#c1c1c0;
+        // border-radius: 5px;
+        border-radius: 20px;
     }
-
-    .div-welcome-title {
-        text-align: left;
-        font-size: 1.5rem !important;
-        color: #222;
-        font-size: 12px;
-        margin-top: 0px !important;
-        // margin-left: 10px;
-        font-family: 'Exo-Regular' !important;
-        padding-top: 10px;
-        padding-left: 5px;
-        font-weight: 600;
+    .newcontentss {
+        // height: 120%;
+        // height: 125%;
+        height: 70px;
+        width: auto;
+        display: block;
+        // margin-bottom: -60%;
+        // margin-top: 10%;
+        // margin-bottom: -60%;
+        // margin-top: 20%;
+        margin-bottom:25%;
+        margin-top:20%;
+        margin-left: auto;
+        margin-right: auto;
+        border-top-left-radius: nb-theme(card-border-radius);
+        border-top-right-radius: nb-theme(card-border-radius);
     }
-
+    .newtextt {
+        display: block;
+        // margin-bottom: -88%;
+        // margin-bottom: -120%;
+        // margin-top: 75%;
+        // margin-bottom: -140%;
+        margin-bottom: -20%;
+    // margin-top: 93%;
+    // margin-top: 90%;
+        margin-top: 0%;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: bottom;
+        text-align: center;
+        // font-family: 'Exo-Regular' !important;
+        // // font-family: 'Exo-SemiBold' !important;
+        // font-weight: nb-theme(font-weight-bold);
+        font-size: 8px;
+        width: 100%;
+        // font-size: 2.4vw;
+        font-size: 2vw;
+        color: #fff; font-weight: 600
+    }
+    .header-dalem{
+        background-color: transparent;
+        // height: 150px;
+        height: 300px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top:65px;
+        margin-bottom:15px
+    }
+    .grid-categories{
+        padding-left: 17px;
+    }
 }
 
+@media only screen
+  and (min-device-width: 1024px)
+  and (max-device-width: 1366px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  {
+      .newsquare {
+          float: left;
+          // width: 30%;
+          width: 157px;
+          height: 117px;
+          padding-bottom: 15%;
+          // margin: 1.66%;
+          margin-left: 2%;
+          margin-right: 2%;
+          margin-bottom : 3rem;
+          // margin-top: 2%;
+          margin-top: 4%;
+          background-color: #fff;
+          font-size: 1rem;
+          line-height: 1.25;
+          // background: #212121;
+          background: nb-theme(color-bg);
+          color: #fa8080;
+          color: nb-theme(color-fg-heading);
+          margin-bottom: 3rem;
+          border-radius: 0.5rem;
+          box-shadow: 0 3px 5px -3px #333;
+          font-weight: 400;
+          cursor: pointer;
+          border: 2px solid#c1c1c0;
+          // border-radius: 5px;
+          border-radius: 20px;
+      }
+      .newcontentss {
+          // height: 120%;
+          // height: 125%;
+          height: 85px;
+          width: auto;
+          display: block;
+          // margin-bottom: -60%;
+          // margin-top: 10%;
+          // margin-bottom: -60%;
+          // margin-top: 20%;
+          margin-bottom:25%;
+          margin-top:20%;
+          margin-left: auto;
+          margin-right: auto;
+          border-top-left-radius: nb-theme(card-border-radius);
+          border-top-right-radius: nb-theme(card-border-radius);
+      }
+      .newtextt {
+          display: block;
+          // margin-bottom: -88%;
+          // margin-bottom: -120%;
+          // margin-top: 75%;
+          // margin-bottom: -140%;
+          margin-bottom: -20%;
+      // margin-top: 93%;
+      // margin-top: 90%;
+          margin-top: 0%;
+          margin-left: auto;
+          margin-right: auto;
+          vertical-align: bottom;
+          text-align: center;
+          // font-family: 'Exo-Regular' !important;
+          // // font-family: 'Exo-SemiBold' !important;
+          // font-weight: nb-theme(font-weight-bold);
+          font-size: 8px;
+          width: 100%;
+          // font-size: 2.4vw;
+          font-size: 2vw;
+          color: #fff; font-weight: 600
+      }
+      .header-dalem{
+          background-color: transparent;
+          // height: 150px;
+          height: 350px;
+          margin-left: 10px;
+          margin-right: 10px;
+          margin-top:65px;
+          margin-bottom:15px
+      }
+      .grid-categories{
+          padding-left: 17px;
+      }
+  }
+
+
+
+.div-welcome {
+    height: 40px;
+    // background-color: #ffffff36;
+    // background-color: #ffffff87;
+    background-color: #ffffff;
+    margin-top: 0px;
+    // margin-bottom: 1rem;
+    margin-left: 0px;
+}
+
+.div-welcome-title {
+    text-align: left;
+    font-size: 1.5rem !important;
+    color: #222;
+    font-size: 12px;
+    margin-top: 0px !important;
+    // margin-left: 10px;
+    font-family: 'Exo-Regular' !important;
+    padding-top: 10px;
+    padding-left: 5px;
+    font-weight: 600;
+}
+
+
+ //small device
+ @media(min-width: 360px){
+  .newsquare {
+      float: left;
+      // width: 30%;
+      // width: 29%;
+      width: 100px;
+      height: 100px;
+      padding-bottom: 16%;
+      // margin: 1.66%;
+      margin-left: 2.2%;
+      margin-right: 2.2%;
+      margin-bottom: 3rem;
+      margin-top: 2%;
+      background-color: #fff;
+      font-size: 1rem;
+      line-height: 1.25;
+      // background: #212121;
+      background: nb-theme(color-bg);
+      color: #ffffff;
+      color: nb-theme(color-fg-heading);
+      margin-bottom: 3.3rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 3px 5px -3px #333;
+      font-weight: 400;
+      cursor: pointer;
+      border: 2px solid#c1c1c0;
+      // border-radius: 5px;
+      border-radius: 20px;
+  }
+  .newcontentss {
+      height: 145%;
+      width: auto;
+      display: block;
+      // margin-bottom: -60%;
+      // margin-top: 10%;
+      margin-bottom: -70%;
+      margin-top: 20%;
+      margin-left: auto;
+      margin-right: auto;
+      border-top-left-radius: nb-theme(card-border-radius);
+      border-top-right-radius: nb-theme(card-border-radius);
+  }
+  .newtextt {
+      display: block;
+      // margin-bottom: -88%;
+      // margin-bottom: -120%;
+      // margin-top: 75%;
+      margin-bottom: -150%;
+  // margin-top: 93%;
+  margin-top: 95%;
+      margin-left: auto;
+      margin-right: auto;
+      vertical-align: bottom;
+      text-align: center;
+      // font-family: 'Exo-Regular' !important;
+      // // font-family: 'Exo-SemiBold' !important;
+      // font-weight: nb-theme(font-weight-bold);
+      font-size: 8px;
+      width: 100%;
+      // font-size: 2.4vw;
+      font-size: 3.5vw;
+      color: white; font-weight: 600
+  }
+
+  .header-dalem{
+      background-color: transparent;
+      height: 150px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top:65px;
+      margin-bottom:15px
+  }
+  .grid-categories{
+      padding-left: 7px;
+  }
+}
+
+//medium kebawah
+@media(max-width: 412px){
+.newsquare {
+float: left;
+// width: 30%;
+width: 110px;
+height: 110px;
+padding-bottom: 21%;
+// margin: 1.66%;
+margin-left: 2.8%;
+margin-right:2.8%;
+margin-top: 2%;
+margin-bottom: 3rem;
+background-color: #fff;
+font-size: 1rem;
+line-height: 1.25;
+// background: #212121;
+background: nb-theme(color-bg);
+color: #ffffff;
+color: nb-theme(color-fg-heading);
+margin-bottom: 3rem;
+border-radius: 0.5rem;
+box-shadow: 0 3px 5px -3px #333;
+font-weight: 400;
+cursor: pointer;
+border: 2px solid#c1c1c0;
+// border-radius: 5px;
+border-radius: 20px;
+}
+.newcontentss {
+  height: 280%;
+  width: auto;
+  display: block;
+  // margin-bottom: -60%;
+  // margin-top: 10%;
+  margin-bottom: -70%;
+  margin-top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top-left-radius: nb-theme(card-border-radius);
+  border-top-right-radius: nb-theme(card-border-radius);
+}
+.newtextt {
+  display: block;
+  // margin-bottom: -88%;
+  // margin-bottom: -120%;
+  // margin-top: 75%;
+  margin-bottom: -150%;
+// margin-top: 93%;
+margin-top: 97%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: bottom;
+  text-align: center;
+  // font-family: 'Exo-Regular' !important;
+  // // font-family: 'Exo-SemiBold' !important;
+  // font-weight: nb-theme(font-weight-bold);
+  font-size: 8px;
+  width: 100%;
+  // font-size: 2.4vw;
+  font-size: 3.5vw;
+  color: white; font-weight: 600
+}
+
+.header-dalem{
+  background-color: transparent;
+  height: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top:65px;
+  margin-bottom:15px
+}
+.grid-categories{
+  padding-left: 7px;
+}
+}
+
+@media(max-width: 480px){
+.newsquare {
+float: left;
+// width: 30%;
+// width: 29%;
+width: 100px;
+height: 100px;
+padding-bottom: 16%;
+// margin: 1.66%;
+margin-left: 2.2%;
+margin-right: 2.2%;
+margin-bottom: 3rem;
+margin-top: 2%;
+background-color: #fff;
+font-size: 1rem;
+line-height: 1.25;
+// background: #212121;
+background: nb-theme(color-bg);
+color: #ffffff;
+color: nb-theme(color-fg-heading);
+margin-bottom: 3.3rem;
+border-radius: 0.5rem;
+box-shadow: 0 3px 5px -3px #333;
+font-weight: 400;
+cursor: pointer;
+border: 2px solid#c1c1c0;
+// border-radius: 5px;
+border-radius: 20px;
+}
+.newcontentss {
+  height: 145%;
+  width: auto;
+  display: block;
+  // margin-bottom: -60%;
+  // margin-top: 10%;
+  margin-bottom: -70%;
+  margin-top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top-left-radius: nb-theme(card-border-radius);
+  border-top-right-radius: nb-theme(card-border-radius);
+}
+.newtextt {
+  display: block;
+  // margin-bottom: -88%;
+  // margin-bottom: -120%;
+  // margin-top: 75%;
+  margin-bottom: -150%;
+// margin-top: 93%;
+margin-top: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: bottom;
+  text-align: center;
+  // font-family: 'Exo-Regular' !important;
+  // // font-family: 'Exo-SemiBold' !important;
+  // font-weight: nb-theme(font-weight-bold);
+  font-size: 8px;
+  width: 100%;
+  // font-size: 2.4vw;
+  font-size: 3.5vw;
+  color: white; font-weight: 600
+}
+
+.header-dalem{
+  background-color: transparent;
+  height: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top:65px;
+  margin-bottom:15px
+}
+.grid-categories{
+  padding-left: 7px;
+}
+}
+
+}
 
 
