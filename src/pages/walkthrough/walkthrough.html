@@ -7,9 +7,9 @@
 </ion-header> -->
 
 <ion-content class="walkthrough-content" (click)="goToLogin()">
-  
 
-  
+
+
   <div class="logo">
     <!-- <img src="{{logo}}" alt="" > -->
     <!-- <img src="{{logo}}" alt="" class="logo"> -->
@@ -21,7 +21,7 @@
     </div> -->
   <ion-slides #slider (ionSlideDidChange)="onSlideChanged()" pager="true">
       <ion-slide class="slide-1" *ngFor="let pic of pict">
-          <ion-row class="intro-image-row" > 
+          <ion-row class="intro-image-row" >
             <!-- <ion-col center no-padding> -->
               <!-- <preload-image [ratio]="{w:2, h:1}" src={{pic}} alt="app logo" title="ion2FullApp"></preload-image> -->
               <!-- <div Style="background-image :url('http://35.197.137.111/waskitaAPI/images/landing/landing1.jpg')">  -->
@@ -29,13 +29,13 @@
                 <div>
                   <!-- <img alt="" class="img" style="background-image: url({{pic}}) no-repeat center center fixed;"> -->
                   <img alt="" class="img" [src]="pic">
-              </div> 
-               
+              </div>
+
             <!-- </ion-col> -->
           </ion-row>
-          
+
         </ion-slide>
-        
+
     <!-- <ion-slide class="slide-1">
       <ion-row class="intro-image-row">
         <ion-col center width-64 no-padding>
@@ -101,9 +101,10 @@
 </ion-content>
 <div class="button-login">
     <button class="btn-login" (click)="goToLogin()">{{'LOG_IN' | translate}}</button>
-    <!-- <button ion-button primary (click)="goToSignup()">{{'SIGN_UP' | translate}}</button> -->
-  </div> 
- 
+    <h3></h3>
+    <button class="btn-signup" (click)="goToSignup()">{{'SIGN_UP' | translate}}</button>
+  </div>
+
 
 
   <!-- <div class="boxContainer">

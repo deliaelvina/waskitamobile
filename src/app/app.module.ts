@@ -204,6 +204,7 @@ import { TicketEntry } from '../pages/ticket/ticketEntry';
 import { TicketProjectPage } from '../pages/ticket/project';
 import { TicketPhasePage } from '../pages/ticket/phase';
 import { PilihTypePage } from '../pages/productInfo/pilihType';
+import { SignupOptPage } from '../pages/signup/signupoption';
 // import { UnitFilterModule } from '../tools/pipe.module';
 // PipeModule
 export function createTranslateLoader(http: HttpClient) {
@@ -294,6 +295,7 @@ export function createTranslateLoader(http: HttpClient) {
     WalkthroughPage,
     SettingsPage,
     SignupPage,
+    SignupOptPage,
     ForgotPasswordPage,
     ResetPasswordPage,
     SchedulePage,
@@ -467,6 +469,7 @@ export function createTranslateLoader(http: HttpClient) {
     ForgotPasswordPage,
     ResetPasswordPage,
     SignupPage,
+    SignupOptPage,
     SchedulePage,
     List1Page,
     List2Page,

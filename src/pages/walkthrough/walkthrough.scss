@@ -5,7 +5,7 @@ walkthrough-page {
 		font-weight: 400;
 		src: url("../assets/fonts/Exo-Medium.ttf") format("truetype");
 	}
-	
+
 	.logo{
 		position: absolute;
 		z-index: 2;
@@ -15,65 +15,101 @@ walkthrough-page {
 		height:auto;
 	}
 
-	
+
 
 	/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 500px) {
 	.button-login{
-		position: absolute;z-index: 1;top:80%;left:25%;
+		position: absolute;z-index: 1;top:75%;left:25%;
 	}
 	.btn-login{
-	
+
 		background-color: rgba(31, 62, 128, 0.589);
 		border-radius: 8px;
 		color: #fff;
-		
+
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+  }
+
+  .btn-signup{
+
+		background-color: rgba(128, 31, 31, 0.589);
+		border-radius: 8px;
+		color: #fff;
+
 		height: 50px;
 		width: 200px;
 		font-size: 14px;
 		font-family: 'Exo-Regular';
 	}
-} 
+}
 	/* Extra small devices (phones, 600px and down) */
 	@media only screen and (max-width: 320px) {
 		.button-login{
-			position: absolute;z-index: 1;top:80%;left:19%;
+			position: absolute;z-index: 1;top:75%;left:19%;
 		}
 		.btn-login{
-		
+
 			background-color: rgba(31, 62, 128, 0.589);
 			border-radius: 8px;
 			color: #fff;
-			
+
 			height: 50px;
 			width: 200px;
 			font-size: 14px;
 			font-family: 'Exo-Regular';
 		}
-	} 
+
+    .btn-signup{
+
+      background-color: rgba(128, 31, 31, 0.589);
+      border-radius: 8px;
+      color: #fff;
+
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: 'Exo-Regular';
+    }
+	}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 	.button-login{
-		position: absolute;z-index: 1;top:80%;left:24%;
+		position: absolute;z-index: 1;top:75%;left:24%;
 	}
 	.btn-login{
-	
+
 		background-color: rgba(31, 62, 128, 0.589);
 		border-radius: 8px;
 		color: #fff;
-		
+
 		height: 50px;
 		width: 200px;
 		font-size: 14px;
 		font-family: 'Exo-Regular';
 	}
-} 
+
+  .btn-signup{
+
+		background-color: rgba(128, 31, 31, 0.589);
+		border-radius: 8px;
+		color: #fff;
+
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+	}
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
 	.button-login{
-		position: absolute;z-index: 1;top:80%;left:38%;
+		position: absolute;z-index: 1;top:75%;left:38%;
 	}
 	.btn-login{
 		// background-color: #1f3e80;
@@ -86,36 +122,72 @@ walkthrough-page {
 		font-size: 14px;
 		font-family: 'Exo-Regular';
 	}
-} 
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-	.button-login{
-		position: absolute;z-index: 1;top:80%;left:40%;
-	}
-	.btn-login{
-	
-		background-color: rgba(31, 62, 128, 0.589);
+  .btn-signup{
+
+		background-color: rgba(128, 31, 31, 0.589);
 		border-radius: 8px;
 		color: #fff;
-		
+
 		height: 50px;
 		width: 200px;
 		font-size: 14px;
 		font-family: 'Exo-Regular';
-	} 
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.button-login{
+		position: absolute;z-index: 1;top:75%;left:40%;
+	}
+	.btn-login{
+
+		background-color: rgba(31, 62, 128, 0.589);
+		border-radius: 8px;
+		color: #fff;
+
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+	}
+
+  .btn-signup{
+
+		background-color: rgba(128, 31, 31, 0.589);
+		border-radius: 8px;
+		color: #fff;
+
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+	}
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 	.button-login{
-		position: absolute;z-index: 1;top:80%;left:40%;
+		position: absolute;z-index: 1;top:75%;left:40%;
 	}
 	.btn-login{
-	
+
 		background-color: rgba(31, 62, 128, 0.589);
 		border-radius: 8px;
 		color: #fff;
-		
+
+		height: 50px;
+		width: 200px;
+		font-size: 14px;
+		font-family: 'Exo-Regular';
+	}
+
+  .btn-signup{
+
+		background-color: rgba(128, 31, 31, 0.589);
+		border-radius: 8px;
+		color: #fff;
+
 		height: 50px;
 		width: 200px;
 		font-size: 14px;
@@ -124,7 +196,7 @@ walkthrough-page {
 }
 	.walkthrough-header
 	{
-		
+
 		@include header-styles(color($colors, walkthrough-header, base), color($colors, walkthrough-header, contrast));
 	}
 
@@ -180,9 +252,9 @@ walkthrough-page {
 				// width: 500px;
 				// height:300px;
 				object-fit: cover !important;
-				
+
 			}
-			
+
 			//class buat auto height and width seluruh device
 			.img{
 				display: block;
@@ -196,7 +268,7 @@ walkthrough-page {
 			// 	height: 700px;
 			// 	position: relative;
 			// }
-			
+
 
 			.main-title
 			{

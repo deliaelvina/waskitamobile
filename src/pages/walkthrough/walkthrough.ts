@@ -7,6 +7,7 @@ import { Http } from '@angular/http';
 import { environment } from '../../environment/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import { SignupOptPage } from '../signup/signupoption';
 
 @Component({
   selector: 'walkthrough-page',
@@ -54,7 +55,7 @@ export class WalkthroughPage {
   }
 
   goToSignup() {
-    this.nav.push(SignupPage);
+    this.nav.push(SignupOptPage);
   }
 
   showAlert(title:any, subTitle:any) {
