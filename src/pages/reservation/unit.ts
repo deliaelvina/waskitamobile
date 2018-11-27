@@ -138,19 +138,32 @@ export class ReservationUnitPage {
           }
         }
         else {
+           var group = localStorage.getItem('Group')
           // console.log(x);
           var data = x.Data;
           data.forEach(val => {
             var ss = false;
-            var st = {'background-color' : '#2ec95c','border-radius': '10px'};
+            if(group.toUpperCase()=='GUEST'||group.toUpperCase()=='DEBTOR'){
+              var st = {'background-color' : 'transparent','border-radius': '10px','color':'black'};
+            }else{
+              var st = {'background-color' : '#2ec95c','border-radius': '10px','color':'white'};
+            }
+            // var st = {'background-color' : '#2ec95c','border-radius': '10px'};
 
             if(val.room_qty == 0 && val.room_qty == 0){
               ss = true;
             }
 
-            if(val.status != 'A'){
-              st = {'background-color' : '#ff3333','border-radius': '10px'};
+            // if(val.status != 'A'){
+            //   st = {'background-color' : '#ff3333','border-radius': '10px'};
+            // }
+            if(group.toUpperCase()!='GUEST' && group.toUpperCase()!='DEBTOR'){
+
+              if(val.status != 'A'){
+                st = {'background-color' : '#ff3333','border-radius': '10px','color':'#fff'};
+              }
             }
+
 
             this.units.push({
               lot : val.lot_no,

@@ -193,6 +193,8 @@ export class PilihUnitPage {
           }
         }
         else {
+
+          var group = localStorage.getItem('Group')
           // console.log(x);
           var data = x.Data;
           // this.blocks = [];
@@ -200,7 +202,12 @@ export class PilihUnitPage {
 
           data.forEach(val => {
             let studio:boolean = false;
-            var st = {'background-color' : '#2ec95c','border-radius': '10px'};
+            if(group.toUpperCase()=='GUEST'||group.toUpperCase()=='DEBTOR'){
+              var st = {'background-color' : 'transparent','border-radius': '10px','color':'black'};
+            }else{
+              var st = {'background-color' : '#2ec95c','border-radius': '10px','color':'white'};
+            }
+            // var st = {'background-color' : '#2ec95c','border-radius': '10px'};
             var bd = val.room_qty+" Bedroom";
             var bh = val.bath_qty+" Bathroom";
 
@@ -215,8 +222,15 @@ export class PilihUnitPage {
               studio = true;
             }
 
-            if(val.status != 'A'){
-              st = {'background-color' : '#ff3333','border-radius': '10px'};
+            // if(val.status != 'A'){
+            //   st = {'background-color' : '#ff3333','border-radius': '10px'};
+            // }
+
+            if(group.toUpperCase()!='GUEST' && group.toUpperCase()!='DEBTOR'){
+
+              if(val.status != 'A'){
+                st = {'background-color' : '#ff3333','border-radius': '10px','color':'#fff'};
+              }
             }
 
             item.push({
