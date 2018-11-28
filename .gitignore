@@ -36,6 +36,7 @@ pwa/
 $RECYCLE.BIN/
 keystore/
 apk_prod/
+temp_apk/
 
 .DS_Store
 Thumbs.db
