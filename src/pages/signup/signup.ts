@@ -44,6 +44,9 @@ export class SignupPage {
   temail:string ;
   dMedsos:boolean = true;
   ErrorList:any;
+  uC:any;
+
+  validation_messages:any;
   constructor(
     public nav: NavController,
     public modal: ModalController,
@@ -84,12 +87,32 @@ export class SignupPage {
       Email: new FormControl('',Validators.required),
       Handphone: new FormControl('',Validators.compose([Validators.minLength(10),Validators.required])),
       Medsos: new FormControl(''),
-      Id:new FormControl('')
+      Id:new FormControl(''),
+      password : new FormControl('',Validators.compose([Validators.minLength(5),Validators.required])),
+      cpassword : new FormControl('')
     });
     var dt = this.navParam.get('dLog');
     var dtf = this.navParam.get('from');
-    
+    var uc = this.navParam.get('uCount');
+
+    if(uc == true){
+      this.uC = true;
+      this.signup.get('password').setValue('guest');
+      this.signup.get('cpassword').setValue('guest');
+    } else {
+      this.uC = false;
+    }
+
     this.chekEmailSetData2(dt,dtf);
+
+    this.validation_messages = {
+      'Handphone':[
+        { type: 'required', message: 'No Handphone must be filled' },
+      ],
+      'password': [
+        { type: 'required', message: 'Password must be filled' },
+      ],
+    }
   }
   ionViewDidLoad() {
   //  alert(this.temail);
@@ -142,8 +165,36 @@ export class SignupPage {
     // });
   }
 
+  doSubmit(){
+    var hp = this.signup.value.Handphone;
+    var pass = this.signup.value.password;
+    var cpass = this.signup.value.cpassword;
+
+
+
+    if(pass !== cpass){
+      // this.loading.dismiss();
+      let toast = this.toastCtrl.create({
+        message: "Password doesn't match",
+        duration: 3000,
+        position: 'top'
+      });
+
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+      // console.log('doesnt match');
+      toast.present();
+      this.signup.get('password').setValue('');
+      this.signup.get('cpassword').setValue('');
+    } else {
+      // console.log('match');
+      this.doSignup();
+    }
+
+  }
   doSignup(){
-    
+
     this.loading = this.loadingCtrl.create();
     this.signup.value.Id = this.userData.id;
     this.loading.present();
@@ -163,7 +214,7 @@ export class SignupPage {
                       //Berhasil simpan then login
                       this._authService.LoginSosmed(this.signup.value.Email,this.signup.value.Medsos,this.signup.value.Id,this.device)
                       .subscribe(
-                        
+
                         (Res)=>{
                           // alert("Login sosmed OK=>" +JSON.stringify(Res));
                           if(!Res.Error){
@@ -178,7 +229,7 @@ export class SignupPage {
                                   localStorage.setItem('Name', Res.Data.name);
                                   localStorage.setItem("isLogin","true");
                                   localStorage.setItem("isReset",Res.Data.isResetPass);
-                            
+
                             var menu = JSON.parse(localStorage.getItem("MenuDash"))
                             // alert(menu.length);
                             if(menu.length>0){
@@ -189,8 +240,8 @@ export class SignupPage {
                           }else{
                             this.showAlert("ERROR!",Res.Pesan);
                           }
-                         
-                          
+
+
                         },
                         (err)=>{
                           // alert("Login sosmed FAIL=>" +JSON.stringify(err));
@@ -201,7 +252,7 @@ export class SignupPage {
                       );
                     }else{
                       this.showAlert("ERROR!",data.Pesan);
-                      
+
                     }
                   },
                   (err)=>{
@@ -211,11 +262,11 @@ export class SignupPage {
               }
           },
           (err)=>{
-            
+
             this.ErrorList = this.ErrorList.filter(function(er){
               return er.Code == err.status;
             });
-  
+
           var errS;
           //filter klo error'a tidak ada di array error
           if(this.ErrorList.length == 1 ){
@@ -225,10 +276,10 @@ export class SignupPage {
           }
           this.showAlert("ERROR! cek sigup",errS);
           }
-        ); 
+        );
 
 
-    
+
     // this.nav.setRoot(this.main_page.component);
   }
 
@@ -239,17 +290,17 @@ export class SignupPage {
     if(Fr=='FB'){
       this.userData = {
         id:profile['id'],
-        email: profile['email'], 
-        first_name: profile['first_name'], 
-        image: profile['picture_large']['data']['url'], 
+        email: profile['email'],
+        first_name: profile['first_name'],
+        image: profile['picture_large']['data']['url'],
         username: profile['name'],
         medsos:'FB'};
     }else{
       this.userData = {
         id:profile['userId'],
-        email: profile['email'], 
-        first_name: profile['givenName'], 
-        image: profile['imageUrl'], 
+        email: profile['email'],
+        first_name: profile['givenName'],
+        image: profile['imageUrl'],
         username: profile['givenName'],
         medsos:'GMAIL'};
     }
@@ -275,21 +326,21 @@ export class SignupPage {
             if(Fr=='FB'){
               this.userData = {
                 id:profile['id'],
-                email: profile['email'], 
-                first_name: profile['first_name'], 
-                image: profile['picture_large']['data']['url'], 
+                email: profile['email'],
+                first_name: profile['first_name'],
+                image: profile['picture_large']['data']['url'],
                 username: profile['name'],
                 medsos:'FB'};
             }else{
               this.userData = {
                 id:profile['userId'],
-                email: profile['email'], 
-                first_name: profile['givenName'], 
-                image: profile['imageUrl'], 
+                email: profile['email'],
+                first_name: profile['givenName'],
+                image: profile['imageUrl'],
                 username: profile['givenName'],
                 medsos:'GMAIL'};
             }
-            
+
           }
       },
       (err)=>{
@@ -317,10 +368,10 @@ export class SignupPage {
         // });
         // toast.present();
       }
-    ); 
+    );
   }
   loginWithFB() {
-    
+
     this.loading = this.loadingCtrl.create();
     this.facebook.login(['public_profile','email']).then((response: FacebookLoginResponse) => {
       this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', [])
@@ -336,14 +387,14 @@ export class SignupPage {
       //       // if(Fr=='FB'){
       //         this.userData = {
       //           id:'1234',
-      //           email: 'runrun@gmail.com', 
-      //           first_name: 'uchiha', 
-      //           image: '', 
+      //           email: 'runrun@gmail.com',
+      //           first_name: 'uchiha',
+      //           image: '',
       //           username: '',
       //           medsos:'FB'};
       // alert(err);
       console.log(err);
-      
+
     });
   }
 

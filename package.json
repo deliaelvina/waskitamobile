@@ -59,6 +59,7 @@
     "com-sarriaroman-photoviewer": "^1.1.18",
     "com.synconset.imagepicker": "^2.1.10",
     "cordova-admob-sdk": "^0.7.0",
+    "cordova-android": "~6.4.0",
     "cordova-browser": "~5.0.3",
     "cordova-ios": "~4.5.4",
     "cordova-plugin-add-swift-support": "^1.7.2",
@@ -103,8 +104,7 @@
     "text-mask-addons": "^3.5.1",
     "twitter-connect-plugin": "git+https://github.com/chroa/twitter-connect-plugin.git",
     "videogular2": "^6.0.1",
-    "zone.js": "0.8.18",
-    "cordova-android": "~6.4.0"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@angular/cli": "^6.0.8",

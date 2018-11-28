@@ -17,6 +17,7 @@ login-page {
                     // text-align: center;
                 }
             }
+
             .signup-button {
                 font-weight: 800;
                 font-size: 1.7rem;
@@ -89,7 +90,7 @@ login-page {
         background-image: url('../assets/images/loginbg.jpg') !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
-    background-size: cover !important; 
+    background-size: cover !important;
     }
     .auth-form {
         ion-item {
@@ -122,7 +123,7 @@ login-page {
 color: #000 !important;
 }
 .auth-content .auth-form .show-hide-password .type-toggle{
-color: #222 !important; 
+color: #222 !important;
 }
 .auth-content .auth-form ion-item.item{
     border-radius: 6px;

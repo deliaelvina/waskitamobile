@@ -169,10 +169,10 @@ export class LoginPage {
 
     warning.present();
   }
-  LoginSosmed(email:string,Fr:string,usId:string,all:any){
+  LoginSosmed(email:string,Fr:string,usId:string, all:any){
     // this._authService.LoginSosmed(profile['email'],"FB")
     // alert(email);
-    // this.showAlert("Error!", email);
+    // this.showAlert("Error!", JSON.stringify(all));
     if(Fr=='GMAIL'){
       this.googlePlus.logout();
     }else{
@@ -187,9 +187,10 @@ export class LoginPage {
         // this.showAlert("Error!", '12345');
         this.loading.dismiss();
         if(Res.Error==true){
+          // console.log(Res.Data);
           // alert(Res.Pesan);
           // this.showAlert("Error!", Res.Pesan);
-          this.nav.push(SignupPage, {dLog : all, from : Fr});
+          this.nav.push(SignupPage, {dLog : all, from : Fr, uCount: Res.usercount});//yeah
         }else{
           localStorage.setItem('MenuDash', JSON.stringify(Res.Data.DashMenu));
               localStorage.setItem('Group', Res.Data.Group);
@@ -209,6 +210,7 @@ export class LoginPage {
         // alert('error =>'+JSON.stringify(err));
         this.loading.dismiss();
         this.showAlert("Error!", err);
+        // this.nav.push(SignupPage, {dLog : all, from : Fr});
         // console.log(err);
       }
     );
@@ -220,19 +222,21 @@ export class LoginPage {
       this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', [])
       .then(profile => {
         // this.loading.dismiss();
-        this.LoginSosmed(profile['email'],'FB',profile['id'],profile);
+        // this.dataLog.data= profile;
+        // this.dataLog.from = 'FB';
+        this.LoginSosmed(profile['email'],'FB',profile['id'], profile);
       });
     }).catch(err =>{
 
       this.loading.dismiss();
-  // var errS;
-  //   //filter klo error'a tidak ada di array error
-  //   if(this.ErrorList.length == 1 ){
-  //     errS = this.ErrorList[0].Description;
-  //   }else{
-  //     errS = err;
-  //   }
-  //   this.showAlert("ERROR!",errS);
+    //   var errS;
+    //   //filter klo error'a tidak ada di array error
+    //   if(this.ErrorList.length == 1 ){
+    //     errS = this.ErrorList[0].Description;
+    //   }else{
+    //     errS = err;
+    //   }
+    // this.showAlert("ERROR!",errS);
 
     });
   }
@@ -256,7 +260,7 @@ export class LoginPage {
 
       }).then((res) => {
         // alert('cek login');
-        this.LoginSosmed(res['email'],'GMAIL',res['userId'],res);
+        this.LoginSosmed(res['email'],'GMAIL',res['userId'], res);
       },(error) => {
         this.googlePlus.login({
           // 'webClientId': environment.google_web_client_id,
@@ -265,14 +269,16 @@ export class LoginPage {
         }).then((ress) => {
           // this.loading.dismiss();
           // alert('berhasil login');
-            this.LoginSosmed(ress['email'],'GMAIL',ress['userId'],ress);
+          // this.dataLog.data = ress;
+          // this.dataLog.from = 'GMAIL';
+            this.LoginSosmed(ress['email'],'GMAIL',ress['userId'], ress);
           },(errors) => {
             this.loading.dismiss();
             // alert('Failed2 => ' + JSON.stringify(errors));
           });
       });
     }else{//android
-      
+
     // this.googlePlus.trySilentLogin({
     //   }).then((res) => {
     //     // alert('cek login');
@@ -293,7 +299,7 @@ export class LoginPage {
           // alert('berhasil login');
             // alert('sukses2 => ' + JSON.stringify(ress));
             // this.googlePlus.logout();
-            this.LoginSosmed(ress['email'],'GMAIL',ress['userId'],ress);
+            this.LoginSosmed(ress['email'],'GMAIL',ress['userId'], ress);
           },(errors) => {
             this.loading.dismiss();
             // this.LoginSosmed('nuryantofattih@gmail.com','GMAIL','108339075516782956576');
