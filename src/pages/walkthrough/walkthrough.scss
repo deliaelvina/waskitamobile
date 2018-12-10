@@ -194,6 +194,81 @@ walkthrough-page {
 		font-family: 'Exo-Regular';
 	}
 }
+
+
+  // @media(min-width: 1024px){
+  //   .walkthrough-content
+  //   {
+  //     // Default background when bouncing isn't disabled
+  //     // background-color: color($colors, walkthrough, base);
+
+  //     ion-slides {
+
+
+
+  //       //class buat auto height and width seluruh device
+  //       .img{
+  //         display: block;
+  //         // width: 100vw;
+  //         width: auto;
+  //         height: 100vh !important;
+  //         object-fit: cover;
+  //   // z-index: 1;
+  //       }
+  //       // .img{
+  //       // 	height: 700px;
+  //       // 	position: relative;
+  //       // }
+
+
+
+  //     }
+
+
+  //   }
+  // }
+
+    // //large device
+    // @media(max-width: 1024px){
+
+    // }
+
+    // //large device
+    // @media(max-width: 768px){
+
+
+    // }
+
+    // //medium device
+    // @media(max-width: 480px){
+
+    // }
+
+    // @media(max-width: 420px){
+
+    // }
+
+    // //medium device
+    // @media(max-width: 412px){
+
+    // }
+
+    // //medium kebawah
+    // @media(max-width: 384px){
+
+    // }
+
+    // //small device
+    // @media(max-width: 360px){
+
+    // }
+
+    // //small device
+    // @media(max-width: 320px){
+
+    // }
+
+
 	.walkthrough-header
 	{
 
@@ -267,7 +342,29 @@ walkthrough-page {
 			// .img{
 			// 	height: 700px;
 			// 	position: relative;
-			// }
+      // }
+
+      @media(min-width:800px){
+        .img{
+          display: block;
+          // width: 100vw;
+          width: auto;
+          height: 110vh;
+          object-fit: cover;
+    // z-index: 1;
+        }
+      }
+
+      @media(min-width:1024px){
+        .img{
+          display: block;
+          // width: 100vw;
+          width: auto;
+          height: 150vh;
+          object-fit: cover;
+    // z-index: 1;
+        }
+      }
 
 
 			.main-title
