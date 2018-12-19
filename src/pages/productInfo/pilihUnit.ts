@@ -202,7 +202,7 @@ export class PilihUnitPage {
 
           data.forEach(val => {
             let studio:boolean = false;
-            if(group.toUpperCase()=='GUEST'||group.toUpperCase()=='DEBTOR'){
+            if(group.toUpperCase()=='GUEST'||group.toUpperCase()=='DEBTOR'||group.toUpperCase()=='AGENT'){
               var st = {'background-color' : 'transparent','border-radius': '10px','color':'black'};
             }else{
               var st = {'background-color' : '#2ec95c','border-radius': '10px','color':'white'};
@@ -226,7 +226,7 @@ export class PilihUnitPage {
             //   st = {'background-color' : '#ff3333','border-radius': '10px'};
             // }
 
-            if(group.toUpperCase()!='GUEST' && group.toUpperCase()!='DEBTOR'){
+            if(group.toUpperCase()!='GUEST' && group.toUpperCase()!='DEBTOR' && group.toUpperCase()!='AGENT'){
 
               if(val.status != 'A'){
                 st = {'background-color' : '#ff3333','border-radius': '10px','color':'#fff'};
