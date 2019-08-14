@@ -20,23 +20,24 @@ import { MyApp } from '../../app/app.component';
   templateUrl: 'news.html'
 })
 export class NewsPage {
-  projects:any[] = [];
-  loading:any;
-  user:any;device:string;
+  projects: any[] = [];
+  loading: any;
+  user: any; device: string;
   url_api = environment.Url_API;
   cons = environment.cons_mobile;
-  link_iframe:any ;
-  ErrorList:any;
+  link_iframe: any;
+  ErrorList: any;
   available: boolean = true;
+  disabled: boolean = true;
 
   hd = new HttpHeaders({
-    Token : localStorage.getItem("Token")
+    Token: localStorage.getItem("Token")
   });
 
-  menus : any;
-  where:any;
+  menus: any;
+  where: any;
   constructor(
-    public sanitizer:DomSanitizer,
+    public sanitizer: DomSanitizer,
     public nav: NavController,
     private http: HttpClient,
     public navParams: NavParams,
@@ -53,9 +54,9 @@ export class NewsPage {
     this.loading = this.loadingCtrl.create();
     this.device = localStorage.getItem('Device');
 
-    if(this.menus){
-      if(this.menus.isFrom){
-        this.where = this.cons+"/"+this.menus.entity+"/"+this.menus.projectNo;
+    if (this.menus) {
+      if (this.menus.isFrom) {
+        this.where = this.cons + "/" + this.menus.entity + "/" + this.menus.projectNo;
       }
       else {
         this.where = this.cons;
@@ -66,55 +67,55 @@ export class NewsPage {
     }
   }
 
-  logoutAPi(){
+  logoutAPi() {
     this.loading.present();
     let UserId = localStorage.getItem('UserId');
     this._authService.logout().subscribe(
-      (x:any) => {
+      (x: any) => {
         console.log(x);
-              if(x.Error == true) {
-                  this.showAlert("Warning!", x.Pesan);
-                  this.loading.dismiss();
-              }
-              else {
-                this.loading.dismiss();
-                localStorage.clear();
-                  if(this.device=='android'){
-                      navigator['app'].exitApp();
-                  }else{//ios and web
-                      this._app.getRootNav().setRoot(MyApp);
-                  }
-              }
-            },
-            (err)=>{
-              this.loading.dismiss();
-              //filter error array
-              this.ErrorList = this.ErrorList.filter(function(er){
-                  return er.Code == err.status;
-              });
+        if (x.Error == true) {
+          this.showAlert("Warning!", x.Pesan);
+          this.loading.dismiss();
+        }
+        else {
+          this.loading.dismiss();
+          localStorage.clear();
+          if (this.device == 'android') {
+            navigator['app'].exitApp();
+          } else {//ios and web
+            this._app.getRootNav().setRoot(MyApp);
+          }
+        }
+      },
+      (err) => {
+        this.loading.dismiss();
+        //filter error array
+        this.ErrorList = this.ErrorList.filter(function (er) {
+          return er.Code == err.status;
+        });
 
-              var errS;
-              if(this.ErrorList.length == 1 ){
-                errS = this.ErrorList[0].Description;
-              }else{
-                errS = err;
-              }
-                this.showAlert("Error!", errS);
-            }
+        var errS;
+        if (this.ErrorList.length == 1) {
+          errS = this.ErrorList[0].Description;
+        } else {
+          errS = err;
+        }
+        this.showAlert("Error!", errS);
+      }
     );
 
-    }
+  }
 
   ionViewDidLoad() {
     this.loading.present();
     // localStorage.removeItem('cons_project');
     // console.log(this.cons);
-      this.http.get(this.url_api+"c_newsandpromo/getDatanews2/" + this.where, {headers:this.hd} )
+    this.http.get(this.url_api + "c_newsandpromo/getDatanews2/" + this.where, { headers: this.hd })
       .subscribe(
-        (x:any) => {
+        (x: any) => {
           console.log(x);
-          if(x.Error == true) {
-            if(x.Status == 401){
+          if (x.Error == true) {
+            if (x.Status == 401) {
               // this.showAlert("Warning!", x.Pesan);
               this.logoutAPi();
               this.loading.dismiss();
@@ -133,29 +134,40 @@ export class NewsPage {
             var data = x;
             var P = false
             var Y = false
+            var L = false
             var date1 = ''
             data.forEach(val => {
-              if(val.attach_type == 'P'){
+              if (val.attach_type == 'P') {
                 P = true
                 Y = false
+                L = false
               }
-              else{
+              else if (val.attach_type == 'Y') {
                 P = false
                 Y = true
+                L = false
+              }
+              else {
+                P = true
+                Y = false
+                L = true
               }
               // console.log(x);
               this.link_iframe = this.sanitizer.bypassSecurityTrustResourceUrl(val.youtube_link);
               date1 = val.date_created.substr(0, 10);
               this.projects.push({
-                name:val.descs,
+                name: val.descs,
                 con: val.content,
-                pic_path: val.picture ,
-                youtube:this.link_iframe,
-                date:date1,
-                subject:val.subject,
-                id : val.id,
-                p:P,
-                y:Y
+                pic_path: val.picture,
+                youtube: this.link_iframe,
+                date: date1,
+                subject: val.subject,
+                id: val.id,
+                article: val.article_link,
+                attach_type: val.attach_type,
+                p: P,
+                y: Y,
+                l: L
                 // url_path: val.http_add,
                 // entity_name: val.entity_name,
                 // cons_project:val.db_profile
@@ -164,32 +176,32 @@ export class NewsPage {
             this.loading.dismiss();
           }
         },
-        (err)=>{
+        (err) => {
           this.loading.dismiss();
           //filter error array
-          this.ErrorList = this.ErrorList.filter(function(er){
-              return er.Code == err.status;
+          this.ErrorList = this.ErrorList.filter(function (er) {
+            return er.Code == err.status;
           });
 
           var errS;
           //filter klo error'a tidak ada di array error
-          if(this.ErrorList.length == 1 ){
+          if (this.ErrorList.length == 1) {
             errS = this.ErrorList[0].Description;
-          }else{
+          } else {
             errS = err;
           }
-            // alert(errS);
-            // let toast = this.toastCtrl.create({
-            //   message: errS,
-            //   duration: 3000,
-            //   position: 'top'
-            // });
+          // alert(errS);
+          // let toast = this.toastCtrl.create({
+          //   message: errS,
+          //   duration: 3000,
+          //   position: 'top'
+          // });
 
-            // toast.onDidDismiss(() => {
-            //   console.log('Dismissed toast');
-            // });
-            // toast.present();
-            this.showAlert("Error!", errS);
+          // toast.onDidDismiss(() => {
+          //   console.log('Dismissed toast');
+          // });
+          // toast.present();
+          this.showAlert("Error!", errS);
         }
       );
   }
@@ -199,30 +211,39 @@ export class NewsPage {
       user: item
     });
   }
-  goToDetails(id:any) {
+  goToDetails(id: any, attach_type: any) {
     // console.log("hehe");
-    // console.log(project);
-    localStorage.setItem('id',id);
-    this.nav.push(NapDetails);
+    // console.log("atc", attach_type);
+
+    if (attach_type != "L") {
+      localStorage.setItem('id', id);
+      this.nav.push(NapDetails);
+    }
+
   }
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  showAlert(title:any, subTitle:any) {
+  showAlert(title: any, subTitle: any) {
     let warning = this.alertCtrl.create({
       cssClass: 'alert',
-      title : title,
-      subTitle : subTitle,
-      buttons : [
-        {text : 'Ok', handler: () => {
-          this.nav.pop();
-        }}
+      title: title,
+      subTitle: subTitle,
+      buttons: [
+        {
+          text: 'Ok', handler: () => {
+            this.nav.pop();
+          }
+        }
       ]
     });
 
     warning.present();
   }
 
+  OpenUrl(articel: any) {
+    window.open(articel, '_system');
+  }
 
 }

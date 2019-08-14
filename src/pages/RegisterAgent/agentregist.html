@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> <span>Register Agent</span> </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content" *ngIf="available; else na" style="background-color: #f3f3f3 !important">
+  <form class="validation-forms" [formGroup]="SignUpForm" (ngSubmit)="frmSubmit(SignUpForm.value)">
+    <section class="form-section">
+      <ion-item>
+        <ion-label floating class="labelnya">EMAIL
+          <font color="red">*</font>
+        </ion-label>
+        <ion-input type="email" formControlName="user_email" name="user_email"
+          pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating class="labelnya">FULL NAME
+          <font color="red">*</font>
+        </ion-label>
+        <ion-input type="text" formControlName="full_name" name="full_name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating class="labelnya">NIK
+          <font color="red">*</font>
+        </ion-label>
+        <ion-input type="number" formControlName="nomor_induk" name="nomor_induk"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating class="labelnya">HANDPHONE
+          <font color="red">*</font>
+        </ion-label>
+        <ion-input type="number" formControlName="phone_no" name="phone_no" required></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>CHOOSE PROJECTS : </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let proj of projs; let x = index">
+        <ion-label>{{ proj.descs }}</ion-label>
+        <ion-checkbox color="danger" formControlName="all_projects" name="all_projects[]" [(ngModel)]="proj.checked"
+          (click)="cekProject(proj)">
+        </ion-checkbox>
+      </ion-item>
+
+
+      <ion-item>
+        <button type="button" *ngIf="!imgID" ion-button block large class="upload-image-button" (click)="openCamera()"
+          name="button_camera">
+          <ion-icon name="camera"> </ion-icon> &nbsp;
+          <h3 class="button-title">{{ "Attachment NIK" | translate }}</h3>
+        </button>
+        <img *ngIf="imgID" [src]="imgID" (click)="openCamera(imgID)" onerror="this.src='./assets/images/noimage.png'" />
+        <img *ngIf="view" [src]="imgID" onerror="this.src='./assets/images/noimage.png'" />
+      </ion-item>
+    </section>
+
+    <section class="form-section">
+      <ion-item style="text-align:center">
+        <button ion-button block class="form-action-button btn-confirm-ijo" type="submit"
+          style="background-color: #43944e">
+          Submit
+        </button>
+      </ion-item>
+    </section>
+  </form>
+</ion-content>

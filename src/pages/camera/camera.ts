@@ -109,7 +109,7 @@ import { normalizeURL } from 'ionic-angular';
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
         sourceType: this.camera.PictureSourceType.CAMERA,
-        allowEdit: true,
+        allowEdit: false,
         targetHeight: 300,
         targetWidth: 300,
         saveToPhotoAlbum: true

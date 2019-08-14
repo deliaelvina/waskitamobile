@@ -32,62 +32,62 @@ export class BookingReservePage {
   countries: Array<Country>;
 
   hd = new HttpHeaders({
-    Token : localStorage.getItem("Token")
+    Token: localStorage.getItem("Token")
   });
 
   main_page: { component: any };
 
-  months:any[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  months: any[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  nats:any[] = [];
-  NUP_Type:any[] = [];
+  nats: any[] = [];
+  NUP_Type: any[] = [];
 
-  loading:any;
-  user:any;
+  loading: any;
+  user: any;
   url_api = environment.Url_API;
   cons: any;
 
-  selected_image:any;
-  ErrorList:any;
+  selected_image: any;
+  ErrorList: any;
 
-  base64Image:string;
-  pict:any;
-  imgID:any = null;
-  imgNPWP:any = null;
-  imgTF:any = null;
+  base64Image: string;
+  pict: any;
+  imgID: any = null;
+  imgNPWP: any = null;
+  imgTF: any = null;
   // photos:any[] = [];
-  edit:boolean = false;
-  data:any;
-  validation_messages:any;
-  natSelect:any;
-  reserveTypeSelect:any;
+  edit: boolean = false;
+  data: any;
+  validation_messages: any;
+  natSelect: any;
+  reserveTypeSelect: any;
 
-  dataLot:any;
-  agent:any;
-  act:any;
-  rowID:any;
+  dataLot: any;
+  agent: any;
+  act: any;
+  rowID: any;
 
-  group:any;
-  cd:any;
+  group: any;
+  cd: any;
 
-  amt:number = 0;
+  amt: number = 0;
 
-  error:any;
-  view:boolean = false;
-  nation:any;
-  R_type:any;
-  dates:any;
-  images:any;
-  pictPost:any;
+  error: any;
+  view: boolean = false;
+  nation: any;
+  R_type: any;
+  dates: any;
+  images: any;
+  pictPost: any;
   storageDirectory: string = '';
-  avPict:boolean = false;
+  avPict: boolean = false;
   payment = {
-    payment_cd:null,
-    amt:null
+    payment_cd: null,
+    amt: null
   };
-  device:string;
-  fName:string = localStorage.getItem('Name').replace(/ /gi,'');
-  dt = new Date().toLocaleDateString().replace(/\//gi,'');
+  device: string;
+  fName: string = localStorage.getItem('Name').replace(/ /gi, '');
+  dt = new Date().toLocaleDateString().replace(/\//gi, '');
 
   constructor(
     public nav: NavController,
@@ -102,7 +102,7 @@ export class BookingReservePage {
     private toastCtrl: ToastController,
     private _errorService: ErrorhandlerService,
     public camera: Camera,
-    private fileTf:FileTransfer,
+    private fileTf: FileTransfer,
     private _app: App,
     private _authService: AuthService,
   ) {
@@ -117,14 +117,14 @@ export class BookingReservePage {
 
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
-      if(!this.platform.is('cordova')) {
+      if (!this.platform.is('cordova')) {
         return false;
       }
 
       if (this.platform.is('ios')) {
         this.storageDirectory = cordova.file.documentsDirectory;
       }
-      else if(this.platform.is('android')) {
+      else if (this.platform.is('android')) {
         this.storageDirectory = cordova.file.dataDirectory;
       }
       else {
@@ -133,21 +133,21 @@ export class BookingReservePage {
       }
     });
 
-    if(this.group == 'Guest'){
+    if (this.group == 'Guest') {
       this.cd = this.group;
     }
     else {
       this.cd = localStorage.getItem('AgentCd');
     }
 
-    if(this.act == 'edit'){
+    if (this.act == 'edit') {
       this.cons = this.navParams.get('cons');
       this.data = this.navParams.get('datas');
       this.edit = true;
       console.log(this.data);
       this.loadData();
     }
-    else if (this.act == 'view'){
+    else if (this.act == 'view') {
       this.cons = this.navParams.get('cons');
       this.data = this.navParams.get('datas');
       this.view = true;
@@ -155,7 +155,7 @@ export class BookingReservePage {
     }
     else {
       this.data = JSON.parse(localStorage.getItem('data'));
-      if(this.act == 'book'){
+      if (this.act == 'book') {
         this.payment.payment_cd = this.data.payment_cd;
         this.payment.amt = this.data.payment_amt2;
       }
@@ -163,17 +163,17 @@ export class BookingReservePage {
       this.cons = this.data.cons;
 
       this.agent = {
-        'Agent_cd' : this.cd?this.cd:'',
-        'Group_cd' : this.data.agentGroupCd?this.data.agentGroupCd:'',
-        'Type_cd' : this.data.agentTypeCd?this.data.agentTypeCd:''
+        'Agent_cd': this.cd ? this.cd : '',
+        'Group_cd': this.data.agentGroupCd ? this.data.agentGroupCd : '',
+        'Type_cd': this.data.agentTypeCd ? this.data.agentTypeCd : ''
       };
 
       this.dataLot = {
-        entity : this.data.entity,
-        project : this.data.project,
-        property : this.data.towerCd,
-        level : this.data.level,
-        lotNo : this.data.lot
+        entity: this.data.entity,
+        project: this.data.project,
+        property: this.data.towerCd,
+        level: this.data.level,
+        lotNo: this.data.lot
       };
 
       this.loadNats('');
@@ -181,15 +181,15 @@ export class BookingReservePage {
     }
 
     this.pict = [
-      {for:'id', img:'', name:'', img64:''},
-      {for:'npwp', img:'', name:'', img64:''},
-      {for:'tf', img:'', name:'', img64:''},
+      { for: 'id', img: '', name: '', img64: '' },
+      { for: 'npwp', img: '', name: '', img64: '' },
+      { for: 'tf', img: '', name: '', img64: '' },
     ];
 
     this.pictPost = {
-      imgID : '',
-      imgNPWP : '',
-      imgTF : ''
+      imgID: '',
+      imgNPWP: '',
+      imgTF: ''
     };
 
     this.imgID = null;
@@ -197,18 +197,18 @@ export class BookingReservePage {
     this.imgTF = null;
 
     this._errorService.getData()
-    .then(data=>{
-      this.ErrorList = data.Error_Status;
-    });
+      .then(data => {
+        this.ErrorList = data.Error_Status;
+      });
 
     this.reserveForm = new FormGroup({
-      rowID : new FormControl(0),
-      cons : new FormControl(this.cons),
-      user : new FormControl(localStorage.getItem('UserId')),
-      businessID : new FormControl(0),
+      rowID: new FormControl(0),
+      cons: new FormControl(this.cons),
+      user: new FormControl(localStorage.getItem('UserId')),
+      businessID: new FormControl(0),
       reserveBy: new FormControl(localStorage.getItem('Name')),
       fullName: new FormControl('', Validators.required),
-      number : new FormControl('', Validators.compose([
+      number: new FormControl('', Validators.compose([
         // Validators.maxLength(15),
         Validators.required,
         Validators.minLength(10),
@@ -223,11 +223,11 @@ export class BookingReservePage {
         // Validators.minLength(16),
         // Validators.pattern('^[0-9]+$')
       ])),
-      national : new FormControl(''),
+      national: new FormControl(''),
       // national_cd : new FormControl(''),
       // national_descs : new FormControl(''),
       address: new FormControl(''),
-      reserveType: new FormControl('',Validators.required),
+      reserveType: new FormControl('', Validators.required),
       // reservePrefix: new FormControl(''),
       amount: new FormControl(''),
       // reserveExp: new FormControl(''),
@@ -236,6 +236,13 @@ export class BookingReservePage {
       pict: new FormControl(this.pictPost),
       agent: new FormControl(this.agent),
       payment: new FormControl(this.payment),
+      idcardd: new FormControl(Validators.compose([
+        Validators.required
+      ])),
+      aprovall: new FormControl(Validators.required)
+      // idcardd: new FormControl(this.pict('id'), Validators.required),
+      // aprovall: new FormControl(this.pict('tf'), Validators.required)
+
       // terms: new FormControl(true, Validators.pattern('true'))
     });
 
@@ -261,103 +268,109 @@ export class BookingReservePage {
         { type: 'pattern', message: 'Enter a valid ID Number.' },
         { type: 'minLength', message: 'ID Number must be at least 16 numbers long.' },
       ],
-      'reserveType' : [
+      'reserveType': [
         { type: 'required', message: 'Booking Type is required.' },
       ],
+      'idcardd': [
+        { type: 'required', message: 'Upload ID Card is required.' }
+      ],
+      'aprovall': [
+        { type: 'required', message: 'Upload Approval of Transfer is required.' }
+      ]
     };
   }
 
-  logoutAPi(){
+  logoutAPi() {
     this.loading.present();
     let UserId = localStorage.getItem('UserId');
     this._authService.logout().subscribe(
-      (x:any) => {
+      (x: any) => {
         console.log(x);
-              if(x.Error == true) {
-                  this.showAlert("Warning!", x.Pesan,'');
-                  this.loading.dismiss();
-              }
-              else {
-                this.loading.dismiss();
-                localStorage.clear();
-                  if(this.device=='android'){
-                      navigator['app'].exitApp();
-                  }else{//ios and web
-                      this._app.getRootNav().setRoot(MyApp);
-                  }
-              }
-            },
-            (err)=>{
+        if (x.Error == true) {
+          this.showAlert("Warning!", x.Pesan, '');
+          this.loading.dismiss();
+        }
+        else {
+          this.loading.dismiss();
+          localStorage.clear();
+          if (this.device == 'android') {
+            navigator['app'].exitApp();
+          } else {//ios and web
+            this._app.getRootNav().setRoot(MyApp);
+          }
+        }
+      },
+      (err) => {
+        this.loading.dismiss();
+        //filter error array
+        this.ErrorList = this.ErrorList.filter(function (er) {
+          return er.Code == err.status;
+        });
+
+        var errS;
+        if (this.ErrorList.length == 1) {
+          errS = this.ErrorList[0].Description;
+        } else {
+          errS = err;
+        }
+        this.showAlert("Error!", errS, '');
+      }
+    );
+
+  }
+
+
+  loadNats(parm: any) {
+    this.http.get(this.url_api + "c_booking/getNationality/" + this.cons, { headers: this.hd })
+      .subscribe(
+        (x: any) => {
+          if (x.Error == true) {
+            if (x.Status == 401) {
+              // this.showAlert("Warning!", x.Pesan,'');
+              this.logoutAPi();
               this.loading.dismiss();
-              //filter error array
-              this.ErrorList = this.ErrorList.filter(function(er){
-                  return er.Code == err.status;
-              });
-
-              var errS;
-              if(this.ErrorList.length == 1 ){
-                errS = this.ErrorList[0].Description;
-              }else{
-                errS = err;
-              }
-                this.showAlert("Error!", errS,'');
             }
-    );
-
-  }
-
-
-  loadNats(parm:any) {
-    this.http.get(this.url_api+"c_booking/getNationality/" + this.cons , {headers:this.hd} )
-    .subscribe(
-      (x:any) => {
-        if(x.Error == true) {
-          if(x.Status == 401){
-            // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
-            this.loading.dismiss();
+            else {
+              // alert(x.Pesan);
+              // this.nats = [{
+              //   nationality_cd: '', descs: ''
+              // }];
+              this.loading.dismiss();
+            }
           }
           else {
-            // alert(x.Pesan);
-            // this.nats = [{
-            //   nationality_cd: '', descs: ''
-            // }];
+            // console.log(x);
+            var data = x.Data;
+
+            data.forEach(element => {
+              if (element.nationality_cd == parm) {
+                if (this.view) {
+                  this.nation = element.descs;
+                }
+                else {
+                  this.reserveForm.get('national').setValue(element);
+                }
+              }
+            });
+
+            this.nats = data;
             this.loading.dismiss();
           }
-        }
-        else {
-          // console.log(x);
-          var data = x.Data;
-
-          data.forEach(element => {
-            if(element.nationality_cd == parm){
-              if(this.view){
-                this.nation = element.descs;
-              }
-              else {
-                this.reserveForm.get('national').setValue(element);
-              }
-            }
+        },
+        (err) => {
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function (er) {
+            return er.Code == err.status;
           });
 
-          this.nats = data;
-          this.loading.dismiss();
-        }
-      },
-      (err)=>{
-        this.loading.dismiss();
-        //filter error array
-        this.ErrorList = this.ErrorList.filter(function(er){
-            return er.Code == err.status;
-        });
-
-        var errS;
-        //filter klo error'a tidak ada di array error
-        if(this.ErrorList.length == 1 ){
-          errS = this.ErrorList[0].Description;
-        }else{
-          errS = err;
-        }
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if (this.ErrorList.length == 1) {
+            errS = this.ErrorList[0].Description;
+          } else {
+            errS = err;
+          }
           // alert(errS);
           // let toast = this.toastCtrl.create({
           //   message: errS,
@@ -369,62 +382,62 @@ export class BookingReservePage {
           //   console.log('Dismissed toast');
           // });
           // toast.present();
-          this.showAlert("Error!", errS,'');
-      }
-    );
+          this.showAlert("Error!", errS, '');
+        }
+      );
   }
 
-  loadNupType(parm:any) {
-    this.http.get(this.url_api+"c_booking/getNupType/" + this.cons + "/" + this.data.entity + "/" + this.data.project , {headers:this.hd} )
-    .subscribe(
-      (x:any) => {
-        if(x.Error == true) {
-          if(x.Status == 401){
-            // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
-            this.loading.dismiss();
+  loadNupType(parm: any) {
+    this.http.get(this.url_api + "c_booking/getNupType/" + this.cons + "/" + this.data.entity + "/" + this.data.project, { headers: this.hd })
+      .subscribe(
+        (x: any) => {
+          if (x.Error == true) {
+            if (x.Status == 401) {
+              // this.showAlert("Warning!", x.Pesan,'');
+              this.logoutAPi();
+              this.loading.dismiss();
+            }
+            else {
+              // alert(x.Pesan);
+              this.NUP_Type = [{
+                nup_type: '', descs: '', prefix: '', nup_amt: '', expired_minute: ''
+              }];
+              this.loading.dismiss();
+            }
           }
           else {
-            // alert(x.Pesan);
-            this.NUP_Type = [{
-              nup_type : '', descs : '', prefix : '', nup_amt : '', expired_minute : ''
-            }];
+            // console.log(x);
+            var data = x.Data;
+
+            data.forEach(element => {
+              if (element.nup_type == parm) {
+                if (this.view) {
+                  this.R_type = data.nup_type;
+                }
+                else {
+                  this.reserveForm.get('reserveType').setValue(element);
+                }
+              }
+            });
+
+            this.NUP_Type = data;
             this.loading.dismiss();
           }
-        }
-        else {
-          // console.log(x);
-          var data = x.Data;
-
-          data.forEach(element => {
-            if(element.nup_type == parm){
-              if(this.view){
-                this.R_type = data.nup_type;
-              }
-              else {
-                this.reserveForm.get('reserveType').setValue(element);
-              }
-            }
+        },
+        (err) => {
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function (er) {
+            return er.Code == err.status;
           });
 
-          this.NUP_Type = data;
-          this.loading.dismiss();
-        }
-      },
-      (err)=>{
-        this.loading.dismiss();
-        //filter error array
-        this.ErrorList = this.ErrorList.filter(function(er){
-            return er.Code == err.status;
-        });
-
-        var errS;
-        //filter klo error'a tidak ada di array error
-        if(this.ErrorList.length == 1 ){
-          errS = this.ErrorList[0].Description;
-        }else{
-          errS = err;
-        }
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if (this.ErrorList.length == 1) {
+            errS = this.ErrorList[0].Description;
+          } else {
+            errS = err;
+          }
           // alert(errS);
           // let toast = this.toastCtrl.create({
           //   message: errS,
@@ -436,9 +449,9 @@ export class BookingReservePage {
           //   console.log('Dismissed toast');
           // });
           // toast.present();
-          this.showAlert("Error!", errS,'');
-      }
-    );
+          this.showAlert("Error!", errS, '');
+        }
+      );
   }
 
   ionViewDidLoad() {
@@ -449,125 +462,125 @@ export class BookingReservePage {
     // this.loading.dismiss();
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     // console.log('enter');
     let images = JSON.parse(localStorage.getItem('image'));
     var rand = Math.floor(Math.random() * 100);
     localStorage.removeItem('image');
 
-    if(images){
+    if (images) {
       this.avPict = true;
       let z = images.for;
-      if(z == 'id'){
+      if (z == 'id') {
         this.imgID = images.imgHere;
         this.pict[0].img = images.imgHere;
-        if(this.platform.is('ios')){
+        if (this.platform.is('ios')) {
           this.pict[0].img64 = images.base64img;
         }
-        this.pict[0].name = this.fName+'_'+this.dt+'_bookingID_'+rand+'.jpg';
-        this.pictPost.imgID = this.url_api+'images/booking/'+this.fName+'_'+this.dt+'_bookingID_'+rand+'.jpg';
+        this.pict[0].name = this.fName + '_' + this.dt + '_bookingID_' + rand + '.jpg';
+        this.pictPost.imgID = this.url_api + 'images/booking/' + this.fName + '_' + this.dt + '_bookingID_' + rand + '.jpg';
         // this.pict[0].img64 = images.base64img;
       }
-      else if(z == 'npwp'){
+      else if (z == 'npwp') {
         this.imgNPWP = images.imgHere;
         this.pict[1].img = images.imgHere;
-        if(this.platform.is('ios')){
+        if (this.platform.is('ios')) {
           this.pict[1].img64 = images.base64img;
         }
-        this.pict[1].name = this.fName+'_'+this.dt+'_bookingNPWP_'+rand+'.jpg';
-        this.pictPost.imgNPWP = this.url_api+'images/booking/'+this.fName+'_'+this.dt+'_bookingNPWP_'+rand+'.jpg';
+        this.pict[1].name = this.fName + '_' + this.dt + '_bookingNPWP_' + rand + '.jpg';
+        this.pictPost.imgNPWP = this.url_api + 'images/booking/' + this.fName + '_' + this.dt + '_bookingNPWP_' + rand + '.jpg';
         // this.pict[1].img64 = images.base64img;
       }
-      else if(z == 'tf'){
+      else if (z == 'tf') {
         this.imgTF = images.imgHere;
         this.pict[2].img = images.imgHere;
-        if(this.platform.is('ios')){
+        if (this.platform.is('ios')) {
           this.pict[2].img64 = images.base64img;
         }
-        this.pict[2].name = this.fName+'_'+this.dt+'_bookingTF_'+rand+'.jpg';
-        this.pictPost.imgTF = this.url_api+'images/booking/'+this.fName+'_'+this.dt+'_bookingTF_'+rand+'.jpg';
+        this.pict[2].name = this.fName + '_' + this.dt + '_bookingTF_' + rand + '.jpg';
+        this.pictPost.imgTF = this.url_api + 'images/booking/' + this.fName + '_' + this.dt + '_bookingTF_' + rand + '.jpg';
         // this.pict[2].img64 = images.base64img;
       }
       // console.log(this.images);
     }
   }
 
-  addZero(i:any){
-    if(i < 10){
-      i = '0'+i;
+  addZero(i: any) {
+    if (i < 10) {
+      i = '0' + i;
     }
 
     return i;
   }
 
-  loadData(){
-    this.http.get(this.url_api+"c_booking/myReservation/" + this.cons + "/" + localStorage.getItem('Name') + "/" + this.rowID, {headers:this.hd} )
-    .subscribe(
-      (x:any) => {
-        if(x.Error == true) {
-          if(x.Status == 401){
-            // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
-            this.loading.dismiss();
+  loadData() {
+    this.http.get(this.url_api + "c_booking/myReservation/" + this.cons + "/" + localStorage.getItem('Name') + "/" + this.rowID, { headers: this.hd })
+      .subscribe(
+        (x: any) => {
+          if (x.Error == true) {
+            if (x.Status == 401) {
+              // this.showAlert("Warning!", x.Pesan,'');
+              this.logoutAPi();
+              this.loading.dismiss();
+            }
+            else {
+              // alert(x.Pesan);
+              this.loading.dismiss();
+            }
           }
           else {
-            // alert(x.Pesan);
+            // console.log(x);
+            var data = x.Data[0];
+            console.log(data);
+            // this.data = [];
+            // this.data.push({
+            //   projectName : data.ProjectName,
+            //   towerName : data.Property,
+            //   level_descs : data.Level,
+            //   lot : data.LotNo,
+            // });
+            // this.data.projectName = data.ProjectName;
+            // this.data.towerName = data.Property;
+            // this.data.level_descs = data.Level;
+            // this.data.lot = data.LotNo;
+
+            var d = new Date(data.expired_time);
+            this.dates = 'Expired Time : ' + d.getDate().toString() + ' ' + this.months[d.getMonth().toString()] + ' ' + d.getFullYear().toString() + ' ' + this.addZero(d.getHours()) + ':' + this.addZero(d.getMinutes());
+            this.reserveForm.get('rowID').setValue(this.rowID);
+            this.reserveForm.get('businessID').setValue(data.business_id);
+            this.reserveForm.get('reserveBy').setValue(data.reserve_by);
+            this.reserveForm.get('fullName').setValue(data.Name);
+            this.reserveForm.get('number').setValue(data.Phone);
+            this.reserveForm.get('email').setValue(data.email_addr);
+            this.reserveForm.get('idNo').setValue(data.ic_no);
+            this.reserveForm.get('address').setValue(data.address1);
+            this.reserveForm.get('remarks').setValue(data.remark);
+            this.imgID = data.link_ktp ? data.link_ktp : '';
+            this.imgNPWP = data.link_npwp ? data.link_npwp : '';
+            this.imgTF = data.link_bukti_transfer ? data.link_bukti_transfer : '';
+            this.pictPost.imgID = data.link_ktp ? data.link_ktp : '';
+            this.pictPost.imgNPWP = data.link_npwp ? data.link_npwp : '';
+            this.pictPost.imgTF = data.link_bukti_transfer ? data.link_bukti_transfer : '';
+            this.amt = data.amount;
+            this.loadNats(data.nationality);
+            this.loadNupType(data.nup_type);
             this.loading.dismiss();
           }
-        }
-        else {
-          // console.log(x);
-          var data = x.Data[0];
-          console.log(data);
-          // this.data = [];
-          // this.data.push({
-          //   projectName : data.ProjectName,
-          //   towerName : data.Property,
-          //   level_descs : data.Level,
-          //   lot : data.LotNo,
-          // });
-          // this.data.projectName = data.ProjectName;
-          // this.data.towerName = data.Property;
-          // this.data.level_descs = data.Level;
-          // this.data.lot = data.LotNo;
-
-          var d = new Date(data.expired_time);
-          this.dates = 'Expired Time : '+d.getDate().toString()+' '+this.months[d.getMonth().toString()]+' '+d.getFullYear().toString()+' '+this.addZero(d.getHours())+':'+this.addZero(d.getMinutes());
-          this.reserveForm.get('rowID').setValue(this.rowID);
-          this.reserveForm.get('businessID').setValue(data.business_id);
-          this.reserveForm.get('reserveBy').setValue(data.reserve_by);
-          this.reserveForm.get('fullName').setValue(data.Name);
-          this.reserveForm.get('number').setValue(data.Phone);
-          this.reserveForm.get('email').setValue(data.email_addr);
-          this.reserveForm.get('idNo').setValue(data.ic_no);
-          this.reserveForm.get('address').setValue(data.address1);
-          this.reserveForm.get('remarks').setValue(data.remark);
-          this.imgID = data.link_ktp?data.link_ktp:'';
-          this.imgNPWP = data.link_npwp?data.link_npwp:'';
-          this.imgTF = data.link_bukti_transfer?data.link_bukti_transfer:'';
-          this.pictPost.imgID = data.link_ktp?data.link_ktp:'';
-          this.pictPost.imgNPWP = data.link_npwp?data.link_npwp:'';
-          this.pictPost.imgTF = data.link_bukti_transfer?data.link_bukti_transfer:'';
-          this.amt = data.amount;
-          this.loadNats(data.nationality);
-          this.loadNupType(data.nup_type);
+        },
+        (err) => {
           this.loading.dismiss();
-        }
-      },
-      (err)=>{
-        this.loading.dismiss();
-        //filter error array
-        this.ErrorList = this.ErrorList.filter(function(er){
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function (er) {
             return er.Code == err.status;
-        });
+          });
 
-        var errS;
-        //filter klo error'a tidak ada di array error
-        if(this.ErrorList.length == 1 ){
-          errS = this.ErrorList[0].Description;
-        }else{
-          errS = err;
-        }
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if (this.ErrorList.length == 1) {
+            errS = this.ErrorList[0].Description;
+          } else {
+            errS = err;
+          }
           // alert(errS);
           // let toast = this.toastCtrl.create({
           //   message: errS,
@@ -579,12 +592,12 @@ export class BookingReservePage {
           //   console.log('Dismissed toast');
           // });
           // toast.present();
-          this.showAlert("Error!", errS,'');
-      }
-    );
+          this.showAlert("Error!", errS, '');
+        }
+      );
   }
 
-  openCamera(what:any,img:any){
+  openCamera(what: any, img: any) {
     // let ask = this.alertCtrl.create({
     //   cssClass: 'alert',
     //   title : "Choose Photo From",
@@ -601,66 +614,66 @@ export class BookingReservePage {
     // });
 
     // ask.present();
-    this.nav.push(CameraPage,{from:what, image:img});
+    this.nav.push(CameraPage, { from: what, image: img });
   }
 
-  cekUnitStatus(frmData:any){
+  cekUnitStatus(frmData: any) {
     var x = {
-      entity:this.data.entity,
-      project:this.data.project,
-      towerCd:this.data.towerCd,
-      level:this.data.level,
+      entity: this.data.entity,
+      project: this.data.project,
+      towerCd: this.data.towerCd,
+      level: this.data.level,
       lot: this.data.lot
     };
 
-    this.http.post(this.url_api+"c_reservate/cekUnit/" + this.cons, x, {headers:this.hd} )
-    .subscribe(
-      (x:any) => {
-        if(x.Error == true) {
-          if(x.Status == 401){
-            // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
-            this.loading.dismiss();
+    this.http.post(this.url_api + "c_reservate/cekUnit/" + this.cons, x, { headers: this.hd })
+      .subscribe(
+        (x: any) => {
+          if (x.Error == true) {
+            if (x.Status == 401) {
+              // this.showAlert("Warning!", x.Pesan,'');
+              this.logoutAPi();
+              this.loading.dismiss();
+            }
+            else {
+              // alert(x.Pesan);
+              // this.available = false;
+              this.showAlert("Warning!", "No Info Available", '');
+              // alert(1);
+              this.loading.dismiss();
+            }
           }
           else {
-            // alert(x.Pesan);
-            // this.available = false;
-            this.showAlert("Warning!", "No Info Available",'');
-            // alert(1);
-            this.loading.dismiss();
-          }
-        }
-        else {
-          // console.log(x);
+            // console.log(x);
 
-          var datas = x.Data[0];
+            var datas = x.Data[0];
 
-          // console.log(datas);
-          if(datas.status == 'A'){
-            // this.nav.push(ReservationReservePage);
-            this.save(frmData);
+            // console.log(datas);
+            if (datas.status == 'A') {
+              // this.nav.push(ReservationReservePage);
+              this.save(frmData);
+            }
+            else {
+              // let zz:any = this.nav.setRoot(ListingPage);
+              this.loading.dismiss();
+              this.showAlert("Warning!", "This Lot is Already Reserved", 'menu');
+            }
           }
-          else {
-            // let zz:any = this.nav.setRoot(ListingPage);
-            this.loading.dismiss();
-            this.showAlert("Warning!", "This Lot is Already Reserved", 'menu');
-          }
-        }
-      },
-      (err)=>{
-        this.loading.dismiss();
-        //filter error array
-        this.ErrorList = this.ErrorList.filter(function(er){
+        },
+        (err) => {
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function (er) {
             return er.Code == err.status;
-        });
+          });
 
-        var errS;
-        //filter klo error'a tidak ada di array error
-        if(this.ErrorList.length == 1 ){
-          errS = this.ErrorList[0].Description;
-        }else{
-          errS = err;
-        }
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if (this.ErrorList.length == 1) {
+            errS = this.ErrorList[0].Description;
+          } else {
+            errS = err;
+          }
           // alert(errS);
           // let toast = this.toastCtrl.create({
           //   message: errS,
@@ -672,17 +685,17 @@ export class BookingReservePage {
           //   console.log('Dismissed toast');
           // });
           // toast.present();
-          this.showAlert("Error!", errS,'');
-      }
-    );
+          this.showAlert("Error!", errS, '');
+        }
+      );
   }
 
-  cekLength(fc:any, len:number){
-    var valid:boolean = false;
+  cekLength(fc: any, len: number) {
+    var valid: boolean = false;
     // console.log(fc);
     var x = fc.length;
 
-    if(x < len){
+    if (x < len) {
       valid = false;
     }
     else {
@@ -693,7 +706,7 @@ export class BookingReservePage {
     return valid;
   }
 
-  onSubmit(data:any) {
+  onSubmit(data: any) {
     this.loading = this.loadingCtrl.create();
     this.loading.present();
     // this.error = {
@@ -711,14 +724,16 @@ export class BookingReservePage {
     var idN = data.idNo;
     var idLen = idN.length;
     var numbLen = number.length;
-    var types = this.reserveForm.get('reserveType').hasError('required');
+    var ktp = data.idcardd;
+    var apruval = data.aprovall;
+    // var types = this.reserveForm.get('reserveType').hasError('required');
     // console.log(number);
     // console.log(idN);
-    // console.log(idLen);
-    // console.log(numbLen);
+    console.log(ktp);
+    console.log(apruval);
 
     // return;
-    if(numbLen < 10){
+    if (numbLen < 10) {
       this.loading.dismiss();
       let toast = this.toastCtrl.create({
         message: "Phone Number must be at least 10 numbers long.",
@@ -744,10 +759,23 @@ export class BookingReservePage {
     //   });
     //   toast.present();
     // }
-    else if(types){
+    else if (ktp) {
       this.loading.dismiss();
       let toast = this.toastCtrl.create({
-        message: "Booking Type is Required",
+        message: "Upload ID Card is Required",
+        duration: 3000,
+        position: 'top'
+      });
+
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+      toast.present();
+    }
+    else if (apruval) {
+      this.loading.dismiss();
+      let toast = this.toastCtrl.create({
+        message: "Upload Approval of Transfer is required.",
         duration: 3000,
         position: 'top'
       });
@@ -758,26 +786,26 @@ export class BookingReservePage {
       toast.present();
     }
     else {
-      if(data.national == ''){
+      if (data.national == '') {
         data.national = {
-          nationality_cd:"",
-          descs:"",
+          nationality_cd: "",
+          descs: "",
         };
       }
-      if(data.reserveType == ''){
+      if (data.reserveType == '') {
         data.reserveType = {
-          nup_type:"",
-          descs:"",
-          prefix:"",
-          nup_amt:0,
-          expired_minute:"",
-          amount:"",
+          nup_type: "",
+          descs: "",
+          prefix: "",
+          nup_amt: 0,
+          expired_minute: "",
+          amount: "",
         };
       }
       // this.loading.dismiss();
       // return;
 
-      if(this.act == 'edit'){
+      if (this.act == 'edit') {
         this.save(data);
       }
       else {
@@ -786,145 +814,137 @@ export class BookingReservePage {
     }
   }
 
-  save(data:any){
+  save(data: any) {
     // let fullNameError = this.reserveForm.get('fullName').hasError('required');
     // let emailError = this.reserveForm.get('email').hasError('pattern');
     // let data = this.reserveForm.value();
-    if(!this.reserveForm.valid){
-      this.loading.dismiss();
-      let toast = this.toastCtrl.create({
-        message: "Your Booking Data Is Not Valid.",
-        duration: 1000,
-        position: 'top'
-      });
+    // if (!this.reserveForm.valid) {
+    //   this.loading.dismiss();
+    //   let toast = this.toastCtrl.create({
+    //     message: "Your Booking Data Is Not Valid.",
+    //     duration: 1000,
+    //     position: 'top'
+    //   });
 
-      toast.onDidDismiss(() => {
-        this.loading.dismiss();
-        console.log('Dismissed toast');
-      });
-      toast.present();
-    }
-    else {
-      // console.log(data);
-      var cnt:number = 0;
-      // var all = this.pict.length;
-      if(this.avPict){
-        this.pict.forEach(img => {
-          cnt ++;
-          // if(img.img && img.img != ''){
-            if(this.platform.is('ios')){
-              this.upload(img.for, img.img64, img.name)
-              .then((datas) => {
-                var x = JSON.parse(datas.response);
-                if(x.Error == true) {
-                  if(x.Status == 401){
-                    // this.showAlert("Warning!", x.Pesan,'');
-                    this.logoutAPi();
-                    this.loading.dismiss();
-                  }
-                  else {
-                    // alert(x.Pesan);
-                    this.showAlert("Warning!", x.Pesan,'');
-                    this.loading.dismiss();
-                  }
+    //   toast.onDidDismiss(() => {
+    //     this.loading.dismiss();
+    //     console.log('Dismissed toast');
+    //   });
+    //   toast.present();
+    // }
+    // else {
+    // console.log(data);
+    var cnt: number = 0;
+    // var all = this.pict.length;
+    if (this.avPict) {
+      this.pict.forEach(img => {
+        cnt++;
+        // if(img.img && img.img != ''){
+        if (this.platform.is('ios')) {
+          this.upload(img.for, img.img64, img.name)
+            .then((datas) => {
+              var x = JSON.parse(datas.response);
+              if (x.Error == true) {
+                if (x.Status == 401) {
+                  // this.showAlert("Warning!", x.Pesan,'');
+                  this.logoutAPi();
+                  this.loading.dismiss();
                 }
                 else {
+                  // alert(x.Pesan);
+                  this.showAlert("Warning!", x.Pesan, '');
+                  this.loading.dismiss();
+                }
+              }
+              else {
 
-                }
-                }, (err) => {
-                }
-              )
+              }
+            }, (err) => {
             }
-            else {
-              this.upload(img.for, img.img, img.name)
-              .then((datas) => {
-                var x = JSON.parse(datas.response);
-                if(x.Error == true) {
-                  if(x.Status == 401){
-                    // this.showAlert("Warning!", x.Pesan,'');
-                    this.logoutAPi();
-                    this.loading.dismiss();
-                  }
-                  else {
-                    // alert(x.Pesan);
-                    this.showAlert("Warning!", x.Pesan,'');
-                    this.loading.dismiss();
-                  }
-                }
-                else {
-
-                }
-                }, (err) => {
-                }
-              )
-            }
-        });
-      }
-
-      this.actSave(data);
-    }
-  }
-
-  upload(what:any,pict:any, name:any){
-    const transfer:FileTransferObject = this.fileTf.create();
-
-      let option : FileUploadOptions = {
-        fileKey: 'photo',
-        fileName: name,
-        chunkedMode: false,
-        httpMethod: 'post',
-        mimeType: 'image/jpeg',
-        headers: {'Token':localStorage.getItem("Token")}
-      };
-
-      return transfer.upload(pict, this.url_api+'c_booking/upload/', option);
-      // .then((x) => {
-      //   console.log(x);
-      //   // this.actSave();
-      // },(err) => {
-      //   this.loading.dismiss();
-      //   // this.showAlert("Error!", 'Upload Image Failed','');
-      //   console.log(err);
-      // });
-  }
-
-  actSave(data:any){
-    this.http.post(this.url_api+"c_booking/saveNup/" , data, {headers:this.hd})
-    .subscribe(
-      (x:any) => {
-        if(x.Error == true) {
-          if(x.Status == 401){
-            // this.showAlert("Warning!", x.Pesan,'');
-            this.logoutAPi();
-            this.loading.dismiss();
-          }
-          else {
-            // alert(x.Pesan);
-            this.showAlert("Warning!", x.Pesan,'');
-            this.loading.dismiss();
-          }
+            )
         }
         else {
-          //Success
-          this.loading.dismiss();
-          this.showAlert("Success!", x.Pesan, 'menu');
-          localStorage.removeItem('image');
-        }
-      },
-      (err)=>{
-        this.loading.dismiss();
-        //filter error array
-        this.ErrorList = this.ErrorList.filter(function(er){
-            return er.Code == err.status;
-        });
+          this.upload(img.for, img.img, img.name)
+            .then((datas) => {
+              var x = JSON.parse(datas.response);
+              if (x.Error == true) {
+                if (x.Status == 401) {
+                  // this.showAlert("Warning!", x.Pesan,'');
+                  this.logoutAPi();
+                  this.loading.dismiss();
+                }
+                else {
+                  // alert(x.Pesan);
+                  this.showAlert("Warning!", x.Pesan, '');
+                  this.loading.dismiss();
+                }
+              }
+              else {
 
-        var errS;
-        //filter klo error'a tidak ada di array error
-        if(this.ErrorList.length == 1 ){
-          errS = this.ErrorList[0].Description;
-        }else{
-          errS = err;
+              }
+            }, (err) => {
+            }
+            )
         }
+      });
+    }
+
+    this.actSave(data);
+    // }
+  }
+
+  upload(what: any, pict: any, name: any) {
+    const transfer: FileTransferObject = this.fileTf.create();
+
+    let option: FileUploadOptions = {
+      fileKey: 'photo',
+      fileName: name,
+      chunkedMode: false,
+      httpMethod: 'post',
+      mimeType: 'image/jpeg',
+      headers: { 'Token': localStorage.getItem("Token") }
+    };
+
+    return transfer.upload(pict, this.url_api + 'c_booking/upload/', option);
+  }
+
+  actSave(data: any) {
+    this.http.post(this.url_api + "c_booking/saveNup/", data, { headers: this.hd })
+      .subscribe(
+        (x: any) => {
+          if (x.Error == true) {
+            if (x.Status == 401) {
+              // this.showAlert("Warning!", x.Pesan,'');
+              this.logoutAPi();
+              this.loading.dismiss();
+            }
+            else {
+              // alert(x.Pesan);
+              this.showAlert("Warning!", x.Pesan, '');
+              this.loading.dismiss();
+            }
+          }
+          else {
+            //Success
+            this.loading.dismiss();
+            this.showAlert("Success!", x.Pesan, 'menu');
+            localStorage.removeItem('image');
+          }
+        },
+        (err) => {
+          this.loading.dismiss();
+          //filter error array
+          this.ErrorList = this.ErrorList.filter(function (er) {
+            return er.Code == err.status;
+          });
+
+          var errS;
+          //filter klo error'a tidak ada di array error
+          if (this.ErrorList.length == 1) {
+            errS = this.ErrorList[0].Description;
+          } else {
+            errS = err;
+          }
           // alert(errS);
           // let toast = this.toastCtrl.create({
           //   message: errS,
@@ -936,27 +956,29 @@ export class BookingReservePage {
           //   console.log('Dismissed toast');
           // });
           // toast.present();
-          this.showAlert("Error!", errS,'');
-      }
-    );
+          this.showAlert("Error!", errS, '');
+        }
+      );
   }
 
-  showAlert(title:any, subTitle:any, act:any) {
-    var bah:any;
-    if(act == 'menu'){
-      bah = {text : 'Ok', handler : () => {
-        this.nav.setRoot(this.main_page.component);
-        localStorage.removeItem('data');
-      }};
+  showAlert(title: any, subTitle: any, act: any) {
+    var bah: any;
+    if (act == 'menu') {
+      bah = {
+        text: 'Ok', handler: () => {
+          this.nav.setRoot(this.main_page.component);
+          localStorage.removeItem('data');
+        }
+      };
     }
     else {
-      bah = {text : 'Ok'};
+      bah = { text: 'Ok' };
     }
     let warning = this.alertCtrl.create({
       cssClass: 'alert',
-      title : title,
-      subTitle : subTitle,
-      buttons : [
+      title: title,
+      subTitle: subTitle,
+      buttons: [
         bah
       ]
     });
@@ -964,7 +986,7 @@ export class BookingReservePage {
     warning.present();
   }
 
-  optionSelected(){
+  optionSelected() {
     var x = this.reserveForm.get('reserveType').value;
     // console.log(x);
     this.amt = x.amount;

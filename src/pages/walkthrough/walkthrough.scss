@@ -1,70 +1,40 @@
 walkthrough-page {
-	@font-face {
-		font-family: 'Exo-Regular';
-		font-style: normal;
-		font-weight: 400;
-		src: url("../assets/fonts/Exo-Medium.ttf") format("truetype");
-	}
-
-	.logo{
-		position: absolute;
-		z-index: 2;
-		left:40%;
-		top:5%;
-		width:100px;
-		height:auto;
-	}
-
-
-
-	/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 500px) {
-	.button-login{
-		position: absolute;z-index: 1;top:75%;left:25%;
-	}
-	.btn-login{
-
-		background-color: rgba(31, 62, 128, 0.589);
-		border-radius: 8px;
-		color: #fff;
-
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
+  @font-face {
+    font-family: "Exo-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/fonts/Exo-Medium.ttf") format("truetype");
   }
 
-  .btn-signup{
+  .logo {
+    position: absolute;
+    z-index: 2;
+    left: 40%;
+    top: 5%;
+    width: 100px;
+    height: auto;
+  }
 
-		background-color: rgba(128, 31, 31, 0.589);
-		border-radius: 8px;
-		color: #fff;
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 500px) {
+    .button-login {
+      position: absolute;
+      z-index: 1;
+      top: 68%;
+      left: 25%;
+    }
+    .btn-login {
+      background-color: rgba(31, 62, 128, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
-	}
-}
-	/* Extra small devices (phones, 600px and down) */
-	@media only screen and (max-width: 320px) {
-		.button-login{
-			position: absolute;z-index: 1;top:75%;left:19%;
-		}
-		.btn-login{
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
 
-			background-color: rgba(31, 62, 128, 0.589);
-			border-radius: 8px;
-			color: #fff;
-
-			height: 50px;
-			width: 200px;
-			font-size: 14px;
-			font-family: 'Exo-Regular';
-		}
-
-    .btn-signup{
-
+    .btn-signup {
       background-color: rgba(128, 31, 31, 0.589);
       border-radius: 8px;
       color: #fff;
@@ -72,129 +42,174 @@ walkthrough-page {
       height: 50px;
       width: 200px;
       font-size: 14px;
-      font-family: 'Exo-Regular';
+      font-family: "Exo-Regular";
     }
-	}
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-	.button-login{
-		position: absolute;z-index: 1;top:75%;left:24%;
-	}
-	.btn-login{
+    .btn-regist {
+      background-color: rgba(128, 31, 31, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-		background-color: rgba(31, 62, 128, 0.589);
-		border-radius: 8px;
-		color: #fff;
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
+  }
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 320px) {
+    .button-login {
+      position: absolute;
+      z-index: 1;
+      top: 75%;
+      left: 19%;
+    }
+    .btn-login {
+      background-color: rgba(31, 62, 128, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
-	}
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
 
-  .btn-signup{
+    .btn-signup {
+      background-color: rgba(128, 31, 31, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-		background-color: rgba(128, 31, 31, 0.589);
-		border-radius: 8px;
-		color: #fff;
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
+  }
 
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
-	}
-}
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .button-login {
+      position: absolute;
+      z-index: 1;
+      top: 75%;
+      left: 24%;
+    }
+    .btn-login {
+      background-color: rgba(31, 62, 128, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-	.button-login{
-		position: absolute;z-index: 1;top:75%;left:38%;
-	}
-	.btn-login{
-		// background-color: #1f3e80;
-		background-color: rgba(31, 62, 128, 0.589);
-		border-radius: 8px;
-		color: #fff;
-		// opacity: 0.8;
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
-	}
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
 
-  .btn-signup{
+    .btn-signup {
+      background-color: rgba(128, 31, 31, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-		background-color: rgba(128, 31, 31, 0.589);
-		border-radius: 8px;
-		color: #fff;
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
+  }
 
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
-	}
-}
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .button-login {
+      position: absolute;
+      z-index: 1;
+      top: 75%;
+      left: 38%;
+    }
+    .btn-login {
+      // background-color: #1f3e80;
+      background-color: rgba(31, 62, 128, 0.589);
+      border-radius: 8px;
+      color: #fff;
+      // opacity: 0.8;
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-	.button-login{
-		position: absolute;z-index: 1;top:75%;left:40%;
-	}
-	.btn-login{
+    .btn-signup {
+      background-color: rgba(128, 31, 31, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-		background-color: rgba(31, 62, 128, 0.589);
-		border-radius: 8px;
-		color: #fff;
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
+  }
 
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
-	}
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .button-login {
+      position: absolute;
+      z-index: 1;
+      top: 75%;
+      left: 40%;
+    }
+    .btn-login {
+      background-color: rgba(31, 62, 128, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-  .btn-signup{
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
 
-		background-color: rgba(128, 31, 31, 0.589);
-		border-radius: 8px;
-		color: #fff;
+    .btn-signup {
+      background-color: rgba(128, 31, 31, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
-	}
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-	.button-login{
-		position: absolute;z-index: 1;top:75%;left:40%;
-	}
-	.btn-login{
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
+  }
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .button-login {
+      position: absolute;
+      z-index: 1;
+      top: 75%;
+      left: 40%;
+    }
+    .btn-login {
+      background-color: rgba(31, 62, 128, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-		background-color: rgba(31, 62, 128, 0.589);
-		border-radius: 8px;
-		color: #fff;
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
 
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
-	}
+    .btn-signup {
+      background-color: rgba(128, 31, 31, 0.589);
+      border-radius: 8px;
+      color: #fff;
 
-  .btn-signup{
-
-		background-color: rgba(128, 31, 31, 0.589);
-		border-radius: 8px;
-		color: #fff;
-
-		height: 50px;
-		width: 200px;
-		font-size: 14px;
-		font-family: 'Exo-Regular';
-	}
-}
-
+      height: 50px;
+      width: 200px;
+      font-size: 14px;
+      font-family: "Exo-Regular";
+    }
+  }
 
   // @media(min-width: 1024px){
   //   .walkthrough-content
@@ -203,8 +218,6 @@ walkthrough-page {
   //     // background-color: color($colors, walkthrough, base);
 
   //     ion-slides {
-
-
 
   //       //class buat auto height and width seluruh device
   //       .img{
@@ -220,216 +233,193 @@ walkthrough-page {
   //       // 	position: relative;
   //       // }
 
-
-
   //     }
-
 
   //   }
   // }
 
-    // //large device
-    // @media(max-width: 1024px){
+  // //large device
+  // @media(max-width: 1024px){
 
-    // }
+  // }
 
-    // //large device
-    // @media(max-width: 768px){
+  // //large device
+  // @media(max-width: 768px){
 
+  // }
 
-    // }
+  // //medium device
+  // @media(max-width: 480px){
 
-    // //medium device
-    // @media(max-width: 480px){
+  // }
 
-    // }
+  // @media(max-width: 420px){
 
-    // @media(max-width: 420px){
+  // }
 
-    // }
+  // //medium device
+  // @media(max-width: 412px){
 
-    // //medium device
-    // @media(max-width: 412px){
+  // }
 
-    // }
+  // //medium kebawah
+  // @media(max-width: 384px){
 
-    // //medium kebawah
-    // @media(max-width: 384px){
+  // }
 
-    // }
+  // //small device
+  // @media(max-width: 360px){
 
-    // //small device
-    // @media(max-width: 360px){
+  // }
 
-    // }
+  // //small device
+  // @media(max-width: 320px){
 
-    // //small device
-    // @media(max-width: 320px){
+  // }
 
-    // }
+  .walkthrough-header {
+    @include header-styles(
+      color($colors, walkthrough-header, base),
+      color($colors, walkthrough-header, contrast)
+    );
+  }
 
+  .walkthrough-content {
+    // Default background when bouncing isn't disabled
+    // background-color: color($colors, walkthrough, base);
 
-	.walkthrough-header
-	{
+    .scroll-content {
+      margin: 0px !important;
+    }
 
-		@include header-styles(color($colors, walkthrough-header, base), color($colors, walkthrough-header, contrast));
-	}
+    ion-slide:nth-child(odd) {
+      // background-color: color($colors, walkthrough, base);
+      // color: color($colors, walkthrough, contrast);
+      // background-size: cover;
+      // background-image: url("http://35.197.137.111//waskitaAPI/images/landing/nines.jpg");
+      object-fit: cover;
+      // background-image: url("")
+    }
 
-	.walkthrough-content
-	{
-		// Default background when bouncing isn't disabled
-		// background-color: color($colors, walkthrough, base);
+    ion-slide:nth-child(even) {
+      // background-color: color($colors, walkthrough-alt, base);
+      // color: color($colors, walkthrough-alt, contrast);
+      object-fit: cover;
+    }
 
-		.scroll-content
-		{
-			margin: 0px !important;
-		}
+    .swiper-pagination-bullet {
+      background: $white;
+      opacity: 0.5;
 
-		ion-slide:nth-child(odd)
-		{
-			// background-color: color($colors, walkthrough, base);
-			// color: color($colors, walkthrough, contrast);
-			// background-size: cover;
-			// background-image: url("http://35.197.137.111//waskitaAPI/images/landing/nines.jpg");
-			object-fit: cover;
-			// background-image: url("")
-		}
+      &.swiper-pagination-bullet-active {
+        opacity: 1;
+      }
+    }
 
-		ion-slide:nth-child(even)
-		{
-			// background-color: color($colors, walkthrough-alt, base);
-			// color: color($colors, walkthrough-alt, contrast);
-			object-fit: cover;
-		}
+    ion-slides {
+      ion-slide {
+        align-items: flex-start;
+      }
 
-		.swiper-pagination-bullet
-		{
-		  background: $white;
-			opacity: .5;
+      .intro-image-row {
+        // justify-content: center;
+        // margin-top: 90px;
+        // margin-top: 16vh;
+        // width: 500px;
+        // height:300px;
+        object-fit: cover !important;
+      }
 
-			&.swiper-pagination-bullet-active
-			{
-			  opacity: 1;
-			}
-		}
-
-		ion-slides {
-
-			ion-slide {
-				align-items: flex-start;
-			}
-
-			.intro-image-row
-			{
-				// justify-content: center;
-				// margin-top: 90px;
-				// margin-top: 16vh;
-				// width: 500px;
-				// height:300px;
-				object-fit: cover !important;
-
-			}
-
-			//class buat auto height and width seluruh device
-			.img{
-				display: block;
-				// width: 100vw;
-				width: auto;
-				height: 100vh;
-				object-fit: cover;
-	// z-index: 1;
-			}
-			// .img{
-			// 	height: 700px;
-			// 	position: relative;
+      //class buat auto height and width seluruh device
+      .img {
+        display: block;
+        // width: 100vw;
+        width: auto;
+        height: 100vh;
+        object-fit: cover;
+        // z-index: 1;
+      }
+      // .img{
+      // 	height: 700px;
+      // 	position: relative;
       // }
 
-      @media(min-width:800px){
-        .img{
+      @media (min-width: 800px) {
+        .img {
           display: block;
           // width: 100vw;
           width: auto;
           height: 110vh;
           object-fit: cover;
-    // z-index: 1;
+          // z-index: 1;
         }
       }
 
-      @media(min-width:1024px){
-        .img{
+      @media (min-width: 1024px) {
+        .img {
           display: block;
           // width: 100vw;
           width: auto;
           height: 150vh;
           object-fit: cover;
-    // z-index: 1;
+          // z-index: 1;
         }
       }
 
+      .main-title {
+        margin: 35px 20px 20px;
+        font-size: 3.4rem;
+        font-weight: 900;
+        font-style: italic;
+        text-align: center;
+        color: $white;
+      }
 
-			.main-title
-			{
-				margin: 35px 20px 20px;
-				font-size: 3.4rem;
-				font-weight: 900;
-				font-style: italic;
-				text-align: center;
-				color: $white;
-			}
+      .intro-text {
+        margin: 0px 20%;
+        font-size: 1.4rem;
+        line-height: 1.35;
+        text-align: center;
+        color: $white;
+      }
+    }
 
-			.intro-text
-			{
-				margin: 0px 20%;
-				font-size: 1.4rem;
-				line-height: 1.35;
-				text-align: center;
-				color: $white;
-			}
-		}
+    .slide-4 {
+      .main-title {
+        margin-top: 15px;
+      }
 
-		.slide-4
-		{
-			.main-title
-			{
-				margin-top: 15px;
-			}
+      .button-bar {
+        display: flex;
+        margin: 25px 8%;
 
-			.button-bar
-			{
-				display: flex;
-				margin: 25px 8%;
+        & > .button {
+          @include segment-text-styles(color($colors, button-alt, base));
+          background-color: color($colors, button-alt, contrast);
+          margin: 0px;
+          border-radius: 0px;
+          flex: 1;
 
-				& > .button
-				{
-					@include segment-text-styles(color($colors, button-alt, base));
-					background-color: color($colors, button-alt, contrast);
-					margin: 0px;
-					border-radius: 0px;
-					flex:1;
+          &:first-child {
+            border-radius: 6px 0px 0px 6px;
 
-					&:first-child
-					{
-					  border-radius: 6px 0px 0px 6px;
-
-						&::after
-						{
-							content: '';
-							background-color: color($colors, button-alt, base);
-							width: 2px;
-							height: calc(100% - 20px);
-							margin: 10px 0px;
-							position: absolute;
-						  top: 0px;
-						  right: 0px;
-							opacity: 0.6;
-						}
-					}
-					&:last-child
-					{
-					  border-radius: 0px 6px 6px 0px;
-					}
-				}
-			}
-		}
-	}
+            &::after {
+              content: "";
+              background-color: color($colors, button-alt, base);
+              width: 2px;
+              height: calc(100% - 20px);
+              margin: 10px 0px;
+              position: absolute;
+              top: 0px;
+              right: 0px;
+              opacity: 0.6;
+            }
+          }
+          &:last-child {
+            border-radius: 0px 6px 6px 0px;
+          }
+        }
+      }
+    }
+  }
 }

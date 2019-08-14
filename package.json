@@ -1,5 +1,5 @@
 {
-  "name": "ifcap365-waskita",
+  "name": "ifcap365-taspen",
   "author": "Ionic Themes",
   "homepage": "https://ionicthemes.com",
   "private": true,
@@ -37,7 +37,7 @@
     "@ionic-native/google-maps": "^4.5.3",
     "@ionic-native/google-plus": "^4.11.0",
     "@ionic-native/image-picker": "4.5.2",
-    "@ionic-native/in-app-browser": "^4.5.2",
+    "@ionic-native/in-app-browser": "^4.20.0",
     "@ionic-native/keyboard": "4.5.2",
     "@ionic-native/native-storage": "4.5.2",
     "@ionic-native/photo-viewer": "^4.7.0",
@@ -51,7 +51,7 @@
     "@types/core-js": "^0.9.41",
     "@types/googlemaps": "^3.25.38",
     "angular2-text-mask": "^8.0.4",
-    "angularfire2": "5.0.0-rc.6",
+    "angularfire2": "^5.0.0-rc.6",
     "bourbon": "5.0.0",
     "brmasker-ionic-3": "^1.0.9",
     "call-number": "^1.0.1",
@@ -60,7 +60,7 @@
     "com.synconset.imagepicker": "^2.1.10",
     "cordova-admob-sdk": "^0.7.0",
     "cordova-android": "~6.4.0",
-    "cordova-browser": "~5.0.3",
+    "cordova-browser": "^5.0.4",
     "cordova-ios": "~4.5.4",
     "cordova-plugin-add-swift-support": "^1.7.2",
     "cordova-plugin-admob-free": "^0.9.0",
@@ -91,7 +91,7 @@
     "cordova-plugin-x-socialsharing": "^5.4.1",
     "cordova-promise-polyfill": "0.0.2",
     "es6-promise-plugin": "^4.2.2",
-    "firebase": "^4.10.0",
+    "firebase": "^4.12.1",
     "google-libphonenumber": "^3.0.9",
     "ionic-angular": "^3.6.1",
     "ionic-img-viewer": "^2.9.0",
@@ -108,7 +108,7 @@
   },
   "devDependencies": {
     "@angular/cli": "^6.0.8",
-    "@ionic/app-scripts": "^3.1.10",
+    "@ionic/app-scripts": "^3.2.3",
     "typescript": "2.4.2"
   },
   "cordovaPlugins": [

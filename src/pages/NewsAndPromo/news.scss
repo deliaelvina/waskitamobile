@@ -77,15 +77,20 @@ news-page {
 			}
 		}
     }
-    
-    
+
+
 }
 
 ion-navbar {
     box-shadow: 0 3px 5px -5px #333 !important;
-    // PENTINGGGG css ini dipake di semua kelas yg namanya ion-navbar 
+    // PENTINGGGG css ini dipake di semua kelas yg namanya ion-navbar
 }
 
 .card-content{
 	font-family: 'Exo-Regular' !important;
+}
+
+.button-link{
+	margin-left: 20% !important;
+	width: 60% !important;
 }
