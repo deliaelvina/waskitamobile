@@ -1,142 +1,58 @@
 <ion-header class="listing-header">
-    <ion-navbar>
-        <!-- <button ion-button menuToggle>
+  <ion-navbar>
+    <!-- <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button> -->
-        <ion-title>
-            <div class="header-logo" style="text-align:center;">
-                Waskita Realty
-                <!-- <preload-image [ratio]="{w:583, h:100}" src="./assets/images/header_logo_white.png"></preload-image> -->
-            </div>
-        </ion-title>
-        <button class="button-logout" (click)="logout()">
-                    <ion-icon name="log-out" > </ion-icon>
-                </button>
-    </ion-navbar>
+    <ion-title>
+      <div class="header-logo" style="text-align:center;">
+        Waskita Realty
+        <!-- <preload-image [ratio]="{w:583, h:100}" src="./assets/images/header_logo_white.png"></preload-image> -->
+      </div>
+    </ion-title>
+    <button class="button-logout" (click)="logout()">
+      <ion-icon name="log-out"> </ion-icon>
+    </button>
+  </ion-navbar>
 </ion-header>
 
 <ion-content class="listing-content">
-    <!-- <div class="div-welcome" style="width:100%;"> -->
-    <div class="div-welcome" ion-fixed style="width:100%;">
-        <h5 class="div-welcome-title">Welcome {{banner_title}}</h5>
-    </div>
-    <!-- <div style="background-color: transparent; height: 150px;margin-left: 10px;margin-right: 10px;margin-top:20px;margin-bottom:15px;"> -->
-            <div class="header-dalem">
-        <img src="./assets/images/listing/dashfront1.jpg" style="width: 100%;height: 100%;border-radius: 10px;">
-
-    </div>
-    <!-- <background-image class="image-heading" [src]="banner_image"> -->
-        <!-- <ion-row class="heading-row"> -->
-        <!-- <ion-col no-padding offset-100> -->
-        <!-- <h5 class="header-logo" style="text-align:left; margin-top:1rem;font-size:1.2rem !important;">Welcome {{banner_title}}</h5> -->
-        <!-- <h5 class="header-logo">{{listing.banner_title_2}}</h5> -->
-        <!-- </ion-col> -->
-        <!-- </ion-row> -->
-    <!-- </background-image> -->
-    <!-- <h4 class="categories-title">{{'POPULAR' | translate}}</h4>
-      <ion-scroll scrollX="true" class="horizontal-categories">
-        <ion-row class="categories-row">
-          <ion-col width-30 class="horizontal-item"  *ngFor="let popular of listing.populars">
-            <preload-image [ratio]="{w:1, h:1}" [src]="popular.image" title="popular.title"></preload-image>
-          </ion-col>
-        </ion-row>
-      </ion-scroll> -->
-    <!-- <h4 style="color: transparent">{{'Menu' | translate}}</h4> -->
-    <!-- <div style="padding-top:5px;"></div> -->
-    <div style="padding-top:5px;"></div>
-
-    <ion-row class="grid-categories">
-        <!-- <ion-col width-50 class="category-item" *ngFor="let category of dashMenu">
-            <background-image tappable class="category-heading" [src]="category.image" (click)="goToFeed(category)">
-                <ion-row class="heading-row">
-                    <ion-col no-padding width-100>
-                        <h2 class="category-title">{{category.title}}</h2>
-                    </ion-col>
-                </ion-row>
-            </background-image>
-        </ion-col> -->
-        <!-- <ion-col width-50 class="category-item">
-            <background-image tappable class="category-heading" [src]="picturee" (click)="goToProjects()">
-                <ion-row class="heading-row">
-                    <ion-col no-padding width-100>
-                        <h2 class="category-title">Reservation</h2>
-                    </ion-col>
-                </ion-row>
-            </background-image>
-        </ion-col> -->
-        <!-- 
-
-        <div class="newsquare" (click)="goToDownload()">
-            <img class="newcontentss" src="./assets/images/dashPict/download.png">
-            <div class="newtextt">
-                Download
-            </div>
-        </div> -->
-
-        <div class="newsquare" *ngFor="let category of dashMenu" (click)="goToFeed(category)">
-            <img class="newcontentss" src="{{category.image}}" onerror="this.src='./assets/images/dashPict/default.png'">
-            <div class="newtextt">
-                {{category.title}}
-            </div>
-        </div>
-
-        <!-- <div class="newsquare" (click)="TicketHis()">
-            <img class="newcontentss" src="./assets/images/dashPict/default.png" onerror="this.src='./assets/images/dashPict/default.png'">
-            <div class="newtextt">
-                Ticket History
-            </div>
-        </div>
-        <div class="newsquare" (click)="TicketEntry()">
-            <img class="newcontentss" src="./assets/images/dashPict/default.png" onerror="this.src='./assets/images/dashPict/default.png'">
-            <div class="newtextt">
-                Ticket Entry
-            </div>
-        </div> -->
-
-        <!-- <div class="square">
-          <img class="contentss" src="{{picturee.reservasi}}" (click)="goToProjects('reservasi')">
-          <div class="textt">
-            Reservation
-          </div>
+  <ion-grid>
+    <ion-row>
+      <!-- <div class="div-welcome" style="width:100%;"> -->
+      <div class="div-welcome" ion-fixed style="width:100%;">
+        <h5 class="div-welcome-title">Welcome {{ banner_title }}</h5>
       </div>
-        <div class="square">
-            <img class="contentss" src="{{picturee.project}}" (click)="goToProjects('project')">
-            <div class="textt">
-                Project Info
-            </div>
-        </div> -->
-        <!-- <div class="square">
-            <img class="contentss" src="./assets/images/dashPict/list.png" (click)="dashClick(dash.url)">
-            <div class="textt">
-                Listing
-            </div>
-        </div>
-        <div class="square">
-            <img class="contentss" src="./assets/images/dashPict/list.png" (click)="dashClick(dash.url)">
-            <div class="textt">
-                Listing
-            </div>
-        </div>
+      <!-- <div style="background-color: transparent; height: 150px;margin-left: 10px;margin-right: 10px;margin-top:20px;margin-bottom:15px;"> -->
+      <div class="header-dalem">
+        <img
+          src="./assets/images/listing/dashfront1.jpg"
+          style="width: 100%;height: 100%;border-radius: 10px;"
+        />
+      </div>
 
-        <div class="square">
-            <img class="contentss" src="./assets/images/dashPict/list.png" (click)="dashClick(dash.url)">
-            <div class="textt">
-                Listing
+      <div style="padding-top:5px;"></div>
+      <div class="square-container">
+        <div
+          class="square-1"
+          *ngFor="let category of dashMenu"
+          (click)="goToFeed(category)"
+        >
+          <div class="square">
+            <div class="content">
+              <div style="text-align: center">
+                <img
+                  src="{{ category.image }}"
+                  onerror="this.src='./assets/images/dashPict/default.png'"
+                  style="width: calc(70% - 10px);"
+                />
+              </div>
             </div>
+          </div>
+          <div class="text">
+            {{ category.title }}
+          </div>
         </div>
-        <div class="square">
-            <img class="contentss" src="./assets/images/dashPict/list.png" (click)="dashClick(dash.url)">
-            <div class="textt">
-                Listing
-            </div>
-        </div>
-
-        <div class="square">
-            <img class="contentss" src="./assets/images/dashPict/list.png" (click)="dashClick(dash.url)">
-            <div class="textt">
-                Listing
-            </div>
-        </div> -->
-
+      </div>
     </ion-row>
+  </ion-grid>
 </ion-content>

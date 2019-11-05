@@ -1,0 +1,50 @@
+<ion-header class="listing-header">
+  <ion-navbar>
+    <!-- <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button> -->
+    <ion-title>
+      <div
+        class="header-logo-1"
+        style="text-align:center;vertical-align: middle"
+      >
+        Project
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="listing-content">
+  <div class="div-welcome" ion-fixed style="width:100%;">
+    <h5 class="div-welcome-title">{{ frontData.projectName }}</h5>
+  </div>
+  <div class="apasi">
+    <img
+      src="{{ frontData.projectPict }}"
+      style="width: 100%;border-radius: 10px;"
+    />
+  </div>
+  <div style="padding-top:5px;"></div>
+  <div class="square-container">
+    <div
+      class="square-1"
+      *ngFor="let menu of dashMenu"
+      (click)="goToFeed(menu.link)"
+    >
+      <div class="square">
+        <div class="content">
+          <div style="text-align: center">
+            <img
+              src="{{ menu.image }}"
+              onerror="this.src='./assets/images/dashPict/default.png'"
+              style="width: calc(70% - 10px);"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="text">
+        {{ menu.title }}
+      </div>
+    </div>
+  </div>
+</ion-content>

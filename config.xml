@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="id.co.property365.taspen" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Taspen</name>
+<widget id="id.co.property365.waskita" version="1.2.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Waskita Realty</name>
     <description>The Best Software Property</description>
     <author email="hi@ionicthemes.com" href="https://ionicthemes.com/">Ionic Themes</author>
     <content src="index.html" />
@@ -13,7 +13,7 @@
     <allow-intent href="geo:*" />
     <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="android-targetSdkVersion" value="26" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
@@ -138,6 +138,8 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.590834895101-7q8gbkho29m46u0442rkn37ie82e0n65" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
+    <plugin name="cordova-plugin-screen-orientation" spec="3.0.2" />
+    <preference name="enableViewportScale" value="true" />
     <engine name="browser" spec="^5.0.4" />
     <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="~6.4.0" />

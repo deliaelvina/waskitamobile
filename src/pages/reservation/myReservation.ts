@@ -320,9 +320,6 @@ export class MyReservationProjectPage {
 
   }
 
-  // goReserveView(data:any) {
-  //   alert('view');
-  // }
 
   showAlert(title:any, subTitle:any) {
     let warning = this.alertCtrl.create({

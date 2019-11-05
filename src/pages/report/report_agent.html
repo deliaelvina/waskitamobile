@@ -1,0 +1,93 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+        <ion-title>
+            <span>Sales Report By Agent</span>
+            <!-- <span>Choose Reservations</span> -->
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="feed-content" style="background-color: #f3f3f3 !important">
+
+    <!-- --------------------------------UNTUK SHOW DATA-------------------------------------------------- -->
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <div class="feed-item" *ngFor="let Rep of reportss" >
+        <ion-card *ngIf="av; else na" (click)="GetReport(item);" item="item">
+            <ion-card-content>
+                <ion-card-title class="item-title">
+                    <strong> {{ Rep.lotno }} | {{ Rep.agntname }}</strong>
+                  </ion-card-title>
+                  <h4>Sales : {{ Rep.salesname }}</h4>
+                  <h5>{{ Rep.slsdate }}</h5>
+                  <h5>{{ Rep.propdescs }} | {{ Rep.lotdescs }} | {{ Rep.directs }}</h5>
+                  <!-- <span *ngIf="data.payment_desc && data.price!=0"> -->
+                      <span>
+                    <h5>{{ Rep.payplan }} | {{ Rep.sellprc }}</h5>
+                  </span>
+
+            </ion-card-content>
+
+        </ion-card>
+    </div>
+    <!-- </div> -->
+    <!-- --------------------------------END UNTUK SHOW DATA-------------------------------------------------- -->
+</ion-content>
+
+<ng-template #na>
+    <ion-content class="feed-content" style="background-color: #f3f3f3 !important">
+        <!-- <div class="row"> -->
+        <div class="feed-item">
+            <ion-card>
+                <ion-card-content>
+                    <ion-card-title class="item-title">
+                        No Report Available
+                    </ion-card-title>
+                </ion-card-content>
+
+            </ion-card>
+        </div>
+        <!-- </div> -->
+    </ion-content>
+</ng-template>
+
+    <!-- <ion-content class="feed-content" style="background-color: #f3f3f3 !important"> -->
+    <!-- <div class="row"> -->
+      <!-- --------------------------------UNTUK SEARCH-------------------------------------------------- -->
+    <!-- <div class="feed-item" *ngFor="let Res of myRes" (click)="goReserve(Res)"> -->
+      <!-- <div class="feed-item">
+        <ion-card>
+            <ion-card-content>
+                <form class="validations-form" [formGroup]="reportForm">
+                    <section class="form-section">
+                        <ion-item>
+                            <ion-label stacked class="labelnya">{{'CHOOSE PROPERTY' | translate}}</ion-label>
+                            <ion-select [disable]="view" formControlName="propertys"
+                              name="propertys" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}" placeholder="Select One">
+                              <ion-option *ngFor="let prp of propss" [value]="prp">{{ prp.descs }}</ion-option>
+                            </ion-select>
+                          </ion-item>
+
+                          <ion-item>
+                              <ion-label stacked class="labelnya">{{'CHOOSE SALES' | translate}}</ion-label>
+                                <ion-select [disable]="view" formControlName="salez"
+                                  name="salez" cancelText="{{ 'CANCEL' | translate }}" okText="{{ 'OK' | translate }}" placeholder="Select One">
+                                  <ion-option *ngFor="let sls of saless" [value]="sls">{{ sls.agent_name }}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                    </section>
+                    <br>
+                    <section class="form-section" >
+
+                        <button ion-button block class="form-action-button" style="background-color: #FF720D">SEARCH</button>
+                      </section>
+                </form>
+            </ion-card-content>
+
+        </ion-card>
+    </div> -->
+    <!-- </div> -->
+     <!-- --------------------------------END UNTUK SEARCH-------------------------------------------------- -->
+

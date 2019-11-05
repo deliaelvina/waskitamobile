@@ -9,6 +9,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { environment } from "../environment/environment";
 import { PhotoViewer } from "@ionic-native/photo-viewer";
 import { IonicImageViewerModule } from "ionic-img-viewer";
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 //pages
 import { ListingPage } from "../pages/listing/listing";
@@ -212,6 +213,7 @@ import { RegisterrPage } from "../pages/RegisterAgent/registoptions";
 import { Agentregistpage } from "../pages/RegisterAgent/agentregist";
 import { AgentregistCam } from "../pages/RegisterAgent/camera/camera";
 import { SignupagntPage } from "../pages/RegisterAgent/signupagnt";
+import { ReportAgentPage } from "../pages/report/report_agent";
 
 // import { UnitFilterModule } from '../tools/pipe.module';
 // PipeModule
@@ -237,6 +239,7 @@ export function createTranslateLoader(http: HttpClient) {
     Agentregistpage,
     AgentregistCam,
     SignupagntPage,
+    ReportAgentPage,
 
     //Ticket
     TicketProjectPage,
@@ -418,6 +421,7 @@ export function createTranslateLoader(http: HttpClient) {
     AgentregistCam,
     SignupagntPage,
     // UnitFilterPipe,
+    ReportAgentPage,
 
     //Ticket
     TicketProjectPage,
@@ -565,7 +569,8 @@ export function createTranslateLoader(http: HttpClient) {
     FileTransferObject,
     File,
     FileOpener,
-    PhotoViewer
+    PhotoViewer,
+    ScreenOrientation
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

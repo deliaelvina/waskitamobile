@@ -7,12 +7,12 @@
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
-$white: #FFFFFF;
+$white: #ffffff;
 $white-a: darken($white, 3%);
 $white-b: darken($white, 6%);
 $white-c: darken($white, 12%);
 $white-d: darken($white, 24%);
-$black: rgba(#000000, .8);
+$black: rgba(#000000, 0.8);
 $black-a: lighten($black, 10%);
 $black-b: lighten($black, 20%);
 $black-c: lighten($black, 40%);
@@ -21,11 +21,14 @@ $theme-color-1: #00e9d5;
 $theme-color-2: #ae75e7;
 $theme-color-3: #5e5874;
 $theme-color-4: #ff720d;
+$color-background-list-menu: #bdbdbd;
+$color-list-menu-title: #000000;
 // IFCA CSS COLORS
 $title-header: #fff; //BUAT HEADER TITLE WARNA ITEM
 $background-header: #1f3e80;
 $background-header-dalem: #272e5b;
-$warna-button-footer: #1f3e80; //WARNA FOOTER 
+$background-header-dalem2: #e0dede;
+$warna-button-footer: #1f3e80; //WARNA FOOTER
 //KALO WARNA BACKGROUND FOOTER ADA DI BAWAH $colors:tabs-navigation:base//
 $button-logout: #fff;
 $button-back: #fff;
@@ -33,7 +36,7 @@ $list-bawah-ion-card: #1f3e80;
 $signup: #1f3e80;
 // $input-login: #ffffff6e;
 $input-login: #fff;
-$button:  transparent;
+$button: transparent;
 $button-reservasi: #1f3e80;
 // Named Color Variables
 // --------------------------------------------------
@@ -42,7 +45,63 @@ $button-reservasi: #1f3e80;
 // to match your app's branding. Ionic uses a Sass map of
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
-$colors: ( primary: #387ef5, secondary: #32db64, danger: #f4344f, light: #f4f4f4, dark: #222, favorite: #69BB7B, ifca-orange: #ff720d, walkthrough: ( base: $theme-color-1, contrast: $white), walkthrough-alt:( base: $theme-color-2, contrast: $white), walkthrough-header:( base: transparent, contrast: $white), header:( base: $theme-color-1, contrast: $white), header-alt:( base: $theme-color-2, contrast: $white), facebook:( base: #3b5998, contrast: $white), google:( base: #cc181e, contrast: $white), twitter:( base: #00aced, contrast: $white), button:( base: $theme-color-1, contrast: $white), button-alt:( base: $theme-color-2, contrast: $white), background:( base: $white-a, contrast: $black-b), tabs-navigation:( base: $white, contrast: $white-d));
+$colors: (
+  primary: #387ef5,
+  secondary: #32db64,
+  danger: #f4344f,
+  light: #f4f4f4,
+  dark: #222,
+  favorite: #69bb7b,
+  ifca-orange: #ff720d,
+  walkthrough: (
+    base: $theme-color-1,
+    contrast: $white
+  ),
+  walkthrough-alt: (
+    base: $theme-color-2,
+    contrast: $white
+  ),
+  walkthrough-header: (
+    base: transparent,
+    contrast: $white
+  ),
+  header: (
+    base: $theme-color-1,
+    contrast: $white
+  ),
+  header-alt: (
+    base: $theme-color-2,
+    contrast: $white
+  ),
+  facebook: (
+    base: #3b5998,
+    contrast: $white
+  ),
+  google: (
+    base: #cc181e,
+    contrast: $white
+  ),
+  twitter: (
+    base: #00aced,
+    contrast: $white
+  ),
+  button: (
+    base: $theme-color-1,
+    contrast: $white
+  ),
+  button-alt: (
+    base: $theme-color-2,
+    contrast: $white
+  ),
+  background: (
+    base: $white-a,
+    contrast: $black-b
+  ),
+  tabs-navigation: (
+    base: $white,
+    contrast: $white-d
+  )
+);
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can

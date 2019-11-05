@@ -1,41 +1,64 @@
-
 <ion-header class="listing-header">
-    <ion-navbar>
-        <!-- <button ion-button menuToggle>
+  <ion-navbar>
+    <!-- <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button> -->
-        <ion-title>
-            <div class="header-logo-1" style="text-align:center;vertical-align: middle">
-                Management Dashboard
-                <!-- <preload-image [ratio]="{w:583, h:100}" src="./assets/images/header_logo_white.png"></preload-image> -->
-            </div>
-        </ion-title>
-        <!-- <button class="button-logout" (click)="logout()">
+    <ion-title>
+      <div
+        class="header-logo-1"
+        style="text-align:center;vertical-align: middle"
+      >
+        Management Dashboard
+        <!-- <preload-image [ratio]="{w:583, h:100}" src="./assets/images/header_logo_white.png"></preload-image> -->
+      </div>
+    </ion-title>
+    <!-- <button class="button-logout" (click)="logout()">
                     <ion-icon name="log-out" > </ion-icon>
                 </button> -->
-    </ion-navbar>
+  </ion-navbar>
 </ion-header>
 
 <ion-content class="listing-content">
-    <div class="div-welcome" ion-fixed style="width:100%;">
-        <h5 class="div-welcome-title">{{frontData.projectName}}</h5>
-    </div>
-    <div class="apasi">
-           
-            <img src="{{frontData.projectPict}}" style="width: 100%;height: 100%;border-radius: 10px;"> 
-    
-        </div>
-  
-    <ion-row class="grid-categories">
-      
+  <div class="div-welcome" ion-fixed style="width:100%;">
+    <h5 class="div-welcome-title">{{ frontData.projectName }}</h5>
+  </div>
+  <div class="apasi">
+    <img
+      src="{{ frontData.projectPict }}"
+      style="width: 100%;height: 100%;border-radius: 10px;"
+    />
+  </div>
+
+  <!-- <ion-row class="grid-categories">
         <div class="square" *ngFor="let menu of dashMenu" (click)="goToFeed(menu.link)">
             <img class="contentss" src="{{menu.image}}" onerror="this.src='./assets/images/dashPict/default.png'">
             <div class="textt">
                 {{menu.title}}
             </div>
         </div>
+    </ion-row> -->
 
-    
+  <ion-grid>
+    <ion-row>
+      <div
+        class="squarez"
+        *ngFor="let menu of dashMenu"
+        (click)="goToFeed(menu.link)"
+      >
+        <div class="square-for-img">
+          <div class="square-content">
+            <img
+              class="icon-foto"
+              src="{{ menu.image }}"
+              onerror="this.src='./assets/images/dashPict/default.png'"
+            />
+          </div>
+        </div>
 
+        <div class="squarez-title">
+          {{ menu.title }}
+        </div>
+      </div>
     </ion-row>
+  </ion-grid>
 </ion-content>

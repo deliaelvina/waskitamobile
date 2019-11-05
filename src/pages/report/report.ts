@@ -32,11 +32,12 @@ import { AuthService } from '../../auth/auth.service';
 // import { DownloadPage } from '../download/download';
 import { ReportNUP } from '../reportNUP/reportNUP';
 import { ReportSales } from '../reportSales/reportSales';
+import { ReportAgentPage } from './report_agent';
 import { ReportFinance } from '../reportFinance/reportFinance';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { base64, base64Encode } from '@firebase/util';
 import { Token } from '@angular/compiler';
-
+import { noComponentFactoryError } from '@angular/core/src/linker/component_factory_resolver';
 
 
 @Component({
@@ -80,7 +81,7 @@ export class ReportPage {
     private _app: App,
     private _authService: AuthService,
     private iab :InAppBrowser,
-    
+
   ) {
     this.frontData = JSON.parse(localStorage.getItem('Project'));
     // console.log(this.frontData);
@@ -96,26 +97,12 @@ export class ReportPage {
         link : "ReportSales"
       },
 
-      {
-        image : "./assets/images/dashPict/bar-chart.png",
-        title : "Dashboard Finance",
-        link : "ReportFinance"
-      },
-    //   {
-    //     image : "./assets/images/dashPict/promo.png",
-    //     title : "Promo",
-    //     link : "PromoPage"
-    //   },
-    //   {
-    //     image : "./assets/images/dashPict/news.png",
-    //     title : "News",
-    //     link : "NewsPage"
-    //   },
-    //   {
-    //     image : "./assets/images/dashPict/calculator.png",
-    //     title : "Calculator KPA/R",
-    //     link : "SimulasiPage"
-    //   }
+      // {
+      //   image : "./assets/images/dashPict/bar-chart.png",
+      //   title : "Sales Report Agent",
+      //   link : "ReportAgentPage"
+      // },
+
     ];
 
     platform.ready().then((source) => {
@@ -135,24 +122,20 @@ export class ReportPage {
       // alert(source);
     });
     // this.initDash();
-    // this.link['MyUnitPage'] = MyUnitPage;
+
     this.link['SimulasiPage'] = SimulasiPage;
-    // this.link['ProjectDetailsPage'] = ProjectDetailsPage; //kirim localstorage cons
-    // this.link['ReservationProjectPage'] = ReservationProjectPage;
     this.link['NewsPage'] = NewsPage;
     this.link['PromoPage'] = PromoPage;
-    // this.link['ProductPhasePage'] = ProductPhasePage; //kirim param menus
-    // this.link['DownloadPage'] = DownloadPage; //kirim param menus
-    // this.link['BookingPhasePage'] = BookingPhasePage; //kirim locastorage banyak
     this.link['ReportNUP'] = ReportNUP;
     this.link['ReportSales'] = ReportSales;
-    this.link['ReportFinance'] = ReportFinance;
+    // this.link['ReportAgentPage'] = ReportAgentPage;
+
     this.loading = this.loadingCtrl.create();
   }
 
   // initDash() {
   ionViewDidLoad() {
-    
+
   }
 
   ionViewWillEnter(){
@@ -240,23 +223,37 @@ export class ReportPage {
     else if(link == "ReportSales") {
       this.goReportSales();
     }
-    else if(link == "ReportFinance") {
-      this.goReportFinance();
-    }
-    // else if(link == "DownloadPage") {
-    // //   this.goDownload();
+    // else if(link == "ReportAgentPage") {
+    //   this.goReportAgent();
     // }
     else {
       this.nav.push(this.link[link], { user: localStorage.getItem("UserId") });
     }
   }
 
+  // goReportAgent(){
+  //   this.nav.push(ReportAgentPage, { user: localStorage.getItem("UserId") });
+  // }
+
+  goReportAgent(){
+
+    var data = {
+      cons : this.frontData.cons,
+      entity : this.frontData.entity,
+      projectNo : this.frontData.projectNo,
+      projectName : this.frontData.projectName,
+      projectPict : this.frontData.projectPict
+    };
+
+    this.nav.push(ReportAgentPage, { data:data });
+  }
+
   goReportNUP(){
     const project = JSON.parse(localStorage.getItem("Project"));
     var token = base64Encode(project.cons+'-$-'+project.entity+'-$-'+project.projectNo+'-$-'+localStorage.getItem("Token"));
-    
+
     const url = this.url_api+'dash_nup/index/'+token;
-  
+
     const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
     browser.on('loadstop').subscribe(event=>{
       if (event.url.match("mobile/close")) {
@@ -269,76 +266,22 @@ export class ReportPage {
   goReportSales(){
     const project = JSON.parse(localStorage.getItem("Project"));
     var token = base64Encode(project.cons+'-$-'+project.entity+'-$-'+project.projectNo+'-$-'+localStorage.getItem("Token"));
-    
+
     const url = this.url_api+'dash_sales/index/'+token;
-    
-    const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
-    browser.on('loadstop').subscribe(event=>{
-      if (event.url.match("mobile/close")) {
-        browser.close();
-    }
-    });
-    browser.show();
+    // const options: InAppBrowserOptions ={
+    //   zoom: 'yes'
+    // }
+    // const browser = this.iab.create(url,'_self',options);
+    // browser.on('loadstop').subscribe(event=>{
+    //   if (event.url.match("mobile/close")) {
+    //     browser.close();
+    // }
+    // });
+    // browser.show();
+    window.open(url, '_system');
   }
 
-  goReportFinance(){
-    const project = JSON.parse(localStorage.getItem("Project"));
-    var token = base64Encode(project.cons+'-$-'+project.entity+'-$-'+project.projectNo+'-$-'+localStorage.getItem("Token"));
 
-    const url = this.url_api+'dash_finance/index/'+token;
-
-    const browser = this.iab.create(url,'_blank',{toolbar:'no',location:'no'});
-    browser.on('loadstop').subscribe(event=>{
-      // alert(JSON.stringify(event));
-      if (event.url.match("mobile/close")) {
-        browser.close();
-    }
-    });
-    browser.show();
-  }
-
-//   goDownload(){
-//     var data = {
-//       cons : this.frontData.cons,
-//       entity : this.frontData.entity,
-//       projectNo : this.frontData.projectNo,
-//       projectName : this.frontData.projectName,
-//       projectPict : this.frontData.projectPict
-//     };
-
-//     this.nav.push(DownloadPage, {data:data});
-//   }
-
-//   goBooking(){
-//     var data = {
-//       cons : this.frontData.cons,
-//       project : this.frontData.projectNo,
-//       entity : this.frontData.entity,
-//       projectName : this.frontData.projectName,
-//       header_pict : this.frontData.header_pict,
-//       towerCd : '',
-//       towerName : '',
-//       level : '',
-//       level_descs : '',
-//       lot : '',
-//       bed : 0,
-//       bath : 0,
-//       studio : '',
-//       currency : '',
-//       price : '',
-//       area : 0,
-//       uom : '',
-//       direct : ''
-//     };
-//     // console.log(data);
-//     localStorage.removeItem("data");
-//     localStorage.setItem("data", JSON.stringify(data));
-//     this.nav.push(BookingPhasePage, {user: localStorage.getItem("UserId")});
-//   }
-
-//   goProduct(){
-//     this.nav.push(ProductPhasePage, {data:this.frontData, user: localStorage.getItem("UserId")});
-//   }
   showAlert(title:any, subTitle:any) {
 
     let warning = this.alertCtrl.create({
