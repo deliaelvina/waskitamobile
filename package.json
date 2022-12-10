@@ -61,7 +61,7 @@
     "com.synconset.imagepicker": "^2.1.10",
     "cordova-admob-sdk": "^0.7.0",
     "cordova-android": "~6.4.0",
-    "cordova-browser": "^5.0.4",
+    "cordova-browser": "^6.0.0",
     "cordova-ios": "~4.5.4",
     "cordova-plugin-add-swift-support": "^1.7.2",
     "cordova-plugin-admob-free": "^0.9.0",
